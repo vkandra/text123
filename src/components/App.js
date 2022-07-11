@@ -8,7 +8,7 @@ import SignIn from '../pages/SignIn/SignIn';
 import SignUp from '../pages/SignUp.js/SignUp';
 
 const App = (props) => {
-  console.log('PROPS', props);
+  // console.log('PROPS', props);
   return (
     <Router>
       <Header />

@@ -2,22 +2,16 @@ import { applyMiddleware, createStore } from 'redux';
 import logger from 'redux-logger';
 import thunk from 'redux-thunk';
 import reducer from '../reducers';
-
-const useLogger =
-  ({ dispatch, getState }) =>
-  (next) =>
-  (action) => {
-    // MIDDLEWARE CODES
-    if (typeof action !== 'function') {
-      console.log('ACTION_TYPE = ', action.type);
-    }
-    next(action);
-  };
+import userSignInOutUpLogger from '../middlewares/userSignInOutUpLogger';
+import { composeWithDevTools } from 'redux-devtools-extension';
 
 let store;
 
 export function configureStore() {
-  store = createStore(reducer, applyMiddleware(logger, thunk, useLogger));
+  store = createStore(
+    reducer,
+    composeWithDevTools(applyMiddleware(logger, thunk, userSignInOutUpLogger))
+  );
 
   return store;
 }
