@@ -1,0 +1,35 @@
+.footer {
+  border-top: 1px solid lightgray;
+  height: 5vh;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px 40px;
+}
+.copyrightDiv {
+  display: flex;
+  align-items: center;
+  /* border: 1px solid black; */
+  width: 175px;
+  justify-content: space-evenly;
+}
+.copyright-logo {
+  width: 12px;
+  height: 12px;
+}
+.cyientDiv {
+  display: flex;
+  align-items: center;
+  /* border: 1px solid black; */
+  width: 200px;
+  justify-content: space-evenly;
+}
+.cyient-logo {
+  height: 13px;
+}
+.text-foot {
+  padding: 0px;
+  margin: 0px;
+  margin-bottom: 3px;
+  font-weight: 500;
+}
