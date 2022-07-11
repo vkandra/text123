@@ -7,7 +7,7 @@ const InAppBody = (props) => {
     <div className="inAppBody">
       <div className="bodyContainer">
         <div className="menuContainer"></div>
-        <div className="visualBodyContainer">This is the body</div>
+        <div className="visualBodyContainer">Hello</div>
       </div>
     </div>
   );
