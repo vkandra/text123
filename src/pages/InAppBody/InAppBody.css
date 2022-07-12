@@ -1,3 +1,47 @@
 .inAppBody {
-  height: 85vh;
+  height: 83vh;
+}
+
+.bodyContainer {
+  /* border: 1px solid black; */
+  margin: 20px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.menuContainer {
+  /* border: 1px solid blue; */
+  width: 200px;
+}
+
+.visualBodyContainer {
+  border: 2px solid gainsboro;
+  margin-left: 20px;
+  width: 85vw;
+  height: 80vh;
+}
+
+.singleMenus {
+  border: 2px solid gainsboro;
+  height: 40px;
+  margin-bottom: 5px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 600;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
+
+  /* background: wheat; */
+}
+
+.singleMenus:hover {
+  border: 2px solid darkorange;
+  transition: 0.3s;
+}
+
+.selectedMenu {
+  background: rgb(193, 238, 255);
 }
