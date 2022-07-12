@@ -3,7 +3,7 @@ import React from 'react';
 // import { connect } from 'react-redux/es/exports';
 
 const TextExtraction = (props) => {
-  return <div className="textExtraction">This is TextExtraction. Hi</div>;
+  return <div className="textExtraction">This is TextExtraction. Hi Hello</div>;
 };
 
 // const mapStateToProps = (state) => {
