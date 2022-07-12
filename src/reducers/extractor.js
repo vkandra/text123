@@ -1,7 +1,7 @@
 import { CHANGE_TAB_OPERATION } from '../actions/extractor';
 
 const extractorDocumentState = {
-  page: 1,
+  page: 2,
 };
 
 export default function extractor(state = extractorDocumentState, action) {

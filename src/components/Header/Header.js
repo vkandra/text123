@@ -28,7 +28,7 @@ const Header = (props) => {
       <div>TEXT-EXTRACTOR</div>
 
       <div className="dropiconbutton">
-        {/* <div>ICONS </div>
+        <div>ICONS </div>
         {props.user.signUp === false && props.user.isLoggedIn === true ? (
           <Link to="/signin">
             <button className="inupoutButton" onClick={signInPerform}>
@@ -47,7 +47,7 @@ const Header = (props) => {
               Sign In
             </button>
           </Link>
-        ) : null} */}
+        ) : null}
       </div>
     </div>
   );
