@@ -13,6 +13,9 @@
   width: 175px;
   justify-content: space-evenly;
 }
+.copyrightDiv i {
+  font-size: 13px;
+}
 .copyright-logo {
   width: 12px;
   height: 12px;

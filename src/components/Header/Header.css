@@ -29,6 +29,7 @@
 .inupoutButton:hover {
   background: rgb(255, 204, 109);
 }
-.company-logo {
-  height: 40px;
+.header div i {
+  font-size: 30px;
+  color: aqua;
 }

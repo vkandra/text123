@@ -19,13 +19,35 @@ const TextExtraction = (props) => {
       <div className="extractedData">
         <div className="exactDoc">
           <div className="dropdownsdocpage">
-            <div className="docdropdown"></div>
-            <div className="pagedropdown"></div>
+            <div className="docdropdown">
+              <select name="documents">
+                <optgroup label="Select Document">
+                  {/* label="Start the selection" */}
+                  <option value="1">1 gas</option>
+                  <option value="2">2 gaste</option>
+                  <option value="3">3 gaste</option>
+                </optgroup>
+              </select>
+            </div>
+            <div className="pagedropdown">
+              <select name="pages">
+                <optgroup label="Select Page">
+                  {/* label="Start the selection" */}
+                  <option value="1">1 gas</option>
+                  <option value="2">2 gaste</option>
+                  <option value="3">3 gaste</option>
+                </optgroup>
+              </select>
+            </div>
           </div>
           <div className="displayArea"></div>
           <div className="nextPrevButtons">
-            <div className="prevButton"></div>
-            <div className="nextButton"></div>
+            <div className="prevButton">
+              <i class="fi fi-ss-arrow-left"></i> &nbsp; Prev
+            </div>
+            <div className="nextButton">
+              Next &nbsp;<i class="fi fi-ss-arrow-right"></i>
+            </div>
           </div>
         </div>
 
