@@ -1,8 +1,18 @@
 import './TextExtraction.css';
 import React from 'react';
-// import { connect } from 'react-redux/es/exports';
+import { connect } from 'react-redux/es/exports';
+import { changeTextDataTabOperation } from '../../actions/extractor';
+
+import KeyValueDocData from '../KeyValueDocData/KeyValueDocData';
+import RawDocData from '../RawDocData/RawDocData';
+import TableDocData from '../TableDocData/TableDocData';
 
 const TextExtraction = (props) => {
+  const changeDataTabs = (tabNum) => {
+    const { extractor } = props;
+    extractor.textDataTab = tabNum;
+    props.dispatch(changeTextDataTabOperation(extractor));
+  };
   return (
     <div className="textExtraction">
       <div className="exactDoc">
@@ -19,22 +29,51 @@ const TextExtraction = (props) => {
 
       <div className="docData">
         <div className="docDataAllTabs">
-          <button className="docTab1">Key-Value</button>
-          <button className="docTab1">Table</button>
-          <button className="docTab1">Raw Data</button>
+          <button
+            className={`${
+              props.extractor.textDataTab === 1 ? 'selectedMenu' : ''
+            }`}
+            onClick={() => changeDataTabs(1)}
+          >
+            Key-Value
+          </button>
+          <button
+            className={`${
+              props.extractor.textDataTab === 2 ? 'selectedMenu' : ''
+            }`}
+            onClick={() => changeDataTabs(2)}
+          >
+            Table
+          </button>
+          <button
+            className={`${
+              props.extractor.textDataTab === 3 ? 'selectedMenu' : ''
+            }`}
+            onClick={() => changeDataTabs(3)}
+          >
+            Raw Data
+          </button>
         </div>
-        <div className="docTabData"></div>
+        <div className="docTabData">
+          {props.extractor.textDataTab === 1 ? (
+            <KeyValueDocData />
+          ) : props.extractor.textDataTab === 2 ? (
+            <TableDocData />
+          ) : props.extractor.textDataTab === 3 ? (
+            <RawDocData />
+          ) : null}
+        </div>
       </div>
     </div>
   );
 };
 
-// const mapStateToProps = (state) => {
-//     return {
-//       user: state.user,
-//     };
-//   };
+const mapStateToProps = (state) => {
+  return {
+    extractor: state.extractor,
+  };
+};
 
-//   export default connect(mapStateToProps)(TextExtraction);
+export default connect(mapStateToProps)(TextExtraction);
 
-export default TextExtraction;
+// export default TextExtraction;

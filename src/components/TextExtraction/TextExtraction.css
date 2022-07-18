@@ -102,3 +102,7 @@
   height: 90%;
   width: 100%;
 }
+.selectedMenu {
+  background: rgb(131, 197, 255) !important;
+  font-weight: 900 !important;
+}
