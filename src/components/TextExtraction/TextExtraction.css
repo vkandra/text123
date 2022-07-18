@@ -1,15 +1,23 @@
 .textExtraction {
-  display: flex;
-  justify-content: space-around;
   height: 100%;
   display: flex;
+  flex-direction: column;
   justify-content: space-around;
   align-items: center;
   /* border: 1px solid greenyellow; */
 }
+.extractedData {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 95%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
 .exactDoc {
   border: 1px solid blue;
-  width: 35%;
+  width: 37%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -64,7 +72,7 @@
   border: 1px solid blue;
   /* padding: 5px; */
   /* margin: 5px; */
-  width: 60%;
+  width: 61%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -102,7 +110,12 @@
   height: 90%;
   width: 100%;
 }
-.selectedMenu {
+.selectedDataTab {
   background: rgb(131, 197, 255) !important;
   font-weight: 900 !important;
+}
+.extractedDocumentDetailsSection {
+  border: 1px solid black;
+  height: 30px;
+  width: 100%;
 }

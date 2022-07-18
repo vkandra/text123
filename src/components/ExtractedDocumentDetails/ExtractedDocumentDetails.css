@@ -1,0 +1,58 @@
+.extractedDocumentDetails {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  font-size: 12px;
+  font-weight: 500;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  margin: 0;
+  padding: 0;
+  padding-top: 1px;
+}
+.documentDetailSections {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 75%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+.documentSingleDetailSection {
+  width: 50%;
+}
+.actualDocDataDetail {
+  color: blueviolet;
+}
+
+.documentDetailAction {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 20%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+.documentDetailAction button {
+  outline: none;
+  border: 1px solid black;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-weight: 900;
+  background-color: white;
+  cursor: pointer;
+}
+.documentDetailAction button:hover {
+  opacity: 0.8;
+}
+.documentDetailAction .downloadButton {
+  color: forestgreen;
+}
+
+.documentDetailAction .reextractButton {
+  color: blueviolet;
+}
+
+.documentDetailAction .deleteButton {
+  color: red;
+}
