@@ -1,0 +1,104 @@
+.textExtraction {
+  display: flex;
+  justify-content: space-around;
+  height: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  /* border: 1px solid greenyellow; */
+}
+.exactDoc {
+  border: 1px solid blue;
+  width: 35%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  height: 98%;
+}
+.dropdownsdocpage {
+  border: 1px solid black;
+  margin: 0;
+  padding: 0;
+  height: 50px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.docdropdown {
+  height: 100%;
+  width: 48%;
+  border: 1px solid brown;
+}
+.pagedropdown {
+  height: 100%;
+  width: 48%;
+  border: 1px solid brown;
+}
+.displayArea {
+  border: 1px solid black;
+  height: 80%;
+  width: 100%;
+}
+.nextPrevButtons {
+  border: 1px solid black;
+  height: 50px;
+  width: 100%;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.prevButton {
+  height: 100%;
+  width: 48%;
+  border: 1px solid brown;
+}
+.nextButton {
+  height: 100%;
+  width: 48%;
+  border: 1px solid brown;
+}
+.docData {
+  border: 1px solid blue;
+  /* padding: 5px; */
+  /* margin: 5px; */
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  height: 98%;
+}
+.docDataAllTabs {
+  height: 50px;
+  width: 100%;
+  border: 1px solid rebeccapurple;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.docDataAllTabs button {
+  background: white;
+  outline: none;
+  width: 30%;
+  height: 90%;
+  border: 1px solid rgb(31, 30, 30);
+  border-radius: 4px;
+  font-size: 1rem;
+  font-weight: bold;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+.docDataAllTabs button:hover {
+  background: rgb(193, 228, 243);
+  cursor: pointer;
+  transition: 0.3s;
+}
+.docTabData {
+  border: 1px solid green;
+  height: 90%;
+  width: 100%;
+}
