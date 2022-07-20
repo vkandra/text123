@@ -3,7 +3,14 @@ const initialsingleDocumentState = {
   singleDocumentName: '',
   singleDocumentType: '',
   singleDocumentTotalPages: 0,
-  singleDocumentContent: [],
+  singleDocumentPrimaryContent: [],
+  singleDocumentSecondaryContent: [],
+  singleDocumentPrimaryKeyValue: [],
+  singleDocumentSecondaryKeyValue: [],
+  singleDocumentPrimaryTables: [],
+  singleDocumentSecondaryTables: [],
+  singleDocumentPrimaryRawData: [],
+  singleDocumentSecondaryRawData: [],
 };
 
 export default function singleDocument(

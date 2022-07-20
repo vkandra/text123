@@ -43,10 +43,10 @@ const TextExtraction = (props) => {
           <div className="displayArea"></div>
           <div className="nextPrevButtons">
             <div className="prevButton">
-              <i class="fi fi-ss-arrow-left"></i> &nbsp; Prev
+              <i className="fi fi-ss-arrow-left"></i> &nbsp; Prev
             </div>
             <div className="nextButton">
-              Next &nbsp;<i class="fi fi-ss-arrow-right"></i>
+              Next &nbsp;<i className="fi fi-ss-arrow-right"></i>
             </div>
           </div>
         </div>

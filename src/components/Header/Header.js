@@ -19,7 +19,7 @@ const Header = (props) => {
   return (
     <div className="header">
       <div>
-        <i class="fi fi-sr-building"></i>
+        <i className="fi fi-sr-building"></i>
         {/* <img
           alt="Company"
           src="https://cdn-icons.flaticon.com/png/512/484/premium/484522.png?token=exp=1657523794~hmac=2edf9f53342b6c114db6d76ca32fd148"
