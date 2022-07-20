@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 // ACTION TYPES
-// export const FETCH_SINGLE_FILE_DATA = 'FETCH_SINGLE_FILE_DATA';
+export const ASSIGN_SINGLE_FILE_DATA = 'ASSIGN_SINGLE_FILE_DATA';
 
 // ACTION CREATORS
 export function fetchSingleFileData(data) {
@@ -9,7 +9,15 @@ export function fetchSingleFileData(data) {
     axios
       .get(`https://4xjuok1l6c.execute-api.ap-south-1.amazonaws.com/output`)
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
+        dispatch(assignSingleFileData(res.data));
       });
+  };
+}
+export function assignSingleFileData(data) {
+  //   console.log(data);
+  return {
+    type: ASSIGN_SINGLE_FILE_DATA,
+    data: data,
   };
 }

@@ -1,8 +1,8 @@
 import './App.css';
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux/es/exports';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import axios from 'axios';
+// import axios from 'axios';
 
 import Header from './Header/Header';
 import Footer from './Footer/Footer';
@@ -16,6 +16,8 @@ const App = (props) => {
   useEffect(() => {
     props.dispatch(fetchSingleFileData());
   }, []);
+
+  // console.log(props.singleDocument.singleDocumentPrimaryContent);
 
   return (
     <Router>

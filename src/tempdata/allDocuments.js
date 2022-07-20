@@ -1,6 +1,7 @@
 export const allDocuments = [
   {
     id: 1,
+    userToken: 'pllkmkllkikjhnmlj98kj9olki876ggtfv6',
     documentType: 'Image',
     ducumentName: 'abc',
     documentUploadDate: '2022-01-01',
@@ -13,6 +14,7 @@ export const allDocuments = [
   },
   {
     id: 2,
+    userToken: 'pllkmkllkikjhnmlj98kj9olki876ggtfv6',
     documentType: 'Image',
     ducumentName: 'def',
     documentUploadDate: '2022-04-04',
@@ -25,6 +27,7 @@ export const allDocuments = [
   },
   {
     id: 3,
+    userToken: 'pllkmkllkikjhnmlj98kj9olki876ggtfv6',
     documentType: 'PDF',
     ducumentName: 'ghi',
     documentUploadDate: '2021-06-06',

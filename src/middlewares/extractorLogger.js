@@ -3,8 +3,8 @@ const extractorLogger =
   (next) =>
   (action) => {
     // MIDDLEWARE CODES
-    if (action.type === 'CHANGE_TAB_OPERATION') {
-      console.log('ACTION_TYPE_USER_MIDDLEWARE = ', action);
+    if (typeof action !== 'function') {
+      // console.log('ACTION_TYPE : ', action.type);
     }
     next(action);
   };
