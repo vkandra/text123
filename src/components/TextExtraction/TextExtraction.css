@@ -163,6 +163,7 @@
   /* border: 1px solid green; */
   height: 90%;
   width: 100%;
+  overflow: auto;
 }
 .selectedDataTab {
   background: rgb(131, 197, 255) !important;

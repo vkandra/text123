@@ -11,6 +11,7 @@ import SignIn from '../pages/SignIn/SignIn';
 import SignUp from '../pages/SignUp.js/SignUp';
 import { fetchSingleFileData } from '../actions/singleDocument';
 
+import 'bootstrap/dist/css/bootstrap.min.css';
 const App = (props) => {
   useEffect(() => {
     props.dispatch(fetchSingleFileData());
