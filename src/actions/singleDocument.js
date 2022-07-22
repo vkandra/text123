@@ -11,11 +11,12 @@ export function fetchSingleFileData(data) {
       .then((res) => {
         // console.log(res.data);
         dispatch(assignSingleFileData(res.data));
+        // console.log(assignSingleFileData(res.data))
       });
   };
 }
 export function assignSingleFileData(data) {
-  //   console.log(data);
+    // console.log(data);
   return {
     type: ASSIGN_SINGLE_FILE_DATA,
     data: data,

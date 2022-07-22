@@ -28,7 +28,7 @@ const KeyValueDocData = (props) => {
   
   return <div className="keyValueDocData">
     {<div className='icons-style'>
-      <GrEdit />&emsp;
+      <GrEdit />&emsp;&emsp;
       <GrCheckmark />
     </div>}
 

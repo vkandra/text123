@@ -58,7 +58,7 @@ const TableDocData = (props) => {
       </tbody>
     </table>
     {<div className='icons-style'>
-      <GrEdit />&emsp;
+      <GrEdit />&emsp;&emsp;
       <GrCheckmark />
     </div>}
   </div >;
