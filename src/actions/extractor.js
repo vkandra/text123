@@ -30,9 +30,25 @@ export function handleFileChange(data) {
 export function uploadSelectedFiles(data) {
   return (dispatch) => {
     console.log(data);
+    // axios
+    //   .post(`http://127.0.0.1:5000/output`, {
+    //     data,
+    //   })
+    // .then(
+    //   (res) => {
+    //     console.log(res.data);
+    //     // dispatch(assignSingleFileData(res.data));
+    //   },
+    //   (err) => {
+    //     console.log(err);
+    //   }
+    // );
+
     axios
-      .post(`http://127.0.0.1:5000/output`, {
-        data,
+      .put(`http://127.0.0.1:5000/output`, data, {
+        headers: {
+          'Content-Type': 'image/png',
+        },
       })
       .then(
         (res) => {

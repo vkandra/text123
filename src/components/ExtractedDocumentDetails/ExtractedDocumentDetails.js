@@ -8,13 +8,20 @@ const ExtractedDocumentDetails = (props) => {
       <div className="documentDetailSections">
         <div className="documentSingleDetailSection">
           <div>
-            Name : <span className="actualDocDataDetail">abc</span>
+            Name : <span className="actualDocDataDetail">Document #1</span>
           </div>
-          <div>Id : </div>
+          <div>
+            Id : <span className="actualDocDataDetail">11</span>
+          </div>
         </div>
         <div className="documentSingleDetailSection">
-          <div>Size : </div>
-          <div>Uploaded on : </div>
+          <div>
+            Size : <span className="actualDocDataDetail">145kb</span>
+          </div>
+          <div>
+            Uploaded on :{' '}
+            <span className="actualDocDataDetail">2022-04-01</span>
+          </div>
         </div>
       </div>
       <div className="documentDetailAction">

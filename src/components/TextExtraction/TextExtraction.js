@@ -23,9 +23,9 @@ const TextExtraction = (props) => {
               <select name="documents">
                 <optgroup label="Select Document">
                   {/* label="Start the selection" */}
-                  <option value="1">1 gas</option>
-                  <option value="2">2 gaste</option>
-                  <option value="3">3 gaste</option>
+                  <option value="1">Document #1</option>
+                  <option value="2">Document #2</option>
+                  <option value="3">Document #3</option>
                 </optgroup>
               </select>
             </div>
@@ -33,9 +33,9 @@ const TextExtraction = (props) => {
               <select name="pages">
                 <optgroup label="Select Page">
                   {/* label="Start the selection" */}
-                  <option value="1">1 gas</option>
-                  <option value="2">2 gaste</option>
-                  <option value="3">3 gaste</option>
+                  <option value="1">Page #1</option>
+                  <option value="2">Page #2</option>
+                  <option value="3">Page #3</option>
                 </optgroup>
               </select>
             </div>
