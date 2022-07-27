@@ -4,10 +4,7 @@ import { connect } from 'react-redux/es/exports';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
-import { handleFileChange } from '../../actions/extractor';
-import { uploadSelectedFiles } from '../../actions/extractor';
-import { tempSingleFileData } from '../../tempdata/tempSingleFileData';
+import ConfigurationFileList from '../ConfigurationFileList/ConfigurationFileList';
 
 const Configuration = (props) => {
   const [success, setSuccess] = useState(false);
@@ -116,6 +113,8 @@ const Configuration = (props) => {
           )}
         </div>
       </div>
+      <hr></hr>
+      <ConfigurationFileList></ConfigurationFileList>
     </div>
   );
 };

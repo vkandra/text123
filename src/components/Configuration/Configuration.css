@@ -26,6 +26,7 @@
   border: thin solid #ccc;
   border-radius: none;
   cursor: pointer;
+  background: none;
 }
 .fileUploadSectionMain div button {
   /* margin-top: 12px; */
@@ -33,6 +34,7 @@
   height: 30px;
   border: 1px solid black;
   font-weight: 500;
+  background: floralwhite;
 }
 .uploadStatusShow {
   display: flex;

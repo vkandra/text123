@@ -6,8 +6,7 @@ const initialUserState = {
   userFirstName: '',
   userLastName: '',
   userId: 0,
-  token: '',
-  allUsers: [],
+  token: 'f6d86aa8-57d4-442a-b159-ee46e97df492',
 };
 
 export default function user(state = initialUserState, action) {
