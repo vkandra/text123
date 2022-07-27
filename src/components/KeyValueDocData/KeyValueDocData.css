@@ -1,9 +1,12 @@
-.keyValueDocData{
+.keyValueDocData {
     padding-left: 2%;
 }
-.icons-style{
+
+
+.icons-style {
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: flex-end;
 }
+

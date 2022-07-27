@@ -141,6 +141,20 @@
             "IN": "9713.00",
             "OUT": "0.00",
             "CYCLES": "TCSR"
+        },
+        {
+            "index": 3,
+            "TIMES": "TT",
+            "IN": "24897.00",
+            "OUT": "24897.00",
+            "CYCLES": "TCSN"
+        },
+        {
+            "index": 4,
+            "TIMES": "TSI",
+            "IN": "2659.00",
+            "OUT": "2659.00",
+            "CYCLES": "TCSI"
         }
     ]
 }
