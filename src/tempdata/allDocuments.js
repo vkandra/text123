@@ -1,41 +1,107 @@
-export const allDocuments = [
-  {
-    id: 1,
-    userToken: 'pllkmkllkikjhnmlj98kj9olki876ggtfv6',
-    documentType: 'Image',
-    ducumentName: 'abc',
-    documentUploadDate: '2022-01-01',
-    documentSize: '45kb',
-    documentPages: 1,
-    documentProcessing: false,
-    documentTextExtracted: true,
-    documentDownloadLink:
-      'https://images.unsplash.com/photo-1528459199957-0ff28496a7f6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=443&q=80',
-  },
-  {
-    id: 2,
-    userToken: 'pllkmkllkikjhnmlj98kj9olki876ggtfv6',
-    documentType: 'Image',
-    ducumentName: 'def',
-    documentUploadDate: '2022-04-04',
-    documentSize: '29kb',
-    documentPages: 1,
-    documentProcessing: false,
-    documentTextExtracted: true,
-    documentDownloadLink:
-      'https://images.unsplash.com/photo-1528459135417-42dfc609ce87?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1058&q=80',
-  },
-  {
-    id: 3,
-    userToken: 'pllkmkllkikjhnmlj98kj9olki876ggtfv6',
-    documentType: 'PDF',
-    ducumentName: 'ghi',
-    documentUploadDate: '2021-06-06',
-    documentSize: '1209kb',
-    documentPages: 5,
-    documentProcessing: false,
-    documentTextExtracted: true,
-    documentDownloadLink:
-      'https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&cad=rja&uact=8&ved=2ahUKEwj93o6nvYL5AhU9TWwGHd7tCtEQFnoECAQQAQ&url=http%3A%2F%2Fwww.wright.edu%2F~david.wilson%2Feng3000%2Fsamplereport.pdf&usg=AOvVaw3J1rLLijZMuB9rcAWmT6S8',
-  },
-];
+export const allDocuments = {
+  user_id: 'f6d86aa8-57d4-442a-b159-ee46e97df492',
+
+  Document_Details: [
+    {
+      download_link: {
+        S: 'https://amazon-textract-s3bucket.s3.amazonaws.com/input_/f6d86aa8-57d4-442a-b159-ee46e97df492/7cd2cf9f_885d_46ce_a380_82da7e432496_pre_phd_course_work_certificate.pdf',
+      },
+
+      document_name: {
+        S: '7cd2cf9f_885d_46ce_a380_82da7e432496_pre_phd_course_work_certificate.pdf',
+      },
+
+      user_id: {
+        S: 'f6d86aa8-57d4-442a-b159-ee46e97df492',
+      },
+
+      documentType: {
+        S: 'application/pdf',
+      },
+
+      doc_id: {
+        S: '267fe4912204a1d304a075a5ddda6920',
+      },
+
+      status: {
+        S: 'Not Processed',
+      },
+
+      documentUploadDate: {
+        S: 'Wed, 27 Jul 2022 08:19:02 GMT',
+      },
+
+      documentSize: {
+        S: '201714',
+      },
+    },
+
+    {
+      download_link: {
+        S: 'https://amazon-textract-s3bucket.s3.amazonaws.com/input_/f6d86aa8-57d4-442a-b159-ee46e97df492/AmazonWorkspacesSupplierSetup.pdf',
+      },
+
+      document_name: {
+        S: 'AmazonWorkspacesSupplierSetup.pdf',
+      },
+
+      user_id: {
+        S: 'f6d86aa8-57d4-442a-b159-ee46e97df492',
+      },
+
+      documentType: {
+        S: 'application/pdf',
+      },
+
+      doc_id: {
+        S: 'e1fbd007f30e83ffde06484a1440feac',
+      },
+
+      status: {
+        S: 'Not Processed',
+      },
+
+      documentUploadDate: {
+        S: 'Tue, 26 Jul 2022 07:58:29 GMT',
+      },
+
+      documentSize: {
+        S: '146367',
+      },
+    },
+
+    {
+      download_link: {
+        S: 'https://amazon-textract-s3bucket.s3.amazonaws.com/input_/f6d86aa8-57d4-442a-b159-ee46e97df492/e172f628_40e9_4b3c_bf8b_0de0a98965f7_repair_record__reference_document_453377_.pdf',
+      },
+
+      document_name: {
+        S: 'e172f628_40e9_4b3c_bf8b_0de0a98965f7_repair_record__reference_document_453377_.pdf',
+      },
+
+      user_id: {
+        S: 'f6d86aa8-57d4-442a-b159-ee46e97df492',
+      },
+
+      documentType: {
+        S: 'application/pdf',
+      },
+
+      doc_id: {
+        S: 'fbbd21ad0f9dda9a12f74b91c6360a2c',
+      },
+
+      status: {
+        S: 'Not Processed',
+      },
+
+      documentUploadDate: {
+        S: 'Wed, 27 Jul 2022 08:21:26 GMT',
+      },
+
+      documentSize: {
+        S: '362596',
+      },
+    },
+  ],
+};
