@@ -4,15 +4,14 @@ import { connect } from 'react-redux/es/exports';
 
 import { assignAllReceivedDocumentsData } from '../../actions/documents';
 import { allDocuments } from '../../tempdata/allDocuments';
+import ConfigurationFile from '../ConfigurationFile/ConfigurationFile';
 
 const ConfigurationFileList = (props) => {
-  //   console.log(props.documents);
-
   useEffect(() => {
     props.dispatch(assignAllReceivedDocumentsData(allDocuments));
   }, []);
 
-  //   console.log(props.documents);
+  const isDocumentSelected = (document) => {};
 
   return (
     <div className="configurationFileList">
@@ -37,6 +36,19 @@ const ConfigurationFileList = (props) => {
         <div className="configFlLstTableHeaderUploadedOn">Uploaded On</div>
         <div className="configFlLstTableHeaderDocStats">Status</div>
         <button className="configFlLstTableHeaderSelectAll">Select All</button>
+      </div>
+      <hr className="tableHeadBodyLine"></hr>
+      <div className="configFlLstTableBody">
+        {props.documents.documentDetails.map((document, index) => (
+          <ConfigurationFile
+            document={document}
+            key={document.documentId}
+            isSelected={isDocumentSelected(document)}
+          />
+        ))}
+        {props.documents.totalDocuments === 0 ? (
+          <div className="no-documents">No Documents to display</div>
+        ) : null}
       </div>
     </div>
   );

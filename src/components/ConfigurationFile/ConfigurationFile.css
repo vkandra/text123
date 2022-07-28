@@ -1,0 +1,43 @@
+.configurationFile {
+  /* margin-top: 15px; */
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  margin-top: 4px;
+}
+.configFlLstTableRowDocId {
+  width: 19%;
+  padding-right: 5px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.configFlLstTableRowDocName {
+  width: 29%;
+  padding-right: 5px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.configFlLstTableRowDocType {
+  width: 10%;
+}
+.configFlLstTableRowUploadedOn {
+  width: 14%;
+}
+.configFlLstTableRowDocStats {
+  width: 13%;
+}
+.configFlLstTableRowSelect {
+  padding: 0.4em;
+  width: 100px;
+  font-family: unset;
+  font-size: 1.1rem;
+  font-weight: 500;
+  background: gainsboro;
+}
+.configFlLstTableRowSelect:hover {
+  opacity: 0.8;
+  transition: 0.3s;
+}

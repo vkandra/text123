@@ -70,7 +70,7 @@ const Configuration = (props) => {
 
   return (
     <div className="configuration">
-      <ToastContainer
+      {/* <ToastContainer
         position="top-right"
         autoClose={2000}
         hideProgressBar
@@ -80,7 +80,7 @@ const Configuration = (props) => {
         pauseOnFocusLoss
         draggable
         pauseOnHover
-      />
+      /> */}
       <div className="uploadFilesSection">
         <div className="uploadFileText">Upload File(s)</div>
 

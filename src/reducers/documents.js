@@ -14,6 +14,7 @@ const initialDocumentsState = {
       documentDownloadLink: '',
     },
   ],
+  selectedDocuments: [],
 };
 
 export default function documents(state = initialDocumentsState, action) {
