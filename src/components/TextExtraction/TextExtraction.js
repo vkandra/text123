@@ -1,5 +1,5 @@
 import './TextExtraction.css';
-import React from 'react';
+import React from 'react'
 import { connect } from 'react-redux/es/exports';
 import { changeTextDataTabOperation } from '../../actions/extractor';
 
@@ -8,7 +8,18 @@ import RawDocData from '../RawDocData/RawDocData';
 import TableDocData from '../TableDocData/TableDocData';
 import ExtractedDocumentDetails from '../ExtractedDocumentDetails/ExtractedDocumentDetails';
 
+import { Viewer } from '@react-pdf-viewer/core';
+import { defaultLayoutPlugin } from '@react-pdf-viewer/default-layout';
+import '@react-pdf-viewer/core/lib/styles/index.css';
+import '@react-pdf-viewer/default-layout/lib/styles/index.css';
+import {Worker} from '@react-pdf-viewer/core'
+import viewPdf from './sample2.pdf';
+
 const TextExtraction = (props) => {
+
+   //create new plugin instance
+   const defaultLayoutPluginInstance=defaultLayoutPlugin();
+
   const changeDataTabs = (tabNum) => {
     const { extractor } = props;
     extractor.textDataTab = tabNum;
@@ -23,9 +34,9 @@ const TextExtraction = (props) => {
               <select name="documents">
                 <optgroup label="Select Document">
                   {/* label="Start the selection" */}
-                  <option value="1">Document #1</option>
-                  <option value="2">Document #2</option>
-                  <option value="3">Document #3</option>
+                  <option value="1">Document 1</option>
+                  <option value="2">Document 2</option>
+                  <option value="3">Document 3</option>
                 </optgroup>
               </select>
             </div>
@@ -33,14 +44,24 @@ const TextExtraction = (props) => {
               <select name="pages">
                 <optgroup label="Select Page">
                   {/* label="Start the selection" */}
-                  <option value="1">Page #1</option>
-                  <option value="2">Page #2</option>
-                  <option value="3">Page #3</option>
+                  <option value="1">Page 1</option>
+                  <option value="2">page 2</option>
+                  <option value="3">page 3</option>
                 </optgroup>
               </select>
             </div>
           </div>
-          <div className="displayArea"></div>
+          <div className="displayArea">
+     <div className='pdf-container'>
+       {/* show pdf conditionally (if we have one) */}
+     {viewPdf&&<><Worker workerUrl='https://unpkg.com/pdfjs-dist@2.14.305/build/pdf.worker.min.js'>
+           <Viewer fileUrl={viewPdf}
+           plugins={[defaultLayoutPluginInstance]}/>
+      </Worker></> }
+      {/* if we dont have pdf or viewpdf state is null */}
+           {!viewPdf&&<>No pdf file selected</>}
+     </div>
+          </div>
           <div className="nextPrevButtons">
             <div className="prevButton">
               <i className="fi fi-ss-arrow-left"></i> &nbsp; Prev
