@@ -1,8 +1,19 @@
 import './ConfigurationFileList.css';
-import React from 'react';
-// import { connect } from 'react-redux/es/exports';
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux/es/exports';
+
+import { assignAllReceivedDocumentsData } from '../../actions/documents';
+import { allDocuments } from '../../tempdata/allDocuments';
 
 const ConfigurationFileList = (props) => {
+  //   console.log(props.documents);
+
+  useEffect(() => {
+    props.dispatch(assignAllReceivedDocumentsData(allDocuments));
+  }, []);
+
+  //   console.log(props.documents);
+
   return (
     <div className="configurationFileList">
       <div className="actionButtonsConfigure">
@@ -31,12 +42,12 @@ const ConfigurationFileList = (props) => {
   );
 };
 
-// const mapStateToProps = (state) => {
-//     return {
-//       user: state.user,
-//     };
-//   };
+const mapStateToProps = (state) => {
+  return {
+    documents: state.documents,
+  };
+};
 
-//   export default connect(mapStateToProps)(ConfigurationFileList);
+export default connect(mapStateToProps)(ConfigurationFileList);
 
-export default ConfigurationFileList;
+// export default ConfigurationFileList;

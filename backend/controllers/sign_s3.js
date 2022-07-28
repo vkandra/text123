@@ -7,7 +7,8 @@ aws.config.update({
   secretAccessKey: "39/MhQ/V9d2yIAVk2U8U6P8PpQluuqBIn/G/j0jK",
 });
 
-const S3_BUCKET = "amazon-textract-s3bucket/input_";
+const S3_BUCKET =
+  "amazon-textract-s3bucket/input_/f6d86aa8-57d4-442a-b159-ee46e97df492";
 // Now lets export this function so we can call it from somewhere else
 exports.sign_s3 = (req, res) => {
   const s3 = new aws.S3(); // Create a new instance of S3

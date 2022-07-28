@@ -17,7 +17,7 @@ const App = (props) => {
     props.dispatch(fetchSingleFileData());
   }, []);
 
-  console.log(props.singleDocument.singleDocumentPrimaryContent);
+  // console.log(props.singleDocument.singleDocumentPrimaryContent);
 
   return (
     <Router>

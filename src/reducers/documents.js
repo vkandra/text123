@@ -1,3 +1,5 @@
+import { ASSIGN_ALL_RECEIVED_DOCUMENTS_DATA } from '../actions/documents';
+
 const initialDocumentsState = {
   totalDocuments: 0,
   documentDetails: [
@@ -8,8 +10,7 @@ const initialDocumentsState = {
       documentUploadDate: '',
       documentSize: 0,
       documentPages: 0,
-      documentProcessing: false,
-      documentTextExtracted: false,
+      documentStatus: '',
       documentDownloadLink: '',
     },
   ],
@@ -17,6 +18,13 @@ const initialDocumentsState = {
 
 export default function documents(state = initialDocumentsState, action) {
   switch (action.type) {
+    case ASSIGN_ALL_RECEIVED_DOCUMENTS_DATA:
+      // console.log('ACTION_in_reducer ', action.data);
+      return {
+        ...state,
+        totalDocuments: action.data.totalDocuments,
+        documentDetails: action.data.documentDetails,
+      };
     default:
       return state;
   }

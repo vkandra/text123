@@ -6,7 +6,7 @@ import {
 
 const extractorDocumentState = {
   selectedFileForUpload: {},
-  page: 2,
+  page: 1,
   textDataTab: 1,
 };
 

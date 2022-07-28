@@ -5,6 +5,7 @@ import reducer from '../reducers';
 import userSignInOutUpLogger from '../middlewares/userSignInOutUpLogger';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import extractorLogger from '../middlewares/extractorLogger';
+import documentsLogger from '../middlewares/documentsLogger';
 
 let store;
 
@@ -12,7 +13,12 @@ export function configureStore() {
   store = createStore(
     reducer,
     composeWithDevTools(
-      applyMiddleware(thunk, userSignInOutUpLogger, extractorLogger)
+      applyMiddleware(
+        thunk,
+        userSignInOutUpLogger,
+        extractorLogger,
+        documentsLogger
+      )
     )
   );
 
