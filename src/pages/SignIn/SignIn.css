@@ -72,6 +72,16 @@
   color: white;
   font-size: 1rem;
   font-weight: 500;
+  padding: 5px;
+}
+.signInSubmitDisabledBut {
+  margin: 10px;
+  outline: none;
+  background: gray;
+  color: white;
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 5px;
 }
 .signInSubmitBut:hover {
   opacity: 0.8;
@@ -91,7 +101,7 @@
 .forgotPasswordForm {
   margin: 0;
   padding: 0;
-  height: 180px;
+  height: 200px;
   width: 300px;
   border: 1px solid lightgray;
   border-radius: 3px;
@@ -141,6 +151,16 @@
   color: white;
   font-size: 1rem;
   font-weight: 500;
+  padding: 5px;
+}
+.forgotPasswordDisabledSubmitBut {
+  margin: 10px;
+  outline: none;
+  background: gray;
+  color: white;
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 5px;
 }
 .forgotPasswordSubmitBut:hover {
   opacity: 0.8;

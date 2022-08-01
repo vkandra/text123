@@ -3,7 +3,6 @@ import { connect } from 'react-redux/es/exports';
 import React from 'react';
 
 import { forgotPasswordClicked, passSentToEmail } from '../../actions/user';
-import user from '../../reducers/user';
 
 const SignIn = (props) => {
   if (
@@ -31,26 +30,51 @@ const SignIn = (props) => {
   };
 
   const sendEmailForgotPassword = () => {
-    if (
-      document.getElementById('inputEmailIdForgotPasswordField').value === ''
-    ) {
-      alert('Enter your e-mail');
-    } else {
-      const { user } = props;
+    const { user } = props;
+    // Email Id entered by the user is present in user.forgotPassEmail
+    // API to check the e-mail id,
+    // if e-mail is found in database, then -
+    document.getElementById('inputEmailIdForgotEmailField').value = '';
+    user.forgotPassEmail = '';
+    user.forgotPasswordClick = false;
+    user.passSentToEmail = true;
+    props.dispatch(forgotPasswordClicked(user));
 
-      // API to check the e-mail id,
-      // if e-mail is found in database, then -
-      user.forgotPasswordClick = false;
-      user.passSentToEmail = true;
-      props.dispatch(forgotPasswordClicked(user));
-
-      // if e-mail is not found in database, then -
-      // user.forgotPasswordClick = false;
-      /*
+    // if e-mail is not found in database, then -
+    // user.forgotPasswordClick = false;
+    /*
       user.sentEmailNotFound = true;
       props.dispatch(forgotPasswordClicked(user));
       */
-    }
+  };
+
+  const forgotPassEmailEnter = (e) => {
+    const { user } = props;
+    user.forgotPassEmail = e.target.value;
+    props.dispatch(forgotPasswordClicked(user));
+  };
+
+  const captureEmailSignIn = (e) => {
+    const { user } = props;
+    user.signInEmail = e.target.value;
+    props.dispatch(forgotPasswordClicked(user));
+    console.log(user.signInEmail);
+  };
+
+  const capturePassSignIn = (e) => {
+    const { user } = props;
+    user.signInPass = e.target.value;
+    props.dispatch(forgotPasswordClicked(user));
+    console.log(user.signInPass);
+  };
+
+  const signInPerform = () => {
+    //Make API Call, If successful, clear all fields
+    const { user } = props;
+    user.signInPass = '';
+    user.signInPass = '';
+    document.getElementById('inputUsernameField').value = '';
+    document.getElementById('inputPassField').value = '';
   };
 
   return (
@@ -73,15 +97,32 @@ const SignIn = (props) => {
           <div className="signInText">SIGN IN</div>
           <div className="signInFormData">
             <div>
-              <div className="justTextSignIn">Username: </div>
-              <input type="text" id="inputUsernameField"></input>
+              <div className="justTextSignIn">Email: </div>
+              <input
+                type="email"
+                id="inputUsernameField"
+                onChange={captureEmailSignIn}
+              ></input>
             </div>
             <div>
-              <div className="justTextSignIn">Password: </div>
-              <input type="password" id="inputPassField"></input>
+              <div className="justTextSignIn">Password:</div>
+              <input
+                type="password"
+                id="inputPassField"
+                onChange={capturePassSignIn}
+              ></input>
             </div>
           </div>
-          <button className="signInSubmitBut">Submit</button>
+          {props.user.signInEmail !== '' && props.user.signInPass !== '' ? (
+            <button className="signInSubmitBut" onClick={() => signInPerform()}>
+              Sign in
+            </button>
+          ) : (
+            <button className="signInSubmitDisabledBut" disabled>
+              Sign in
+            </button>
+          )}
+
           <span
             className="forgotPasswordSignIn"
             onClick={() => forgotPasswordCl()}
@@ -94,15 +135,25 @@ const SignIn = (props) => {
           <div className="forgotPasswordText">Forgot Password</div>
           <div className="forgotPasswordFormData">
             <div className="justTextForgotPassword">Enter your E-mail: </div>
-            <input type="email" id="inputEmailIdForgotPasswordField"></input>
+            <input
+              type="email"
+              id="inputEmailIdForgotEmailField"
+              onChange={forgotPassEmailEnter}
+            ></input>
           </div>
+          {props.user.forgotPassEmail !== '' ? (
+            <button
+              className="forgotPasswordSubmitBut"
+              onClick={() => sendEmailForgotPassword()}
+            >
+              Submit
+            </button>
+          ) : (
+            <button className="forgotPasswordDisabledSubmitBut" disabled>
+              Submit
+            </button>
+          )}
 
-          <button
-            className="forgotPasswordSubmitBut"
-            onClick={() => sendEmailForgotPassword()}
-          >
-            Submit
-          </button>
           <span
             className="forgotPasswordSignIn"
             onClick={() => forgotPasswordUnclick()}
