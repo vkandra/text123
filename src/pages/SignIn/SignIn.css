@@ -1,8 +1,19 @@
 .signIn {
   height: 85vh;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+.signInTopDiv {
+  height: 20px;
+  margin-bottom: 40px;
+  /* border: 1px solid black; */
+}
+.signInBottomDiv {
+  height: 20px;
+  margin-top: 50px;
+  /* border: 1px solid black; */
 }
 
 .signInForm {
@@ -74,4 +85,70 @@
   transition: 0.3s;
   cursor: pointer;
   color: darkred;
+}
+
+/* ---------- FORGOT PASSWORD ---------- */
+.forgotPasswordForm {
+  margin: 0;
+  padding: 0;
+  height: 180px;
+  width: 300px;
+  border: 1px solid lightgray;
+  border-radius: 3px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 10px;
+}
+.forgotPasswordText {
+  background: rgb(51, 51, 51);
+  width: 100%;
+  height: 40px;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+.forgotPasswordFormData {
+  height: 200px;
+  width: 80%;
+  /* border: 1px solid black; */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+.forgotPasswordFormData input {
+  /* width: 120%; */
+  border: 1px solid black;
+}
+.justTextForgotPassword {
+  font-weight: 600;
+  font-size: 1rem;
+  font-family: monospace;
+}
+.forgotPasswordSubmitBut {
+  cursor: pointer;
+  margin: 10px;
+  outline: none;
+  background: green;
+  color: white;
+  font-size: 1rem;
+  font-weight: 500;
+}
+.forgotPasswordSubmitBut:hover {
+  opacity: 0.8;
+  transition: 0.3s;
+}
+
+.spanMessageText {
+  font-weight: 600;
+  font-size: 0.8rem;
+  font-family: Arial, Helvetica, sans-serif;
 }
