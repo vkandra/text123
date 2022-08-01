@@ -23,7 +23,7 @@ const ConfigurationFileList = (props) => {
       const { documents } = props;
       documents.selectedDocuments = selectedDocs;
       props.dispatch(selectDocumentsConfiguration(documents));
-      console.log(props.documents.selectedDocuments);
+      //   console.log(props.documents.selectedDocuments);
     }
   };
 
@@ -31,7 +31,7 @@ const ConfigurationFileList = (props) => {
     const { documents } = props;
     documents.selectedDocuments = [];
     props.dispatch(unselectDocumentsConfiguration(documents));
-    console.log(props.documents.selectedDocuments);
+    // console.log(props.documents.selectedDocuments);
   };
 
   return (

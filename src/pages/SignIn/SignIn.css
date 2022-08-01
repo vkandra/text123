@@ -1,3 +1,77 @@
 .signIn {
   height: 85vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.signInForm {
+  margin: 0;
+  padding: 0;
+  height: 300px;
+  width: 300px;
+  border: 1px solid lightgray;
+  border-radius: 3px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 10px;
+}
+
+.signInText {
+  /* border: 1px solid green; */
+  background: rgb(51, 51, 51);
+  width: 100%;
+  height: 40px;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+.signInFormData {
+  height: 200px;
+  width: 80%;
+  /* border: 1px solid black; */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-evenly;
+}
+.signInFormData div input {
+  width: 120%;
+  border: 1px solid black;
+}
+.justTextSignIn {
+  font-weight: 600;
+  font-size: 1rem;
+  font-family: monospace;
+}
+.signInSubmitBut {
+  cursor: pointer;
+  margin: 10px;
+  outline: none;
+  background: green;
+  color: white;
+  font-size: 1rem;
+  font-weight: 500;
+}
+.signInSubmitBut:hover {
+  opacity: 0.8;
+  transition: 0.3s;
+}
+.forgotPasswordSignIn {
+  font-size: 10px;
+}
+.forgotPasswordSignIn:hover {
+  text-decoration: underline;
+  transition: 0.3s;
+  cursor: pointer;
+  color: darkred;
 }

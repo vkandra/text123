@@ -34,9 +34,6 @@ const documentsLogger =
       //   console.log(fetchedAllDocsData);
       action.data = fetchedAllDocsData;
     }
-    if (action.type === 'SELECT_DOCUMENTS_CONFIGURATION') {
-      console.log(action.data);
-    }
     next(action);
   };
 

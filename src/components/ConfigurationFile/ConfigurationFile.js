@@ -16,7 +16,7 @@ const ConfigurationFile = (props) => {
     const { documents } = props;
     documents.selectedDocuments.push(docId);
     props.dispatch(selectDocumentsConfiguration(documents));
-    console.log(props.documents.selectedDocuments);
+    // console.log(props.documents.selectedDocuments);
   };
 
   const unselectDocument = (docId) => {
@@ -26,7 +26,7 @@ const ConfigurationFile = (props) => {
     });
     documents.selectedDocuments = filteredArray;
     props.dispatch(unselectDocumentsConfiguration(documents));
-    console.log(props.documents.selectedDocuments);
+    // console.log(props.documents.selectedDocuments);
   };
 
   return (
