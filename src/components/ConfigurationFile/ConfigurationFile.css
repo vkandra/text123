@@ -41,3 +41,11 @@
   opacity: 0.8;
   transition: 0.3s;
 }
+.configFlLstTableRowUnselect {
+  padding: 0.4em;
+  width: 100px;
+  font-family: unset;
+  font-size: 1.1rem;
+  font-weight: 500;
+  background: yellowgreen;
+}

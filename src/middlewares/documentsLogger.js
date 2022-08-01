@@ -1,4 +1,4 @@
-import documents from '../reducers/documents';
+// import documents from '../reducers/documents';
 
 const documentsLogger =
   ({ dispatch, getState }) =>
@@ -33,6 +33,9 @@ const documentsLogger =
       }
       //   console.log(fetchedAllDocsData);
       action.data = fetchedAllDocsData;
+    }
+    if (action.type === 'SELECT_DOCUMENTS_CONFIGURATION') {
+      console.log(action.data);
     }
     next(action);
   };

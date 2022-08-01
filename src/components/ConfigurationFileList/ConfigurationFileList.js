@@ -5,13 +5,34 @@ import { connect } from 'react-redux/es/exports';
 import { assignAllReceivedDocumentsData } from '../../actions/documents';
 import { allDocuments } from '../../tempdata/allDocuments';
 import ConfigurationFile from '../ConfigurationFile/ConfigurationFile';
+import {
+  selectDocumentsConfiguration,
+  unselectDocumentsConfiguration,
+} from '../../actions/documents';
 
 const ConfigurationFileList = (props) => {
   useEffect(() => {
     props.dispatch(assignAllReceivedDocumentsData(allDocuments));
   }, []);
 
-  const isDocumentSelected = (document) => {};
+  const selectAllDocuments = (allDocs) => {
+    // console.log(allDocs);
+    var selectedDocs = [];
+    for (var i = 0; i < allDocs.length; i++) {
+      selectedDocs.push(allDocs[i].documentId);
+      const { documents } = props;
+      documents.selectedDocuments = selectedDocs;
+      props.dispatch(selectDocumentsConfiguration(documents));
+      console.log(props.documents.selectedDocuments);
+    }
+  };
+
+  const unselectAllDocuments = () => {
+    const { documents } = props;
+    documents.selectedDocuments = [];
+    props.dispatch(unselectDocumentsConfiguration(documents));
+    console.log(props.documents.selectedDocuments);
+  };
 
   return (
     <div className="configurationFileList">
@@ -35,16 +56,27 @@ const ConfigurationFileList = (props) => {
         <div className="configFlLstTableHeaderDocType">Doc. Type</div>
         <div className="configFlLstTableHeaderUploadedOn">Uploaded On</div>
         <div className="configFlLstTableHeaderDocStats">Status</div>
-        <button className="configFlLstTableHeaderSelectAll">Select All</button>
+        {props.documents.totalDocuments ===
+        props.documents.selectedDocuments.length ? (
+          <button
+            className="configFlLstTableHeaderUnSelectAll"
+            onClick={() => unselectAllDocuments()}
+          >
+            All Selected
+          </button>
+        ) : (
+          <button
+            className="configFlLstTableHeaderSelectAll"
+            onClick={() => selectAllDocuments(props.documents.documentDetails)}
+          >
+            Select All
+          </button>
+        )}
       </div>
       <hr className="tableHeadBodyLine"></hr>
       <div className="configFlLstTableBody">
         {props.documents.documentDetails.map((document, index) => (
-          <ConfigurationFile
-            document={document}
-            key={document.documentId}
-            isSelected={isDocumentSelected(document)}
-          />
+          <ConfigurationFile document={document} key={document.documentId} />
         ))}
         {props.documents.totalDocuments === 0 ? (
           <div className="no-documents">No Documents to display</div>
