@@ -19,6 +19,15 @@
   font-weight: 500;
   color: whitesmoke;
 }
+.configurationFileListFourDisabledButtons {
+  padding: 0.4em;
+  width: 100px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: black;
+  background: lightgray;
+}
 .configurationFileListFourButtons:hover {
   opacity: 0.8;
   transition: 0.3s;
@@ -64,23 +73,27 @@
   width: 13%;
 }
 .configFlLstTableHeaderSelectAll {
-  padding: 0.4em;
+  padding: 5px;
   width: 100px;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   font-size: 1.1rem;
   font-weight: 500;
-  background: gainsboro;
+  background: white;
+  border: 1px solid lightgray;
+  border-radius: 5px;
 }
 .configFlLstTableHeaderUnSelectAll {
-  padding: 0.4em;
+  padding: 5px;
   width: 100px;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   font-size: 1.1rem;
   font-weight: 500;
+  border-radius: 5px;
   background: yellowgreen;
+  border: 1px solid lightgray;
 }
 .configFlLstTableHeaderSelectAll:hover {
-  opacity: 0.8;
+  background: lightyellow;
   transition: 0.3s;
 }
 .configFlLstTableBody {

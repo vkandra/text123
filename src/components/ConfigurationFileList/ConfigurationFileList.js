@@ -36,20 +36,38 @@ const ConfigurationFileList = (props) => {
 
   return (
     <div className="configurationFileList">
-      <div className="actionButtonsConfigure">
-        <button className="startExtractionButton configurationFileListFourButtons">
-          Start
-        </button>
-        <button className="stopExtractionButton configurationFileListFourButtons">
-          Stop
-        </button>
-        <button className="viewExtractedDataButton configurationFileListFourButtons">
-          View
-        </button>
-        <button className="deleteExtractedFileButton configurationFileListFourButtons">
-          Delete
-        </button>
-      </div>
+      {props.documents.selectedDocuments.length !== 0 ? (
+        <div className="actionButtonsConfigure">
+          <button className="startExtractionButton configurationFileListFourButtons">
+            Start
+          </button>
+          <button className="stopExtractionButton configurationFileListFourButtons">
+            Stop
+          </button>
+          <button className="viewExtractedDataButton configurationFileListFourButtons">
+            View
+          </button>
+          <button className="deleteExtractedFileButton configurationFileListFourButtons">
+            Delete
+          </button>
+        </div>
+      ) : (
+        <div className="actionButtonsConfigure">
+          <button disabled className="configurationFileListFourDisabledButtons">
+            Start
+          </button>
+          <button disabled className="configurationFileListFourDisabledButtons">
+            Stop
+          </button>
+          <button disabled className="configurationFileListFourDisabledButtons">
+            View
+          </button>
+          <button disabled className="configurationFileListFourDisabledButtons">
+            Delete
+          </button>
+        </div>
+      )}
+
       <div className="configFlLstTableHeader">
         <div className="configFlLstTableHeaderDocId">Doc. Id</div>
         <div className="configFlLstTableHeaderDocName">Doc. Name</div>

@@ -13,7 +13,12 @@ const SignUp = (props) => {
         user.signUpPass.normalize() ===
         document.getElementById('signUpRepeatPassField').value
       ) {
-        user.repeatPass = true;
+        if (user.signUpPass.normalize() !== '') {
+          user.repeatPass = true;
+        } else {
+          user.repeatPass = false;
+          user.repeatPassVisible = false;
+        }
       } else {
         user.repeatPass = false;
       }
