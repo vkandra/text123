@@ -5,53 +5,43 @@
   padding: 1rem;
 }
 
-table {
-  border-collapse: collapse;
+.docDataTable1 {
   width:100%;
+  border-collapse: collapse;
+  /* border: 1px solid black; */
 }
 
-th {
-  text-align: center;
-  border: 1px solid black;
-  padding: 8px;
+.docDataTable1th {
+  /* text-align: center; */
+  /* border: 1px solid white; */
+  padding: 10px;
   font-size: 16px;
-}
-
-td {
-  border: 1px solid black;
-  padding: 8px;
-  font-size: 16px;
-}
-
-th {
   background-color: rgb(117, 201, 250);
+  /* border: 1px solid black; */
 }
 
-td {
+.docDataTable1td {
+  /* border: 1px solid white; */
+  padding: 10px;
+  padding-left: 1rem;
+  font-size: 16px;
   background-color: rgb(205, 235, 253);
+  /* border: 1px solid black; */
 }
 
-form {
+
+.docTableForm {
   display: flex;
   gap: 5px;
+  font-size: 18px;
 }
 
-form td:last-child {
+.docTableEditButton{
   display: table-cell;
   justify-content: space-evenly;
   padding-left: 30px;
 }
 
-form * {
-  font-size: 18px;
-}
-
-.icons-style {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: flex-end;
-}
 
 button {
   border-style: none;

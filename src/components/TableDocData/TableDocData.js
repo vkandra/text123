@@ -89,16 +89,16 @@ const TableDocData = (props) => {
   }
 
   return <div className="tableDocData">
-    <form>
-      <table>
+    <form className='docTableForm'>
+      <table className='docDataTable1'>
         <thead>
           <tr>
-            <th>Index</th>
-            <th>Times</th>
-            <th>IN</th>
-            <th>OUT</th>
-            <th>Cycles</th>
-            <th>Actions</th>
+            <th className='docDataTable1th'>Index</th>
+            <th className='docDataTable1th'>Times</th>
+            <th className='docDataTable1th'>IN</th>
+            <th className='docDataTable1th'>OUT</th>
+            <th className='docDataTable1th'>Cycles</th>
+            <th className='docDataTable1th'>Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -106,12 +106,12 @@ const TableDocData = (props) => {
             <Fragment>
               {editDataId === todo.index ? <EditableRow editFormData={editFormData} editFormChangeHandler={editFormChangeHandler} /> :
                 <tr>
-                  <td>{todo.index}</td>
-                  <td>{todo.TIMES}</td>
-                  <td>{todo.IN}</td>
-                  <td>{todo.OUT}</td>
-                  <td>{todo.CYCLES}</td>
-                  <td><button type='button' onClick={(event) => { editHandler(event, todo) }}><GrEdit/></button></td>
+                  <td className='docDataTable1td'>{todo.index}</td>
+                  <td className='docDataTable1td'>{todo.TIMES}</td>
+                  <td className='docDataTable1td'>{todo.IN}</td>
+                  <td className='docDataTable1td'>{todo.OUT}</td>
+                  <td className='docDataTable1td'>{todo.CYCLES}</td>
+                  <td className='docDataTable1td docTableEditButton'><button type='button' onClick={(event) => { editHandler(event, todo) }}><GrEdit/></button></td>
                 </tr>
               }
             </Fragment>

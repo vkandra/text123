@@ -1,6 +1,10 @@
-input{
+.editFormStyle {
     width: 100%;
+    padding: 4%;
 }
-button{
+
+.saveButton {
     border-style: none;
+    margin-left: 1.5em;
+    background-color: white;
 }
