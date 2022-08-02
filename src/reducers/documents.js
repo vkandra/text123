@@ -2,6 +2,7 @@ import {
   ASSIGN_ALL_RECEIVED_DOCUMENTS_DATA,
   SELECT_DOCUMENTS_CONFIGURATION,
   UNSELECT_DOCUMENTS_CONFIGURATION,
+  ASSIGN_RAW_DOCUMENTS_DATA,
 } from '../actions/documents';
 
 const initialDocumentsState = {
@@ -19,6 +20,9 @@ const initialDocumentsState = {
     },
   ],
   selectedDocuments: [],
+
+  //
+  rawDocumentsDataFromAPI: {},
 };
 
 export default function documents(state = initialDocumentsState, action) {
@@ -39,6 +43,12 @@ export default function documents(state = initialDocumentsState, action) {
       // console.log('ACTION_in_reducer ', action.data);
       return {
         ...state,
+      };
+    case ASSIGN_RAW_DOCUMENTS_DATA:
+      // console.log('ACTION_in_reducer ', action.data);
+      return {
+        ...state,
+        rawDocumentsDataFromAPI: action.data,
       };
     default:
       return state;

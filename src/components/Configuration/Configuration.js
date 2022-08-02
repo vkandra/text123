@@ -1,10 +1,11 @@
 import './Configuration.css';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux/es/exports';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import ConfigurationFileList from '../ConfigurationFileList/ConfigurationFileList';
+import { fetchRawDocumentsDetailsAPI } from '../../actions/documents';
 
 const Configuration = (props) => {
   const [success, setSuccess] = useState(false);
@@ -20,6 +21,13 @@ const Configuration = (props) => {
     }, 5000);
   }
 
+  useEffect(() => {
+    var userID = props.user.token;
+
+    props.dispatch(fetchRawDocumentsDetailsAPI(userID));
+  }, []);
+
+  // HANDLING FILES UPLOAD
   const handleChange = (ev) => {
     setError(false);
     setSuccess(false);
@@ -122,6 +130,8 @@ const Configuration = (props) => {
 const mapStateToProps = (state) => {
   return {
     extractor: state.extractor,
+    documents: state.documents,
+    user: state.user,
   };
 };
 

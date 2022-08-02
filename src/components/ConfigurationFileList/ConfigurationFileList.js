@@ -11,9 +11,11 @@ import {
 } from '../../actions/documents';
 
 const ConfigurationFileList = (props) => {
-  useEffect(() => {
-    props.dispatch(assignAllReceivedDocumentsData(allDocuments));
-  }, []);
+  // useEffect(() => {
+  //   props.dispatch(
+  //     assignAllReceivedDocumentsData(props.documents.rawDocumentsDataFromAPI)
+  //   );
+  // }, []);
 
   const selectAllDocuments = (allDocs) => {
     // console.log(allDocs);
@@ -92,14 +94,15 @@ const ConfigurationFileList = (props) => {
         )}
       </div>
       <hr className="tableHeadBodyLine"></hr>
-      <div className="configFlLstTableBody">
-        {props.documents.documentDetails.map((document, index) => (
-          <ConfigurationFile document={document} key={document.documentId} />
-        ))}
-        {props.documents.totalDocuments === 0 ? (
-          <div className="no-documents">No Documents to display</div>
-        ) : null}
-      </div>
+      {props.documents.totalDocuments === 0 ? (
+        <div className="no-documents">No Documents to display</div>
+      ) : (
+        <div className="configFlLstTableBody">
+          {props.documents.documentDetails.map((document, index) => (
+            <ConfigurationFile document={document} key={document.documentId} />
+          ))}
+        </div>
+      )}
     </div>
   );
 };
