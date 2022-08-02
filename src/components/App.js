@@ -13,12 +13,6 @@ import { fetchSingleFileData } from '../actions/singleDocument';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 const App = (props) => {
-  useEffect(() => {
-    props.dispatch(fetchSingleFileData());
-  }, []);
-
-  // console.log(props.singleDocument.singleDocumentPrimaryContent);
-
   return (
     <Router>
       <Header />

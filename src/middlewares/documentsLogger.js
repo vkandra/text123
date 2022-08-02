@@ -27,7 +27,7 @@ const documentsLogger =
             action.data.Document_Details[i].documentUploadDate.S,
           documentSize: action.data.Document_Details[i].documentSize.S,
           documentPages: 1,
-          documentStatus: action.data.Document_Details[i].status.S,
+          documentStatus: action.data.Document_Details[i].doc_status.S,
           documentDownloadLink: action.data.Document_Details[i].download_link.S,
         });
       }
