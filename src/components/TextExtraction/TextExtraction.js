@@ -55,8 +55,8 @@ const TextExtraction = (props) => {
      <div className='pdf-container'>
        {/* show pdf conditionally (if we have one) */}
      {viewPdf&&<><Worker workerUrl='https://unpkg.com/pdfjs-dist@2.14.305/build/pdf.worker.min.js'>
-           <Viewer fileUrl={viewPdf}
-           plugins={[defaultLayoutPluginInstance]}/>
+           <Viewer fileUrl={`https://amazon-textract-s3bucket.s3.amazonaws.com/input_/f6d86aa8-57d4-442a-b159-ee46e97df492/AmazonWorkspacesSupplierSet.pdf`}
+           plugins={[defaultLayoutPluginInstance]} />
       </Worker></> }
       {/* if we dont have pdf or viewpdf state is null */}
            {!viewPdf&&<>No pdf file selected</>}
