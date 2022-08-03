@@ -1,5 +1,5 @@
 import './TextExtraction.css';
-import React from 'react'
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux/es/exports';
 import { changeTextDataTabOperation } from '../../actions/extractor';
 
@@ -7,24 +7,34 @@ import KeyValueDocData from '../KeyValueDocData/KeyValueDocData';
 import RawDocData from '../RawDocData/RawDocData';
 import TableDocData from '../TableDocData/TableDocData';
 import ExtractedDocumentDetails from '../ExtractedDocumentDetails/ExtractedDocumentDetails';
+import { fetchSingleFileData } from '../../actions/singleDocument';
 
 import { Viewer } from '@react-pdf-viewer/core';
 import { defaultLayoutPlugin } from '@react-pdf-viewer/default-layout';
 import '@react-pdf-viewer/core/lib/styles/index.css';
 import '@react-pdf-viewer/default-layout/lib/styles/index.css';
-import {Worker} from '@react-pdf-viewer/core'
+import { Worker } from '@react-pdf-viewer/core';
 import viewPdf from './sample2.pdf';
 
 const TextExtraction = (props) => {
+  useEffect(() => {
+    var userID = props.user.token;
+    var documentId = 'fbbd21ad0f9dda9a12f74b91c6360a2c';
+    var singleDocParams = [userID, documentId];
+    props.dispatch(fetchSingleFileData(singleDocParams));
 
-   //create new plugin instance
-   const defaultLayoutPluginInstance=defaultLayoutPlugin();
+    // console.log(props.singleDocument.singleDocumentEditedContent);
+  }, []);
+
+  //create new plugin instance
+  const defaultLayoutPluginInstance = defaultLayoutPlugin();
 
   const changeDataTabs = (tabNum) => {
     const { extractor } = props;
     extractor.textDataTab = tabNum;
     props.dispatch(changeTextDataTabOperation(extractor));
   };
+
   return (
     <div className="textExtraction">
       <div className="extractedData">
@@ -52,15 +62,21 @@ const TextExtraction = (props) => {
             </div>
           </div>
           <div className="displayArea">
-     <div className='pdf-container'>
-       {/* show pdf conditionally (if we have one) */}
-     {viewPdf&&<><Worker workerUrl='https://unpkg.com/pdfjs-dist@2.14.305/build/pdf.worker.min.js'>
-           <Viewer fileUrl={`https://amazon-textract-s3bucket.s3.amazonaws.com/input_/f6d86aa8-57d4-442a-b159-ee46e97df492/AmazonWorkspacesSupplierSet.pdf`}
-           plugins={[defaultLayoutPluginInstance]} />
-      </Worker></> }
-      {/* if we dont have pdf or viewpdf state is null */}
-           {!viewPdf&&<>No pdf file selected</>}
-     </div>
+            <div className="pdf-container">
+              {/* show pdf conditionally (if we have one) */}
+              {viewPdf && (
+                <>
+                  <Worker workerUrl="https://unpkg.com/pdfjs-dist@2.14.305/build/pdf.worker.min.js">
+                    <Viewer
+                      fileUrl={`https://amazon-textract-s3bucket.s3.amazonaws.com/input_/f6d86aa8-57d4-442a-b159-ee46e97df492/AmazonWorkspacesSupplierSet.pdf`}
+                      plugins={[defaultLayoutPluginInstance]}
+                    />
+                  </Worker>
+                </>
+              )}
+              {/* if we dont have pdf or viewpdf state is null */}
+              {!viewPdf && <>No pdf file selected</>}
+            </div>
           </div>
           <div className="nextPrevButtons">
             <div className="prevButton">
@@ -120,6 +136,9 @@ const TextExtraction = (props) => {
 const mapStateToProps = (state) => {
   return {
     extractor: state.extractor,
+    user: state.user,
+    documents: state.documents,
+    singleDocument: state.singleDocument,
   };
 };
 

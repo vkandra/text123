@@ -1,9 +1,9 @@
 import './ConfigurationFileList.css';
-import React, { useEffect } from 'react';
+import React from 'react';
 import { connect } from 'react-redux/es/exports';
 
-import { assignAllReceivedDocumentsData } from '../../actions/documents';
-import { allDocuments } from '../../tempdata/allDocuments';
+// import { assignAllReceivedDocumentsData } from '../../actions/documents';
+// import { allDocuments } from '../../tempdata/allDocuments';
 import ConfigurationFile from '../ConfigurationFile/ConfigurationFile';
 import {
   selectDocumentsConfiguration,

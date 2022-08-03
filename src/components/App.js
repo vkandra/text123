@@ -1,5 +1,5 @@
 import './App.css';
-import React, { useEffect } from 'react';
+import React from 'react';
 import { connect } from 'react-redux/es/exports';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 // import axios from 'axios';
@@ -9,7 +9,6 @@ import Footer from './Footer/Footer';
 import InAppBody from '../pages/InAppBody/InAppBody';
 import SignIn from '../pages/SignIn/SignIn';
 import SignUp from '../pages/SignUp.js/SignUp';
-import { fetchSingleFileData } from '../actions/singleDocument';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 const App = (props) => {

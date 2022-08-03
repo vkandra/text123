@@ -6,6 +6,7 @@ import userSignInOutUpLogger from '../middlewares/userSignInOutUpLogger';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import extractorLogger from '../middlewares/extractorLogger';
 import documentsLogger from '../middlewares/documentsLogger';
+import singleDocumentLogger from '../middlewares/singleDocumentLogger';
 
 let store;
 
@@ -17,7 +18,8 @@ export function configureStore() {
         thunk,
         userSignInOutUpLogger,
         extractorLogger,
-        documentsLogger
+        documentsLogger,
+        singleDocumentLogger
       )
     )
   );

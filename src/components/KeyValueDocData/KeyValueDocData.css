@@ -1,11 +1,11 @@
 .keyValueDocData {
-    padding-left: 2%;
+  padding-left: 2%;
 }
 
 .keyDocTable {
-    width: 100%;
-    border-collapse: collapse;
-    border: 1px solid black;
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid black;
 }
 
 /* .flexBody{
@@ -13,12 +13,12 @@
     flex-direction: row;
 } */
 
-.keyDocTabletr{
+/* .keyDocTabletr{
     border-collapse: collapse;
     border: 1px solid black;
 }
 .keyDocTableth {
-    /* padding: 10px; */
+    
     font-size: 16px;
     background-color: rgb(117, 201, 250);
     border-collapse: collapse;
@@ -26,7 +26,7 @@
 }
 
 .keyDocTabletd {
-    /* padding: 10px; */
+    
     font-size: 16px;
     background-color: rgb(205, 235, 253);
     border-collapse: collapse;
@@ -38,4 +38,4 @@
     flex-direction: row;
     justify-content: center;
     align-items: flex-end;
-}
+} */

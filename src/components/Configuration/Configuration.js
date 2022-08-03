@@ -2,7 +2,7 @@ import './Configuration.css';
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux/es/exports';
 import axios from 'axios';
-import { ToastContainer, toast } from 'react-toastify';
+// import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import ConfigurationFileList from '../ConfigurationFileList/ConfigurationFileList';
 import { fetchRawDocumentsDetailsAPI } from '../../actions/documents';
@@ -20,6 +20,17 @@ const Configuration = (props) => {
       setSuccess(false);
     }, 5000);
   }
+
+  useEffect(() => {
+    for (var i = 0; i < props.documents.totalDocuments; i++) {
+      console.log(i);
+      if (props.documents.documentDetails[i].documentStatus === 'Processing') {
+        setTimeout(() => {
+          props.dispatch(fetchRawDocumentsDetailsAPI(props.user.token));
+        }, 5000);
+      }
+    }
+  });
 
   useEffect(() => {
     var userID = props.user.token;
