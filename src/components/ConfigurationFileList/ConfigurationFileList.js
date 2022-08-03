@@ -2,8 +2,8 @@ import './ConfigurationFileList.css';
 import React from 'react';
 import { connect } from 'react-redux/es/exports';
 
-// import { assignAllReceivedDocumentsData } from '../../actions/documents';
-// import { allDocuments } from '../../tempdata/allDocuments';
+import { changeTabOperation } from '../../actions/extractor';
+import { assignSelectedDocDetails } from '../../actions/singleDocument';
 import ConfigurationFile from '../ConfigurationFile/ConfigurationFile';
 import {
   selectDocumentsConfiguration,
@@ -36,6 +36,26 @@ const ConfigurationFileList = (props) => {
     // console.log(props.documents.selectedDocuments);
   };
 
+  const changeToTextExtractionTab = () => {
+    const { extractor } = props;
+    extractor.page = 2;
+    var selectedPageIds = props.documents.selectedDocuments;
+    var docDetails = props.documents.documentDetails;
+    var selectedDocDetails = [];
+    for (var i = 0; i < docDetails.length; i++) {
+      for (var j = 0; j < selectedPageIds.length; j++) {
+        if (docDetails[i].documentId === selectedPageIds[j]) {
+          selectedDocDetails.push(docDetails[i]);
+        }
+      }
+    }
+    props.dispatch(assignSelectedDocDetails(selectedDocDetails));
+
+    props.dispatch(changeTabOperation(extractor));
+
+    console.log(props.singleDocument.selectedDocumentsDetails);
+  };
+
   return (
     <div className="configurationFileList">
       {props.documents.selectedDocuments.length !== 0 ? (
@@ -46,7 +66,10 @@ const ConfigurationFileList = (props) => {
           <button className="stopExtractionButton configurationFileListFourButtons">
             Stop
           </button>
-          <button className="viewExtractedDataButton configurationFileListFourButtons">
+          <button
+            className="viewExtractedDataButton configurationFileListFourButtons"
+            onClick={() => changeToTextExtractionTab()}
+          >
             View
           </button>
           <button className="deleteExtractedFileButton configurationFileListFourButtons">
@@ -110,6 +133,8 @@ const ConfigurationFileList = (props) => {
 const mapStateToProps = (state) => {
   return {
     documents: state.documents,
+    extractor: state.extractor,
+    singleDocument: state.singleDocument,
   };
 };
 

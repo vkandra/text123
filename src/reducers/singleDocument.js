@@ -4,6 +4,7 @@ import {
   ARRANGE_VALUES_DATA,
   ARRANGE_RAW_DATA,
   ARRANGE_TABLE_DATA,
+  ASSIGN_SELECTED_DOC_DETAILS,
 } from '../actions/singleDocument';
 
 const initialsingleDocumentState = {
@@ -11,6 +12,7 @@ const initialsingleDocumentState = {
   singleDocumentName: '',
   singleDocumentType: '',
   singleDocumentTotalPages: 0,
+  selectedDocumentsDetails: [],
   // ALL CONTENT
   singleDocumentTextractedContent: [],
   singleDocumentEditedContent: [],
@@ -33,6 +35,12 @@ export default function singleDocument(
   action
 ) {
   switch (action.type) {
+    case ASSIGN_SELECTED_DOC_DETAILS:
+      // console.log(action.data);
+      return {
+        ...state,
+        selectedDocumentsDetails: action.data,
+      };
     case ASSIGN_SINGLE_FILE_DATA:
       // console.log(action.data);
       return {

@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 // ACTION TYPES
+export const ASSIGN_SELECTED_DOC_DETAILS = 'ASSIGN_SELECTED_DOC_DETAILS';
 export const ASSIGN_SINGLE_FILE_DATA = 'ASSIGN_SINGLE_FILE_DATA';
 export const ARRANGE_KEYS_DATA = 'ARRANGE_KEYS_DATA';
 export const ARRANGE_VALUES_DATA = 'ARRANGE_VALUES_DATA';
@@ -23,6 +24,13 @@ export function fetchSingleFileData(data) {
         dispatch(arrangeTableData(res.data));
         // console.log(assignSingleFileData(res.data))
       });
+  };
+}
+export function assignSelectedDocDetails(data) {
+  // console.log(data);
+  return {
+    type: ASSIGN_SELECTED_DOC_DETAILS,
+    data: data,
   };
 }
 export function assignSingleFileData(data) {
