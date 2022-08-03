@@ -45,9 +45,30 @@ export function fetchRawDocumentsDetailsAPI(data) {
         `https://3qyg266ncc.execute-api.ap-south-1.amazonaws.com/doc_output?id=${data}`
       )
       .then((res) => {
-        // console.log(res.data);
+        console.log('All Doc Details Fetched');
         dispatch(assignRawDocumentsData(res.data));
         dispatch(assignAllReceivedDocumentsData(res.data));
+      });
+  };
+}
+export function startExtractionProcessAPI(data) {
+  return (dispatch) => {
+    console.log(data);
+    axios
+      .post(
+        `https://acx97vysu1.execute-api.ap-south-1.amazonaws.com/actionstart`,
+        {
+          user_id: data.user_id,
+          doc_id: data.doc_id,
+          doc_name: data.doc_name,
+        }
+      )
+      .then(function (response) {
+        console.log(response);
+        dispatch(fetchRawDocumentsDetailsAPI(data.user_id));
+      })
+      .catch(function (error) {
+        console.log(error);
       });
   };
 }

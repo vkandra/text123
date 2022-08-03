@@ -5,6 +5,8 @@ import { connect } from 'react-redux/es/exports';
 import { changeTabOperation } from '../../actions/extractor';
 import { assignSelectedDocDetails } from '../../actions/singleDocument';
 import ConfigurationFile from '../ConfigurationFile/ConfigurationFile';
+import { startExtractionProcessAPI } from '../../actions/documents';
+import { fetchRawDocumentsDetailsAPI } from '../../actions/documents';
 import {
   selectDocumentsConfiguration,
   unselectDocumentsConfiguration,
@@ -36,6 +38,29 @@ const ConfigurationFileList = (props) => {
     // console.log(props.documents.selectedDocuments);
   };
 
+  const startExtractionProcess = () => {
+    var docNames = [];
+    var selectedPageIds = props.documents.selectedDocuments;
+    var docDetails = props.documents.documentDetails;
+    for (var i = 0; i < docDetails.length; i++) {
+      for (var j = 0; j < selectedPageIds.length; j++) {
+        if (docDetails[i].documentId === selectedPageIds[j]) {
+          docNames.push(docDetails[i].ducumentName);
+        }
+      }
+    }
+    var data = {
+      user_id: props.user.token,
+      doc_id: selectedPageIds,
+      doc_name: docNames,
+    };
+
+    props.dispatch(startExtractionProcessAPI(data));
+    setTimeout(() => {
+      props.dispatch(fetchRawDocumentsDetailsAPI(props.user.token));
+    }, 2000);
+  };
+
   const changeToTextExtractionTab = () => {
     const { extractor } = props;
     extractor.page = 2;
@@ -60,7 +85,10 @@ const ConfigurationFileList = (props) => {
     <div className="configurationFileList">
       {props.documents.selectedDocuments.length !== 0 ? (
         <div className="actionButtonsConfigure">
-          <button className="startExtractionButton configurationFileListFourButtons">
+          <button
+            className="startExtractionButton configurationFileListFourButtons"
+            onClick={() => startExtractionProcess()}
+          >
             Start
           </button>
           <button className="stopExtractionButton configurationFileListFourButtons">
@@ -135,6 +163,7 @@ const mapStateToProps = (state) => {
     documents: state.documents,
     extractor: state.extractor,
     singleDocument: state.singleDocument,
+    user: state.user,
   };
 };
 

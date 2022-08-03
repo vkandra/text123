@@ -15,15 +15,17 @@ const Configuration = (props) => {
   var uploadInput;
 
   if (success === true) {
+    props.dispatch(fetchRawDocumentsDetailsAPI(props.user.token));
     document.getElementById('selectedFilesForUploading').value = '';
     setTimeout(() => {
       setSuccess(false);
+      props.dispatch(fetchRawDocumentsDetailsAPI(props.user.token));
     }, 5000);
   }
 
   useEffect(() => {
     for (var i = 0; i < props.documents.totalDocuments; i++) {
-      console.log(i);
+      // console.log(i);
       if (props.documents.documentDetails[i].documentStatus === 'Processing') {
         setTimeout(() => {
           props.dispatch(fetchRawDocumentsDetailsAPI(props.user.token));
