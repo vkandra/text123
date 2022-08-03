@@ -38,7 +38,10 @@ const ConfigurationFile = (props) => {
         {props.document.ducumentName}
       </div>
       <div className="configFlLstTableRowDocType">
-        {props.document.documentType === 'application/pdf' ? 'PDF' : 'Image'}
+        {props.document.documentType === 'application/pdf' ||
+        props.document.documentType === 'pdf'
+          ? 'PDF'
+          : 'Image'}
       </div>
       <div className="configFlLstTableRowUploadedOn">{formedDate}</div>
       <div className="configFlLstTableRowDocStats">
