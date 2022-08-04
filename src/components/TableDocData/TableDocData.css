@@ -6,7 +6,7 @@
 }
 
 .docDataTable1 {
-  width:100%;
+  width: 100%;
   border-collapse: collapse;
   /* border: 1px solid black; */
 }
@@ -29,21 +29,20 @@
   /* border: 1px solid black; */
 }
 
-
 .docTableForm {
   display: flex;
   gap: 5px;
   font-size: 18px;
 }
 
-.docTableEditButton{
+.docTableEditButton {
   display: table-cell;
   justify-content: space-evenly;
   padding-left: 30px;
 }
 
-
+/* 
 button {
   border-style: none;
   background-color: rgb(205, 235, 253);
-}
+} */

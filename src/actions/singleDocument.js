@@ -5,6 +5,7 @@ export const ASSIGN_SELECTED_DOC_DETAILS = 'ASSIGN_SELECTED_DOC_DETAILS';
 export const ASSIGN_SINGLE_FILE_DATA = 'ASSIGN_SINGLE_FILE_DATA';
 export const ARRANGE_KEYS_DATA = 'ARRANGE_KEYS_DATA';
 export const ARRANGE_VALUES_DATA = 'ARRANGE_VALUES_DATA';
+export const ARRANGE_KEYS_VALUES = 'ARRANGE_KEYS_VALUES';
 export const ARRANGE_RAW_DATA = 'ARRANGE_RAW_DATA';
 export const ARRANGE_TABLE_DATA = 'ARRANGE_TABLE_DATA';
 
@@ -20,9 +21,10 @@ export function fetchSingleFileData(data) {
         dispatch(assignSingleFileData(res.data));
         dispatch(arrangeKeysData(res.data));
         dispatch(arrangeValuesData(res.data));
+        dispatch(arrangeKeysValues(res.data));
         dispatch(arrangeRawData(res.data));
         dispatch(arrangeTableData(res.data));
-        // console.log(assignSingleFileData(res.data))
+        // console.log(assignSingleFileData(res.data));
       });
   };
 }
@@ -53,6 +55,14 @@ export function arrangeValuesData(data) {
   // console.log(data);
   return {
     type: ARRANGE_VALUES_DATA,
+    data: data,
+  };
+}
+
+export function arrangeKeysValues(data) {
+  // console.log(data);
+  return {
+    type: ARRANGE_KEYS_VALUES,
     data: data,
   };
 }

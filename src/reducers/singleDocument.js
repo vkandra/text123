@@ -2,6 +2,7 @@ import {
   ASSIGN_SINGLE_FILE_DATA,
   ARRANGE_KEYS_DATA,
   ARRANGE_VALUES_DATA,
+  ARRANGE_KEYS_VALUES,
   ARRANGE_RAW_DATA,
   ARRANGE_TABLE_DATA,
   ASSIGN_SELECTED_DOC_DETAILS,
@@ -22,6 +23,8 @@ const initialsingleDocumentState = {
   // VALUES
   singleDocumentTextractedValue: [],
   singleDocumentEditedValue: [],
+  // KEYS VALUES
+  singleDocKeysValues: [],
   // TABLES
   singleDocumentTextractedTables: [],
   singleDocumentEditedTables: [],
@@ -45,28 +48,42 @@ export default function singleDocument(
       // console.log(action.data);
       return {
         ...state,
-        singleDocumentTextractedContent: action.data.Textracted_output,
-        singleDocumentEditedContent: action.data.Edited_output,
+        singleDocumentTextractedContent: action.data[0],
+        singleDocumentEditedContent: action.data[1],
       };
     case ARRANGE_KEYS_DATA:
       // console.log(action.data);
       return {
         ...state,
+        singleDocumentTextractedKey: action.data[0],
+        singleDocumentEditedKey: action.data[1],
       };
     case ARRANGE_VALUES_DATA:
       // console.log(action.data);
       return {
         ...state,
+        singleDocumentTextractedValue: action.data[0],
+        singleDocumentEditedValue: action.data[1],
+      };
+    case ARRANGE_KEYS_VALUES:
+      // console.log(action.data);
+      return {
+        ...state,
+        singleDocKeysValues: action.data,
       };
     case ARRANGE_RAW_DATA:
       // console.log(action.data);
       return {
         ...state,
+        singleDocumentTextractedRawData: action.data[0],
+        singleDocumentEditedRawData: action.data[1],
       };
     case ARRANGE_TABLE_DATA:
       // console.log(action.data);
       return {
         ...state,
+        singleDocumentTextractedTables: action.data[0],
+        singleDocumentEditedTables: action.data[1],
       };
     default:
       return state;
