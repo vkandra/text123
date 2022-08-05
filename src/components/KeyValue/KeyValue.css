@@ -4,7 +4,9 @@
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
-  border: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  border-left: 1px solid #ccc;
+  border-right: 1px solid #ccc;
 }
 .keySectionAll {
   /* border: 1px solid black; */

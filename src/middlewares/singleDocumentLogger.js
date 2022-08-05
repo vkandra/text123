@@ -26,16 +26,16 @@ const singleDocumentLogger =
     }
     if (action.type === 'ARRANGE_KEYS_VALUES') {
       var singleDocKeysValues = [];
-      singleDocKeysValues.push({
-        index: -1,
-        key: 'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
-        value:
-          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-        editedKey:
-          'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
-        editedValue:
-          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-      });
+      //   singleDocKeysValues.push({
+      //     index: -1,
+      //     key: 'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
+      //     value:
+      //       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+      //     editedKey:
+      //       'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
+      //     editedValue:
+      //       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+      //   });
       //   console.log(action.data.Textracted_output.keys_extracted_data.length);
       if (action.data.Textracted_output.keys_extracted_data.length !== 0) {
         for (

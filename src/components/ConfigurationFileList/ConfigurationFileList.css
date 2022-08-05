@@ -18,6 +18,8 @@
   font-size: 1.1rem;
   font-weight: 500;
   color: whitesmoke;
+  outline: none;
+  border: none;
 }
 .configurationFileListFourDisabledButtons {
   padding: 0.4em;
@@ -27,6 +29,8 @@
   font-weight: 500;
   color: black;
   background: lightgray;
+  outline: none;
+  border: none;
 }
 .configurationFileListFourButtons:hover {
   opacity: 0.8;

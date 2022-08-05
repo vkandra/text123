@@ -8,6 +8,10 @@ export const ARRANGE_VALUES_DATA = 'ARRANGE_VALUES_DATA';
 export const ARRANGE_KEYS_VALUES = 'ARRANGE_KEYS_VALUES';
 export const ARRANGE_RAW_DATA = 'ARRANGE_RAW_DATA';
 export const ARRANGE_TABLE_DATA = 'ARRANGE_TABLE_DATA';
+export const EDIT_KEYS_VALUES_RAW_DATA = 'EDIT_KEYS_VALUES_RAW_DATA';
+export const EDIT_TABLE_DATA = 'EDIT_TABLE_DATA';
+export const SAVE_EDITED_KEYS_VALUES_RAW_DATA =
+  'SAVE_EDITED_KEYS_VALUES_RAW_DATA';
 
 // ACTION CREATORS
 export function fetchSingleFileData(data) {
@@ -79,6 +83,30 @@ export function arrangeTableData(data) {
   // console.log(data);
   return {
     type: ARRANGE_TABLE_DATA,
+    data: data,
+  };
+}
+
+export function editKeysValuesRawData(data) {
+  // console.log(data);
+  return {
+    type: EDIT_KEYS_VALUES_RAW_DATA,
+    data: data,
+  };
+}
+
+export function editTableData(data) {
+  // console.log(data);
+  return {
+    type: EDIT_TABLE_DATA,
+    data: data,
+  };
+}
+
+export function saveEditedKeysValuesRawData(data) {
+  // console.log(data);
+  return {
+    type: SAVE_EDITED_KEYS_VALUES_RAW_DATA,
     data: data,
   };
 }
