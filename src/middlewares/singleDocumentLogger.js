@@ -26,17 +26,6 @@ const singleDocumentLogger =
     }
     if (action.type === 'ARRANGE_KEYS_VALUES') {
       var singleDocKeysValues = [];
-      //   singleDocKeysValues.push({
-      //     index: -1,
-      //     key: 'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
-      //     value:
-      //       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-      //     editedKey:
-      //       'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
-      //     editedValue:
-      //       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-      //   });
-      //   console.log(action.data.Textracted_output.keys_extracted_data.length);
       if (action.data.Textracted_output.keys_extracted_data.length !== 0) {
         for (
           var i = 0;
@@ -78,18 +67,12 @@ const singleDocumentLogger =
 
     if (action.type === 'ARRANGE_RAW_ALL') {
       var singleDocRawAllData = [];
-      //   singleDocKeysValues.push({
-      //     index: -1,
-      //     text: 'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
-      //     editedText:
-      //       'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
-      //   });
-      //   console.log(
-      //     action.data.Textracted_output.text_extracted_data_page_content[0][0]
-      //   );
+      console.log(
+        action.data.Textracted_output.text_extracted_data_page_content[0][0]
+      );
       if (action.data.Textracted_output.text_extracted_data_total_pages > 0) {
         for (
-          var i = 0;
+          i = 0;
           i < action.data.Textracted_output.text_extracted_data_total_pages;
           i++
         ) {

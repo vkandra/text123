@@ -7,17 +7,16 @@ import RawDocDataSingle from '../RawDocDataSingle/RawDocDataSingle';
 const RawDocDataPage = (props) => {
   return (
     <div className="RawDocDataPage">
-      <div>
-        Page {props.singleDocPage.page + 1}
+      <div className="rawDataPageText">Page {props.singleDocPage.page + 1}</div>
+
+      {props.singleDocPage.pageData.map((singleRawData, index) => (
         <div className="rawDocDataValues">
-          {props.singleDocPage.pageData.map((singleRawData, index) => (
-            <RawDocDataSingle
-              singleRawData={singleRawData}
-              key={singleRawData.index}
-            />
-          ))}
+          <RawDocDataSingle
+            singleRawData={singleRawData}
+            key={singleRawData.index}
+          />
         </div>
-      </div>
+      ))}
     </div>
   );
 };
