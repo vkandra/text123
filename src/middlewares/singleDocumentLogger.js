@@ -76,6 +76,54 @@ const singleDocumentLogger =
       action.data = [rawDataExtractedData, rawDataEditedData];
     }
 
+    if (action.type === 'ARRANGE_RAW_ALL') {
+      var singleDocRawAllData = [];
+      //   singleDocKeysValues.push({
+      //     index: -1,
+      //     text: 'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
+      //     editedText:
+      //       'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
+      //   });
+      //   console.log(
+      //     action.data.Textracted_output.text_extracted_data_page_content[0][0]
+      //   );
+      if (action.data.Textracted_output.text_extracted_data_total_pages > 0) {
+        for (
+          var i = 0;
+          i < action.data.Textracted_output.text_extracted_data_total_pages;
+          i++
+        ) {
+          singleDocRawAllData.push({
+            page: i,
+            pageData: [],
+          });
+          for (
+            var j = 0;
+            j <
+            action.data.Textracted_output.text_extracted_data_page_content[i]
+              .length;
+            j++
+          ) {
+            singleDocRawAllData[i].pageData.push({
+              index:
+                action.data.Textracted_output.text_extracted_data_page_content[
+                  i
+                ][j].index,
+              page: i,
+              text: action.data.Textracted_output
+                .text_extracted_data_page_content[i][j].value,
+              editedText:
+                action.data.Edited_output.text_extracted_data_page_content[i][j]
+                  .value,
+            });
+          }
+        }
+      }
+
+      action.data = singleDocRawAllData;
+      console.log(action.data);
+    }
+
     if (action.type === 'ARRANGE_TABLE_DATA') {
       var tableExtractedData = [];
       tableExtractedData.push(

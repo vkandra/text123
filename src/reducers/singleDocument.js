@@ -9,6 +9,7 @@ import {
   EDIT_KEYS_VALUES_RAW_DATA,
   EDIT_TABLE_DATA,
   SAVE_EDITED_KEYS_VALUES_RAW_DATA,
+  ARRANGE_RAW_ALL,
 } from '../actions/singleDocument';
 
 const initialsingleDocumentState = {
@@ -26,7 +27,7 @@ const initialsingleDocumentState = {
   // VALUES
   singleDocumentTextractedValue: [],
   singleDocumentEditedValue: [],
-  // KEYS VALUES
+  // KEYS VALUES - REARRANGED
   singleDocKeysValues: [],
   // TABLES
   singleDocumentTextractedTables: [],
@@ -34,6 +35,8 @@ const initialsingleDocumentState = {
   // RAW DATA
   singleDocumentTextractedRawData: [],
   singleDocumentEditedRawData: [],
+  // RAW DATA - REARRANGED
+  singleDocRawAll: [],
   // Edited Keys Values Rawdata
   editedKeysValuesRawData: {
     type: '',
@@ -96,6 +99,12 @@ export default function singleDocument(
         ...state,
         singleDocumentTextractedRawData: action.data[0],
         singleDocumentEditedRawData: action.data[1],
+      };
+    case ARRANGE_RAW_ALL:
+      // console.log(action.data);
+      return {
+        ...state,
+        singleDocRawAll: action.data,
       };
     case ARRANGE_TABLE_DATA:
       // console.log(action.data);

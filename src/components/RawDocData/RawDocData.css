@@ -1,9 +1,11 @@
 .rawDocData {
   padding-left: 2%;
+  height: 100%;
 }
-/* .icons-style{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: flex-end;
-} */
+.rawDocDataPages {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  border: 1px solid #ccc;
+}
