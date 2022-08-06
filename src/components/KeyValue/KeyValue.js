@@ -63,7 +63,7 @@ const KeyValue = (props) => {
       {/* ---------------------- KEYS ------------------------- */}
       <div className="keySectionAll">
         <div className="currentDataAndEdit">
-          <div className="currentDataDisplay">
+          <div className="currentDataDisplayKV">
             {props.singleKeyValue.editedKey}
           </div>
           <button
@@ -104,7 +104,7 @@ const KeyValue = (props) => {
       {/* -------------------- VALUES --------------------- */}
       <div className="valueSectionAll">
         <div className="currentDataAndEdit">
-          <div className="currentDataDisplay">
+          <div className="currentDataDisplayKV">
             {props.singleKeyValue.editedValue}
           </div>
           <button

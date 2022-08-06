@@ -8,13 +8,14 @@
   align-items: flex-start;
   justify-content: flex-start;
   margin-right: 3%;
-  padding-top: 5px;
   padding-left: 5px;
   /* border-bottom: 1px solid #ccc; */
 }
 
 .currentDataAndEdit {
   /* border: 1px solid brown; */
+  margin: 0;
+  padding: 0;
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
@@ -23,10 +24,13 @@
 
 .currentDataDisplay {
   /* border: 1px solid black; */
+  margin: 0;
+  padding: 0;
   width: 100%;
   margin-right: -14%;
   font-size: 1rem;
   color: #1f1e1e;
+  min-height: 22px;
 }
 
 .editTextButton {
