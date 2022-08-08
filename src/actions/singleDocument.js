@@ -8,6 +8,7 @@ export const ARRANGE_VALUES_DATA = 'ARRANGE_VALUES_DATA';
 export const ARRANGE_KEYS_VALUES = 'ARRANGE_KEYS_VALUES';
 export const ARRANGE_RAW_DATA = 'ARRANGE_RAW_DATA';
 export const ARRANGE_TABLE_DATA = 'ARRANGE_TABLE_DATA';
+export const ARRANGE_TABLES_ALL = 'ARRANGE_TABLES_ALL';
 export const EDIT_KEYS_VALUES_RAW_DATA = 'EDIT_KEYS_VALUES_RAW_DATA';
 export const ARRANGE_RAW_ALL = 'ARRANGE_RAW_ALL';
 export const EDIT_TABLE_DATA = 'EDIT_TABLE_DATA';
@@ -30,6 +31,7 @@ export function fetchSingleFileData(data) {
         dispatch(arrangeRawData(res.data));
         dispatch(arrangeTableData(res.data));
         dispatch(arrangeRawAll(res.data));
+        dispatch(arrangeTablesAll(res.data));
         // console.log(assignSingleFileData(res.data));
       });
   };
@@ -93,6 +95,14 @@ export function arrangeTableData(data) {
   // console.log(data);
   return {
     type: ARRANGE_TABLE_DATA,
+    data: data,
+  };
+}
+
+export function arrangeTablesAll(data) {
+  // console.log(data);
+  return {
+    type: ARRANGE_TABLES_ALL,
     data: data,
   };
 }

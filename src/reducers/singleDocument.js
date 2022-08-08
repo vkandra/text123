@@ -5,6 +5,7 @@ import {
   ARRANGE_KEYS_VALUES,
   ARRANGE_RAW_DATA,
   ARRANGE_TABLE_DATA,
+  ARRANGE_TABLES_ALL,
   ASSIGN_SELECTED_DOC_DETAILS,
   EDIT_KEYS_VALUES_RAW_DATA,
   EDIT_TABLE_DATA,
@@ -32,6 +33,8 @@ const initialsingleDocumentState = {
   // TABLES
   singleDocumentTextractedTables: [],
   singleDocumentEditedTables: [],
+  // TABLES - REARRANGED
+  singleDocTablesAll: [],
   // RAW DATA
   singleDocumentTextractedRawData: [],
   singleDocumentEditedRawData: [],
@@ -47,9 +50,9 @@ const initialsingleDocumentState = {
   // Edited Table data
   editedTableData: {
     type: '',
-    tableNo: 0,
+    tableNum: 0,
     heading: false,
-    rowNo: -1,
+    rowNum: -1,
     index: -1,
     text: '',
   },
@@ -113,6 +116,12 @@ export default function singleDocument(
         singleDocumentTextractedTables: action.data[0],
         singleDocumentEditedTables: action.data[1],
       };
+    case ARRANGE_TABLES_ALL:
+      // console.log(action.data);
+      return {
+        ...state,
+        singleDocTablesAll: action.data,
+      };
     case EDIT_KEYS_VALUES_RAW_DATA:
       // console.log(action.data);
       return {
@@ -123,6 +132,7 @@ export default function singleDocument(
       return {
         ...state,
       };
+
     case SAVE_EDITED_KEYS_VALUES_RAW_DATA:
       // console.log(action.data);
       return {

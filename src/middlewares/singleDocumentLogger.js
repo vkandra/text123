@@ -67,9 +67,9 @@ const singleDocumentLogger =
 
     if (action.type === 'ARRANGE_RAW_ALL') {
       var singleDocRawAllData = [];
-      console.log(
-        action.data.Textracted_output.text_extracted_data_page_content[0][0]
-      );
+      //   console.log(
+      //     action.data.Textracted_output.text_extracted_data_page_content[0][0]
+      //   );
       if (action.data.Textracted_output.text_extracted_data_total_pages > 0) {
         for (
           i = 0;
@@ -104,7 +104,7 @@ const singleDocumentLogger =
       }
 
       action.data = singleDocRawAllData;
-      console.log(action.data);
+      //   console.log(action.data);
     }
 
     if (action.type === 'ARRANGE_TABLE_DATA') {
@@ -131,6 +131,76 @@ const singleDocumentLogger =
       action.data = [tableExtractedData, tableEditedData];
     }
 
+    if (action.type === 'ARRANGE_TABLES_ALL') {
+      console.log(
+        action.data.Textracted_output.table_extracted_data_body[0][0]
+      );
+      var allTableData = [];
+      if (action.data.Textracted_output.table_extracted_data_total > 0) {
+        for (
+          i = 0;
+          i < action.data.Textracted_output.table_extracted_data_total;
+          i++
+        ) {
+          allTableData.push({
+            tableNum: i,
+            tableHeader: [],
+            tableData: [],
+          });
+
+          for (
+            j = 0;
+            j <
+            action.data.Textracted_output.table_extracted_data_headers[i]
+              .length;
+            j++
+          ) {
+            allTableData[i].tableHeader.push({
+              tableNum: i,
+              index: j,
+              type: 'header',
+              header:
+                action.data.Textracted_output.table_extracted_data_headers[i][
+                  j
+                ],
+              editedHeader:
+                action.data.Edited_output.table_extracted_data_headers[i][j],
+            });
+          }
+
+          for (
+            var j = 0;
+            j <
+            action.data.Textracted_output.table_extracted_data_body[i].length;
+            j++
+          ) {
+            allTableData[i].tableData.push({
+              rowData: [],
+            });
+            for (
+              var k = 0;
+              k <
+              action.data.Textracted_output.table_extracted_data_body[i][j]
+                .length;
+              k++
+            ) {
+              allTableData[i].tableData[j].rowData.push({
+                tableNum: i,
+                rowNum: j,
+                index: k,
+                type: 'rowdata',
+                data: action.data.Textracted_output.table_extracted_data_body[
+                  i
+                ][j][k],
+                editedData:
+                  action.data.Edited_output.table_extracted_data_body[i][j][k],
+              });
+            }
+          }
+        }
+      }
+    }
+    console.log(allTableData);
     next(action);
   };
 
