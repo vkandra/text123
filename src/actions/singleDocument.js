@@ -14,6 +14,7 @@ export const ARRANGE_RAW_ALL = 'ARRANGE_RAW_ALL';
 export const EDIT_TABLE_DATA = 'EDIT_TABLE_DATA';
 export const SAVE_EDITED_KEYS_VALUES_RAW_DATA =
   'SAVE_EDITED_KEYS_VALUES_RAW_DATA';
+export const SAVE_EDITED_TABLE_DATA = 'SAVE_EDITED_TABLE_DATA';
 
 // ACTION CREATORS
 export function fetchSingleFileData(data) {
@@ -127,6 +128,14 @@ export function saveEditedKeysValuesRawData(data) {
   // console.log(data);
   return {
     type: SAVE_EDITED_KEYS_VALUES_RAW_DATA,
+    data: data,
+  };
+}
+
+export function saveEditedTableData(data) {
+  // console.log(data);
+  return {
+    type: SAVE_EDITED_TABLE_DATA,
     data: data,
   };
 }

@@ -1,48 +1,9 @@
-.app-container {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  padding: 1rem;
-}
-
-.docDataTable1 {
-  width: 100%;
-  border-collapse: collapse;
+.tableDocData {
+  padding-left: 2%;
+  height: 100%;
   /* border: 1px solid black; */
 }
 
-.docDataTable1th {
-  /* text-align: center; */
-  /* border: 1px solid white; */
-  padding: 10px;
-  font-size: 16px;
-  background-color: rgb(117, 201, 250);
-  /* border: 1px solid black; */
+.allTables {
+  border: 1px solid #ccc;
 }
-
-.docDataTable1td {
-  /* border: 1px solid white; */
-  padding: 10px;
-  padding-left: 1rem;
-  font-size: 16px;
-  background-color: rgb(205, 235, 253);
-  /* border: 1px solid black; */
-}
-
-.docTableForm {
-  display: flex;
-  gap: 5px;
-  font-size: 18px;
-}
-
-.docTableEditButton {
-  display: table-cell;
-  justify-content: space-evenly;
-  padding-left: 30px;
-}
-
-/* 
-button {
-  border-style: none;
-  background-color: rgb(205, 235, 253);
-} */

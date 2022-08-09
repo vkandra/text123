@@ -14,22 +14,22 @@ const RawDocDataSingle = (props) => {
     singleDocument.editedKeysValuesRawData.pageNo = props.singleRawData.page;
     singleDocument.editedKeysValuesRawData.index = props.singleRawData.index;
     props.dispatch(editKeysValuesRawData(singleDocument));
-    console.log(props.singleRawData);
-    console.log(singleDocument.singleDocRawAll);
+    // console.log(props.singleRawData);
+    // console.log(singleDocument.singleDocRawAll);
   };
 
   const captureEditedText = (e) => {
     const { singleDocument } = props;
     singleDocument.editedKeysValuesRawData.text = e.target.value;
     props.dispatch(editKeysValuesRawData(singleDocument));
-    console.log(singleDocument.editedKeysValuesRawData);
+    // console.log(singleDocument.editedKeysValuesRawData);
   };
 
   const saveEditedKVRData = () => {
     const { singleDocument } = props;
     // console.log(singleDocument.singleDocRawAll.length);
     for (var i = 0; i < singleDocument.singleDocRawAll.length; i++) {
-      console.log(i);
+      // console.log(i);
       for (
         var j = 0;
         j < singleDocument.singleDocRawAll[i].pageData.length;
@@ -61,7 +61,7 @@ const RawDocDataSingle = (props) => {
     singleDocument.editedKeysValuesRawData.index = -1;
     singleDocument.editedKeysValuesRawData.text = '';
     props.dispatch(editKeysValuesRawData(singleDocument));
-    console.log(singleDocument.editedKeysValuesRawData);
+    // console.log(singleDocument.editedKeysValuesRawData);
   };
 
   return (

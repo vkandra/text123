@@ -1,0 +1,120 @@
+.tableDocDataAll {
+  /* border: 1px solid #ccc; */
+  /* min-height: 23px;
+  min-width: 40px;
+  padding-left: 3px; */
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  margin-right: 3%;
+  padding-left: 5px;
+}
+
+.currentDataAndEdit {
+  /* border: 1px solid brown; */
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.currentDataDisplay {
+  /* border: 1px solid black; */
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  margin-right: -14%;
+  font-size: 1rem;
+  color: #1f1e1e;
+  min-height: 22px;
+  min-width: 40px;
+}
+
+.editTextButtonTable {
+  opacity: 0;
+  outline: none;
+  cursor: pointer;
+  background: whitesmoke;
+  color: #1f1e1e;
+  font-size: 0.7rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+.currentDataAndEdit:hover .editTextButtonTable {
+  opacity: 1;
+  outline: none;
+  cursor: pointer;
+  background: whitesmoke;
+  color: #1f1e1e;
+  font-size: 0.7rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.textAreaDivButtons {
+  /* border: 1px solid green; */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-end;
+  width: 100%;
+  padding-top: 5px;
+}
+
+.textAreaSection {
+  width: 100%;
+}
+
+.textAreaButtonsDiv {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin: 0;
+  padding: 0;
+}
+
+.editCompleteButton {
+  outline: none;
+  cursor: pointer;
+  background: whitesmoke;
+  color: #1f1e1e;
+  font-size: 0.7rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-top: 3px;
+}
+
+.orgnlExtractedDataDisplayArea {
+  background: #e6e6fa;
+  width: 100%;
+  margin-bottom: 4px;
+  margin-top: 4px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  display: flex;
+  flex-direction: column;
+}
+.orgnlExtDataTxt {
+  /* border: 1px solid black; */
+  background: #388e3c;
+  color: white;
+  width: 90px;
+  font-size: 0.7rem;
+  padding-left: 2px;
+  font-weight: 300;
+  /* font-family: unset; */
+}
+.orgnlExtData {
+  font-size: 0.8rem;
+  color: #172337;
+  padding-left: 2px;
+  padding-bottom: 3px;
+  min-height: 20px;
+}

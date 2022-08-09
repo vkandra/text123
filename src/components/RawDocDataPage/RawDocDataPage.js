@@ -10,11 +10,8 @@ const RawDocDataPage = (props) => {
       <div className="rawDataPageText">Page {props.singleDocPage.page + 1}</div>
 
       {props.singleDocPage.pageData.map((singleRawData, index) => (
-        <div className="rawDocDataValues">
-          <RawDocDataSingle
-            singleRawData={singleRawData}
-            key={singleRawData.index}
-          />
+        <div className="rawDocDataValues" key={singleRawData.index}>
+          <RawDocDataSingle singleRawData={singleRawData} />
         </div>
       ))}
     </div>

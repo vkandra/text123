@@ -11,6 +11,7 @@ import {
   EDIT_TABLE_DATA,
   SAVE_EDITED_KEYS_VALUES_RAW_DATA,
   ARRANGE_RAW_ALL,
+  SAVE_EDITED_TABLE_DATA,
 } from '../actions/singleDocument';
 
 const initialsingleDocumentState = {
@@ -51,7 +52,6 @@ const initialsingleDocumentState = {
   editedTableData: {
     type: '',
     tableNum: 0,
-    heading: false,
     rowNum: -1,
     index: -1,
     text: '',
@@ -132,8 +132,12 @@ export default function singleDocument(
       return {
         ...state,
       };
-
     case SAVE_EDITED_KEYS_VALUES_RAW_DATA:
+      // console.log(action.data);
+      return {
+        ...state,
+      };
+    case SAVE_EDITED_TABLE_DATA:
       // console.log(action.data);
       return {
         ...state,

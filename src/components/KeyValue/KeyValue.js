@@ -12,21 +12,21 @@ const KeyValue = (props) => {
     singleDocument.editedKeysValuesRawData.type = type;
     singleDocument.editedKeysValuesRawData.index = props.singleKeyValue.index;
     props.dispatch(editKeysValuesRawData(singleDocument));
-    console.log(props.singleKeyValue);
+    // console.log(props.singleKeyValue);
   };
 
   const captureEditedText = (e) => {
     const { singleDocument } = props;
     singleDocument.editedKeysValuesRawData.text = e.target.value;
     props.dispatch(editKeysValuesRawData(singleDocument));
-    console.log(singleDocument.editedKeysValuesRawData);
+    // console.log(singleDocument.editedKeysValuesRawData);
   };
 
   const saveEditedKVRData = () => {
     const { singleDocument } = props;
-    console.log(singleDocument.singleDocKeysValues.length);
+    // console.log(singleDocument.singleDocKeysValues.length);
     for (var i = 0; i < singleDocument.singleDocKeysValues.length; i++) {
-      console.log(i);
+      // console.log(i);
       if (
         props.singleKeyValue.index ===
         singleDocument.singleDocKeysValues[i].index
@@ -55,7 +55,7 @@ const KeyValue = (props) => {
     singleDocument.editedKeysValuesRawData.index = -1;
     singleDocument.editedKeysValuesRawData.text = '';
     props.dispatch(editKeysValuesRawData(singleDocument));
-    console.log(singleDocument.editedKeysValuesRawData);
+    // console.log(singleDocument.editedKeysValuesRawData);
   };
 
   return (

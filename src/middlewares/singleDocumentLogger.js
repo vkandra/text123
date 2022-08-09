@@ -132,9 +132,9 @@ const singleDocumentLogger =
     }
 
     if (action.type === 'ARRANGE_TABLES_ALL') {
-      console.log(
-        action.data.Textracted_output.table_extracted_data_body[0][0]
-      );
+      //   console.log(
+      //     action.data.Textracted_output.table_extracted_data_body[0][0]
+      //   );
       var allTableData = [];
       if (action.data.Textracted_output.table_extracted_data_total > 0) {
         for (
@@ -157,24 +157,25 @@ const singleDocumentLogger =
           ) {
             allTableData[i].tableHeader.push({
               tableNum: i,
+              rowNum: -1,
               index: j,
               type: 'header',
-              header:
-                action.data.Textracted_output.table_extracted_data_headers[i][
-                  j
-                ],
-              editedHeader:
+              data: action.data.Textracted_output.table_extracted_data_headers[
+                i
+              ][j],
+              editedData:
                 action.data.Edited_output.table_extracted_data_headers[i][j],
             });
           }
 
           for (
-            var j = 0;
+            j = 0;
             j <
             action.data.Textracted_output.table_extracted_data_body[i].length;
             j++
           ) {
             allTableData[i].tableData.push({
+              index: j,
               rowData: [],
             });
             for (
@@ -199,8 +200,10 @@ const singleDocumentLogger =
           }
         }
       }
+      action.data = allTableData;
     }
-    console.log(allTableData);
+
+    // console.log(allTableData);
     next(action);
   };
 

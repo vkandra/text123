@@ -6,7 +6,7 @@ import KeyValue from '../KeyValue/KeyValue';
 
 const KeyValueDocData = (props) => {
   const fetchData = () => {
-    console.log(props.singleDocument.singleDocKeysValues);
+    // console.log(props.singleDocument.singleDocKeysValues);
   };
   return (
     <div className="keyValueDocData">
