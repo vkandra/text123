@@ -43,6 +43,7 @@ const TextExtraction = (props) => {
       <div className="extractedData">
         <div className="exactDoc">
           <div className="dropdownsdocpage">
+
             <div className="docdropdown">
               <select name="documents"  onChange={()=>{
       document.getElementById('div1').style.display="block";
@@ -56,12 +57,15 @@ const TextExtraction = (props) => {
                 </optgroup>
               </select>
             </div>
-            <div className="Img">
-            <button id="btn"  onClick={()=>{
+
+            <div className="img1">
+            <button className="buttonimg" type='button' onClick={()=>{
       document.getElementById('div2').style.display="block";
       document.getElementById('div1').style.display="none";
-    }}>Img</button>
+    }}>Image</button>
             </div>
+
+            
           </div>
           <div className="displayArea">
             <div className="pdf-container" id='div1'>
@@ -80,7 +84,7 @@ const TextExtraction = (props) => {
               {!viewPdf && <>No pdf file selected</>}
             </div>
             <div className='div2' id='div2' >
-    <img src='https://reqres.in/img/faces/2-image.jpg' alt='hiii'/>
+    <img id="displayimg"src='https://reqres.in/img/faces/2-image.jpg' alt='hiii'/>
     </div>
           </div>
           <div className="nextPrevButtons">
