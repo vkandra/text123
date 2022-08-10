@@ -51,7 +51,7 @@ const KeyValue = (props) => {
     props.dispatch(saveEditedKeysValuesRawData(singleDocument));
 
     singleDocument.editedKeysValuesRawData.type = '';
-    singleDocument.editedKeysValuesRawData.pageNo = 0;
+    singleDocument.editedKeysValuesRawData.pageNo = -1;
     singleDocument.editedKeysValuesRawData.index = -1;
     singleDocument.editedKeysValuesRawData.text = '';
     props.dispatch(editKeysValuesRawData(singleDocument));

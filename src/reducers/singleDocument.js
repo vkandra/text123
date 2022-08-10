@@ -44,7 +44,7 @@ const initialsingleDocumentState = {
   // Edited Keys Values Rawdata
   editedKeysValuesRawData: {
     type: '',
-    pageNo: 0,
+    pageNo: -1,
     index: -1,
     text: '',
   },
