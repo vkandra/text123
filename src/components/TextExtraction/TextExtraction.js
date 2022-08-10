@@ -51,9 +51,8 @@ const TextExtraction = (props) => {
     }}>
                 <optgroup label="Select Document">
                   {/* label="Start the selection" */}
-                  <option value="1">Document 1</option>
-                  <option value="2">Document 2</option>
-                  <option value="3">Document 3</option>
+                  <option>Documents</option>
+                {props.documents.selectedDocuments.map(item=><option key={item}>{item}</option>)}
                 </optgroup>
               </select>
             </div>

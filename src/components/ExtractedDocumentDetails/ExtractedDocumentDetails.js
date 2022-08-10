@@ -1,6 +1,6 @@
 import './ExtractedDocumentDetails.css';
 import React from 'react';
-// import { connect } from 'react-redux/es/exports';
+import { connect } from 'react-redux/es/exports';
 
 const ExtractedDocumentDetails = (props) => {
   return (
@@ -33,12 +33,12 @@ const ExtractedDocumentDetails = (props) => {
   );
 };
 
-// const mapStateToProps = (state) => {
-//     return {
-//       user: state.user,
-//     };
-//   };
+const mapStateToProps = (state) => {
+    return {
+      user: state.user,
+    };
+  };
 
-//   export default connect(mapStateToProps)(ExtractedDocumentDetails);
+  export default connect(mapStateToProps)(ExtractedDocumentDetails);
 
-export default ExtractedDocumentDetails;
+
