@@ -3,7 +3,10 @@ import React from 'react';
 import { connect } from 'react-redux/es/exports';
 
 import { changeTabOperation } from '../../actions/extractor';
-import { assignSelectedDocDetails } from '../../actions/singleDocument';
+import {
+  assignSelectedDocDetails,
+  singleDocDetail,
+} from '../../actions/singleDocument';
 import ConfigurationFile from '../ConfigurationFile/ConfigurationFile';
 import { startExtractionProcessAPI } from '../../actions/documents';
 import { fetchRawDocumentsDetailsAPI } from '../../actions/documents';
@@ -76,9 +79,24 @@ const ConfigurationFileList = (props) => {
     }
     props.dispatch(assignSelectedDocDetails(selectedDocDetails));
 
-    props.dispatch(changeTabOperation(extractor));
-
     console.log(props.singleDocument.selectedDocumentsDetails);
+
+    // const { singleDocument } = props;
+
+    // var fileDetail = selectedDocDetails[0];
+
+    // singleDocument.singleDocumentId = fileDetail.documentId;
+    // singleDocument.singleDocumentName = fileDetail.ducumentName;
+    // singleDocument.singleDocumentType = fileDetail.documentType;
+    // singleDocument.singleDocumentTotalPages = fileDetail.documentPages;
+    // singleDocument.singleDocumentSize = fileDetail.documentSize;
+    // singleDocument.singleDocumentUploadDate = fileDetail.documentUploadDate;
+    // singleDocument.singleDocumentStatus = fileDetail.documentStatus;
+    // singleDocument.singleDocumentDownloadLink = fileDetail.documentDownloadLink;
+
+    // props.dispatch(singleDocDetail(singleDocument));
+    // console.log(singleDocument.singleDocumentUploadDate);
+    props.dispatch(changeTabOperation(extractor));
   };
 
   return (

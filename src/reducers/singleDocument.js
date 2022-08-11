@@ -12,6 +12,7 @@ import {
   SAVE_EDITED_KEYS_VALUES_RAW_DATA,
   ARRANGE_RAW_ALL,
   SAVE_EDITED_TABLE_DATA,
+  SINGLE_DOC_DETAIL,
 } from '../actions/singleDocument';
 
 const initialsingleDocumentState = {
@@ -19,6 +20,11 @@ const initialsingleDocumentState = {
   singleDocumentName: '',
   singleDocumentType: '',
   singleDocumentTotalPages: 0,
+  singleDocumentSize: 0,
+  singleDocumentUploadDate: '',
+  singleDocumentStatus: '',
+  singleDocumentDownloadLink: '',
+
   selectedDocumentsDetails: [],
   // ALL CONTENT
   singleDocumentTextractedContent: [],
@@ -63,6 +69,11 @@ export default function singleDocument(
   action
 ) {
   switch (action.type) {
+    case SINGLE_DOC_DETAIL:
+      // console.log(action.data);
+      return {
+        ...state,
+      };
     case ASSIGN_SELECTED_DOC_DETAILS:
       // console.log(action.data);
       return {

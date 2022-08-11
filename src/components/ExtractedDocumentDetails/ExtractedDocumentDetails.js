@@ -8,19 +8,30 @@ const ExtractedDocumentDetails = (props) => {
       <div className="documentDetailSections">
         <div className="documentSingleDetailSection">
           <div>
-            Name : <span className="actualDocDataDetail">Document #1</span>
+            Name :
+            <span className="actualDocDataDetail">
+              {props.singleDocument.singleDocumentName}
+            </span>
           </div>
           <div>
-            Id : <span className="actualDocDataDetail">11</span>
+            Id :
+            <span className="actualDocDataDetail">
+              {props.singleDocument.singleDocumentId}
+            </span>
           </div>
         </div>
         <div className="documentSingleDetailSection">
           <div>
-            Size : <span className="actualDocDataDetail">145kb</span>
+            Size :
+            <span className="actualDocDataDetail">
+              {Math.round(props.singleDocument.singleDocumentSize / 1024)}kb
+            </span>
           </div>
           <div>
-            Uploaded on :{' '}
-            <span className="actualDocDataDetail">2022-04-01</span>
+            Uploaded on :
+            <span className="actualDocDataDetail">
+              {props.singleDocument.singleDocumentUploadDate}
+            </span>
           </div>
         </div>
       </div>
@@ -34,11 +45,10 @@ const ExtractedDocumentDetails = (props) => {
 };
 
 const mapStateToProps = (state) => {
-    return {
-      user: state.user,
-    };
+  return {
+    user: state.user,
+    singleDocument: state.singleDocument,
   };
+};
 
-  export default connect(mapStateToProps)(ExtractedDocumentDetails);
-
-
+export default connect(mapStateToProps)(ExtractedDocumentDetails);

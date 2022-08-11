@@ -7,7 +7,10 @@ import KeyValueDocData from '../KeyValueDocData/KeyValueDocData';
 import RawDocData from '../RawDocData/RawDocData';
 import TableDocData from '../TableDocData/TableDocData';
 import ExtractedDocumentDetails from '../ExtractedDocumentDetails/ExtractedDocumentDetails';
-import { fetchSingleFileData } from '../../actions/singleDocument';
+import {
+  fetchSingleFileData,
+  singleDocDetail,
+} from '../../actions/singleDocument';
 
 import { Viewer } from '@react-pdf-viewer/core';
 import { defaultLayoutPlugin } from '@react-pdf-viewer/default-layout';
@@ -18,19 +21,79 @@ import viewPdf from './sample2.pdf';
 
 const TextExtraction = (props) => {
   useEffect(() => {
-    var userID = props.user.token;
-    var documentId = 'fbbd21ad0f9dda9a12f74b91c6360a2c';
-    var singleDocParams = [userID, documentId];
-    props.dispatch(fetchSingleFileData(singleDocParams));
+    if (props.singleDocument.selectedDocumentsDetails.length !== 0) {
+      getSingleSelectedDocId();
+    }
+
+    // var userID = props.user.token;
+    // var documentId = props.singleDocument.singleDocumentId;
+    // var singleDocParams = [userID, documentId];
+    // props.dispatch(fetchSingleFileData(singleDocParams));
+
+    // const { singleDocument } = props;
+    // var selectedDocid = document.getElementById('singleDocSelect').value;
+    // console.log(selectedDocid);
+    // var fileDetailInitial = {};
+    // for (var i = 0; i < singleDocument.selectedDocumentsDetails.length; i++) {
+    //   if (
+    //     singleDocument.selectedDocumentsDetails[i].documentId === selectedDocid
+    //   ) {
+    //     fileDetailInitial = singleDocument.selectedDocumentsDetails[i];
+    //     break;
+    //   }
+    // }
+
+    // singleDocument.singleDocumentId = fileDetailInitial.documentId;
+    // singleDocument.singleDocumentName = fileDetailInitial.ducumentName;
+    // singleDocument.singleDocumentType = fileDetailInitial.documentType;
+    // singleDocument.singleDocumentTotalPages = fileDetailInitial.documentPages;
+    // singleDocument.singleDocumentSize = fileDetailInitial.documentSize;
+    // singleDocument.singleDocumentUploadDate =
+    //   fileDetailInitial.documentUploadDate;
+    // singleDocument.singleDocumentStatus = fileDetailInitial.documentStatus;
+    // singleDocument.singleDocumentDownloadLink =
+    //   fileDetailInitial.documentDownloadLink;
+
+    // props.dispatch(singleDocDetail(singleDocument));
 
     // console.log(props.singleDocument.singleDocumentEditedContent);
   }, []);
 
- 
-   //create new plugin instance
-   const defaultLayoutPluginInstance = defaultLayoutPlugin({
+  const getSingleSelectedDocId = () => {
+    const { singleDocument } = props;
+
+    var id = document.getElementById('singleDocSelect').value;
+    var fileDetail = {};
+
+    for (var i = 0; i < singleDocument.selectedDocumentsDetails.length; i++) {
+      if (singleDocument.selectedDocumentsDetails[i].documentId === id) {
+        fileDetail = singleDocument.selectedDocumentsDetails[i];
+        break;
+      }
+    }
+
+    singleDocument.singleDocumentId = fileDetail.documentId;
+    singleDocument.singleDocumentName = fileDetail.ducumentName;
+    singleDocument.singleDocumentType = fileDetail.documentType;
+    singleDocument.singleDocumentTotalPages = fileDetail.documentPages;
+    singleDocument.singleDocumentSize = fileDetail.documentSize;
+    singleDocument.singleDocumentUploadDate = fileDetail.documentUploadDate;
+    singleDocument.singleDocumentStatus = fileDetail.documentStatus;
+    singleDocument.singleDocumentDownloadLink = fileDetail.documentDownloadLink;
+
+    props.dispatch(singleDocDetail(singleDocument));
+    console.log(singleDocument.singleDocumentStatus);
+
+    var userID = props.user.token;
+    var documentId = props.singleDocument.singleDocumentId;
+    var singleDocParams = [userID, documentId];
+    props.dispatch(fetchSingleFileData(singleDocParams));
+  };
+
+  //create new plugin instance
+  const defaultLayoutPluginInstance = defaultLayoutPlugin({
     sidebarTabs: (defaultTabs) => [],
-});
+  });
 
   const changeDataTabs = (tabNum) => {
     const { extractor } = props;
@@ -43,49 +106,65 @@ const TextExtraction = (props) => {
       <div className="extractedData">
         <div className="exactDoc">
           <div className="dropdownsdocpage">
-
             <div className="docdropdown">
-              <select name="documents"  onChange={()=>{
-      document.getElementById('div1').style.display="block";
-      document.getElementById('div2').style.display="none";
-    }}>
+              <select
+                name="documents"
+                id="singleDocSelect"
+                onChange={() => {
+                  getSingleSelectedDocId();
+                }}
+              >
                 <optgroup label="Select Document">
-                  {/* label="Start the selection" */}
-                  <option>Documents</option>
-                {props.documents.selectedDocuments.map(item=><option key={item}>{item}</option>)}
+                  {props.singleDocument.selectedDocumentsDetails.map(
+                    (singlefile, index) => (
+                      <option
+                        key={singlefile.documentId}
+                        singlefile={singlefile}
+                        value={singlefile.documentId}
+                      >
+                        {singlefile.ducumentName}
+                      </option>
+                    )
+                  )}
                 </optgroup>
               </select>
             </div>
-
-            <div className="img1">
-            <button className="buttonimg" type='button' onClick={()=>{
-      document.getElementById('div2').style.display="block";
-      document.getElementById('div1').style.display="none";
-    }}>Image</button>
-            </div>
-
-            
           </div>
-          <div className="displayArea">
-            <div className="pdf-container" id='div1'>
-              {/* show pdf conditionally (if we have one) */}
-              {viewPdf && (
-                <>
-                  <Worker workerUrl="https://unpkg.com/pdfjs-dist@2.14.305/build/pdf.worker.min.js">
-                    <Viewer
-                      fileUrl={`https://amazon-textract-s3bucket.s3.amazonaws.com/input_/f6d86aa8-57d4-442a-b159-ee46e97df492/AmazonWorkspacesSupplierSet.pdf`}
-                      plugins={[defaultLayoutPluginInstance]}
-                    />
-                  </Worker>
-                </>
+          {props.singleDocument.singleDocumentDownloadLink === '' ? (
+            <div className="displayArea"></div>
+          ) : (
+            <div className="displayArea">
+              {props.singleDocument.singleDocumentType === 'pdf' ||
+              props.singleDocument.singleDocumentType === 'application/pdf' ? (
+                <div className="pdf-container">
+                  {/* show pdf conditionally (if we have one) */}
+                  {viewPdf && (
+                    <>
+                      <Worker workerUrl="https://unpkg.com/pdfjs-dist@2.14.305/build/pdf.worker.min.js">
+                        <Viewer
+                          fileUrl={
+                            props.singleDocument.singleDocumentDownloadLink
+                          }
+                          plugins={[defaultLayoutPluginInstance]}
+                        />
+                      </Worker>
+                    </>
+                  )}
+                  {/* if we dont have pdf or viewpdf state is null */}
+                  {!viewPdf && <>No pdf file selected</>}
+                </div>
+              ) : (
+                <div className="imageDisplaydiv">
+                  <img
+                    id="imageDisplay"
+                    // src="https://images.freeimages.com/images/previews/d0f/nuclear-power-plant-1314782.jpg"
+                    src={props.singleDocument.singleDocumentDownloadLink}
+                    alt="Not Found"
+                  />
+                </div>
               )}
-              {/* if we dont have pdf or viewpdf state is null */}
-              {!viewPdf && <>No pdf file selected</>}
             </div>
-            <div className='div2' id='div2' >
-    <img id="displayimg"src='https://reqres.in/img/faces/2-image.jpg' alt='hiii'/>
-    </div>
-          </div>
+          )}
           <div className="nextPrevButtons">
             <div className="prevButton">
               <i className="fi fi-ss-arrow-left"></i> &nbsp; Prev
@@ -124,13 +203,18 @@ const TextExtraction = (props) => {
             </button>
           </div>
           <div className="docTabData">
-            {props.extractor.textDataTab === 1 ? (
+            {props.extractor.textDataTab === 1 &&
+            props.singleDocument.singleDocumentStatus === 'Processed' ? (
               <KeyValueDocData />
-            ) : props.extractor.textDataTab === 2 ? (
+            ) : props.extractor.textDataTab === 2 &&
+              props.singleDocument.singleDocumentStatus === 'Processed' ? (
               <TableDocData />
-            ) : props.extractor.textDataTab === 3 ? (
+            ) : props.extractor.textDataTab === 3 &&
+              props.singleDocument.singleDocumentStatus === 'Processed' ? (
               <RawDocData />
-            ) : null}
+            ) : (
+              <div className="dataNotExt">Data Not Extracted</div>
+            )}
           </div>
         </div>
       </div>

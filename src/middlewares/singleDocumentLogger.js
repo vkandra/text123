@@ -202,7 +202,8 @@ const singleDocumentLogger =
       }
       action.data = allTableData;
     }
-
+    // console.log(singleDocKeysValues);
+    // console.log(singleDocRawAllData);
     // console.log(allTableData);
     next(action);
   };
