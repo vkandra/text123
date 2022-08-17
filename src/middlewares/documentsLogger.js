@@ -12,6 +12,8 @@ const documentsLogger =
     const fetchedAllDocsData = {
       totalDocuments: 0,
       documentDetails: [],
+      processedFileList: [],
+      notProcessedFileList: [],
     };
     if (action.type === 'ASSIGN_ALL_RECEIVED_DOCUMENTS_DATA') {
       var totalDocs = action.data.Document_Details.length;
@@ -31,6 +33,17 @@ const documentsLogger =
           documentDownloadLink: action.data.Document_Details[i].download_link.S,
         });
       }
+      fetchedAllDocsData.processedFileList =
+        fetchedAllDocsData.documentDetails.filter((file) => {
+          return file.documentStatus === 'Processed';
+        });
+      fetchedAllDocsData.notProcessedFileList =
+        fetchedAllDocsData.documentDetails.filter((file) => {
+          return (
+            file.documentStatus === 'Not Processed' ||
+            file.documentStatus === 'Processing'
+          );
+        });
       //   console.log(fetchedAllDocsData);
       action.data = fetchedAllDocsData;
     }

@@ -1,14 +1,17 @@
 import './ConfigurationFileList.css';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux/es/exports';
 
-import { changeTabOperation } from '../../actions/extractor';
 import {
-  assignSelectedDocDetails,
-  singleDocDetail,
-} from '../../actions/singleDocument';
+  changeTabOperation,
+  handleProcessedFileTabChange,
+} from '../../actions/extractor';
+import { assignSelectedDocDetails } from '../../actions/singleDocument';
 import ConfigurationFile from '../ConfigurationFile/ConfigurationFile';
-import { startExtractionProcessAPI } from '../../actions/documents';
+import {
+  clearSelectedFiles,
+  startExtractionProcessAPI,
+} from '../../actions/documents';
 import { fetchRawDocumentsDetailsAPI } from '../../actions/documents';
 import {
   selectDocumentsConfiguration,
@@ -17,20 +20,16 @@ import {
 
 const ConfigurationFileList = (props) => {
   // useEffect(() => {
-  //   props.dispatch(
-  //     assignAllReceivedDocumentsData(props.documents.rawDocumentsDataFromAPI)
-  //   );
+
   // }, []);
 
   const selectAllDocuments = (allDocs) => {
-    // console.log(allDocs);
     var selectedDocs = [];
     for (var i = 0; i < allDocs.length; i++) {
       selectedDocs.push(allDocs[i].documentId);
       const { documents } = props;
       documents.selectedDocuments = selectedDocs;
       props.dispatch(selectDocumentsConfiguration(documents));
-      //   console.log(props.documents.selectedDocuments);
     }
   };
 
@@ -38,13 +37,12 @@ const ConfigurationFileList = (props) => {
     const { documents } = props;
     documents.selectedDocuments = [];
     props.dispatch(unselectDocumentsConfiguration(documents));
-    // console.log(props.documents.selectedDocuments);
   };
 
   const startExtractionProcess = () => {
     var docNames = [];
     var selectedPageIds = props.documents.selectedDocuments;
-    var docDetails = props.documents.documentDetails;
+    var docDetails = props.documents.filteredFilelist;
     for (var i = 0; i < docDetails.length; i++) {
       for (var j = 0; j < selectedPageIds.length; j++) {
         if (docDetails[i].documentId === selectedPageIds[j]) {
@@ -79,39 +77,41 @@ const ConfigurationFileList = (props) => {
     }
     props.dispatch(assignSelectedDocDetails(selectedDocDetails));
 
-    console.log(props.singleDocument.selectedDocumentsDetails);
+    // console.log(props.singleDocument.selectedDocumentsDetails);
 
-    // const { singleDocument } = props;
-
-    // var fileDetail = selectedDocDetails[0];
-
-    // singleDocument.singleDocumentId = fileDetail.documentId;
-    // singleDocument.singleDocumentName = fileDetail.ducumentName;
-    // singleDocument.singleDocumentType = fileDetail.documentType;
-    // singleDocument.singleDocumentTotalPages = fileDetail.documentPages;
-    // singleDocument.singleDocumentSize = fileDetail.documentSize;
-    // singleDocument.singleDocumentUploadDate = fileDetail.documentUploadDate;
-    // singleDocument.singleDocumentStatus = fileDetail.documentStatus;
-    // singleDocument.singleDocumentDownloadLink = fileDetail.documentDownloadLink;
-
-    // props.dispatch(singleDocDetail(singleDocument));
-    // console.log(singleDocument.singleDocumentUploadDate);
     props.dispatch(changeTabOperation(extractor));
+  };
+
+  const handleProcessedFileTab = (num) => {
+    const { extractor } = props;
+    const { documents } = props;
+    if (num === extractor.processedFileTab) {
+      return;
+    }
+    extractor.processedFileTab = num;
+    props.dispatch(handleProcessedFileTabChange(extractor));
+
+    documents.selectedDocuments = [];
+    props.dispatch(clearSelectedFiles(documents));
   };
 
   return (
     <div className="configurationFileList">
       {props.documents.selectedDocuments.length !== 0 ? (
         <div className="actionButtonsConfigure">
-          <button
-            className="startExtractionButton configurationFileListFourButtons"
-            onClick={() => startExtractionProcess()}
-          >
-            Start
-          </button>
-          <button className="stopExtractionButton configurationFileListFourButtons">
-            Stop
-          </button>
+          {props.extractor.processedFileTab === 1 ? (
+            <button
+              className="startExtractionButton configurationFileListFourButtons"
+              onClick={() => startExtractionProcess()}
+            >
+              Start
+            </button>
+          ) : null}
+          {props.extractor.processedFileTab === 1 ? (
+            <button className="stopExtractionButton configurationFileListFourButtons">
+              Stop
+            </button>
+          ) : null}
           <button
             className="viewExtractedDataButton configurationFileListFourButtons"
             onClick={() => changeToTextExtractionTab()}
@@ -124,12 +124,22 @@ const ConfigurationFileList = (props) => {
         </div>
       ) : (
         <div className="actionButtonsConfigure">
-          <button disabled className="configurationFileListFourDisabledButtons">
-            Start
-          </button>
-          <button disabled className="configurationFileListFourDisabledButtons">
-            Stop
-          </button>
+          {props.extractor.processedFileTab === 1 ? (
+            <button
+              disabled
+              className="configurationFileListFourDisabledButtons"
+            >
+              Start
+            </button>
+          ) : null}
+          {props.extractor.processedFileTab === 1 ? (
+            <button
+              disabled
+              className="configurationFileListFourDisabledButtons"
+            >
+              Stop
+            </button>
+          ) : null}
           <button disabled className="configurationFileListFourDisabledButtons">
             View
           </button>
@@ -139,39 +149,104 @@ const ConfigurationFileList = (props) => {
         </div>
       )}
 
+      <div className="proNotProButtons">
+        <div
+          className={`${
+            props.extractor.processedFileTab === 1
+              ? 'selectedSpecificButton'
+              : ''
+          }`}
+          onClick={() => handleProcessedFileTab(1)}
+        >
+          Not Processed
+        </div>
+        <div
+          className={`${
+            props.extractor.processedFileTab === 2
+              ? 'selectedSpecificButton'
+              : ''
+          }`}
+          onClick={() => handleProcessedFileTab(2)}
+        >
+          Processed
+        </div>
+      </div>
+
       <div className="configFlLstTableHeader">
         <div className="configFlLstTableHeaderDocId">Doc. Id</div>
         <div className="configFlLstTableHeaderDocName">Doc. Name</div>
         <div className="configFlLstTableHeaderDocType">Doc. Type</div>
         <div className="configFlLstTableHeaderUploadedOn">Uploaded On</div>
         <div className="configFlLstTableHeaderDocStats">Status</div>
-        {props.documents.totalDocuments ===
-        props.documents.selectedDocuments.length ? (
+        {props.extractor.processedFileTab === 1 &&
+        props.documents.filteredFilelistNotProcessed.length ===
+          props.documents.selectedDocuments.length ? (
           <button
             className="configFlLstTableHeaderUnSelectAll"
             onClick={() => unselectAllDocuments()}
           >
             All Selected
           </button>
-        ) : (
+        ) : props.extractor.processedFileTab === 2 &&
+          props.documents.filteredFilelistProcessed.length ===
+            props.documents.selectedDocuments.length ? (
+          <button
+            className="configFlLstTableHeaderUnSelectAll"
+            onClick={() => unselectAllDocuments()}
+          >
+            All Selected
+          </button>
+        ) : props.extractor.processedFileTab === 1 &&
+          props.documents.filteredFilelistNotProcessed.length !==
+            props.documents.selectedDocuments.length ? (
           <button
             className="configFlLstTableHeaderSelectAll"
-            onClick={() => selectAllDocuments(props.documents.documentDetails)}
+            onClick={() =>
+              selectAllDocuments(props.documents.filteredFilelistNotProcessed)
+            }
           >
             Select All
           </button>
-        )}
+        ) : props.extractor.processedFileTab === 2 &&
+          props.documents.filteredFilelistProcessed.length !==
+            props.documents.selectedDocuments.length ? (
+          <button
+            className="configFlLstTableHeaderSelectAll"
+            onClick={() =>
+              selectAllDocuments(props.documents.filteredFilelistProcessed)
+            }
+          >
+            Select All
+          </button>
+        ) : null}
       </div>
       <hr className="tableHeadBodyLine"></hr>
-      {props.documents.totalDocuments === 0 ? (
+      {props.extractor.processedFileTab === 1 &&
+      props.documents.filteredFilelistNotProcessed.length === 0 ? (
         <div className="no-documents">No Documents to display</div>
-      ) : (
+      ) : props.extractor.processedFileTab === 1 &&
+        props.documents.filteredFilelistNotProcessed.length !== 0 ? (
         <div className="configFlLstTableBody">
-          {props.documents.documentDetails.map((document, index) => (
+          {props.documents.filteredFilelistNotProcessed.map(
+            (document, index) => (
+              <ConfigurationFile
+                document={document}
+                key={document.documentId}
+              />
+            )
+          )}
+        </div>
+      ) : props.extractor.processedFileTab === 2 &&
+        props.documents.filteredFilelistProcessed.length === 0 ? (
+        <div className="no-documents">No Documents to display</div>
+      ) : props.extractor.processedFileTab === 2 &&
+        props.documents.filteredFilelistProcessed.length !== 0 ? (
+        <div className="configFlLstTableBody">
+          {props.documents.filteredFilelistProcessed.map((document, index) => (
             <ConfigurationFile document={document} key={document.documentId} />
           ))}
         </div>
-      )}
+      ) : null}
     </div>
   );
 };

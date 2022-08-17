@@ -4,6 +4,8 @@
 export const CHANGE_TAB_OPERATION = 'CHANGE_TAB_OPERATION';
 export const CHANGE_TEXT_DATA_TAB_OPERATION = 'CHANGE_TEXT_DATA_TAB_OPERATION';
 export const HANDLE_FILE_CHANGE = 'HANDLE_FILE_CHANGE';
+export const HANDLE_PROCESSED_FILE_TAB_CHANGE =
+  'HANDLE_PROCESSED_FILE_TAB_CHANGE';
 
 // ACTION CREATORS
 export function changeTabOperation(data) {
@@ -23,6 +25,13 @@ export function changeTextDataTabOperation(data) {
 export function handleFileChange(data) {
   return {
     type: HANDLE_FILE_CHANGE,
+    data: data,
+  };
+}
+
+export function handleProcessedFileTabChange(data) {
+  return {
+    type: HANDLE_PROCESSED_FILE_TAB_CHANGE,
     data: data,
   };
 }

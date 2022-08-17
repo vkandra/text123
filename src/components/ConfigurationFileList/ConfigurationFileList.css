@@ -1,4 +1,5 @@
 .configurationFileList {
+  /* overflow: hidden; */
   height: 87%;
 }
 
@@ -51,7 +52,7 @@
 
 .configFlLstTableHeader {
   /* border: 1px solid black; */
-  margin-top: 15px;
+  margin-top: 8px;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -101,7 +102,7 @@
   transition: 0.3s;
 }
 .configFlLstTableBody {
-  height: 80%;
+  height: 72%;
   width: 100%;
   overflow: auto;
   /* border: 1px solid black; */
@@ -119,4 +120,38 @@
 ::-webkit-scrollbar-thumb {
   background: darkgrey;
   border-radius: 3px;
+}
+
+.proNotProButtons {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 13px 0px 0px;
+}
+.proNotProButtons div {
+  border: 1px solid lightgray;
+  width: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1rem;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  cursor: pointer;
+  user-select: none;
+  margin: 0;
+  padding: 0;
+}
+.proNotProButtons div:nth-child(1) {
+  border-bottom-left-radius: 5px;
+  border-top-left-radius: 5px;
+}
+.proNotProButtons div:nth-child(2) {
+  border-bottom-right-radius: 5px;
+  border-top-right-radius: 5px;
+}
+.selectedSpecificButton {
+  background: #2874f0;
+  color: white;
+  transition: 0.2s;
 }

@@ -3,6 +3,7 @@ import {
   SELECT_DOCUMENTS_CONFIGURATION,
   UNSELECT_DOCUMENTS_CONFIGURATION,
   ASSIGN_RAW_DOCUMENTS_DATA,
+  CLEAR_SELECTED_FILES,
 } from '../actions/documents';
 
 const initialDocumentsState = {
@@ -19,6 +20,8 @@ const initialDocumentsState = {
       documentDownloadLink: '',
     },
   ],
+  filteredFilelistNotProcessed: [],
+  filteredFilelistProcessed: [],
   selectedDocuments: [],
 
   //
@@ -33,6 +36,8 @@ export default function documents(state = initialDocumentsState, action) {
         ...state,
         totalDocuments: action.data.totalDocuments,
         documentDetails: action.data.documentDetails,
+        filteredFilelistProcessed: action.data.processedFileList,
+        filteredFilelistNotProcessed: action.data.notProcessedFileList,
       };
     case SELECT_DOCUMENTS_CONFIGURATION:
       // console.log('ACTION_in_reducer ', action.data);
@@ -49,6 +54,11 @@ export default function documents(state = initialDocumentsState, action) {
       return {
         ...state,
         rawDocumentsDataFromAPI: action.data,
+      };
+    case CLEAR_SELECTED_FILES:
+      // console.log('ACTION_in_reducer ', action.data);
+      return {
+        ...state,
       };
     default:
       return state;

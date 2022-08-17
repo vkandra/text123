@@ -30,6 +30,7 @@ const Configuration = (props) => {
         setTimeout(() => {
           props.dispatch(fetchRawDocumentsDetailsAPI(props.user.token));
         }, 5000);
+        break;
       }
     }
   });

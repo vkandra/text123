@@ -24,39 +24,6 @@ const TextExtraction = (props) => {
     if (props.singleDocument.selectedDocumentsDetails.length !== 0) {
       getSingleSelectedDocId();
     }
-
-    // var userID = props.user.token;
-    // var documentId = props.singleDocument.singleDocumentId;
-    // var singleDocParams = [userID, documentId];
-    // props.dispatch(fetchSingleFileData(singleDocParams));
-
-    // const { singleDocument } = props;
-    // var selectedDocid = document.getElementById('singleDocSelect').value;
-    // console.log(selectedDocid);
-    // var fileDetailInitial = {};
-    // for (var i = 0; i < singleDocument.selectedDocumentsDetails.length; i++) {
-    //   if (
-    //     singleDocument.selectedDocumentsDetails[i].documentId === selectedDocid
-    //   ) {
-    //     fileDetailInitial = singleDocument.selectedDocumentsDetails[i];
-    //     break;
-    //   }
-    // }
-
-    // singleDocument.singleDocumentId = fileDetailInitial.documentId;
-    // singleDocument.singleDocumentName = fileDetailInitial.ducumentName;
-    // singleDocument.singleDocumentType = fileDetailInitial.documentType;
-    // singleDocument.singleDocumentTotalPages = fileDetailInitial.documentPages;
-    // singleDocument.singleDocumentSize = fileDetailInitial.documentSize;
-    // singleDocument.singleDocumentUploadDate =
-    //   fileDetailInitial.documentUploadDate;
-    // singleDocument.singleDocumentStatus = fileDetailInitial.documentStatus;
-    // singleDocument.singleDocumentDownloadLink =
-    //   fileDetailInitial.documentDownloadLink;
-
-    // props.dispatch(singleDocDetail(singleDocument));
-
-    // console.log(props.singleDocument.singleDocumentEditedContent);
   }, []);
 
   const getSingleSelectedDocId = () => {
@@ -80,6 +47,10 @@ const TextExtraction = (props) => {
     singleDocument.singleDocumentUploadDate = fileDetail.documentUploadDate;
     singleDocument.singleDocumentStatus = fileDetail.documentStatus;
     singleDocument.singleDocumentDownloadLink = fileDetail.documentDownloadLink;
+
+    singleDocument.singleDocKeysValues = [];
+    singleDocument.singleDocTablesAll = [];
+    singleDocument.singleDocRawAll = [];
 
     props.dispatch(singleDocDetail(singleDocument));
     console.log(singleDocument.singleDocumentStatus);

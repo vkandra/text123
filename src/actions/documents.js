@@ -7,6 +7,7 @@ export const SELECT_DOCUMENTS_CONFIGURATION = 'SELECT_DOCUMENTS_CONFIGURATION';
 export const UNSELECT_DOCUMENTS_CONFIGURATION =
   'UNSELECT_DOCUMENTS_CONFIGURATION';
 export const ASSIGN_RAW_DOCUMENTS_DATA = 'ASSIGN_RAW_DOCUMENTS_DATA';
+export const CLEAR_SELECTED_FILES = 'CLEAR_SELECTED_FILES';
 
 // ACTION CREATORS
 export function assignAllReceivedDocumentsData(data) {
@@ -33,6 +34,13 @@ export function unselectDocumentsConfiguration(data) {
 export function assignRawDocumentsData(data) {
   return {
     type: ASSIGN_RAW_DOCUMENTS_DATA,
+    data: data,
+  };
+}
+
+export function clearSelectedFiles(data) {
+  return {
+    type: CLEAR_SELECTED_FILES,
     data: data,
   };
 }
