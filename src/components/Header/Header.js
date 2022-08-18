@@ -18,15 +18,10 @@ const Header = (props) => {
 
   return (
     <div className="header">
-      <div>
+      {/* <div>
         <i className="fi fi-sr-building"></i>
-        {/* <img
-          alt="Company"
-          src="https://cdn-icons.flaticon.com/png/512/484/premium/484522.png?token=exp=1657523794~hmac=2edf9f53342b6c114db6d76ca32fd148"
-          className="company-logo"
-        ></img> */}
-      </div>
-      <div>TEXT-EXTRACTOR</div>
+      </div> */}
+      <div className="iconName">TEXT-EXTRACTOR</div>
 
       <div className="dropiconbutton">
         <div>ICONS </div>

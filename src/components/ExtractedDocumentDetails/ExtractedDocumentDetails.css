@@ -22,7 +22,8 @@
   width: 50%;
 }
 .actualDocDataDetail {
-  color: blueviolet;
+  color: #1e1e1e;
+  font-weight: 600;
 }
 
 .documentDetailAction {

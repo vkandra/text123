@@ -10,6 +10,7 @@ import ExtractedDocumentDetails from '../ExtractedDocumentDetails/ExtractedDocum
 import {
   fetchSingleFileData,
   singleDocDetail,
+  dropdownSelected,
 } from '../../actions/singleDocument';
 
 import { Viewer } from '@react-pdf-viewer/core';
@@ -20,6 +21,12 @@ import { Worker } from '@react-pdf-viewer/core';
 import viewPdf from './sample2.pdf';
 
 const TextExtraction = (props) => {
+  // console.log(props.singleDocument.singleDocKeysValues);
+
+  // console.log(props.singleDocument.singleDocTablesAll);
+
+  // console.log(props.singleDocument.singleDocRawAll);
+
   useEffect(() => {
     if (props.singleDocument.selectedDocumentsDetails.length !== 0) {
       getSingleSelectedDocId();
@@ -59,6 +66,13 @@ const TextExtraction = (props) => {
     var documentId = props.singleDocument.singleDocumentId;
     var singleDocParams = [userID, documentId];
     props.dispatch(fetchSingleFileData(singleDocParams));
+
+    for (let file of props.singleDocument.selectedDocumentsDetails) {
+      if (id === file.documentId) {
+        props.dispatch(dropdownSelected(i));
+        break;
+      }
+    }
   };
 
   //create new plugin instance
@@ -70,6 +84,52 @@ const TextExtraction = (props) => {
     const { extractor } = props;
     extractor.textDataTab = tabNum;
     props.dispatch(changeTextDataTabOperation(extractor));
+  };
+
+  const gotoNextFile = () => {
+    let id = document.getElementById('singleDocSelect').value;
+    let count = 0;
+    for (let file of props.singleDocument.selectedDocumentsDetails) {
+      count++;
+      if (id === file.documentId) {
+        break;
+      }
+    }
+    // console.log(props.singleDocument.selectedDocumentsDetails[count]);
+    console.log(count);
+    if (props.singleDocument.selectedDocumentsDetails.length === count) {
+      return;
+    } else {
+      document.getElementById('singleDocSelect').value =
+        props.singleDocument.selectedDocumentsDetails[count].documentId;
+
+      // props.dispatch(dropdownSelected(count));
+      getSingleSelectedDocId();
+    }
+  };
+
+  const gotoPrevFile = () => {
+    var id = document.getElementById('singleDocSelect').value;
+    console.log(id);
+    console.log(props.singleDocument.selectedDocumentsDetails);
+    let count = 0;
+    for (let file of props.singleDocument.selectedDocumentsDetails) {
+      count++;
+      if (id === file.documentId) {
+        break;
+      }
+    }
+    // console.log(props.singleDocument.selectedDocumentsDetails[count]);
+    console.log(count);
+    if (count - 2 < 0) {
+      return;
+    } else {
+      document.getElementById('singleDocSelect').value =
+        props.singleDocument.selectedDocumentsDetails[count - 2].documentId;
+
+      // props.dispatch(dropdownSelected(count - 2));
+      getSingleSelectedDocId();
+    }
   };
 
   return (
@@ -137,10 +197,25 @@ const TextExtraction = (props) => {
             </div>
           )}
           <div className="nextPrevButtons">
-            <div className="prevButton">
+            <div
+              className={`${
+                props.singleDocument.dropdownSelected === 0
+                  ? 'disabled_button'
+                  : 'prevButton'
+              }`}
+              onClick={() => gotoPrevFile()}
+            >
               <i className="fi fi-ss-arrow-left"></i> &nbsp; Prev
             </div>
-            <div className="nextButton">
+            <div
+              className={`${
+                props.singleDocument.dropdownSelected ===
+                props.singleDocument.selectedDocumentsDetails.length - 1
+                  ? 'disabled_button'
+                  : 'nextButton'
+              }`}
+              onClick={() => gotoNextFile()}
+            >
               Next &nbsp;<i className="fi fi-ss-arrow-right"></i>
             </div>
           </div>

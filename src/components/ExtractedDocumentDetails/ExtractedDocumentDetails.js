@@ -8,13 +8,13 @@ const ExtractedDocumentDetails = (props) => {
       <div className="documentDetailSections">
         <div className="documentSingleDetailSection">
           <div>
-            Name :
+            Name : &nbsp;
             <span className="actualDocDataDetail">
               {props.singleDocument.singleDocumentName}
             </span>
           </div>
           <div>
-            Id :
+            Id : &nbsp;
             <span className="actualDocDataDetail">
               {props.singleDocument.singleDocumentId}
             </span>
@@ -22,13 +22,13 @@ const ExtractedDocumentDetails = (props) => {
         </div>
         <div className="documentSingleDetailSection">
           <div>
-            Size :
+            Size : &nbsp;
             <span className="actualDocDataDetail">
               {Math.round(props.singleDocument.singleDocumentSize / 1024)}kb
             </span>
           </div>
           <div>
-            Uploaded on :
+            Uploaded on : &nbsp;
             <span className="actualDocDataDetail">
               {props.singleDocument.singleDocumentUploadDate}
             </span>
@@ -37,7 +37,7 @@ const ExtractedDocumentDetails = (props) => {
       </div>
       <div className="documentDetailAction">
         <button className="downloadButton">Download</button>
-        <button className="reextractButton">Re-Extract</button>
+        {/* <button className="reextractButton">Re-Extract</button> */}
         <button className="deleteButton">Delete</button>
       </div>
     </div>

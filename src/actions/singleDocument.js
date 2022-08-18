@@ -16,6 +16,7 @@ export const EDIT_TABLE_DATA = 'EDIT_TABLE_DATA';
 export const SAVE_EDITED_KEYS_VALUES_RAW_DATA =
   'SAVE_EDITED_KEYS_VALUES_RAW_DATA';
 export const SAVE_EDITED_TABLE_DATA = 'SAVE_EDITED_TABLE_DATA';
+export const DROPDOWN_SELECTED = 'DROPDOWN_SELECTED';
 
 // ACTION CREATORS
 export function fetchSingleFileData(data) {
@@ -146,6 +147,14 @@ export function saveEditedTableData(data) {
   // console.log(data);
   return {
     type: SAVE_EDITED_TABLE_DATA,
+    data: data,
+  };
+}
+
+export function dropdownSelected(data) {
+  // console.log(data);
+  return {
+    type: DROPDOWN_SELECTED,
     data: data,
   };
 }

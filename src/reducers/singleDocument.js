@@ -13,6 +13,7 @@ import {
   ARRANGE_RAW_ALL,
   SAVE_EDITED_TABLE_DATA,
   SINGLE_DOC_DETAIL,
+  DROPDOWN_SELECTED,
 } from '../actions/singleDocument';
 
 const initialsingleDocumentState = {
@@ -26,6 +27,7 @@ const initialsingleDocumentState = {
   singleDocumentDownloadLink: '',
 
   selectedDocumentsDetails: [],
+  dropdownSelected: 0,
   // ALL CONTENT
   singleDocumentTextractedContent: [],
   singleDocumentEditedContent: [],
@@ -152,6 +154,12 @@ export default function singleDocument(
       // console.log(action.data);
       return {
         ...state,
+      };
+    case DROPDOWN_SELECTED:
+      // console.log(action.data);
+      return {
+        ...state,
+        dropdownSelected: action.data,
       };
     default:
       return state;

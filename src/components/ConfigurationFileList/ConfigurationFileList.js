@@ -6,7 +6,10 @@ import {
   changeTabOperation,
   handleProcessedFileTabChange,
 } from '../../actions/extractor';
-import { assignSelectedDocDetails } from '../../actions/singleDocument';
+import {
+  assignSelectedDocDetails,
+  dropdownSelected,
+} from '../../actions/singleDocument';
 import ConfigurationFile from '../ConfigurationFile/ConfigurationFile';
 import {
   clearSelectedFiles,
@@ -78,6 +81,7 @@ const ConfigurationFileList = (props) => {
     props.dispatch(assignSelectedDocDetails(selectedDocDetails));
 
     // console.log(props.singleDocument.selectedDocumentsDetails);
+    props.dispatch(dropdownSelected(0));
 
     props.dispatch(changeTabOperation(extractor));
   };
