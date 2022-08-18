@@ -119,7 +119,9 @@ const Configuration = (props) => {
             />
           </div>
           <div>
-            <button onClick={() => handleUpload()}>UPLOAD</button>
+            <button className="uploadButton" onClick={() => handleUpload()}>
+              UPLOAD
+            </button>
           </div>
         </div>
         <div className="uploadStatusShow">

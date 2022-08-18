@@ -31,13 +31,17 @@
   cursor: pointer;
   background: none;
 }
-.fileUploadSectionMain div button {
+.uploadButton {
   /* margin-top: 12px; */
   width: 100px;
   height: 30px;
   border: 1px solid black;
   font-weight: 500;
   background: floralwhite;
+}
+.uploadButton:hover {
+  font-weight: 600;
+  background: yellow;
 }
 .uploadStatusShow {
   display: flex;

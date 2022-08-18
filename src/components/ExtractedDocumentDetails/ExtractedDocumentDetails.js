@@ -36,8 +36,8 @@ const ExtractedDocumentDetails = (props) => {
         </div>
       </div>
       <div className="documentDetailAction">
+        <button className="saveDataButton">Save</button>
         <button className="downloadButton">Download</button>
-        {/* <button className="reextractButton">Re-Extract</button> */}
         <button className="deleteButton">Delete</button>
       </div>
     </div>

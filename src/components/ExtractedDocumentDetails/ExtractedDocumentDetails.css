@@ -24,6 +24,9 @@
 .actualDocDataDetail {
   color: #1e1e1e;
   font-weight: 600;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 .documentDetailAction {
@@ -50,8 +53,12 @@
   color: forestgreen;
 }
 
-.documentDetailAction .reextractButton {
+.documentDetailAction .saveDataButton {
   color: blueviolet;
+  width: 70px;
+  font-size: 0.8rem;
+  padding: 0;
+  margin: 0;
 }
 
 .documentDetailAction .deleteButton {
