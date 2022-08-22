@@ -2,7 +2,19 @@ import './ExtractedDocumentDetails.css';
 import React from 'react';
 import { connect } from 'react-redux/es/exports';
 
+import { postEditedDataAPI } from '../../actions/extractor';
+
 const ExtractedDocumentDetails = (props) => {
+  const saveAndSendEditedData = () => {
+    let editedData = {
+      user_id: props.user.token,
+      doc_id: props.singleDocument.singleDocumentId,
+      input: props.extractor.userEditedKeyValueRawTable,
+    };
+    // console.log(editedData);
+    props.dispatch(postEditedDataAPI(editedData));
+  };
+
   return (
     <div className="extractedDocumentDetails">
       <div className="documentDetailSections">
@@ -36,7 +48,12 @@ const ExtractedDocumentDetails = (props) => {
         </div>
       </div>
       <div className="documentDetailAction">
-        <button className="saveDataButton">Save</button>
+        <button
+          className="saveDataButton"
+          onClick={() => saveAndSendEditedData()}
+        >
+          Save
+        </button>
         <button className="downloadButton">Download</button>
         <button className="deleteButton">Delete</button>
       </div>
@@ -48,6 +65,7 @@ const mapStateToProps = (state) => {
   return {
     user: state.user,
     singleDocument: state.singleDocument,
+    extractor: state.extractor,
   };
 };
 

@@ -243,3 +243,9 @@
 .disabled_button i {
   padding-top: 5px;
 }
+
+#singleDocSelect {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}

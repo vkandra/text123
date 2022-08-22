@@ -6,6 +6,7 @@ import {
   editKeysValuesRawData,
   saveEditedKeysValuesRawData,
 } from '../../actions/singleDocument';
+import { userEditedKVRTList } from '../../actions/extractor';
 
 const RawDocDataSingle = (props) => {
   const handleEditing = (type) => {
@@ -26,6 +27,11 @@ const RawDocDataSingle = (props) => {
   };
 
   const saveEditedKVRData = () => {
+    let dataEditUser = JSON.parse(
+      JSON.stringify(props.singleDocument.editedKeysValuesRawData)
+    );
+    props.dispatch(userEditedKVRTList(dataEditUser));
+
     const { singleDocument } = props;
     // console.log(singleDocument.singleDocRawAll.length);
     for (var i = 0; i < singleDocument.singleDocRawAll.length; i++) {
@@ -53,7 +59,7 @@ const RawDocDataSingle = (props) => {
         }
       }
     }
-
+    // console.log(singleDocument.editedKeysValuesRawData);
     props.dispatch(saveEditedKeysValuesRawData(singleDocument));
 
     singleDocument.editedKeysValuesRawData.type = '';
@@ -62,6 +68,7 @@ const RawDocDataSingle = (props) => {
     singleDocument.editedKeysValuesRawData.text = '';
     props.dispatch(editKeysValuesRawData(singleDocument));
     // console.log(singleDocument.editedKeysValuesRawData);
+    // console.log(props.extractor.userEditedKeyValueRaw);
   };
 
   return (
@@ -117,50 +124,8 @@ const mapStateToProps = (state) => {
   return {
     user: state.user,
     singleDocument: state.singleDocument,
+    extractor: state.extractor,
   };
 };
 
 export default connect(mapStateToProps)(RawDocDataSingle);
-
-// export default RawDocDataSingle;
-
-/*
-<div className="keySectionAll">
-        <div className="currentDataAndEdit">
-          <div className="currentDataDisplay">
-            {props.singleKeyValue.editedKey}
-          </div>
-          <button
-            className="editTextButton"
-            onClick={() => handleEditing('key')}
-          >
-            Edit
-          </button>
-        </div>
-        {props.singleDocument.editedKeysValuesRawData.type === 'key' &&
-        props.singleDocument.editedKeysValuesRawData.index ===
-          props.singleKeyValue.index ? (
-          <div className="textAreaDivButtons">
-            <textarea
-              className="textAreaSection"
-              defaultValue={props.singleKeyValue.editedKey}
-              onChange={captureEditedText}
-            ></textarea>
-            <div className="textAreaButtonsDiv">
-              <button
-                className="editCompleteButton"
-                onClick={() => saveEditedKVRData()}
-              >
-                Done
-              </button>
-            </div>
-          </div>
-        ) : null}
-        {props.singleKeyValue.key !== props.singleKeyValue.editedKey ? (
-          <div className="orgnlExtractedDataDisplayArea">
-            <div className="orgnlExtDataTxt">Extracted Data: </div>
-            <div className="orgnlExtData">{props.singleKeyValue.key}</div>
-          </div>
-        ) : null}
-      </div>
-      */

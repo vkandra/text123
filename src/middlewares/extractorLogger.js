@@ -3,8 +3,8 @@ const extractorLogger =
   (next) =>
   (action) => {
     // MIDDLEWARE CODES
-    if (typeof action !== 'function') {
-      // console.log('ACTION_TYPE : ', action.type);
+    if (action.type === 'USER_EDITED_KVR_LIST') {
+      // console.log(action.data);
     }
     next(action);
   };

@@ -5,6 +5,7 @@ import {
   editKeysValuesRawData,
   saveEditedKeysValuesRawData,
 } from '../../actions/singleDocument';
+import { userEditedKVRTList } from '../../actions/extractor';
 
 const KeyValue = (props) => {
   const handleEditing = (type) => {
@@ -23,6 +24,10 @@ const KeyValue = (props) => {
   };
 
   const saveEditedKVRData = () => {
+    let dataEditUser = JSON.parse(
+      JSON.stringify(props.singleDocument.editedKeysValuesRawData)
+    );
+    props.dispatch(userEditedKVRTList(dataEditUser));
     const { singleDocument } = props;
     // console.log(singleDocument.singleDocKeysValues.length);
     for (var i = 0; i < singleDocument.singleDocKeysValues.length; i++) {
@@ -48,6 +53,8 @@ const KeyValue = (props) => {
       }
     }
 
+    // console.log(singleDocument.editedKeysValuesRawData);
+
     props.dispatch(saveEditedKeysValuesRawData(singleDocument));
 
     singleDocument.editedKeysValuesRawData.type = '';
@@ -56,6 +63,7 @@ const KeyValue = (props) => {
     singleDocument.editedKeysValuesRawData.text = '';
     props.dispatch(editKeysValuesRawData(singleDocument));
     // console.log(singleDocument.editedKeysValuesRawData);
+    // console.log(props.extractor.userEditedKeyValueRaw);
   };
 
   return (
@@ -150,6 +158,7 @@ const mapStateToProps = (state) => {
   return {
     user: state.user,
     singleDocument: state.singleDocument,
+    extractor: state.extractor,
   };
 };
 

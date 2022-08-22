@@ -61,6 +61,11 @@
   margin: 0;
 }
 
+.saveDataButton:hover {
+  background: blueviolet;
+  color: white;
+}
+
 .documentDetailAction .deleteButton {
   color: red;
 }

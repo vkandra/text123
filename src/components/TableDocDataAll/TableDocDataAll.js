@@ -6,6 +6,7 @@ import {
   editTableData,
   saveEditedTableData,
 } from '../../actions/singleDocument';
+import { userEditedKVRTList } from '../../actions/extractor';
 
 const TableDocDataAll = (props) => {
   const handleEditing = () => {
@@ -27,12 +28,17 @@ const TableDocDataAll = (props) => {
   };
 
   const saveEditedTableSingleData = () => {
+    let dataEditUser = JSON.parse(
+      JSON.stringify(props.singleDocument.editedTableData)
+    );
+    props.dispatch(userEditedKVRTList(dataEditUser));
+
     const { singleDocument } = props;
 
     if (singleDocument.editedTableData.type === 'header') {
-      for (var i = 0; i < singleDocument.singleDocTablesAll.length; i++) {
+      for (let i = 0; i < singleDocument.singleDocTablesAll.length; i++) {
         for (
-          var j = 0;
+          let j = 0;
           j < singleDocument.singleDocTablesAll[i].tableHeader.length;
           j++
         ) {
@@ -58,9 +64,9 @@ const TableDocDataAll = (props) => {
       }
     }
     if (singleDocument.editedTableData.type === 'rowdata') {
-      for (var i = 0; i < singleDocument.singleDocTablesAll.length; i++) {
+      for (let i = 0; i < singleDocument.singleDocTablesAll.length; i++) {
         for (
-          var j = 0;
+          let j = 0;
           j < singleDocument.singleDocTablesAll[i].tableData.length;
           j++
         ) {
@@ -99,7 +105,7 @@ const TableDocDataAll = (props) => {
         }
       }
     }
-
+    // console.log(singleDocument.editedTableData);
     props.dispatch(saveEditedTableData(singleDocument));
 
     singleDocument.editedTableData.type = '';
@@ -109,6 +115,7 @@ const TableDocDataAll = (props) => {
     singleDocument.editedTableData.text = '';
     props.dispatch(editTableData(singleDocument));
     // console.log(singleDocument.editedTableData);
+    // console.log(props.extractor.userEditedTable);
   };
 
   return (
@@ -161,6 +168,7 @@ const mapStateToProps = (state) => {
   return {
     user: state.user,
     singleDocument: state.singleDocument,
+    extractor: state.extractor,
   };
 };
 

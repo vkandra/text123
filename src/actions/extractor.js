@@ -1,4 +1,4 @@
-// import axios from 'axios';
+import axios from 'axios';
 
 // ACTION TYPES
 export const CHANGE_TAB_OPERATION = 'CHANGE_TAB_OPERATION';
@@ -6,6 +6,7 @@ export const CHANGE_TEXT_DATA_TAB_OPERATION = 'CHANGE_TEXT_DATA_TAB_OPERATION';
 export const HANDLE_FILE_CHANGE = 'HANDLE_FILE_CHANGE';
 export const HANDLE_PROCESSED_FILE_TAB_CHANGE =
   'HANDLE_PROCESSED_FILE_TAB_CHANGE';
+export const USER_EDITED_KVRT_LIST = 'USER_EDITED_KVRT_LIST';
 
 // ACTION CREATORS
 export function changeTabOperation(data) {
@@ -36,23 +37,28 @@ export function handleProcessedFileTabChange(data) {
   };
 }
 
-// export function uploadSelectedFiles(data) {
-//   return (dispatch) => {
-//     console.log(data);
+export function userEditedKVRTList(data) {
+  // console.log(data);
+  return {
+    type: USER_EDITED_KVRT_LIST,
+    data: data,
+  };
+}
 
-//     axios
-//       .put(`http://127.0.0.1:5000/output`, data, {
-//         headers: {
-//           'Content-Type': 'image/png',
-//         },
-//       })
-//       .then(
-//         (res) => {
-//           console.log(res.data);
-//         },
-//         (err) => {
-//           console.log(err);
-//         }
-//       );
-//   };
-// }
+export function postEditedDataAPI(data) {
+  return (dispatch) => {
+    console.log(data);
+    axios
+      .post(
+        `https://9matushxt5.execute-api.ap-south-1.amazonaws.com/editdata`,
+        data
+      )
+      .then(function (response) {
+        console.log(response);
+        // dispatch(fetchRawDocumentsDetailsAPI(data.user_id));
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
+}

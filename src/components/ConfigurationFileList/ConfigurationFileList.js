@@ -45,7 +45,14 @@ const ConfigurationFileList = (props) => {
   const startExtractionProcess = () => {
     var docNames = [];
     var selectedPageIds = props.documents.selectedDocuments;
-    var docDetails = props.documents.filteredFilelist;
+    var docDetails;
+    if (props.extractor.processedFileTab === 1) {
+      docDetails = props.documents.filteredFilelistNotProcessed;
+    } else {
+      docDetails = props.documents.filteredFilelistProcessed;
+    }
+
+    console.log(props.documents.filteredFilelist);
     for (var i = 0; i < docDetails.length; i++) {
       for (var j = 0; j < selectedPageIds.length; j++) {
         if (docDetails[i].documentId === selectedPageIds[j]) {

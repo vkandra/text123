@@ -161,6 +161,7 @@ export default function singleDocument(
         ...state,
         dropdownSelected: action.data,
       };
+
     default:
       return state;
   }
