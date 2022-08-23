@@ -1,5 +1,5 @@
 import './ConfigurationFileList.css';
-import React, { useEffect } from 'react';
+import React from 'react';
 import { connect } from 'react-redux/es/exports';
 
 import {
@@ -60,13 +60,27 @@ const ConfigurationFileList = (props) => {
         }
       }
     }
-    var data = {
-      user_id: props.user.token,
-      doc_id: selectedPageIds,
-      doc_name: docNames,
+    // var data = {
+    //   user_id: props.user.token,
+    //   doc_id: selectedPageIds,
+    //   doc_name: docNames,
+    // };
+
+    let data = [];
+    for (let i = 0; i < selectedPageIds.length; i++) {
+      data.push({
+        user_id: props.user.token,
+        doc_id: selectedPageIds[i],
+        doc_name: docNames[i],
+      });
+    }
+    let dataStart = {
+      input: JSON.stringify({ detail: { items: data } }),
+      stateMachineArn:
+        'arn:aws:states:ap-south-1:565442373753:stateMachine:Textract_State_Machine',
     };
 
-    props.dispatch(startExtractionProcessAPI(data));
+    props.dispatch(startExtractionProcessAPI(dataStart));
     setTimeout(() => {
       props.dispatch(fetchRawDocumentsDetailsAPI(props.user.token));
     }, 2000);
@@ -118,6 +132,12 @@ const ConfigurationFileList = (props) => {
               Start
             </button>
           ) : null}
+          <button
+            className="startExtractionButton configurationFileListFourButtons"
+            onClick={() => startExtractionProcess()}
+          >
+            Start
+          </button>
           {props.extractor.processedFileTab === 1 ? (
             <button className="stopExtractionButton configurationFileListFourButtons">
               Stop
