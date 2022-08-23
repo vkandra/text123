@@ -122,64 +122,6 @@ const ConfigurationFileList = (props) => {
 
   return (
     <div className="configurationFileList">
-      {props.documents.selectedDocuments.length !== 0 ? (
-        <div className="actionButtonsConfigure">
-          {props.extractor.processedFileTab === 1 ? (
-            <button
-              className="startExtractionButton configurationFileListFourButtons"
-              onClick={() => startExtractionProcess()}
-            >
-              Start
-            </button>
-          ) : null}
-          <button
-            className="startExtractionButton configurationFileListFourButtons"
-            onClick={() => startExtractionProcess()}
-          >
-            Start
-          </button>
-          {props.extractor.processedFileTab === 1 ? (
-            <button className="stopExtractionButton configurationFileListFourButtons">
-              Stop
-            </button>
-          ) : null}
-          <button
-            className="viewExtractedDataButton configurationFileListFourButtons"
-            onClick={() => changeToTextExtractionTab()}
-          >
-            View
-          </button>
-          <button className="deleteExtractedFileButton configurationFileListFourButtons">
-            Delete
-          </button>
-        </div>
-      ) : (
-        <div className="actionButtonsConfigure">
-          {props.extractor.processedFileTab === 1 ? (
-            <button
-              disabled
-              className="configurationFileListFourDisabledButtons"
-            >
-              Start
-            </button>
-          ) : null}
-          {props.extractor.processedFileTab === 1 ? (
-            <button
-              disabled
-              className="configurationFileListFourDisabledButtons"
-            >
-              Stop
-            </button>
-          ) : null}
-          <button disabled className="configurationFileListFourDisabledButtons">
-            View
-          </button>
-          <button disabled className="configurationFileListFourDisabledButtons">
-            Delete
-          </button>
-        </div>
-      )}
-
       <div className="proNotProButtons">
         <div
           className={`${
@@ -278,6 +220,72 @@ const ConfigurationFileList = (props) => {
           ))}
         </div>
       ) : null}
+
+      {props.documents.selectedDocuments.length !== 0 ? (
+        <div className="actionButtonsConfigure">
+          {props.extractor.processedFileTab === 1 ? (
+            <button
+              className="startExtractionButton configurationFileListFourButtons"
+              onClick={() => startExtractionProcess()}
+            >
+              <i class="fi fi-rr-play-alt"></i> &nbsp; Start
+            </button>
+          ) : (
+            <div className="emptyButtonDiv"></div>
+          )}
+          {/* <button
+            className="startExtractionButton configurationFileListFourButtons"
+            onClick={() => startExtractionProcess()}
+          >
+            Start
+          </button> */}
+          {props.extractor.processedFileTab === 1 ? (
+            <button className="stopExtractionButton configurationFileListFourButtons">
+              <i class="fi fi-rr-ban"></i> &nbsp; Stop
+            </button>
+          ) : (
+            <div className="emptyButtonDiv"></div>
+          )}
+          <button
+            className="viewExtractedDataButton configurationFileListFourButtons"
+            onClick={() => changeToTextExtractionTab()}
+          >
+            <i class="fi fi-rr-eye"></i> &nbsp; View
+          </button>
+          <button className="deleteExtractedFileButton configurationFileListFourButtons">
+            <i class="fi fi-rr-trash"></i> &nbsp; Delete
+          </button>
+        </div>
+      ) : (
+        <div className="actionButtonsConfigure">
+          {props.extractor.processedFileTab === 1 ? (
+            <button
+              disabled
+              className="configurationFileListFourDisabledButtons"
+            >
+              <i class="fi fi-rr-play-alt"></i> &nbsp; Start
+            </button>
+          ) : (
+            <div className="emptyButtonDiv"></div>
+          )}
+          {props.extractor.processedFileTab === 1 ? (
+            <button
+              disabled
+              className="configurationFileListFourDisabledButtons"
+            >
+              <i class="fi fi-rr-ban"></i> &nbsp; Stop
+            </button>
+          ) : (
+            <div className="emptyButtonDiv"></div>
+          )}
+          <button disabled className="configurationFileListFourDisabledButtons">
+            <i class="fi fi-rr-eye"></i> &nbsp; View
+          </button>
+          <button disabled className="configurationFileListFourDisabledButtons">
+            <i class="fi fi-rr-trash"></i> &nbsp; Delete
+          </button>
+        </div>
+      )}
     </div>
   );
 };

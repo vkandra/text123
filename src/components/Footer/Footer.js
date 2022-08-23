@@ -4,7 +4,7 @@ import React from 'react';
 const Footer = (props) => {
   return (
     <div className="footer">
-      <div></div>
+      <div className="emptyDivFooter"></div>
       <div className="copyrightDiv">
         <i className="fi fi-rr-copyright"></i>
         {/* <img

@@ -6,6 +6,9 @@
   align-items: center;
   padding: 0px 40px;
 }
+.emptyDivFooter {
+  width: 200px;
+}
 .copyrightDiv {
   display: flex;
   align-items: center;

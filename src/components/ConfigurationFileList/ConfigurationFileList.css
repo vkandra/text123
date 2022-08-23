@@ -1,19 +1,19 @@
 .configurationFileList {
   /* overflow: hidden; */
-  height: 87%;
+  height: 90%;
 }
 
 .actionButtonsConfigure {
   width: 100%;
-  /* border: 1px solid black; */
+  border-top: 1px solid lightgray;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  padding: 0px 10%;
+  padding: 3px 10%;
 }
 
 .configurationFileListFourButtons {
-  padding: 0.4em;
+  padding: 0.3em;
   width: 100px;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   font-size: 1.1rem;
@@ -21,9 +21,15 @@
   color: whitesmoke;
   outline: none;
   border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.configurationFileListFourButtons i {
+  padding-top: 5px;
 }
 .configurationFileListFourDisabledButtons {
-  padding: 0.4em;
+  padding: 0.3em;
   width: 100px;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   font-size: 1.1rem;
@@ -32,10 +38,20 @@
   background: lightgray;
   outline: none;
   border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.configurationFileListFourDisabledButtons i {
+  padding-top: 5px;
 }
 .configurationFileListFourButtons:hover {
   opacity: 0.8;
   transition: 0.3s;
+}
+.emptyButtonDiv {
+  padding: 0.4em;
+  width: 100px;
 }
 .startExtractionButton {
   background: forestgreen;
@@ -52,12 +68,13 @@
 
 .configFlLstTableHeader {
   /* border: 1px solid black; */
-  margin-top: 8px;
+  /* margin-top: 8px; */
   display: flex;
   justify-content: space-around;
   align-items: center;
   font-family: unset;
   font-weight: 600;
+  height: 8%;
 }
 .configFlLstTableHeader div {
   border-right: 1px solid #ccc;
@@ -86,6 +103,7 @@
   background: white;
   border: 1px solid lightgray;
   border-radius: 5px;
+  margin-top: 2px;
 }
 .configFlLstTableHeaderUnSelectAll {
   padding: 5px;
@@ -101,8 +119,18 @@
   background: lightyellow;
   transition: 0.3s;
 }
+.no-documents {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 76%;
+  width: 100%;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 1.2rem;
+  color: gray;
+}
 .configFlLstTableBody {
-  height: 72%;
+  height: 75%;
   width: 100%;
   overflow: auto;
   /* border: 1px solid black; */
@@ -126,12 +154,16 @@
 .proNotProButtons {
   width: 100%;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
-  margin: 13px 0px 0px;
+  margin: 0px 0px 0px;
+  border-bottom: 1px solid #ccc;
+  height: 7%;
+  margin-top: 5px;
 }
 .proNotProButtons div {
-  border: 1px solid lightgray;
+  /* border: 1px solid lightgray; */
+  height: 100%;
   width: 150px;
   display: flex;
   justify-content: center;
@@ -142,17 +174,28 @@
   user-select: none;
   margin: 0;
   padding: 0;
+  background: darkslategray;
+  color: white;
+  margin-bottom: -2px;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
 }
-.proNotProButtons div:nth-child(1) {
+/* .proNotProButtons div:nth-child(1) {
   border-bottom-left-radius: 5px;
   border-top-left-radius: 5px;
 }
 .proNotProButtons div:nth-child(2) {
   border-bottom-right-radius: 5px;
   border-top-right-radius: 5px;
-}
+} */
 .selectedSpecificButton {
-  background: #2874f0;
-  color: white;
+  background: white !important;
+  color: #1e1e1e !important;
   transition: 0.2s;
+  border-top: 1px solid #ccc;
+  /* border-left: 1px solid #ccc; */
+  border-right: 1px solid #ccc;
+}
+.horizontal-line-1 {
+  margin: 2px !important;
 }

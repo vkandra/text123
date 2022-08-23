@@ -137,7 +137,7 @@ const Configuration = (props) => {
           )}
         </div>
       </div>
-      <hr></hr>
+      <hr className="horizontal-line-1"></hr>
       <ConfigurationFileList></ConfigurationFileList>
     </div>
   );
