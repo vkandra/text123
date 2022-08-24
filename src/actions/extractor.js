@@ -50,7 +50,7 @@ export function postEditedDataAPI(data) {
     console.log(data);
     axios
       .post(
-        `https://9matushxt5.execute-api.ap-south-1.amazonaws.com/editdata`,
+        `https://acx97vysu1.execute-api.ap-south-1.amazonaws.com/actionstart`,
         data
       )
       .then(function (response) {
