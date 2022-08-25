@@ -14,6 +14,8 @@ import ConfigurationFile from '../ConfigurationFile/ConfigurationFile';
 import {
   clearSelectedFiles,
   startExtractionProcessAPI,
+  stopExtractionProcessAPI,
+  deleteFilesDataAPI,
 } from '../../actions/documents';
 import { fetchRawDocumentsDetailsAPI } from '../../actions/documents';
 import {
@@ -44,6 +46,7 @@ const ConfigurationFileList = (props) => {
 
   const startExtractionProcess = () => {
     var docNames = [];
+    var docIds = [];
     var selectedPageIds = props.documents.selectedDocuments;
     var docDetails;
     if (props.extractor.processedFileTab === 1) {
@@ -52,35 +55,121 @@ const ConfigurationFileList = (props) => {
       docDetails = props.documents.filteredFilelistProcessed;
     }
 
-    console.log(props.documents.filteredFilelist);
+    // console.log(props.documents.filteredFilelist);
     for (var i = 0; i < docDetails.length; i++) {
       for (var j = 0; j < selectedPageIds.length; j++) {
-        if (docDetails[i].documentId === selectedPageIds[j]) {
+        if (
+          docDetails[i].documentId === selectedPageIds[j] &&
+          docDetails[i].documentStatus === 'Not Processed'
+        ) {
           docNames.push(docDetails[i].ducumentName);
+          docIds.push(docDetails[i].documentId);
         }
       }
     }
-    // var data = {
-    //   user_id: props.user.token,
-    //   doc_id: selectedPageIds,
-    //   doc_name: docNames,
-    // };
-
+    // console.log(docNames);
     let data = [];
-    for (let i = 0; i < selectedPageIds.length; i++) {
-      data.push({
-        user_id: props.user.token,
-        doc_id: selectedPageIds[i],
-        doc_name: docNames[i],
-      });
+    if (docNames.length === 0) {
+      return;
+    } else {
+      for (let i = 0; i < docIds.length; i++) {
+        data.push({
+          user_id: props.user.token,
+          doc_id: docIds[i],
+          doc_name: docNames[i],
+        });
+      }
+      let dataStart = {
+        input: JSON.stringify({ detail: { items: data } }),
+        stateMachineArn:
+          'arn:aws:states:ap-south-1:565442373753:stateMachine:Textract_State_Machine',
+      };
+      // console.log(props.documents.filteredFilelistNotProcessed);
+      props.dispatch(startExtractionProcessAPI(dataStart));
+      setTimeout(() => {
+        props.dispatch(fetchRawDocumentsDetailsAPI(props.user.token));
+      }, 2000);
     }
-    let dataStart = {
-      input: JSON.stringify({ detail: { items: data } }),
-      stateMachineArn:
-        'arn:aws:states:ap-south-1:565442373753:stateMachine:Textract_State_Machine',
-    };
+  };
 
-    props.dispatch(startExtractionProcessAPI(dataStart));
+  const stopExtractionProcess = () => {
+    var docArn = [];
+    var selectedPageIds = props.documents.selectedDocuments;
+    var docDetails;
+    if (props.extractor.processedFileTab === 1) {
+      docDetails = props.documents.filteredFilelistNotProcessed;
+    } else {
+      docDetails = props.documents.filteredFilelistProcessed;
+    }
+    // console.log(props.documents.filteredFilelist);
+    for (var i = 0; i < docDetails.length; i++) {
+      for (var j = 0; j < selectedPageIds.length; j++) {
+        if (
+          docDetails[i].documentId === selectedPageIds[j] &&
+          docDetails[i].documentStatus === 'Processing'
+        ) {
+          docArn.push(docDetails[i].step_fun_execution_id);
+        }
+      }
+    }
+    console.log(docDetails);
+    let data = {};
+    if (docArn.length === 0) {
+      return;
+    } else {
+      data = {
+        stop: 'Stop the pipeline',
+        arn: docArn[0],
+      };
+
+      props.dispatch(stopExtractionProcessAPI(data));
+      setTimeout(() => {
+        props.dispatch(fetchRawDocumentsDetailsAPI(props.user.token));
+      }, 2000);
+    }
+  };
+
+  const deleteFilesProcess = () => {
+    var docNames = [];
+    var docStatus = [];
+    var docIds = [];
+    var selectedPageIds = props.documents.selectedDocuments;
+    var docDetails;
+    if (props.extractor.processedFileTab === 1) {
+      docDetails = props.documents.filteredFilelistNotProcessed;
+    } else {
+      docDetails = props.documents.filteredFilelistProcessed;
+    }
+
+    // console.log(props.documents.filteredFilelist);
+    for (var i = 0; i < docDetails.length; i++) {
+      for (var j = 0; j < selectedPageIds.length; j++) {
+        if (
+          docDetails[i].documentId === selectedPageIds[j] &&
+          (docDetails[i].documentStatus === 'Not Processed' ||
+            docDetails[i].documentStatus === 'Processed')
+        ) {
+          docNames.push(docDetails[i].ducumentName);
+          docStatus.push(docDetails[i].documentStatus);
+          docIds.push(docDetails[i].documentId);
+        }
+      }
+    }
+    let data = {};
+    // console.log(docNames);
+    if (docNames.length === 0) {
+      return;
+    } else {
+      data = {
+        doc_status: docStatus[0],
+        user_id: props.user.token,
+        doc_id: docIds[0],
+        doc_name: docNames[0],
+      };
+    }
+
+    // console.log(props.documents.filteredFilelistNotProcessed);
+    props.dispatch(deleteFilesDataAPI(data));
     setTimeout(() => {
       props.dispatch(fetchRawDocumentsDetailsAPI(props.user.token));
     }, 2000);
@@ -101,7 +190,6 @@ const ConfigurationFileList = (props) => {
     }
     props.dispatch(assignSelectedDocDetails(selectedDocDetails));
 
-    // console.log(props.singleDocument.selectedDocumentsDetails);
     props.dispatch(dropdownSelected(0));
 
     props.dispatch(changeTabOperation(extractor));
@@ -109,15 +197,14 @@ const ConfigurationFileList = (props) => {
 
   const handleProcessedFileTab = (num) => {
     const { extractor } = props;
-    const { documents } = props;
     if (num === extractor.processedFileTab) {
       return;
     }
     extractor.processedFileTab = num;
     props.dispatch(handleProcessedFileTabChange(extractor));
 
-    documents.selectedDocuments = [];
-    props.dispatch(clearSelectedFiles(documents));
+    props.dispatch(clearSelectedFiles());
+    console.log(props.documents.documentDetails);
   };
 
   return (
@@ -240,7 +327,10 @@ const ConfigurationFileList = (props) => {
             Start
           </button> */}
           {props.extractor.processedFileTab === 1 ? (
-            <button className="stopExtractionButton configurationFileListFourButtons">
+            <button
+              className="stopExtractionButton configurationFileListFourButtons"
+              onClick={() => stopExtractionProcess()}
+            >
               <i class="fi fi-rr-ban"></i> &nbsp; Stop
             </button>
           ) : (
@@ -252,7 +342,10 @@ const ConfigurationFileList = (props) => {
           >
             <i class="fi fi-rr-eye"></i> &nbsp; View
           </button>
-          <button className="deleteExtractedFileButton configurationFileListFourButtons">
+          <button
+            className="deleteExtractedFileButton configurationFileListFourButtons"
+            onClick={() => deleteFilesProcess()}
+          >
             <i class="fi fi-rr-trash"></i> &nbsp; Delete
           </button>
         </div>

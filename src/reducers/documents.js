@@ -18,6 +18,7 @@ const initialDocumentsState = {
       documentPages: 0,
       documentStatus: '',
       documentDownloadLink: '',
+      step_fun_execution_id: '',
     },
   ],
   filteredFilelistNotProcessed: [],
@@ -59,6 +60,7 @@ export default function documents(state = initialDocumentsState, action) {
       // console.log('ACTION_in_reducer ', action.data);
       return {
         ...state,
+        selectedDocuments: [],
       };
     default:
       return state;

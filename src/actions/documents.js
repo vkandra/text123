@@ -70,6 +70,45 @@ export function startExtractionProcessAPI(data) {
       .then(function (response) {
         console.log(response);
         dispatch(fetchRawDocumentsDetailsAPI(data.user_id));
+        dispatch(clearSelectedFiles());
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
+}
+
+export function stopExtractionProcessAPI(data) {
+  return (dispatch) => {
+    console.log(data);
+    axios
+      .post(
+        `https://hr98eixqwk.execute-api.ap-south-1.amazonaws.com/stop`,
+        data
+      )
+      .then(function (response) {
+        console.log(response);
+        dispatch(fetchRawDocumentsDetailsAPI(data.user_id));
+        dispatch(clearSelectedFiles());
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
+}
+
+export function deleteFilesDataAPI(data) {
+  return (dispatch) => {
+    console.log(data);
+    axios
+      .post(
+        `https://2yb0pyzgca.execute-api.ap-south-1.amazonaws.com/delete`,
+        data
+      )
+      .then(function (response) {
+        console.log(response);
+        dispatch(fetchRawDocumentsDetailsAPI(data.user_id));
+        dispatch(clearSelectedFiles());
       })
       .catch(function (error) {
         console.log(error);
