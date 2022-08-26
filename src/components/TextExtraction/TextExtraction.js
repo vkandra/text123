@@ -166,7 +166,7 @@ const TextExtraction = (props) => {
           ) : (
             <div className="displayArea">
               {props.singleDocument.singleDocumentType === 'pdf' ||
-              props.singleDocument.singleDocumentType === 'application/pdf' ? (
+                props.singleDocument.singleDocumentType === 'application/pdf' ? (
                 <div className="pdf-container">
                   {/* show pdf conditionally (if we have one) */}
                   {viewPdf && (
@@ -198,22 +198,20 @@ const TextExtraction = (props) => {
           )}
           <div className="nextPrevButtons">
             <div
-              className={`${
-                props.singleDocument.dropdownSelected === 0
+              className={`${props.singleDocument.dropdownSelected === 0
                   ? 'disabled_button'
                   : 'prevButton'
-              }`}
+                }`}
               onClick={() => gotoPrevFile()}
             >
               <i className="fi fi-ss-arrow-left"></i> &nbsp; Prev
             </div>
             <div
-              className={`${
-                props.singleDocument.dropdownSelected ===
-                props.singleDocument.selectedDocumentsDetails.length - 1
+              className={`${props.singleDocument.dropdownSelected ===
+                  props.singleDocument.selectedDocumentsDetails.length - 1
                   ? 'disabled_button'
                   : 'nextButton'
-              }`}
+                }`}
               onClick={() => gotoNextFile()}
             >
               Next &nbsp;<i className="fi fi-ss-arrow-right"></i>
@@ -223,34 +221,38 @@ const TextExtraction = (props) => {
 
         <div className="docData">
           <div className="docDataAllTabs">
-            <button
+            {/* <div id='keyvalue' className='active selectedSpecificButton'>Key-Value </div>
+            <div onClick={() => changeDataTabs(2)} className='selectedSpecificButton'>Table </div>
+            <div onClick={() => changeDataTabs(3)} className='selectedSpecificButton'>Raw Data </div> */}
+
+            <div
               className={`${
                 props.extractor.textDataTab === 1 ? 'selectedDataTab' : ''
               }`}
               onClick={() => changeDataTabs(1)}
             >
               Key-Value
-            </button>
-            <button
+            </div>
+            <div
               className={`${
-                props.extractor.textDataTab === 2 ? 'selectedDataTab' : ''
+               props.extractor.textDataTab === 2 ? 'selectedDataTab' : ''
               }`}
               onClick={() => changeDataTabs(2)}
             >
               Table
-            </button>
-            <button
+            </div>
+            <div
               className={`${
                 props.extractor.textDataTab === 3 ? 'selectedDataTab' : ''
               }`}
               onClick={() => changeDataTabs(3)}
             >
               Raw Data
-            </button>
+            </div>
           </div>
           <div className="docTabData">
             {props.extractor.textDataTab === 1 &&
-            props.singleDocument.singleDocumentStatus === 'Processed' ? (
+              props.singleDocument.singleDocumentStatus === 'Processed' ? (
               <KeyValueDocData />
             ) : props.extractor.textDataTab === 2 &&
               props.singleDocument.singleDocumentStatus === 'Processed' ? (

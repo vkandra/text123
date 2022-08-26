@@ -6,6 +6,7 @@
   align-items: center;
   /* border: 1px solid greenyellow; */
 }
+
 .extractedData {
   display: flex;
   justify-content: space-around;
@@ -15,6 +16,7 @@
   margin: 0;
   padding: 0;
 }
+
 .exactDoc {
   /* border: 1px solid blue; */
   width: 44%;
@@ -24,6 +26,7 @@
   justify-content: space-between;
   height: 98%;
 }
+
 .dropdownsdocpage {
   /* border: 1px solid black; */
   margin: 0;
@@ -34,6 +37,7 @@
   justify-content: center;
   align-items: center;
 }
+
 .docdropdown {
   height: 100%;
   width: 98%;
@@ -42,6 +46,7 @@
   justify-content: center;
   align-items: center;
 }
+
 .docdropdown select {
   /* outline: none; */
   width: 100%;
@@ -80,6 +85,7 @@
   align-items: center;
   height: 100%;
 }
+
 #imageDisplay {
   /* width: 100%; */
   height: 100%;
@@ -119,6 +125,7 @@
   align-items: center;
   user-select: none;
 }
+
 .prevButton {
   height: 90%;
   width: 30%;
@@ -131,13 +138,16 @@
   font-size: 1rem;
   cursor: pointer;
 }
+
 .prevButton:hover {
   background: burlywood;
   transition: 0.2s;
 }
+
 .prevButton i {
   padding-top: 5px;
 }
+
 .nextButton {
   height: 90%;
   width: 30%;
@@ -150,13 +160,16 @@
   font-size: 1rem;
   cursor: pointer;
 }
+
 .nextButton:hover {
   background: burlywood;
   transition: 0.2s;
 }
+
 .nextButton i {
   padding-top: 5px;
 }
+
 .docData {
   border-left: 1px solid #ccc;
   /* padding: 5px; */
@@ -168,6 +181,10 @@
   justify-content: space-between;
   height: 98%;
 }
+.active{
+  display: block;
+}
+
 .docDataAllTabs {
   height: 50px;
   width: 100%;
@@ -175,13 +192,50 @@
   margin: 0;
   padding: 0;
   display: flex;
-  justify-content: space-around;
+  justify-content:space-evenly;
   align-items: center;
 }
-.docDataAllTabs button {
+
+.selectedDataTab{
+  cursor: pointer;
+  padding: 10px;
+  width: 25%;
+  text-align: center;
+  border:1px solid #ccc;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.selectedDataTab.active{
+  background-color: blue;
+}
+
+
+.selectedDataTab:hover{
+  background-color:darkslategray;
+  color: white;
+}
+
+
+/* .selectedSpecificButton {
+  background: white !important;
+  color: #1e1e1e !important;
+  transition: 0.2s;
+  border-top-left-radius: 1px solid #ccc; */
+  /* border-left: 1px solid #ccc; */
+  /* border-top-right-radius: 1px solid #ccc;
+  padding: 0%;
+  margin: 0%;
+} */
+
+/* .selectedSpecificButton:hover{
+  background-color: cadetblue;
+} */ */
+ */
+/* .docDataAllTabs div {
   background: white;
   outline: none;
-  width: 30%;
+  width: 40%;
   height: 90%;
   border: 2px solid #ccc;
   border-radius: 4px;
@@ -189,21 +243,25 @@
   font-weight: bold;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
-.docDataAllTabs button:hover {
+
+.docDataAllTabs div:hover {
   border: 2px solid black;
   cursor: pointer;
   transition: 0.3s;
-}
+} */
+
 .docTabData {
   /* border: 1px solid green; */
   height: 90%;
   width: 100%;
   overflow: auto;
 }
-.selectedDataTab {
+
+/* .selectedDataTab {
   background: rgb(131, 197, 255) !important;
   font-weight: 900 !important;
-}
+} */
+
 .extractedDocumentDetailsSection {
   /* border: 1px solid black; */
   margin: 0;
@@ -212,6 +270,7 @@
   height: 30px;
   width: 100%;
 }
+
 .dataNotExt {
   /* border: 1px solid black; */
   height: 400px;
@@ -223,9 +282,11 @@
   font-weight: bold;
   color: lightslategrey;
 }
+
 .rpv-toolbar__right {
   display: none !important;
 }
+
 .disabled_button {
   height: 90%;
   width: 30%;
@@ -240,6 +301,7 @@
   background: #ccc;
   border: 1px solid #ccc;
 }
+
 .disabled_button i {
   padding-top: 5px;
 }
