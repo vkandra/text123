@@ -123,11 +123,12 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 76%;
-  width: 100%;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  margin-top: 2px;
+  width: 100%;
   font-size: 1.2rem;
   color: gray;
+  height: 75%;
 }
 .configFlLstTableBody {
   height: 75%;

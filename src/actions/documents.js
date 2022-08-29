@@ -83,7 +83,7 @@ export function stopExtractionProcessAPI(data) {
     console.log(data);
     axios
       .post(
-        `https://hr98eixqwk.execute-api.ap-south-1.amazonaws.com/stop`,
+        `https://owjstza5rc.execute-api.ap-south-1.amazonaws.com/stop`,
         data
       )
       .then(function (response) {
@@ -102,7 +102,7 @@ export function deleteFilesDataAPI(data) {
     console.log(data);
     axios
       .post(
-        `https://2yb0pyzgca.execute-api.ap-south-1.amazonaws.com/delete`,
+        `https://npf3th07e5.execute-api.ap-south-1.amazonaws.com/delete`,
         data
       )
       .then(function (response) {
