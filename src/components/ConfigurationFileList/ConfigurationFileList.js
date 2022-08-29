@@ -155,21 +155,28 @@ const ConfigurationFileList = (props) => {
         }
       }
     }
-    let data = {};
+    let assembledData = {};
+    let data = [];
     // console.log(docNames);
     if (docNames.length === 0) {
       return;
     } else {
-      data = {
-        doc_status: docStatus[0],
-        user_id: props.user.token,
-        doc_id: docIds[0],
-        doc_name: docNames[0],
-      };
+      for (let i = 0; i < docStatus.length; i++) {
+        data.push({
+          doc_status: docStatus[i],
+
+          user_id: props.user.token,
+
+          doc_id: docIds[i],
+
+          doc_name: docNames[i],
+        });
+      }
+      assembledData = { delete_input: data };
     }
 
     // console.log(props.documents.filteredFilelistNotProcessed);
-    props.dispatch(deleteFilesDataAPI(data));
+    props.dispatch(deleteFilesDataAPI(assembledData));
     setTimeout(() => {
       props.dispatch(fetchRawDocumentsDetailsAPI(props.user.token));
     }, 2000);

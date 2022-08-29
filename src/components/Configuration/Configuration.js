@@ -153,13 +153,26 @@ const mapStateToProps = (state) => {
 
 export default connect(mapStateToProps)(Configuration);
 
-// const notify = () =>
-//   toast.success('Upload Successful!', {
-//     position: 'top-right',
-//     autoClose: 2000,
-//     hideProgressBar: true,
-//     closeOnClick: true,
-//     pauseOnHover: true,
-//     draggable: true,
-//     progress: undefined,
-//   });
+var abc = {
+  delete_input: [
+    {
+      doc_status: 'Processed',
+
+      user_id: 'f6d86aa8-57d4-442a-b159-ee46e97df492',
+
+      doc_id: 'bf7cacd416f7ebd292791d80b8314d85',
+
+      doc_name: 'sv600_c_automatic.pdf',
+    },
+
+    {
+      doc_status: 'Processed',
+
+      user_id: 'f6d86aa8-57d4-442a-b159-ee46e97df492',
+
+      doc_id: 'eb84f6ee3e0b9c0efe727c031a4dcd60',
+
+      doc_name: 'Acceptable_Use_Policy-Signed21.rdl',
+    },
+  ],
+};
