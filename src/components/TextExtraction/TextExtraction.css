@@ -192,7 +192,7 @@
   margin: 0;
   padding: 0;
   display: flex;
-  justify-content:space-evenly;
+  justify-content:flex-start;
   align-items: center;
 }
 
@@ -206,10 +206,6 @@
   border-top-right-radius: 5px;
 }
 
-.selectedDataTab.active{
-  background-color: blue;
-}
-
 
 .selectedDataTab:hover{
   background-color:darkslategray;
@@ -217,22 +213,22 @@
 }
 
 
-/* .selectedSpecificButton {
+.selectedSpecificButton {
   background: white !important;
   color: #1e1e1e !important;
   transition: 0.2s;
-  border-top-left-radius: 1px solid #ccc; */
-  /* border-left: 1px solid #ccc; */
-  /* border-top-right-radius: 1px solid #ccc;
+  border-top-left-radius: 1px solid #ccc;
+  border-left: 1px solid #ccc; 
+  border-top-right-radius: 1px solid #ccc;
   padding: 0%;
   margin: 0%;
-} */
+}
 
-/* .selectedSpecificButton:hover{
+.selectedSpecificButton:hover{
   background-color: cadetblue;
-} */ */
- */
-/* .docDataAllTabs div {
+}
+ 
+ .docDataAllTabs div {
   background: white;
   outline: none;
   width: 40%;
@@ -248,7 +244,7 @@
   border: 2px solid black;
   cursor: pointer;
   transition: 0.3s;
-} */
+}
 
 .docTabData {
   /* border: 1px solid green; */
@@ -257,10 +253,10 @@
   overflow: auto;
 }
 
-/* .selectedDataTab {
+.selectedDataTab {
   background: rgb(131, 197, 255) !important;
   font-weight: 900 !important;
-} */
+}
 
 .extractedDocumentDetailsSection {
   /* border: 1px solid black; */

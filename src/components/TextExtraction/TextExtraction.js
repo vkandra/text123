@@ -221,34 +221,31 @@ const TextExtraction = (props) => {
 
         <div className="docData">
           <div className="docDataAllTabs">
-            {/* <div id='keyvalue' className='active selectedSpecificButton'>Key-Value </div>
-            <div onClick={() => changeDataTabs(2)} className='selectedSpecificButton'>Table </div>
-            <div onClick={() => changeDataTabs(3)} className='selectedSpecificButton'>Raw Data </div> */}
-
-            <div
+            
+            <button
               className={`${
-                props.extractor.textDataTab === 1 ? 'selectedDataTab' : ''
+                props.extractor.textDataTab === 1 ? 'selectedSpecificButton' : ''
               }`}
               onClick={() => changeDataTabs(1)}
             >
               Key-Value
-            </div>
-            <div
+            </button>
+            <button
               className={`${
-               props.extractor.textDataTab === 2 ? 'selectedDataTab' : ''
+               props.extractor.textDataTab === 2 ? 'selectedSpecificButton' : ''
               }`}
               onClick={() => changeDataTabs(2)}
             >
               Table
-            </div>
-            <div
+            </button>
+            <button
               className={`${
-                props.extractor.textDataTab === 3 ? 'selectedDataTab' : ''
+                props.extractor.textDataTab === 3 ? 'selectedSpecificButton' : ''
               }`}
               onClick={() => changeDataTabs(3)}
             >
               Raw Data
-            </div>
+            </button>
           </div>
           <div className="docTabData">
             {props.extractor.textDataTab === 1 &&
