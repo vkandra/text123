@@ -94,6 +94,7 @@ const ConfigurationFileList = (props) => {
 
   const stopExtractionProcess = () => {
     var docArn = [];
+    let docIds = [];
     var selectedPageIds = props.documents.selectedDocuments;
     var docDetails;
     if (props.extractor.processedFileTab === 1) {
@@ -109,6 +110,7 @@ const ConfigurationFileList = (props) => {
           docDetails[i].documentStatus === 'Processing'
         ) {
           docArn.push(docDetails[i].step_fun_execution_id);
+          docIds.push(docDetails[i].documentId);
         }
       }
     }
@@ -120,6 +122,8 @@ const ConfigurationFileList = (props) => {
       data = {
         stop: 'Stop the pipeline',
         arn: docArn[0],
+        doc_id: docIds,
+        user_id: props.user.token,
       };
 
       props.dispatch(stopExtractionProcessAPI(data));
