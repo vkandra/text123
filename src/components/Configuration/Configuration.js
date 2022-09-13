@@ -50,44 +50,46 @@ const Configuration = (props) => {
   const handleUpload = (ev) => {
     setError(false);
     setSuccess(false);
-    let file = uploadInput.files[0];
-    // Split the filename to get the name and type
+    for (let i = 0; i < uploadInput.files.length; i++) {
+      let file = uploadInput.files[i];
+      // Split the filename to get the name and type
 
-    let fileParts = uploadInput.files[0].name.split('.');
-    let fileName = fileParts[0];
-    let fileType = fileParts[1];
-    console.log('Preparing the upload');
-    axios
-      .post('http://localhost:3001/sign_s3', {
-        fileName: fileName,
-        fileType: fileType,
-      })
-      .then((response) => {
-        var returnData = response.data.data.returnData;
-        var signedRequest = returnData.signedRequest;
-        var recUrl = returnData.url;
-        setUrl(recUrl);
-        console.log('Recieved a signed request ' + signedRequest);
+      let fileParts = uploadInput.files[i].name.split('.');
+      let fileName = fileParts[0];
+      let fileType = fileParts[1];
+      console.log('Preparing the upload');
+      axios
+        .post('http://localhost:3001/sign_s3', {
+          fileName: fileName,
+          fileType: fileType,
+        })
+        .then((response) => {
+          var returnData = response.data.data.returnData;
+          var signedRequest = returnData.signedRequest;
+          var recUrl = returnData.url;
+          setUrl(recUrl);
+          console.log('Recieved a signed request ' + signedRequest);
 
-        var options = {
-          headers: {
-            'Content-Type': fileType,
-          },
-        };
-        axios
-          .put(signedRequest, file, options)
-          .then((result) => {
-            console.log('Response from s3');
-            setSuccess(true);
-          })
-          .catch((error) => {
-            // alert('ERROR ' + JSON.stringify(error));
-            setError(true);
-          });
-      })
-      .catch((error) => {
-        alert(JSON.stringify(error));
-      });
+          var options = {
+            headers: {
+              'Content-Type': fileType,
+            },
+          };
+          axios
+            .put(signedRequest, file, options)
+            .then((result) => {
+              console.log('Response from s3');
+              setSuccess(true);
+            })
+            .catch((error) => {
+              // alert('ERROR ' + JSON.stringify(error));
+              setError(true);
+            });
+        })
+        .catch((error) => {
+          alert(JSON.stringify(error));
+        });
+    }
   };
 
   return (

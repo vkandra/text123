@@ -15,6 +15,9 @@ exports.sign_s3 = (req, res) => {
   const fileName = req.body.fileName;
   const fileType = req.body.fileType;
   // Set up the payload of what we are sending to the S3 api
+
+  console.log(req.body);
+
   const s3Params = {
     Bucket: S3_BUCKET,
     Key: fileName + "." + fileType,
