@@ -107,7 +107,8 @@ const ConfigurationFileList = (props) => {
       for (var j = 0; j < selectedPageIds.length; j++) {
         if (
           docDetails[i].documentId === selectedPageIds[j] &&
-          docDetails[i].documentStatus === 'Processing'
+          (docDetails[i].documentStatus === 'Queued' ||
+            docDetails[i].documentStatus === 'Processing')
         ) {
           docArn.push(docDetails[i].step_fun_execution_id);
           docIds.push(docDetails[i].documentId);

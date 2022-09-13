@@ -52,10 +52,12 @@ const ExtractedDocumentDetails = (props) => {
           className="saveDataButton"
           onClick={() => saveAndSendEditedData()}
         >
-          Save
+          <i class="fi fi-rr-disk"></i>&nbsp; Save
         </button>
-        <button className="downloadButton">Download</button>
-        <button className="deleteButton">Delete</button>
+        <button className="downloadButton">
+          <i class="fi fi-rr-download"></i> &nbsp;Download
+        </button>
+        {/* <button className="deleteButton">Delete</button> */}
       </div>
     </div>
   );

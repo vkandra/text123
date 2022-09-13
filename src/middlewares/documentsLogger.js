@@ -56,7 +56,8 @@ const documentsLogger =
         fetchedAllDocsData.documentDetails.filter((file) => {
           return (
             file.documentStatus === 'Not Processed' ||
-            file.documentStatus === 'Processing'
+            file.documentStatus === 'Processing' ||
+            file.documentStatus === 'Queued'
           );
         });
       //   console.log(fetchedAllDocsData);

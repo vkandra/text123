@@ -40,29 +40,37 @@
 }
 .documentDetailAction button {
   outline: none;
-  border: 1px solid black;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  font-weight: 900;
+  font-weight: 600;
+  font-size: 0.8rem;
   background-color: white;
   cursor: pointer;
+  width: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-.documentDetailAction button:hover {
-  opacity: 0.8;
+.documentDetailAction button i {
+  padding-top: 3px;
 }
+
 .documentDetailAction .downloadButton {
   color: forestgreen;
+  border: 1px solid forestgreen;
 }
 
 .documentDetailAction .saveDataButton {
   color: blueviolet;
-  width: 70px;
-  font-size: 0.8rem;
-  padding: 0;
-  margin: 0;
+  border: 1px solid blueviolet;
 }
 
 .saveDataButton:hover {
   background: blueviolet;
+  color: white;
+}
+
+.documentDetailAction .downloadButton:hover {
+  background: forestgreen;
   color: white;
 }
 
