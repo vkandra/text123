@@ -31,6 +31,9 @@ const TextExtraction = (props) => {
     if (props.singleDocument.selectedDocumentsDetails.length !== 0) {
       getSingleSelectedDocId();
     }
+
+    const { documents } = props;
+    console.log(documents);
   }, []);
 
   const getSingleSelectedDocId = () => {

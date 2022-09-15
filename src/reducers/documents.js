@@ -4,6 +4,7 @@ import {
   UNSELECT_DOCUMENTS_CONFIGURATION,
   ASSIGN_RAW_DOCUMENTS_DATA,
   CLEAR_SELECTED_FILES,
+  ASSIGN_DASHBOARD_DATA,
 } from '../actions/documents';
 
 const initialDocumentsState = {
@@ -19,11 +20,19 @@ const initialDocumentsState = {
       documentStatus: '',
       documentDownloadLink: '',
       step_fun_execution_id: '',
+      processed_date: '',
     },
   ],
   filteredFilelistNotProcessed: [],
   filteredFilelistProcessed: [],
   selectedDocuments: [],
+
+  // Dashboard Data
+  processedFileList: [],
+  processedFileListSize: 0,
+  unprocessedFileListSize: 0,
+  notProcessedFileListSize: 0,
+  processingFileListSize: 0,
 
   //
   rawDocumentsDataFromAPI: {},
@@ -61,6 +70,11 @@ export default function documents(state = initialDocumentsState, action) {
       return {
         ...state,
         selectedDocuments: [],
+      };
+    case ASSIGN_DASHBOARD_DATA:
+      // console.log('ACTION_in_reducer ', action.data);
+      return {
+        ...state,
       };
     default:
       return state;

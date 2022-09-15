@@ -19,7 +19,7 @@ const documentsLogger =
       var totalDocs = action.data.Document_Details.length;
 
       fetchedAllDocsData.totalDocuments = totalDocs;
-      // console.log(action.data.Document_Details.length);
+      // console.log(action.data.Document_Details);
       for (var i = 0; i < totalDocs; i++) {
         fetchedAllDocsData.documentDetails.push({
           documentId: action.data.Document_Details[i].doc_id.S,
@@ -33,6 +33,7 @@ const documentsLogger =
           documentDownloadLink: action.data.Document_Details[i].download_link.S,
           step_fun_execution_id:
             action.data.Document_Details[i].step_fun_execution_id.S,
+          processed_date: action.data.Document_Details[i].processed_date.S,
         });
       }
       // fetchedAllDocsData.documentDetails.push({

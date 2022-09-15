@@ -1,0 +1,72 @@
+.datesBox {
+  /* border: 1px solid #ccc; */
+  margin-top: 10px;
+  margin-bottom: 10px;
+  height: 30px;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  font-weight: bold;
+}
+.submitDivDate {
+  width: 50%;
+}
+.submitDivDate button {
+  outline: none;
+  border: 1px solid grey;
+  background: white;
+  color: #1e1e1e;
+  font-weight: bold;
+  border-radius: 3px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 10px;
+  margin: 0;
+}
+.submitDivDate button:hover {
+  background: rgb(242, 242, 242);
+  transition: 0.2s;
+}
+.currentStatsLabel {
+  margin: 20px 0px 0px 20px;
+  color: #1e1e1e;
+  font-weight: bold;
+}
+.allCards {
+  /* border: 1px solid #ccc; */
+  height: 120px;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.singleCard {
+  width: 30%;
+  /* border: 1px solid grey; */
+  height: 95%;
+  box-shadow: 10px 10px 25px grey;
+}
+.cardName {
+  height: 40%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #2c3546;
+  color: white;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+.cardValue {
+  height: 60%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* border: 1px solid #ccc; */
+  font-size: 2rem;
+  font-weight: bold;
+  color: #008000;
+}
