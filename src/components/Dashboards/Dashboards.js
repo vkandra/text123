@@ -2,6 +2,9 @@ import './Dashboards.css';
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux/es/exports';
 import { assignDashboardData } from '../../actions/documents';
+import { Line } from 'react-chartjs-2';
+import { Chart as ChartJS } from 'chart.js/auto';
+import { Chart } from 'react-chartjs-2';
 
 const Dashboards = (props) => {
   // console.log(props.documents.documentDetails);
@@ -21,15 +24,13 @@ const Dashboards = (props) => {
   today = yyyy + '-' + mm + '-' + dd;
   todaymin30 = yyyy1 + '-' + mm1 + '-' + dd1;
 
-  // console.log(todaymin30);
-  // var toD;
-
   useEffect(() => {
     performCalc();
 
     document.getElementById('from_date').defaultValue = todaymin30;
     document.getElementById('to_date').defaultValue = today;
     // toD = today;
+    assembleData();
   }, []);
 
   const performCalc = () => {
@@ -192,10 +193,6 @@ const Dashboards = (props) => {
       return file.documentStatus !== 'Not Processed';
     });
 
-    console.log(processedFileList);
-    console.log(unprocessedFileList);
-    console.log(notProcessedFileList);
-    console.log(processingFileList);
     documents.processedFileList = processedFileList;
     documents.processedFileListSize = processedFileList.length;
     documents.unprocessedFileListSize = unprocessedFileList.length;
@@ -208,25 +205,87 @@ const Dashboards = (props) => {
   const changeDates = (e) => {
     let fromD = document.getElementById('from_date').value;
     let toD = document.getElementById('to_date').value;
-    // console.log(e.target.value);
-    // console.log(toD);
 
     const fromx = new Date(fromD);
     const tox = new Date(toD);
 
-    if (fromx > tox) {
+    if (fromx.getTime() > tox.getTime()) {
       document.getElementById('from_date').value = '';
     }
   };
 
   const assembleData = () => {
+    const { documents } = props;
     let fromD = document.getElementById('from_date').value;
     let toD = document.getElementById('to_date').value;
-    console.log(fromD, toD);
+    // console.log(fromD, toD);
+
+    let fromDate = new Date(fromD);
+    let toDate = new Date(toD);
+
+    let chart1Data = { dates: [], count: [] };
+    for (
+      let i = fromDate;
+      i.getTime() <= toDate.getTime();
+      i.setDate(i.getDate() + 1)
+    ) {
+      let day = String(i.getDate()).padStart(2, '0');
+      let mon = String(i.getMonth() + 1).padStart(2, '0'); //January is 0!
+      let year = i.getFullYear();
+
+      let iMod = year + '-' + mon + '-' + day;
+
+      let count = 0;
+      for (let j = 0; j < props.documents.processedFileListSize; j++) {
+        if (iMod === props.documents.processedFileList[j].processed_date) {
+          count++;
+        }
+      }
+      chart1Data.dates.push(iMod);
+      chart1Data.count.push(count);
+    }
+    documents.chart1data = {
+      labels: chart1Data.dates,
+      datasets: [
+        {
+          label: 'Documents Processed - Day Wise',
+          data: chart1Data.count,
+          fill: false,
+          borderColor: 'rgb(75, 192, 192)',
+          tension: 0.1,
+        },
+      ],
+    };
+    props.dispatch(assignDashboardData(documents));
+    console.log(documents.chart1data);
   };
 
   return (
     <div className="dashboards">
+      <div className="currentStatsLabel">Current Stats -</div>
+      <div className="allCards">
+        <div className="singleCard cardNo1">
+          <div className="cardName">Not Processed</div>
+          <div className="cardValue">
+            {props.documents.notProcessedFileListSize}
+          </div>
+        </div>
+        <div className="singleCard cardNo2">
+          <div className="cardName">Processing / Queued</div>
+          <div className="cardValue">
+            {props.documents.processingFileListSize}
+          </div>
+        </div>
+        <div className="singleCard cardNo3">
+          <div className="cardName">Processed</div>
+          <div className="cardValue">
+            {props.documents.processedFileListSize}
+          </div>
+        </div>
+      </div>
+
+      <hr></hr>
+
       <div className="datesBox">
         <div className="fromDate">
           <label for="fromdate">From :&nbsp;</label>
@@ -255,26 +314,16 @@ const Dashboards = (props) => {
         </div>
       </div>
 
-      <div className="currentStatsLabel">Current Stats -</div>
-      <div className="allCards">
-        <div className="singleCard cardNo1">
-          <div className="cardName">Not Processed</div>
-          <div className="cardValue">
-            {props.documents.notProcessedFileListSize}
-          </div>
+      <div className="first2charts">
+        <div className="chart1st">
+          <Line
+            data={props.documents.chart1data}
+            height={200}
+            width={200}
+            options={{ maintainAspectRatio: false }}
+          />
         </div>
-        <div className="singleCard cardNo2">
-          <div className="cardName">Processing / Queued</div>
-          <div className="cardValue">
-            {props.documents.processingFileListSize}
-          </div>
-        </div>
-        <div className="singleCard cardNo3">
-          <div className="cardName">Processed</div>
-          <div className="cardValue">
-            {props.documents.processedFileListSize}
-          </div>
-        </div>
+        <div className="chart2nd"></div>
       </div>
     </div>
   );

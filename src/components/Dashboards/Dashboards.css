@@ -30,7 +30,7 @@
   transition: 0.2s;
 }
 .currentStatsLabel {
-  margin: 20px 0px 0px 20px;
+  margin: 5px 0px 5px 10px;
   color: #1e1e1e;
   font-weight: bold;
 }
@@ -46,7 +46,7 @@
   width: 30%;
   /* border: 1px solid grey; */
   height: 95%;
-  box-shadow: 10px 10px 25px grey;
+  box-shadow: 0px 0px 12px grey;
 }
 .cardName {
   height: 40%;
@@ -69,4 +69,25 @@
   font-size: 2rem;
   font-weight: bold;
   color: #008000;
+}
+.first2charts {
+  /* border: 1px solid #ccc; */
+  margin: 20px 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.chart1st {
+  border: 1px solid #ccc;
+  margin: 2px;
+  width: 49%;
+  height: 300px;
+  box-shadow: 0px 0px 5px grey;
+}
+.chart2nd {
+  border: 1px solid #ccc;
+  margin: 2px;
+  width: 49%;
+  height: 300px;
+  box-shadow: 0px 0px 5px grey;
 }

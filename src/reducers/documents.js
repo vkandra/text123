@@ -33,6 +33,19 @@ const initialDocumentsState = {
   unprocessedFileListSize: 0,
   notProcessedFileListSize: 0,
   processingFileListSize: 0,
+  chart1data: {
+    labels: [],
+    datasets: [
+      {
+        label: 'Documents Processed - Day Wise',
+        data: [],
+        fill: false,
+        borderColor: 'rgb(75, 192, 192)',
+        tension: 0.1,
+      },
+    ],
+  },
+  templateNames: ['other', 'Receipt', 'Bill'],
 
   //
   rawDocumentsDataFromAPI: {},
