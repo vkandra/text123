@@ -2,7 +2,7 @@ import './Dashboards.css';
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux/es/exports';
 import { assignDashboardData } from '../../actions/documents';
-import { Line } from 'react-chartjs-2';
+import { Line, Bar } from 'react-chartjs-2';
 import { Chart as ChartJS } from 'chart.js/auto';
 import { Chart } from 'react-chartjs-2';
 
@@ -109,7 +109,7 @@ const Dashboards = (props) => {
           'https://amazon-textract-s3bucket.s3.amazonaws.com/input_/f6d86aa8-57d4-442a-b159-ee46e97df492/MicrosoftTeams-image (1).png',
         step_fun_execution_id: 'NULL',
         processed_date: 'N/A',
-        template_name: 'Bill',
+        template_name: 'Other',
       },
       {
         documentId: 'bf7cacd416f7ebd292791d80b8314d85',
@@ -154,7 +154,7 @@ const Dashboards = (props) => {
         step_fun_execution_id:
           'arn:aws:states:ap-south-1:565442373753:execution:Textract_State_Machine:1cef9015-764f-4016-a72a-688e3a9619da',
         processed_date: '2022-09-13',
-        template_name: 'Receipt',
+        template_name: 'Bill',
       },
       {
         documentId: 'fbbd21ad0f9dda9a12f74b91c6360a2c',
@@ -243,6 +243,7 @@ const Dashboards = (props) => {
       }
       chart1Data.dates.push(iMod);
       chart1Data.count.push(count);
+      count = 0;
     }
     documents.chart1data = {
       labels: chart1Data.dates,
@@ -256,8 +257,65 @@ const Dashboards = (props) => {
         },
       ],
     };
+
+    let filteredProcessedFiles = [];
+
+    let chart2Data = { templates: [], count: [] };
+    let count2 = 0;
+    for (let i = 0; i < documents.templateNames.length; i++) {
+      for (let j = 0; j < documents.processedFileList.length; j++) {
+        let docsProcessedDate = new Date(
+          documents.processedFileList[j].processed_date
+        );
+        let fromDate = new Date(fromD);
+        let toDate = new Date(toD);
+        if (docsProcessedDate >= fromDate && docsProcessedDate <= toDate) {
+          if (
+            documents.templateNames[i] ===
+            props.documents.processedFileList[j].template_name
+          )
+            count2++;
+        }
+        // else {
+        //   console.log(false);
+        //   console.log(fromDate, toDate, docsProcessedDate);
+        // }
+      }
+      chart2Data.templates.push(documents.templateNames[i]);
+      chart2Data.count.push(count2);
+      count2 = 0;
+    }
+    documents.chart2data = {
+      labels: chart2Data.templates,
+      datasets: [
+        {
+          label: 'Documents Processed - Template Wise',
+          data: chart2Data.count,
+          backgroundColor: [
+            'rgba(255, 99, 132, 0.2)',
+            'rgba(255, 159, 64, 0.2)',
+            'rgba(255, 205, 86, 0.2)',
+            'rgba(75, 192, 192, 0.2)',
+            'rgba(54, 162, 235, 0.2)',
+            'rgba(153, 102, 255, 0.2)',
+            'rgba(201, 203, 207, 0.2)',
+          ],
+          borderColor: [
+            'rgb(255, 99, 132)',
+            'rgb(255, 159, 64)',
+            'rgb(255, 205, 86)',
+            'rgb(75, 192, 192)',
+            'rgb(54, 162, 235)',
+            'rgb(153, 102, 255)',
+            'rgb(201, 203, 207)',
+          ],
+          borderWidth: 1,
+        },
+      ],
+    };
+
     props.dispatch(assignDashboardData(documents));
-    console.log(documents.chart1data);
+    console.log(documents.chart2data);
   };
 
   return (
@@ -309,8 +367,12 @@ const Dashboards = (props) => {
             onChange={changeDates}
           />
         </div>
-        <div className="submitDivDate">
+        <div>
           <button onClick={() => assembleData()}>Submit</button>
+        </div>
+
+        <div className="refIcon" onClick={() => assembleData()}>
+          <i className="fi fi-ss-refresh"></i>
         </div>
       </div>
 
@@ -323,7 +385,14 @@ const Dashboards = (props) => {
             options={{ maintainAspectRatio: false }}
           />
         </div>
-        <div className="chart2nd"></div>
+        <div className="chart2nd">
+          <Bar
+            data={props.documents.chart2data}
+            height={200}
+            width={200}
+            options={{ maintainAspectRatio: false }}
+          />
+        </div>
       </div>
     </div>
   );

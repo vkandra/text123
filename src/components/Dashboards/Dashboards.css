@@ -1,18 +1,14 @@
 .datesBox {
   /* border: 1px solid #ccc; */
-  margin-top: 10px;
-  margin-bottom: 10px;
+  margin: 10px 0px 10px 10px;
   height: 30px;
-  width: 100%;
+  width: 50%;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   font-weight: bold;
 }
-.submitDivDate {
-  width: 50%;
-}
-.submitDivDate button {
+.datesBox button {
   outline: none;
   border: 1px solid grey;
   background: white;
@@ -25,9 +21,36 @@
   padding: 0 10px;
   margin: 0;
 }
-.submitDivDate button:hover {
-  background: rgb(242, 242, 242);
+.datesBox input {
+  border-radius: none;
+  border: 1px solid #ccc;
+}
+.datesBox i {
+  font-size: 1.3rem;
+  font-weight: bolder;
+  color: #008000;
+  padding-top: 5px;
+}
+.refIcon {
+  /* border: 1px solid #ccc; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+}
+.datesBox button:hover {
+  background: rgb(217, 255, 213);
   transition: 0.2s;
+}
+.refIcon:hover {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.refIcon:active {
+  border: 1px solid #0000;
+  border-radius: 5px;
+  cursor: pointer;
 }
 .currentStatsLabel {
   margin: 5px 0px 5px 10px;
