@@ -258,8 +258,6 @@ const Dashboards = (props) => {
       ],
     };
 
-    let filteredProcessedFiles = [];
-
     let chart2Data = { templates: [], count: [] };
     let count2 = 0;
     for (let i = 0; i < documents.templateNames.length; i++) {

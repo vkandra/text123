@@ -19,7 +19,7 @@ const documentsLogger =
       var totalDocs = action.data.Document_Details.length;
 
       fetchedAllDocsData.totalDocuments = totalDocs;
-      // console.log(action.data.Document_Details);
+      console.log(action.data.Document_Details);
       for (var i = 0; i < totalDocs; i++) {
         fetchedAllDocsData.documentDetails.push({
           documentId: action.data.Document_Details[i].doc_id.S,

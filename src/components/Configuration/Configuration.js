@@ -56,7 +56,14 @@ const Configuration = (props) => {
   const handleUpload = (ev) => {
     setError(false);
     setSuccess(false);
+    var userID = props.user.token;
+    let fileNameArray = [];
+    let fileSizeArray = [];
+    // console.log(document.getElementById('singleTemplateSelect').value);
     for (let i = 0; i < uploadInput.files.length; i++) {
+      fileNameArray.push(uploadInput.files[i].name);
+      fileSizeArray.push(uploadInput.files[i].size);
+
       let file = uploadInput.files[i];
       // Split the filename to get the name and type
 
@@ -86,6 +93,13 @@ const Configuration = (props) => {
             .then((result) => {
               console.log('Response from s3');
               setSuccess(true);
+              let dataOfTemplate = {
+                user_id: userID,
+                doc_name: fileNameArray,
+                size: fileSizeArray,
+                category: document.getElementById('singleTemplateSelect').value,
+              };
+              props.dispatch(fetchTemplateNamesAPI(dataOfTemplate));
             })
             .catch((error) => {
               // alert('ERROR ' + JSON.stringify(error));
