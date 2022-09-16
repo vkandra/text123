@@ -26,9 +26,9 @@ const ExtractedDocumentDetails = (props) => {
             </span>
           </div>
           <div>
-            Id : &nbsp;
+            Template : &nbsp;
             <span className="actualDocDataDetail">
-              {props.singleDocument.singleDocumentId}
+              {props.singleDocument.singleDocumentTemplate}
             </span>
           </div>
         </div>

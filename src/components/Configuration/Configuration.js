@@ -5,7 +5,10 @@ import axios from 'axios';
 // import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import ConfigurationFileList from '../ConfigurationFileList/ConfigurationFileList';
-import { fetchRawDocumentsDetailsAPI } from '../../actions/documents';
+import {
+  fetchRawDocumentsDetailsAPI,
+  fetchTemplateNamesAPI,
+} from '../../actions/documents';
 
 const Configuration = (props) => {
   const [success, setSuccess] = useState(false);
@@ -39,6 +42,9 @@ const Configuration = (props) => {
     var userID = props.user.token;
 
     props.dispatch(fetchRawDocumentsDetailsAPI(userID));
+
+    let data = { user_id: userID };
+    props.dispatch(fetchTemplateNamesAPI(data));
   }, []);
 
   // HANDLING FILES UPLOAD
@@ -106,9 +112,8 @@ const Configuration = (props) => {
         pauseOnHover
       /> */}
       <div className="uploadFilesSection">
-        <div className="uploadFileText">Upload File(s)</div>
-
         <div className="fileUploadSectionMain">
+          <div className="uploadFileText">Upload File(s) :</div>
           <div>
             <input
               id="selectedFilesForUploading"
@@ -120,6 +125,30 @@ const Configuration = (props) => {
               type="file"
             />
           </div>
+
+          <div className="templateDropdown">
+            <div className="templateLabel">Select a Template : &nbsp;</div>
+            <select
+              name="templates"
+              id="singleTemplateSelect"
+              // onChange={() => {
+              //   getSelectedTemplate();
+              // }}
+            >
+              <optgroup label="Select Template">
+                {props.documents.templateNames.map((singletemplate, index) => (
+                  <option
+                    key={singletemplate.id}
+                    singletemplate={singletemplate}
+                    value={singletemplate.name}
+                  >
+                    {singletemplate.name}
+                  </option>
+                ))}
+              </optgroup>
+            </select>
+          </div>
+
           <div>
             <button className="uploadButton" onClick={() => handleUpload()}>
               UPLOAD

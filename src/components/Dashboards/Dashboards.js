@@ -35,8 +35,8 @@ const Dashboards = (props) => {
 
   const performCalc = () => {
     const { documents } = props;
-    // let list = documents.documentDetails;
-    let list = [
+    let list = documents.documentDetails;
+    let list1 = [
       {
         documentId: '01194373652efa3d14abc00c881a4920',
         documentType: 'pdf',
@@ -218,7 +218,7 @@ const Dashboards = (props) => {
     const { documents } = props;
     let fromD = document.getElementById('from_date').value;
     let toD = document.getElementById('to_date').value;
-    // console.log(fromD, toD);
+    console.log(fromD, toD);
 
     let fromDate = new Date(fromD);
     let toDate = new Date(toD);
@@ -271,7 +271,7 @@ const Dashboards = (props) => {
         let toDate = new Date(toD);
         if (docsProcessedDate >= fromDate && docsProcessedDate <= toDate) {
           if (
-            documents.templateNames[i] ===
+            documents.templateNames[i].name ===
             props.documents.processedFileList[j].template_name
           )
             count2++;
@@ -281,7 +281,7 @@ const Dashboards = (props) => {
         //   console.log(fromDate, toDate, docsProcessedDate);
         // }
       }
-      chart2Data.templates.push(documents.templateNames[i]);
+      chart2Data.templates.push(documents.templateNames[i].name);
       chart2Data.count.push(count2);
       count2 = 0;
     }

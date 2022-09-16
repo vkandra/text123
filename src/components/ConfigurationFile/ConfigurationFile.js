@@ -31,11 +31,11 @@ const ConfigurationFile = (props) => {
 
   return (
     <div className="configurationFile">
-      <div className="configFlLstTableRowDocId">
-        {props.document.documentId}
-      </div>
       <div className="configFlLstTableRowDocName">
         {props.document.ducumentName}
+      </div>
+      <div className="configFlLstTableRowDocId">
+        {props.document.template_name}
       </div>
       <div className="configFlLstTableRowDocType">
         {props.document.documentType === 'application/pdf' ||

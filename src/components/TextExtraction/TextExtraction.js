@@ -57,6 +57,7 @@ const TextExtraction = (props) => {
     singleDocument.singleDocumentUploadDate = fileDetail.documentUploadDate;
     singleDocument.singleDocumentStatus = fileDetail.documentStatus;
     singleDocument.singleDocumentDownloadLink = fileDetail.documentDownloadLink;
+    singleDocument.singleDocumentTemplate = fileDetail.template_name;
 
     singleDocument.singleDocKeysValues = [];
     singleDocument.singleDocTablesAll = [];

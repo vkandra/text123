@@ -9,6 +9,7 @@ export const UNSELECT_DOCUMENTS_CONFIGURATION =
 export const ASSIGN_RAW_DOCUMENTS_DATA = 'ASSIGN_RAW_DOCUMENTS_DATA';
 export const CLEAR_SELECTED_FILES = 'CLEAR_SELECTED_FILES';
 export const ASSIGN_DASHBOARD_DATA = 'ASSIGN_DASHBOARD_DATA';
+export const UPDATE_TEMPLATE_NAMES = 'UPDATE_TEMPLATE_NAMES';
 
 // ACTION CREATORS
 export function assignAllReceivedDocumentsData(data) {
@@ -53,6 +54,13 @@ export function assignDashboardData(data) {
   };
 }
 
+export function updateTemplateNames(data) {
+  return {
+    type: UPDATE_TEMPLATE_NAMES,
+    data: data,
+  };
+}
+
 // API CALLS WITH THUNK AND AXIOS
 export function fetchRawDocumentsDetailsAPI(data) {
   return (dispatch) => {
@@ -69,7 +77,7 @@ export function fetchRawDocumentsDetailsAPI(data) {
 }
 export function startExtractionProcessAPI(data) {
   return (dispatch) => {
-    console.log(data);
+    // console.log(data);
     axios
       .post(
         `https://qti3aekf4g.execute-api.ap-south-1.amazonaws.com/test/execution`,
@@ -88,7 +96,7 @@ export function startExtractionProcessAPI(data) {
 
 export function stopExtractionProcessAPI(data) {
   return (dispatch) => {
-    console.log(data);
+    // console.log(data);
     axios
       .post(
         `https://owjstza5rc.execute-api.ap-south-1.amazonaws.com/stop`,
@@ -107,7 +115,7 @@ export function stopExtractionProcessAPI(data) {
 
 export function deleteFilesDataAPI(data) {
   return (dispatch) => {
-    console.log(data);
+    // console.log(data);
     axios
       .post(
         `https://npf3th07e5.execute-api.ap-south-1.amazonaws.com/delete`,
@@ -117,6 +125,38 @@ export function deleteFilesDataAPI(data) {
         console.log(response);
         dispatch(fetchRawDocumentsDetailsAPI(data.user_id));
         dispatch(clearSelectedFiles());
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
+}
+
+export function fetchTemplateNamesAPI(data) {
+  return (dispatch) => {
+    console.log(data);
+    axios
+      .post(
+        `https://lqshj05gd9.execute-api.ap-south-1.amazonaws.com/Textract_document_category`,
+        data
+      )
+      .then(function (response) {
+        console.log(response.data.Document_category);
+        console.log(Object.keys(data).length);
+        if (Object.keys(data).length === 1) {
+          if (response.data.user_id === data.user_id) {
+            dispatch(updateTemplateNames(response.data.Document_category));
+          } else {
+            console.log(
+              'User Id mismatch, asked templates for ' +
+                data.user_id +
+                ', instead recieving for ' +
+                response.data.user_id
+            );
+          }
+        }
+        // dispatch(fetchRawDocumentsDetailsAPI(data.user_id));
+        // dispatch(clearSelectedFiles());
       })
       .catch(function (error) {
         console.log(error);

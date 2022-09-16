@@ -5,6 +5,7 @@ import {
   ASSIGN_RAW_DOCUMENTS_DATA,
   CLEAR_SELECTED_FILES,
   ASSIGN_DASHBOARD_DATA,
+  UPDATE_TEMPLATE_NAMES,
 } from '../actions/documents';
 
 const initialDocumentsState = {
@@ -21,6 +22,7 @@ const initialDocumentsState = {
       documentDownloadLink: '',
       step_fun_execution_id: '',
       processed_date: '',
+      template_name: '',
     },
   ],
   filteredFilelistNotProcessed: [],
@@ -45,7 +47,12 @@ const initialDocumentsState = {
       },
     ],
   },
-  templateNames: ['Receipt', 'Bill', 'Other'],
+  // templateNames: ['Receipt', 'Bill', 'Other'],
+  templateNames: [
+    { id: 1, name: 'Receipt' },
+    { id: 2, name: 'Bill' },
+    { id: 3, name: 'Other' },
+  ],
   chart2data: {
     labels: [],
     datasets: [
@@ -116,6 +123,12 @@ export default function documents(state = initialDocumentsState, action) {
       // console.log('ACTION_in_reducer ', action.data);
       return {
         ...state,
+      };
+    case UPDATE_TEMPLATE_NAMES:
+      // console.log('ACTION_in_reducer ', action.data);
+      return {
+        ...state,
+        templateNames: action.data,
       };
     default:
       return state;

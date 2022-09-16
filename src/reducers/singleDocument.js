@@ -25,6 +25,7 @@ const initialsingleDocumentState = {
   singleDocumentUploadDate: '',
   singleDocumentStatus: '',
   singleDocumentDownloadLink: '',
+  singleDocumentTemplate: '',
 
   selectedDocumentsDetails: [],
   dropdownSelected: 0,

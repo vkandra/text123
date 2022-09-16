@@ -245,8 +245,8 @@ const ConfigurationFileList = (props) => {
       </div>
 
       <div className="configFlLstTableHeader">
-        <div className="configFlLstTableHeaderDocId">Doc. Id</div>
         <div className="configFlLstTableHeaderDocName">Doc. Name</div>
+        <div className="configFlLstTableHeaderDocId">Template</div>
         <div className="configFlLstTableHeaderDocType">Doc. Type</div>
         <div className="configFlLstTableHeaderUploadedOn">Uploaded On</div>
         <div className="configFlLstTableHeaderDocStats">Status</div>
@@ -327,7 +327,7 @@ const ConfigurationFileList = (props) => {
               className="startExtractionButton configurationFileListFourButtons"
               onClick={() => startExtractionProcess()}
             >
-              <i class="fi fi-rr-play-alt"></i> &nbsp; Start
+              <i className="fi fi-rr-play-alt"></i> &nbsp; Start
             </button>
           ) : (
             <div className="emptyButtonDiv"></div>
@@ -343,7 +343,7 @@ const ConfigurationFileList = (props) => {
               className="stopExtractionButton configurationFileListFourButtons"
               onClick={() => stopExtractionProcess()}
             >
-              <i class="fi fi-rr-ban"></i> &nbsp; Stop
+              <i className="fi fi-rr-ban"></i> &nbsp; Stop
             </button>
           ) : (
             <div className="emptyButtonDiv"></div>
@@ -352,13 +352,13 @@ const ConfigurationFileList = (props) => {
             className="viewExtractedDataButton configurationFileListFourButtons"
             onClick={() => changeToTextExtractionTab()}
           >
-            <i class="fi fi-rr-eye"></i> &nbsp; View
+            <i className="fi fi-rr-eye"></i> &nbsp; View
           </button>
           <button
             className="deleteExtractedFileButton configurationFileListFourButtons"
             onClick={() => deleteFilesProcess()}
           >
-            <i class="fi fi-rr-trash"></i> &nbsp; Delete
+            <i className="fi fi-rr-trash"></i> &nbsp; Delete
           </button>
         </div>
       ) : (
@@ -368,7 +368,7 @@ const ConfigurationFileList = (props) => {
               disabled
               className="configurationFileListFourDisabledButtons"
             >
-              <i class="fi fi-rr-play-alt"></i> &nbsp; Start
+              <i className="fi fi-rr-play-alt"></i> &nbsp; Start
             </button>
           ) : (
             <div className="emptyButtonDiv"></div>
@@ -378,16 +378,16 @@ const ConfigurationFileList = (props) => {
               disabled
               className="configurationFileListFourDisabledButtons"
             >
-              <i class="fi fi-rr-ban"></i> &nbsp; Stop
+              <i className="fi fi-rr-ban"></i> &nbsp; Stop
             </button>
           ) : (
             <div className="emptyButtonDiv"></div>
           )}
           <button disabled className="configurationFileListFourDisabledButtons">
-            <i class="fi fi-rr-eye"></i> &nbsp; View
+            <i className="fi fi-rr-eye"></i> &nbsp; View
           </button>
           <button disabled className="configurationFileListFourDisabledButtons">
-            <i class="fi fi-rr-trash"></i> &nbsp; Delete
+            <i className="fi fi-rr-trash"></i> &nbsp; Delete
           </button>
         </div>
       )}

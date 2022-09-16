@@ -34,6 +34,7 @@ const documentsLogger =
           step_fun_execution_id:
             action.data.Document_Details[i].step_fun_execution_id.S,
           processed_date: action.data.Document_Details[i].processed_date.S,
+          template_name: action.data.Document_Details[i].template.S,
         });
       }
       // fetchedAllDocsData.documentDetails.push({
@@ -64,6 +65,17 @@ const documentsLogger =
       //   console.log(fetchedAllDocsData);
       action.data = fetchedAllDocsData;
     }
+    if (action.type === 'UPDATE_TEMPLATE_NAMES') {
+      let templateNames = [];
+
+      for (let i = 0; i < action.data.length; i++) {
+        let obj = { id: i, name: action.data[i] };
+        templateNames.push(obj);
+      }
+
+      action.data = templateNames;
+    }
+
     next(action);
   };
 
