@@ -47,6 +47,7 @@ const ConfigurationFileList = (props) => {
   const startExtractionProcess = () => {
     var docNames = [];
     var docIds = [];
+    var docTemplate = [];
     var selectedPageIds = props.documents.selectedDocuments;
     var docDetails;
     if (props.extractor.processedFileTab === 1) {
@@ -64,6 +65,7 @@ const ConfigurationFileList = (props) => {
         ) {
           docNames.push(docDetails[i].ducumentName);
           docIds.push(docDetails[i].documentId);
+          docTemplate.push(docDetails[i].template_name);
         }
       }
     }
@@ -77,6 +79,7 @@ const ConfigurationFileList = (props) => {
           user_id: props.user.token,
           doc_id: docIds[i],
           doc_name: docNames[i],
+          doc_template: docTemplate[i],
         });
       }
       let dataStart = {
@@ -84,6 +87,7 @@ const ConfigurationFileList = (props) => {
         stateMachineArn:
           'arn:aws:states:ap-south-1:565442373753:stateMachine:Textract_State_Machine',
       };
+      // console.log(dataStart);
       // console.log(props.documents.filteredFilelistNotProcessed);
       props.dispatch(startExtractionProcessAPI(dataStart));
       setTimeout(() => {
