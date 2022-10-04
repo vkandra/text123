@@ -6,15 +6,15 @@ import { signInOperation } from '../../actions/user';
 import { signUpOperation } from '../../actions/user';
 
 const Header = (props) => {
-  const signInPerform = () => {
-    const { user } = props;
-    props.dispatch(signInOperation(user));
-  };
+  // const signInPerform = () => {
+  //   const { user } = props;
+  //   props.dispatch(signInOperation(user));
+  // };
 
-  const signUpPerform = () => {
-    const { user } = props;
-    props.dispatch(signUpOperation(user));
-  };
+  // const signUpPerform = () => {
+  //   const { user } = props;
+  //   props.dispatch(signUpOperation(user));
+  // };
 
   return (
     <div className="header">
@@ -25,7 +25,11 @@ const Header = (props) => {
 
       <div className="dropiconbutton">
         <div>ICONS </div>
-        {props.user.signUp === false && props.user.isLoggedIn === true ? (
+        <div>Hi {props.userDetails.attributes.name} </div>
+        <button className="inupoutButton" onClick={props.signOut}>
+          Sign Out
+        </button>
+        {/* {props.user.signUp === false && props.user.isLoggedIn === true ? (
           <Link to="/signin">
             <button className="inupoutButton" onClick={signInPerform}>
               Sign Out
@@ -43,7 +47,7 @@ const Header = (props) => {
               Sign In
             </button>
           </Link>
-        ) : null}
+        ) : null} */}
       </div>
     </div>
   );

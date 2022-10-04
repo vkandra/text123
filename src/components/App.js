@@ -12,15 +12,19 @@ import SignUp from '../pages/SignUp.js/SignUp';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-import { Amplify } from 'aws-amplify';
+import { withAuthenticator } from '@aws-amplify/ui-react';
 
-import { Authenticator } from '@aws-amplify/ui-react';
+// import { Amplify } from 'aws-amplify';
+
+// import { Authenticator } from '@aws-amplify/ui-react';
 import '@aws-amplify/ui-react/styles.css';
 
-import awsExports from './UserConfig';
-Amplify.configure(awsExports);
+// import awsExports from './UserConfig';
+// Amplify.configure(awsExports);
 
 const App = (props) => {
+  const { signOut, user } = props;
+  console.log(user);
   return (
     // <Authenticator>
     //   <Header />
@@ -33,12 +37,15 @@ const App = (props) => {
     // </Authenticator>
 
     <Router>
-      <Header />
+      {/* <div>Hello {user.attributes.email}</div> */}
+      {/* <button onClick={signOut}>Sign out</button> */}
+
+      <Header userDetails={user} signOut={signOut} />
 
       <Routes>
         <Route path="/" element={<InAppBody />} />
-        <Route path="/signin" element={<SignIn />} />
-        <Route path="/signup" element={<SignUp />} />
+        {/* <Route path="/signin" element={<SignIn />} /> */}
+        {/* <Route path="/signup" element={<SignUp />} /> */}
       </Routes>
 
       <Footer />
@@ -49,9 +56,9 @@ const App = (props) => {
 const mapStateToProps = (state) => {
   return {
     documents: state.documents,
-    user: state.user,
+    // user: state.user,
     singleDocument: state.singleDocument,
   };
 };
 
-export default connect(mapStateToProps)(App);
+export default withAuthenticator(connect(mapStateToProps)(App));
