@@ -1,13 +1,16 @@
 .keyValueDocData {
   padding-left: 2%;
   height: 100%;
+  width: 100%;
   /* border: 1px solid black; */
 }
 .keysandvaluesText {
   display: flex;
   justify-content: space-around;
   align-items: center;
+  /* width: 100%; */
   border: 1px solid #ccc;
+  /* border: 1px solid black; */
 }
 .keysOnlyText {
   border-right: 1px solid #ccc;

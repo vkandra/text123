@@ -2,12 +2,20 @@
   height: 9vh;
   background-color: rgb(31, 30, 30);
   color: white;
+  /* color: rgb(31, 30, 30); */
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 0px 40px;
   font-size: 1.2rem;
   font-weight: 700;
+  border-bottom: 1px solid #ccc;
+}
+.logoImg {
+  /* background: white; */
+  border-radius: 5px;
+  /* border: 1px solid #8a8a8a; */
+  filter: invert(1);
 }
 .iconName {
   font-family: cursive;

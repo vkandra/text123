@@ -1,9 +1,11 @@
 .tableDocData {
   padding-left: 2%;
   height: 100%;
+  /* width: 100%; */
   /* border: 1px solid black; */
 }
 
 .allTables {
   border: 1px solid #ccc;
+  /* width: 100%; */
 }

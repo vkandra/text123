@@ -21,7 +21,14 @@ const Header = (props) => {
       {/* <div>
         <i className="fi fi-sr-building"></i>
       </div> */}
-      <div className="iconName">TEXT-EXTRACTOR</div>
+      {/* <div className="iconName"> */}
+      <img
+        className="logoImg"
+        src="https://amazon-textract-s3bucket.s3.ap-south-1.amazonaws.com/input/MicrosoftTeams-image+(2).png"
+        alt="text-extractor"
+        width="17%"
+      />
+      {/* </div> */}
 
       <div className="dropiconbutton">
         <div>ICONS </div>
