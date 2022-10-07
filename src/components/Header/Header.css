@@ -1,6 +1,7 @@
 .header {
   height: 9vh;
-  background-color: rgb(31, 30, 30);
+  /* background-color: rgb(31, 30, 30); */
+  background: #1f1f1f;
   color: white;
   /* color: rgb(31, 30, 30); */
   display: flex;
@@ -15,7 +16,7 @@
   /* background: white; */
   border-radius: 5px;
   /* border: 1px solid #8a8a8a; */
-  filter: invert(1);
+  /* filter: invert(1); */
 }
 .iconName {
   font-family: cursive;
