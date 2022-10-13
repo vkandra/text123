@@ -10,9 +10,11 @@ import { configureStore } from './store';
 
 import Amplify from 'aws-amplify';
 import config from './aws-exports';
-import { AmplifyProvider } from '@aws-amplify/ui-react';
+// import { AmplifyProvider } from '@aws-amplify/ui-react';
+import awsExports from './aws-exports';
+import { AmplifyProvider, Authenticator } from '@aws-amplify/ui-react';
 
-Amplify.configure(config);
+Amplify.configure(awsExports);
 
 const store = configureStore();
 
@@ -21,11 +23,13 @@ const store = configureStore();
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <AmplifyProvider>
-    <Provider store={store}>
-      {/* <React.StrictMode> */}
-      <App />
-      {/* </React.StrictMode> */}
-    </Provider>
+    <Authenticator.Provider>
+      <Provider store={store}>
+        {/* <React.StrictMode> */}
+        <App />
+        {/* </React.StrictMode> */}
+      </Provider>
+    </Authenticator.Provider>
   </AmplifyProvider>
 );
 

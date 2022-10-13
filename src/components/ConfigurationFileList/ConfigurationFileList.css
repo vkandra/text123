@@ -138,7 +138,10 @@
 }
 .tableHeadBodyLine {
   margin: 1px;
-  color: #ccc;
+  /* color: #ccc; */
+  border: none;
+  background: #ccc;
+  height: 1px;
 }
 ::-webkit-scrollbar {
   width: 5px;
@@ -199,5 +202,9 @@
   border-right: 1px solid #ccc;
 }
 .horizontal-line-1 {
-  margin: 2px !important;
+  margin: 1px;
+  /* color: #ccc; */
+  border: none;
+  background: #ccc;
+  height: 1px;
 }

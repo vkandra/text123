@@ -11,9 +11,6 @@ import Configuration from '../../components/Configuration/Configuration';
 import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
 
-import { withAuthenticator } from '@aws-amplify/ui-react';
-import '@aws-amplify/ui-react/styles.css';
-
 const InAppBody = (props) => {
   const { signOut, user } = props;
   console.log(signOut);
@@ -26,7 +23,7 @@ const InAppBody = (props) => {
 
   return (
     <div className="inAppBody">
-      <Header userDetails={user} signOut={signOut} />
+      <Header />
       <div className="appBody">
         <div className="bodyContainer">
           <div className="menuContainer">
@@ -102,4 +99,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default withAuthenticator(connect(mapStateToProps)(InAppBody));
+export default connect(mapStateToProps)(InAppBody);
