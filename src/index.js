@@ -16,6 +16,8 @@ Amplify.configure(config);
 
 const store = configureStore();
 
+// console.log(props.userDetails.attributes.name);
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <AmplifyProvider>

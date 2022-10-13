@@ -2,6 +2,10 @@
   height: 83vh;
 }
 
+.appBody {
+  height: 83vh;
+}
+
 .bodyContainer {
   /* border: 1px solid black; */
   margin: 20px;

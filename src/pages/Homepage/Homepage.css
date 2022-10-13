@@ -1,0 +1,60 @@
+.head-sec {
+  height: 9vh;
+  /* background-color: rgb(31, 30, 30); */
+  background: #1f1f1f;
+  color: white;
+  /* color: rgb(31, 30, 30); */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px 40px;
+  font-size: 1.2rem;
+  font-weight: 700;
+  border-bottom: 1px solid #ccc;
+}
+
+.body-sec {
+  height: 85.7vh;
+  display: flex;
+  width: 100vw;
+  /* border: 1px solid black; */
+  overflow: hidden;
+  justify-content: center;
+  align-items: center;
+}
+
+.vidSet {
+  /* height: 100%; */
+  width: 100%;
+  z-index: 0;
+}
+.SinInSignUpBut {
+  position: absolute;
+  top: 35%;
+  background: #1f1f1f;
+  opacity: 95%;
+  margin: auto;
+  z-index: 1;
+  height: 30%;
+  width: 35%;
+  border: 1px solid #ccc;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  /* padding: 1%; */
+}
+
+.signButton {
+  outline: none;
+  height: 60px;
+  width: 200px;
+  border: 2px solid #384988;
+  border-radius: 4px;
+  font-family: sans-serif;
+  background: black;
+  color: #5cc789;
+  font-size: 1.3rem;
+  font-weight: 600;
+  cursor: pointer;
+}

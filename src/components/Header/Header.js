@@ -32,10 +32,13 @@ const Header = (props) => {
 
       <div className="dropiconbutton">
         <div>ICONS </div>
-        <div>Hi {props.userDetails.attributes.name} </div>
-        <button className="inupoutButton" onClick={props.signOut}>
-          Sign Out
-        </button>
+        <div>Hi {props.userDetails.attributes.name}</div>
+        {/* {props.userDetails.attributes.name} */}
+        <Link to="/">
+          <button className="inupoutButton" onClick={props.signOut}>
+            Sign Out
+          </button>
+        </Link>
         {/* {props.user.signUp === false && props.user.isLoggedIn === true ? (
           <Link to="/signin">
             <button className="inupoutButton" onClick={signInPerform}>

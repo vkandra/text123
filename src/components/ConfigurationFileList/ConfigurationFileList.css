@@ -137,7 +137,8 @@
   /* border: 1px solid black; */
 }
 .tableHeadBodyLine {
-  margin: 2px;
+  margin: 1px;
+  color: #ccc;
 }
 ::-webkit-scrollbar {
   width: 5px;
