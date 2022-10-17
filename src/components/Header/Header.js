@@ -9,6 +9,8 @@ import { useAuthenticator } from '@aws-amplify/ui-react';
 import languages from '../../languages';
 import { fetchUserLang } from '../../actions/themeLang';
 
+import logoUrl from '../../Pictures/aLPHA.png';
+
 const Header = (props) => {
   useEffect(() => {
     changeLanguage();
@@ -27,14 +29,13 @@ const Header = (props) => {
 
   return (
     <div className="header">
-      <img
-        className="logoImg"
-        src="https://amazon-textract-s3bucket.s3.ap-south-1.amazonaws.com/input/Black___White_Minimalist_Business_Logo__3_-removebg-preview.png"
-        alt="text-extractor"
-        width="17%"
-      />
+      <img className="logoImg" src={logoUrl} alt="text-extractor" width="13%" />
 
       <div className="dropiconbutton">
+        <div>
+          {props.themeLang.languageWords.Hi} {user.attributes.name}!
+        </div>
+
         <div className="languageDiv">
           <i className="fi fi-ss-globe"></i>&nbsp;
           <select
@@ -48,12 +49,13 @@ const Header = (props) => {
             <option value="fr">Fr</option>
           </select>
         </div>
-        <div>Hi {user.attributes.name}</div>
+
         {/* {props.userDetails.attributes.name} */}
         {/* <Link to="/"> */}
-        <button className="inupoutButton" onClick={signOut}>
-          {props.themeLang.languageWords.Sign_Out}
-        </button>
+        <div className="inupoutButton" onClick={signOut}>
+          {props.themeLang.languageWords.Sign_Out}&nbsp;
+          <i class="fi fi-sr-exit"></i>
+        </div>
         {/* </Link> */}
       </div>
     </div>

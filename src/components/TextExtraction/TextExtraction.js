@@ -149,7 +149,7 @@ const TextExtraction = (props) => {
                   getSingleSelectedDocId();
                 }}
               >
-                <optgroup label="Select Document">
+                <optgroup label={props.themeLang.languageWords.Select_Document}>
                   {props.singleDocument.selectedDocumentsDetails.map(
                     (singlefile, index) => (
                       <option
@@ -209,7 +209,8 @@ const TextExtraction = (props) => {
               }`}
               onClick={() => gotoPrevFile()}
             >
-              <i className="fi fi-ss-arrow-left"></i> &nbsp; Prev
+              <i className="fi fi-ss-arrow-left"></i> &nbsp;{' '}
+              {props.themeLang.languageWords.Prev}
             </div>
             <div
               className={`${
@@ -220,7 +221,8 @@ const TextExtraction = (props) => {
               }`}
               onClick={() => gotoNextFile()}
             >
-              Next &nbsp;<i className="fi fi-ss-arrow-right"></i>
+              {props.themeLang.languageWords.Next} &nbsp;
+              <i className="fi fi-ss-arrow-right"></i>
             </div>
           </div>
         </div>
@@ -233,7 +235,7 @@ const TextExtraction = (props) => {
               }`}
               onClick={() => changeDataTabs(1)}
             >
-              Key-Value
+              {props.themeLang.languageWords.Key_Value}
             </div>
             <div
               className={`${
@@ -241,7 +243,7 @@ const TextExtraction = (props) => {
               }`}
               onClick={() => changeDataTabs(2)}
             >
-              Table
+              {props.themeLang.languageWords.Table}
             </div>
             <div
               className={`${
@@ -249,7 +251,7 @@ const TextExtraction = (props) => {
               }`}
               onClick={() => changeDataTabs(3)}
             >
-              Raw Data
+              {props.themeLang.languageWords.Raw_Data}
             </div>
           </div>
           <div className="docTabData">
@@ -263,7 +265,9 @@ const TextExtraction = (props) => {
               props.singleDocument.singleDocumentStatus === 'Processed' ? (
               <RawDocData />
             ) : (
-              <div className="dataNotExt">Data Not Extracted</div>
+              <div className="dataNotExt">
+                {props.themeLang.languageWords.Data_Not_Extracted}
+              </div>
             )}
           </div>
         </div>
@@ -281,6 +285,7 @@ const mapStateToProps = (state) => {
     user: state.user,
     documents: state.documents,
     singleDocument: state.singleDocument,
+    themeLang: state.themeLang,
   };
 };
 

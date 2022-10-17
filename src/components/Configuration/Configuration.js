@@ -127,7 +127,9 @@ const Configuration = (props) => {
       /> */}
       <div className="uploadFilesSection">
         <div className="fileUploadSectionMain">
-          <div className="uploadFileText">Upload File(s) :</div>
+          <div className="uploadFileText">
+            {props.themeLang.languageWords.Upload_Files} :
+          </div>
           <div>
             <input
               id="selectedFilesForUploading"
@@ -141,7 +143,9 @@ const Configuration = (props) => {
           </div>
 
           <div className="templateDropdown">
-            <div className="templateLabel">Select a Template : &nbsp;</div>
+            <div className="templateLabel">
+              {props.themeLang.languageWords.Select_a_Template} : &nbsp;
+            </div>
             <select
               name="templates"
               id="singleTemplateSelect"
@@ -149,7 +153,7 @@ const Configuration = (props) => {
               //   getSelectedTemplate();
               // }}
             >
-              <optgroup label="Select Template">
+              <optgroup label={props.themeLang.languageWords.Select_a_Template}>
                 {props.documents.templateNames.map((singletemplate, index) => (
                   <option
                     key={singletemplate.id}
@@ -165,18 +169,22 @@ const Configuration = (props) => {
 
           <div>
             <button className="uploadButton" onClick={() => handleUpload()}>
-              UPLOAD
+              {props.themeLang.languageWords.Upload}
             </button>
           </div>
         </div>
         <div className="uploadStatusShow">
           {success ? (
-            <span style={{ color: 'green' }}>Upload Successful</span>
+            <span style={{ color: 'green' }}>
+              {props.themeLang.languageWords.Upload_Successful}
+            </span>
           ) : (
             <span style={{ color: 'green' }}></span>
           )}
           {error ? (
-            <span style={{ color: 'red' }}>Upload Failed</span>
+            <span style={{ color: 'red' }}>
+              {props.themeLang.languageWords.Upload_Failed}
+            </span>
           ) : (
             <span style={{ color: 'red' }}></span>
           )}
@@ -193,6 +201,7 @@ const mapStateToProps = (state) => {
     extractor: state.extractor,
     documents: state.documents,
     user: state.user,
+    themeLang: state.themeLang,
   };
 };
 

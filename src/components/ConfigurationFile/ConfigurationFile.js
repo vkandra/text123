@@ -54,14 +54,14 @@ const ConfigurationFile = (props) => {
           className="configFlLstTableRowSelect"
           onClick={() => selectDocument(props.document.documentId)}
         >
-          Select
+          {props.themeLang.languageWords.Select}
         </button>
       ) : (
         <button
           className="configFlLstTableRowUnselect"
           onClick={() => unselectDocument(props.document.documentId)}
         >
-          Selected
+          {props.themeLang.languageWords.Selected}
         </button>
       )}
     </div>
@@ -71,6 +71,7 @@ const ConfigurationFile = (props) => {
 const mapStateToProps = (state) => {
   return {
     documents: state.documents,
+    themeLang: state.themeLang,
   };
 };
 

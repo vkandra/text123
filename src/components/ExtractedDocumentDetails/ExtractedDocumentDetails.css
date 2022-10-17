@@ -45,7 +45,7 @@
   font-size: 0.8rem;
   background-color: white;
   cursor: pointer;
-  width: 100px;
+  min-width: 100px;
   display: flex;
   justify-content: center;
   align-items: center;

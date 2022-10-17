@@ -2,7 +2,10 @@ import './ExtractedDocumentDetails.css';
 import React from 'react';
 import { connect } from 'react-redux/es/exports';
 
-import { postEditedDataAPI } from '../../actions/extractor';
+import {
+  postEditedDataAPI,
+  downloadEditedDataAPI,
+} from '../../actions/extractor';
 
 const ExtractedDocumentDetails = (props) => {
   const saveAndSendEditedData = () => {
@@ -15,18 +18,27 @@ const ExtractedDocumentDetails = (props) => {
     props.dispatch(postEditedDataAPI(editedData));
   };
 
+  const downloadEditedData = () => {
+    let userAndFileData = {
+      user_id: props.user.token,
+      doc_id: props.singleDocument.singleDocumentId,
+    };
+    // console.log(editedData);
+    props.dispatch(downloadEditedDataAPI(userAndFileData));
+  };
+
   return (
     <div className="extractedDocumentDetails">
       <div className="documentDetailSections">
         <div className="documentSingleDetailSection">
           <div>
-            Name : &nbsp;
+            {props.themeLang.languageWords.Name} : &nbsp;
             <span className="actualDocDataDetail">
               {props.singleDocument.singleDocumentName}
             </span>
           </div>
           <div>
-            Template : &nbsp;
+            {props.themeLang.languageWords.Template} : &nbsp;
             <span className="actualDocDataDetail">
               {props.singleDocument.singleDocumentTemplate}
             </span>
@@ -34,13 +46,13 @@ const ExtractedDocumentDetails = (props) => {
         </div>
         <div className="documentSingleDetailSection">
           <div>
-            Size : &nbsp;
+            {props.themeLang.languageWords.Size} : &nbsp;
             <span className="actualDocDataDetail">
               {Math.round(props.singleDocument.singleDocumentSize / 1024)}kb
             </span>
           </div>
           <div>
-            Uploaded on : &nbsp;
+            {props.themeLang.languageWords.Uploaded_on} : &nbsp;
             <span className="actualDocDataDetail">
               {props.singleDocument.singleDocumentUploadDate}
             </span>
@@ -52,10 +64,12 @@ const ExtractedDocumentDetails = (props) => {
           className="saveDataButton"
           onClick={() => saveAndSendEditedData()}
         >
-          <i className="fi fi-rr-disk"></i>&nbsp; Save
+          <i className="fi fi-rr-disk"></i>&nbsp;{' '}
+          {props.themeLang.languageWords.Save}
         </button>
-        <button className="downloadButton">
-          <i className="fi fi-rr-download"></i> &nbsp;Download
+        <button className="downloadButton" onClick={() => downloadEditedData()}>
+          <i className="fi fi-rr-download"></i> &nbsp;
+          {props.themeLang.languageWords.Download}
         </button>
         {/* <button className="deleteButton">Delete</button> */}
       </div>
@@ -68,6 +82,7 @@ const mapStateToProps = (state) => {
     user: state.user,
     singleDocument: state.singleDocument,
     extractor: state.extractor,
+    themeLang: state.themeLang,
   };
 };
 

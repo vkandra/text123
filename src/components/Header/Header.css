@@ -8,8 +8,8 @@
   justify-content: space-between;
   align-items: center;
   padding: 0px 40px;
-  font-size: 1.2rem;
-  font-weight: 700;
+  font-size: 1rem;
+  font-weight: 500;
   border-bottom: 1px solid #ccc;
 }
 .logoImg {
@@ -30,17 +30,20 @@
 }
 .inupoutButton {
   outline: none;
-  background: wheat;
-  color: black;
+  color: rgb(255, 208, 208);
   height: 40px;
   min-width: 100px;
-  font-size: 15px;
-  font-family: monospace;
   cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .inupoutButton:hover {
-  background: rgb(255, 204, 109);
+  color: rgb(255, 128, 128);
+}
+.inupoutButton i {
+  margin-top: 5px;
 }
 .languageDiv {
   /* border: 1px solid white; */
@@ -55,4 +58,14 @@
   font-size: 18px;
   margin-top: 7px;
   color: white;
+}
+#languageSelect {
+  background: transparent;
+  border: 1px solid white;
+  border-radius: 4px;
+  color: white;
+}
+#languageSelect option {
+  background: white;
+  color: black;
 }

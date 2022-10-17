@@ -34,7 +34,7 @@ const InAppBody = (props) => {
               id="singleMenu1"
               onClick={() => changeMainTabs(1)}
             >
-              Configuration
+              {props.themeLang.languageWords.Configuration}
             </div>
             <div
               className={`singleMenus ${
@@ -43,7 +43,7 @@ const InAppBody = (props) => {
               id="singleMenu2"
               onClick={() => changeMainTabs(2)}
             >
-              Text Extraction
+              {props.themeLang.languageWords.Text_Extraction}
             </div>
             <div
               className={`singleMenus ${
@@ -52,7 +52,7 @@ const InAppBody = (props) => {
               id="singleMenu3"
               onClick={() => changeMainTabs(3)}
             >
-              Annotation
+              {props.themeLang.languageWords.Annotation}
             </div>
             <div
               className={`singleMenus ${
@@ -61,7 +61,7 @@ const InAppBody = (props) => {
               id="singleMenu4"
               onClick={() => changeMainTabs(4)}
             >
-              Object Detection
+              {props.themeLang.languageWords.Object_Detection}
             </div>
             <div
               className={`singleMenus ${
@@ -70,7 +70,7 @@ const InAppBody = (props) => {
               id="singleMenu5"
               onClick={() => changeMainTabs(5)}
             >
-              Dashboards
+              {props.themeLang.languageWords.Dashboards}
             </div>
           </div>
           <div className="visualBodyContainer">
@@ -96,6 +96,7 @@ const InAppBody = (props) => {
 const mapStateToProps = (state) => {
   return {
     extractor: state.extractor,
+    themeLang: state.themeLang,
   };
 };
 

@@ -62,3 +62,21 @@ export function postEditedDataAPI(data) {
       });
   };
 }
+
+export function downloadEditedDataAPI(data) {
+  return (dispatch) => {
+    console.log(data);
+    axios
+      .post(
+        `https://unlc0xmzu2.execute-api.ap-south-1.amazonaws.com/download`,
+        data
+      )
+      .then(function (response) {
+        console.log(response);
+        // dispatch(fetchRawDocumentsDetailsAPI(data.user_id));
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
+}

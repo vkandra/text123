@@ -1,4 +1,5 @@
 import { Flex, Image, useTheme } from '@aws-amplify/ui-react';
+import logoImage from '../../Pictures/aLPHA.png';
 
 export function Header() {
   const { tokens } = useTheme();
@@ -6,7 +7,7 @@ export function Header() {
   return (
     <Flex justifyContent="center">
       <Image
-        src="https://amazon-textract-s3bucket.s3.ap-south-1.amazonaws.com/input/Black___White_Minimalist_Business_Logo__3_-removebg-preview.png"
+        src={logoImage}
         alt="text-extractor"
         padding={tokens.space.medium}
       />

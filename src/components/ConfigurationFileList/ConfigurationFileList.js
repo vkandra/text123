@@ -234,7 +234,7 @@ const ConfigurationFileList = (props) => {
           }`}
           onClick={() => handleProcessedFileTab(1)}
         >
-          Not Processed
+          {props.themeLang.languageWords.Not_Processed}
         </div>
         <div
           className={`${
@@ -244,16 +244,26 @@ const ConfigurationFileList = (props) => {
           }`}
           onClick={() => handleProcessedFileTab(2)}
         >
-          Processed
+          {props.themeLang.languageWords.Processed}
         </div>
       </div>
 
       <div className="configFlLstTableHeader">
-        <div className="configFlLstTableHeaderDocName">Doc. Name</div>
-        <div className="configFlLstTableHeaderDocId">Template</div>
-        <div className="configFlLstTableHeaderDocType">Doc. Type</div>
-        <div className="configFlLstTableHeaderUploadedOn">Uploaded On</div>
-        <div className="configFlLstTableHeaderDocStats">Status</div>
+        <div className="configFlLstTableHeaderDocName">
+          {props.themeLang.languageWords.Doc_Name}
+        </div>
+        <div className="configFlLstTableHeaderDocId">
+          {props.themeLang.languageWords.Template}
+        </div>
+        <div className="configFlLstTableHeaderDocType">
+          {props.themeLang.languageWords.Doc_Type}
+        </div>
+        <div className="configFlLstTableHeaderUploadedOn">
+          {props.themeLang.languageWords.Uploaded_On}
+        </div>
+        <div className="configFlLstTableHeaderDocStats">
+          {props.themeLang.languageWords.Status}
+        </div>
         {props.extractor.processedFileTab === 1 &&
         props.documents.filteredFilelistNotProcessed.length ===
           props.documents.selectedDocuments.length ? (
@@ -261,7 +271,7 @@ const ConfigurationFileList = (props) => {
             className="configFlLstTableHeaderUnSelectAll"
             onClick={() => unselectAllDocuments()}
           >
-            All Selected
+            {props.themeLang.languageWords.All_Selected}
           </button>
         ) : props.extractor.processedFileTab === 2 &&
           props.documents.filteredFilelistProcessed.length ===
@@ -270,7 +280,7 @@ const ConfigurationFileList = (props) => {
             className="configFlLstTableHeaderUnSelectAll"
             onClick={() => unselectAllDocuments()}
           >
-            All Selected
+            {props.themeLang.languageWords.All_Selected}
           </button>
         ) : props.extractor.processedFileTab === 1 &&
           props.documents.filteredFilelistNotProcessed.length !==
@@ -281,7 +291,7 @@ const ConfigurationFileList = (props) => {
               selectAllDocuments(props.documents.filteredFilelistNotProcessed)
             }
           >
-            Select All
+            {props.themeLang.languageWords.Select_All}
           </button>
         ) : props.extractor.processedFileTab === 2 &&
           props.documents.filteredFilelistProcessed.length !==
@@ -292,14 +302,16 @@ const ConfigurationFileList = (props) => {
               selectAllDocuments(props.documents.filteredFilelistProcessed)
             }
           >
-            Select All
+            {props.themeLang.languageWords.Select_All}
           </button>
         ) : null}
       </div>
       <hr className="tableHeadBodyLine"></hr>
       {props.extractor.processedFileTab === 1 &&
       props.documents.filteredFilelistNotProcessed.length === 0 ? (
-        <div className="no-documents">No Documents to display</div>
+        <div className="no-documents">
+          {props.themeLang.languageWords.No_Documents_to_display}
+        </div>
       ) : props.extractor.processedFileTab === 1 &&
         props.documents.filteredFilelistNotProcessed.length !== 0 ? (
         <div className="configFlLstTableBody">
@@ -314,7 +326,9 @@ const ConfigurationFileList = (props) => {
         </div>
       ) : props.extractor.processedFileTab === 2 &&
         props.documents.filteredFilelistProcessed.length === 0 ? (
-        <div className="no-documents">No Documents to display</div>
+        <div className="no-documents">
+          {props.themeLang.languageWords.No_Documents_to_display}
+        </div>
       ) : props.extractor.processedFileTab === 2 &&
         props.documents.filteredFilelistProcessed.length !== 0 ? (
         <div className="configFlLstTableBody">
@@ -331,7 +345,8 @@ const ConfigurationFileList = (props) => {
               className="startExtractionButton configurationFileListFourButtons"
               onClick={() => startExtractionProcess()}
             >
-              <i className="fi fi-rr-play-alt"></i> &nbsp; Start
+              <i className="fi fi-rr-play-alt"></i> &nbsp;{' '}
+              {props.themeLang.languageWords.Start}
             </button>
           ) : (
             <div className="emptyButtonDiv"></div>
@@ -347,7 +362,8 @@ const ConfigurationFileList = (props) => {
               className="stopExtractionButton configurationFileListFourButtons"
               onClick={() => stopExtractionProcess()}
             >
-              <i className="fi fi-rr-ban"></i> &nbsp; Stop
+              <i className="fi fi-rr-ban"></i> &nbsp;{' '}
+              {props.themeLang.languageWords.Stop}
             </button>
           ) : (
             <div className="emptyButtonDiv"></div>
@@ -356,13 +372,15 @@ const ConfigurationFileList = (props) => {
             className="viewExtractedDataButton configurationFileListFourButtons"
             onClick={() => changeToTextExtractionTab()}
           >
-            <i className="fi fi-rr-eye"></i> &nbsp; View
+            <i className="fi fi-rr-eye"></i> &nbsp;{' '}
+            {props.themeLang.languageWords.View}
           </button>
           <button
             className="deleteExtractedFileButton configurationFileListFourButtons"
             onClick={() => deleteFilesProcess()}
           >
-            <i className="fi fi-rr-trash"></i> &nbsp; Delete
+            <i className="fi fi-rr-trash"></i> &nbsp;{' '}
+            {props.themeLang.languageWords.Delete}
           </button>
         </div>
       ) : (
@@ -372,7 +390,8 @@ const ConfigurationFileList = (props) => {
               disabled
               className="configurationFileListFourDisabledButtons"
             >
-              <i className="fi fi-rr-play-alt"></i> &nbsp; Start
+              <i className="fi fi-rr-play-alt"></i> &nbsp;{' '}
+              {props.themeLang.languageWords.Start}
             </button>
           ) : (
             <div className="emptyButtonDiv"></div>
@@ -382,16 +401,19 @@ const ConfigurationFileList = (props) => {
               disabled
               className="configurationFileListFourDisabledButtons"
             >
-              <i className="fi fi-rr-ban"></i> &nbsp; Stop
+              <i className="fi fi-rr-ban"></i> &nbsp;{' '}
+              {props.themeLang.languageWords.Stop}
             </button>
           ) : (
             <div className="emptyButtonDiv"></div>
           )}
           <button disabled className="configurationFileListFourDisabledButtons">
-            <i className="fi fi-rr-eye"></i> &nbsp; View
+            <i className="fi fi-rr-eye"></i> &nbsp;{' '}
+            {props.themeLang.languageWords.View}
           </button>
           <button disabled className="configurationFileListFourDisabledButtons">
-            <i className="fi fi-rr-trash"></i> &nbsp; Delete
+            <i className="fi fi-rr-trash"></i> &nbsp;{' '}
+            {props.themeLang.languageWords.Delete}
           </button>
         </div>
       )}
@@ -404,6 +426,7 @@ const mapStateToProps = (state) => {
     documents: state.documents,
     extractor: state.extractor,
     singleDocument: state.singleDocument,
+    themeLang: state.themeLang,
     user: state.user,
   };
 };

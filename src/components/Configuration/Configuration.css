@@ -21,7 +21,7 @@
   align-items: center;
 }
 .fileUploadSectionMain {
-  width: 70%;
+  width: 80%;
   /* border: 1px solid #000000; */
   display: flex;
   justify-content: space-between;

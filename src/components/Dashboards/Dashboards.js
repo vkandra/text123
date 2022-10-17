@@ -318,22 +318,30 @@ const Dashboards = (props) => {
 
   return (
     <div className="dashboards">
-      <div className="currentStatsLabel">Current Stats -</div>
+      <div className="currentStatsLabel">
+        {props.themeLang.languageWords.Current_Stats}
+      </div>
       <div className="allCards">
         <div className="singleCard cardNo1">
-          <div className="cardName">Not Processed</div>
+          <div className="cardName">
+            {props.themeLang.languageWords.Not_Processed}
+          </div>
           <div className="cardValue">
             {props.documents.notProcessedFileListSize}
           </div>
         </div>
         <div className="singleCard cardNo2">
-          <div className="cardName">Processing / Queued</div>
+          <div className="cardName">
+            {props.themeLang.languageWords.Processing_Queued}
+          </div>
           <div className="cardValue">
             {props.documents.processingFileListSize}
           </div>
         </div>
         <div className="singleCard cardNo3">
-          <div className="cardName">Processed</div>
+          <div className="cardName">
+            {props.themeLang.languageWords.Processed}
+          </div>
           <div className="cardValue">
             {props.documents.processedFileListSize}
           </div>
@@ -344,7 +352,9 @@ const Dashboards = (props) => {
 
       <div className="datesBox">
         <div className="fromDate">
-          <label for="fromdate">From :&nbsp;</label>
+          <label for="fromdate">
+            {props.themeLang.languageWords.From} :&nbsp;
+          </label>
           <input
             type="date"
             id="from_date"
@@ -355,7 +365,7 @@ const Dashboards = (props) => {
           />
         </div>
         <div className="toDate">
-          <label for="todate">To :&nbsp;</label>
+          <label for="todate">{props.themeLang.languageWords.To} :&nbsp;</label>
           <input
             type="date"
             id="to_date"
@@ -366,7 +376,9 @@ const Dashboards = (props) => {
           />
         </div>
         <div>
-          <button onClick={() => assembleData()}>Submit</button>
+          <button onClick={() => assembleData()}>
+            {props.themeLang.languageWords.Submit}
+          </button>
         </div>
 
         <div className="refIcon" onClick={() => assembleData()}>
@@ -401,6 +413,7 @@ const mapStateToProps = (state) => {
     user: state.user,
     extractor: state.extractor,
     documents: state.documents,
+    themeLang: state.themeLang,
   };
 };
 
