@@ -1,5 +1,5 @@
 import './ConfigurationFile.css';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux/es/exports';
 
 import {
@@ -11,6 +11,15 @@ const ConfigurationFile = (props) => {
   var dateArray = props.document.documentUploadDate.split(' ', 16);
   var formedDate = dateArray[1] + ' ' + dateArray[2] + ' ' + dateArray[3];
   //   console.log(props);
+
+  useEffect(() => {
+    console.log(props.background);
+    console.log(props.index);
+    if (props.index % 2 === 0) {
+      const element = document.getElementsByClassName('configurationFile');
+      element[props.index].classList.add('optionalBackground');
+    }
+  }, []);
 
   const selectDocument = (docId) => {
     const { documents } = props;
@@ -30,7 +39,7 @@ const ConfigurationFile = (props) => {
   };
 
   return (
-    <div className="configurationFile">
+    <div className="configurationFile" id="configFileSingle">
       <div className="configFlLstTableRowDocName">
         {props.document.ducumentName}
       </div>

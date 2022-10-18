@@ -320,6 +320,7 @@ const ConfigurationFileList = (props) => {
               <ConfigurationFile
                 document={document}
                 key={document.documentId}
+                index={index}
               />
             )
           )}
@@ -333,7 +334,11 @@ const ConfigurationFileList = (props) => {
         props.documents.filteredFilelistProcessed.length !== 0 ? (
         <div className="configFlLstTableBody">
           {props.documents.filteredFilelistProcessed.map((document, index) => (
-            <ConfigurationFile document={document} key={document.documentId} />
+            <ConfigurationFile
+              document={document}
+              key={document.documentId}
+              index={index}
+            />
           ))}
         </div>
       ) : null}

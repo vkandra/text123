@@ -78,7 +78,7 @@ const KeyValue = (props) => {
             className="editTextButton"
             onClick={() => handleEditing('key')}
           >
-            Edit
+            {props.themeLang.languageWords.Edit}
           </button>
         </div>
         {props.singleDocument.editedKeysValuesRawData.type === 'key' &&
@@ -96,14 +96,16 @@ const KeyValue = (props) => {
                 className="editCompleteButton"
                 onClick={() => saveEditedKVRData()}
               >
-                Done
+                {props.themeLang.languageWords.Done}
               </button>
             </div>
           </div>
         ) : null}
         {props.singleKeyValue.key !== props.singleKeyValue.editedKey ? (
           <div className="orgnlExtractedDataDisplayArea">
-            <div className="orgnlExtDataTxt">Extracted Data: </div>
+            <div className="orgnlExtDataTxt">
+              {props.themeLang.languageWords.Extracted_Data}:{' '}
+            </div>
             <div className="orgnlExtData">{props.singleKeyValue.key}</div>
           </div>
         ) : null}
@@ -119,7 +121,7 @@ const KeyValue = (props) => {
             className="editTextButton"
             onClick={() => handleEditing('value')}
           >
-            Edit
+            {props.themeLang.languageWords.Edit}
           </button>
         </div>
         {props.singleDocument.editedKeysValuesRawData.type === 'value' &&
@@ -137,7 +139,7 @@ const KeyValue = (props) => {
                 className="editCompleteButton"
                 onClick={() => saveEditedKVRData()}
               >
-                Done
+                {props.themeLang.languageWords.Done}
               </button>
             </div>
           </div>
@@ -145,7 +147,9 @@ const KeyValue = (props) => {
 
         {props.singleKeyValue.value !== props.singleKeyValue.editedValue ? (
           <div className="orgnlExtractedDataDisplayArea">
-            <div className="orgnlExtDataTxt">Extracted Data: </div>
+            <div className="orgnlExtDataTxt">
+              {props.themeLang.languageWords.Extracted_Data}:{' '}
+            </div>
             <div className="orgnlExtData">{props.singleKeyValue.value}</div>
           </div>
         ) : null}
@@ -159,6 +163,7 @@ const mapStateToProps = (state) => {
     user: state.user,
     singleDocument: state.singleDocument,
     extractor: state.extractor,
+    themeLang: state.themeLang,
   };
 };
 

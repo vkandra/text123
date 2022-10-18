@@ -127,7 +127,7 @@ const TableDocDataAll = (props) => {
           {props.tableDataSingle.editedData}
         </div>
         <button className="editTextButtonTable" onClick={() => handleEditing()}>
-          Edit
+          {props.themeLang.languageWords.Edit}
         </button>
       </div>
       {props.singleDocument.editedTableData.type ===
@@ -149,14 +149,16 @@ const TableDocDataAll = (props) => {
               className="editCompleteButton"
               onClick={() => saveEditedTableSingleData()}
             >
-              Done
+              {props.themeLang.languageWords.Done}
             </button>
           </div>
         </div>
       ) : null}
       {props.tableDataSingle.data !== props.tableDataSingle.editedData ? (
         <div className="orgnlExtractedDataDisplayArea">
-          <div className="orgnlExtDataTxt">Extracted Data: </div>
+          <div className="orgnlExtDataTxt">
+            {props.themeLang.languageWords.Extracted_Data}:{' '}
+          </div>
           <div className="orgnlExtData">{props.tableDataSingle.data}</div>
         </div>
       ) : null}
@@ -169,6 +171,7 @@ const mapStateToProps = (state) => {
     user: state.user,
     singleDocument: state.singleDocument,
     extractor: state.extractor,
+    themeLang: state.themeLang,
   };
 };
 

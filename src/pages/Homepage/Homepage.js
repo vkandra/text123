@@ -35,7 +35,7 @@ const Homepage = (props) => {
             width="90%"
           />
           <Link to="/app">
-            <button className="signButton">Sign In / Sign up</button>
+            <button className="signButton">Sign In / Sign Up</button>
           </Link>
         </div>
       </div>
@@ -45,11 +45,12 @@ const Homepage = (props) => {
 };
 
 // const mapStateToProps = (state) => {
-//     return {
-//       user: state.user,
-//     };
+//   return {
+//     user: state.user,
+//     themeLang: state.themeLang,
 //   };
+// };
 
-//   export default connect(mapStateToProps)(Homepage);
+// export default connect(mapStateToProps)(Homepage);
 
 export default Homepage;

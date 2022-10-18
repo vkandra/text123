@@ -12,8 +12,10 @@ const KeyValueDocData = (props) => {
     <div className="keyValueDocData">
       {/* <button onClick={() => fetchData()}> Click</button> */}
       <div className="keysandvaluesText">
-        <div className="keysOnlyText">KEYS</div>
-        <div className="valuesOnlyText">VALUES</div>
+        <div className="keysOnlyText">{props.themeLang.languageWords.Keys}</div>
+        <div className="valuesOnlyText">
+          {props.themeLang.languageWords.Values}
+        </div>
       </div>
       <div className="keysAndValues">
         {props.singleDocument.singleDocKeysValues.map(
@@ -34,6 +36,7 @@ const mapStateToProps = (state) => {
     user: state.user,
     singleDocument: state.singleDocument,
     documents: state.documents,
+    themeLang: state.themeLang,
   };
 };
 

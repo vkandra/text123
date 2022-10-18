@@ -84,7 +84,7 @@ const RawDocDataSingle = (props) => {
             className="editTextButton"
             onClick={() => handleEditing('text')}
           >
-            Edit
+            {props.themeLang.languageWords.Edit}
           </button>
         </div>
         {props.singleDocument.editedKeysValuesRawData.type === 'text' &&
@@ -104,14 +104,16 @@ const RawDocDataSingle = (props) => {
                 className="editCompleteButton"
                 onClick={() => saveEditedKVRData()}
               >
-                Done
+                {props.themeLang.languageWords.Done}
               </button>
             </div>
           </div>
         ) : null}
         {props.singleRawData.text !== props.singleRawData.editedText ? (
           <div className="orgnlExtractedDataDisplayArea">
-            <div className="orgnlExtDataTxt">Extracted Data: </div>
+            <div className="orgnlExtDataTxt">
+              {props.themeLang.languageWords.Extracted_Data}:{' '}
+            </div>
             <div className="orgnlExtData">{props.singleRawData.text}</div>
           </div>
         ) : null}
@@ -125,6 +127,7 @@ const mapStateToProps = (state) => {
     user: state.user,
     singleDocument: state.singleDocument,
     extractor: state.extractor,
+    themeLang: state.themeLang,
   };
 };
 

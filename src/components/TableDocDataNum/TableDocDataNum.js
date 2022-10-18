@@ -9,7 +9,8 @@ const TableDocDataNum = (props) => {
   return (
     <div className="tableDocDataNum">
       <div className="tableNumText">
-        Table No. {props.singleDocTable.tableNum + 1}
+        {props.themeLang.languageWords.Table_No}{' '}
+        {props.singleDocTable.tableNum + 1}
       </div>
       <div className="tableNumDataEach">
         <table>
@@ -40,6 +41,7 @@ const mapStateToProps = (state) => {
   return {
     user: state.user,
     singlDocument: state.singlDocument,
+    themeLang: state.themeLang,
   };
 };
 

@@ -50,4 +50,11 @@ export const en = {
   Documents_Processed_Day_wise: 'Documents Processed - Day wise',
   Documents_Processed_Template_wise: 'Documents Processed - Template wise',
   Current_Stats: 'Current Stats -',
+  Keys: 'KEYS',
+  Values: 'VALUES',
+  Edit: 'Edit',
+  Done: 'Done',
+  Extracted_Data: 'Extracted Data',
+  Page_No: 'Page No.',
+  Table_No: 'Table No.',
 };
