@@ -73,8 +73,8 @@ const Configuration = (props) => {
       console.log('Preparing the upload');
       axios
         // .post('http://localhost:3001/sign_s3', {
-        //  .post('https://master.dsmflmvaq3lvd.amplifyapp.com/', {
-          .post('http://textapp-env.eba-qcbptihz.ap-south-1.elasticbeanstalk.com/', {
+          .post('https://master.dsmflmvaq3lvd.amplifyapp.com/', {
+        //  .post('http://textapp-env.eba-qcbptihz.ap-south-1.elasticbeanstalk.com/', {
           fileName: fileName,
           fileType: fileType,
         })
