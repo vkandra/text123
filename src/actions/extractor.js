@@ -68,7 +68,7 @@ export function downloadEditedDataAPI(data) {
     console.log(data);
     axios
       .post(
-        `https://unlc0xmzu2.execute-api.ap-south-1.amazonaws.com/download`,
+        `https://kpud7rol28.execute-api.ap-south-1.amazonaws.com/download`,
         data
       )
       .then(function (response) {
