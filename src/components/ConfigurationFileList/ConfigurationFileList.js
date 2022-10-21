@@ -1,5 +1,5 @@
 import './ConfigurationFileList.css';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux/es/exports';
 
 import {
@@ -24,9 +24,10 @@ import {
 } from '../../actions/documents';
 
 const ConfigurationFileList = (props) => {
-  // useEffect(() => {
-
-  // }, []);
+  // console.log(props.renderCount);
+  useEffect(() => {
+    console.log(props.renderCount);
+  }, props.renderCount);
 
   const selectAllDocuments = (allDocs) => {
     var selectedDocs = [];
@@ -188,7 +189,7 @@ const ConfigurationFileList = (props) => {
     props.dispatch(deleteFilesDataAPI(assembledData));
     setTimeout(() => {
       props.dispatch(fetchRawDocumentsDetailsAPI(props.user.token));
-    }, 2000);
+    }, 4000);
   };
 
   const changeToTextExtractionTab = () => {
@@ -223,8 +224,17 @@ const ConfigurationFileList = (props) => {
     console.log(props.documents.documentDetails);
   };
 
+  const refreshComp = () => {
+    props.dispatch(fetchRawDocumentsDetailsAPI(props.user.token));
+  };
+
   return (
     <div className="configurationFileList">
+      <div className="refreshIc">
+        <div className="refreshIcDiv" onClick={refreshComp}>
+          <i class="fi fi-rr-refresh"></i>
+        </div>
+      </div>
       <div className="proNotProButtons">
         <div
           className={`${
@@ -316,13 +326,27 @@ const ConfigurationFileList = (props) => {
         props.documents.filteredFilelistNotProcessed.length !== 0 ? (
         <div className="configFlLstTableBody">
           {props.documents.filteredFilelistNotProcessed.map(
-            (document, index) => (
-              <ConfigurationFile
-                document={document}
-                key={document.documentId}
-                index={index}
-              />
-            )
+            (document, index) =>
+              index % 2 == 0 ? (
+                <ConfigurationFile
+                  document={document}
+                  key={document.documentId}
+                  background={true}
+                  index={index}
+                />
+              ) : (
+                <ConfigurationFile
+                  document={document}
+                  key={document.documentId}
+                  background={false}
+                  index={index}
+                />
+              )
+            // <ConfigurationFile
+            //   document={document}
+            //   key={document.documentId}
+            //   index={index}
+            // />
           )}
         </div>
       ) : props.extractor.processedFileTab === 2 &&
@@ -333,13 +357,23 @@ const ConfigurationFileList = (props) => {
       ) : props.extractor.processedFileTab === 2 &&
         props.documents.filteredFilelistProcessed.length !== 0 ? (
         <div className="configFlLstTableBody">
-          {props.documents.filteredFilelistProcessed.map((document, index) => (
-            <ConfigurationFile
-              document={document}
-              key={document.documentId}
-              index={index}
-            />
-          ))}
+          {props.documents.filteredFilelistProcessed.map((document, index) =>
+            index % 2 == 0 ? (
+              <ConfigurationFile
+                document={document}
+                key={document.documentId}
+                background={true}
+                index={index}
+              />
+            ) : (
+              <ConfigurationFile
+                document={document}
+                key={document.documentId}
+                background={false}
+                index={index}
+              />
+            )
+          )}
         </div>
       ) : null}
 

@@ -141,8 +141,8 @@ export function fetchTemplateNamesAPI(data) {
         data
       )
       .then(function (response) {
-        console.log(response.data.Document_category);
-        console.log(Object.keys(data).length);
+        // console.log(response.data.Document_category);
+        // console.log(Object.keys(data).length);
         if (Object.keys(data).length === 1) {
           if (response.data.user_id === data.user_id) {
             dispatch(updateTemplateNames(response.data.Document_category));

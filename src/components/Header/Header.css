@@ -73,6 +73,7 @@
   border: 1px solid white;
   border-radius: 4px;
   color: white;
+  cursor: pointer;
 }
 #languageSelect option {
   background: white;

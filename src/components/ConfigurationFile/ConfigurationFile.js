@@ -13,9 +13,10 @@ const ConfigurationFile = (props) => {
   //   console.log(props);
 
   useEffect(() => {
-    console.log(props.background);
-    console.log(props.index);
-    if (props.index % 2 === 0) {
+    // console.log(props.background);
+    // console.log(props.index);
+    // console.log(props.background);
+    if (props.background) {
       const element = document.getElementsByClassName('configurationFile');
       element[props.index].classList.add('optionalBackground');
     }

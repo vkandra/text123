@@ -235,6 +235,7 @@
   user-select: none;
   background: #ccc;
   border: 1px solid #ccc;
+  cursor: auto;
 }
 .disabled_button i {
   padding-top: 5px;

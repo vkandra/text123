@@ -8,12 +8,14 @@ import ConfigurationFileList from '../ConfigurationFileList/ConfigurationFileLis
 import {
   fetchRawDocumentsDetailsAPI,
   fetchTemplateNamesAPI,
+  clearSelectedFiles,
 } from '../../actions/documents';
 
 const Configuration = (props) => {
   const [success, setSuccess] = useState(false);
   const [url, setUrl] = useState('');
   const [error, setError] = useState(false);
+  const [renderCount, setRenderCount] = useState(0);
 
   var uploadInput;
 
@@ -29,7 +31,10 @@ const Configuration = (props) => {
   useEffect(() => {
     for (var i = 0; i < props.documents.totalDocuments; i++) {
       // console.log(i);
-      if (props.documents.documentDetails[i].documentStatus === 'Processing') {
+      if (
+        props.documents.documentDetails[i].documentStatus === 'Processing' ||
+        props.documents.documentDetails[i].documentStatus === 'Queued'
+      ) {
         setTimeout(() => {
           props.dispatch(fetchRawDocumentsDetailsAPI(props.user.token));
         }, 5000);
@@ -101,6 +106,11 @@ const Configuration = (props) => {
                 category: document.getElementById('singleTemplateSelect').value,
               };
               props.dispatch(fetchTemplateNamesAPI(dataOfTemplate));
+              setTimeout(() => {
+                props.dispatch(fetchRawDocumentsDetailsAPI(props.user.token));
+              }, 1000);
+              setRenderCount(renderCount + 1);
+              props.dispatch(clearSelectedFiles());
             })
             .catch((error) => {
               // alert('ERROR ' + JSON.stringify(error));
@@ -193,7 +203,7 @@ const Configuration = (props) => {
         </div>
       </div>
       <hr className="horizontal-line-1"></hr>
-      <ConfigurationFileList></ConfigurationFileList>
+      <ConfigurationFileList renderCount={renderCount} />
     </div>
   );
 };

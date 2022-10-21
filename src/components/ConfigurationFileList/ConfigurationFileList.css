@@ -1,6 +1,6 @@
 .configurationFileList {
   /* overflow: hidden; */
-  height: 90%;
+  height: 92%;
 }
 
 .actionButtonsConfigure {
@@ -24,6 +24,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
 }
 .configurationFileListFourButtons i {
   padding-top: 5px;
@@ -104,6 +105,7 @@
   border: 1px solid lightgray;
   border-radius: 5px;
   margin-top: 2px;
+  cursor: pointer;
 }
 .configFlLstTableHeaderUnSelectAll {
   padding: 5px;
@@ -114,6 +116,7 @@
   border-radius: 5px;
   background: yellowgreen;
   border: 1px solid lightgray;
+  cursor: pointer;
 }
 .configFlLstTableHeaderSelectAll:hover {
   background: lightyellow;
@@ -207,4 +210,34 @@
   border: none;
   background: #ccc;
   height: 1px;
+}
+.refreshIc {
+  /* border: 1px solid black; */
+  width: 99%;
+  height: 30px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  background: transparent;
+  margin-bottom: -32px;
+}
+.refreshIcDiv {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0px;
+  border-radius: 50%;
+  /* border: 1px solid black; */
+  height: 22px;
+  width: 22px;
+}
+.refreshIcDiv i {
+  font-size: 0.9rem;
+  margin-top: 4px;
+}
+.refreshIcDiv:hover {
+  background: #ccc;
+}
+
+@media screen and (min-width: 1228px) {
 }
