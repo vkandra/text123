@@ -27,6 +27,11 @@ const Header = (props) => {
     // console.log(languages[langSelected]);
   };
 
+  const refreshPage = () => {
+    // signOut();
+    window.location.reload();
+  };
+
   return (
     <div className="header">
       <img className="logoImg" src={logoUrl} alt="text-extractor" width="13%" />
@@ -53,8 +58,10 @@ const Header = (props) => {
         {/* {props.userDetails.attributes.name} */}
         {/* <Link to="/"> */}
         <div className="inupoutButton" onClick={signOut}>
+          {/* <div className="inupoutDiv" onClick={refreshPage}> */}
           {props.themeLang.languageWords.Sign_Out}&nbsp;
           <i class="fi fi-sr-exit"></i>
+          {/* </div> */}
         </div>
         {/* </Link> */}
       </div>

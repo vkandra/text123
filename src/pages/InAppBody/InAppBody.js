@@ -45,7 +45,7 @@ const InAppBody = (props) => {
             >
               {props.themeLang.languageWords.Text_Extraction}
             </div>
-            <div
+            {/* <div
               className={`singleMenus ${
                 props.extractor.page === 3 ? 'selectedMenu' : ''
               }`}
@@ -62,7 +62,7 @@ const InAppBody = (props) => {
               onClick={() => changeMainTabs(4)}
             >
               {props.themeLang.languageWords.Object_Detection}
-            </div>
+            </div> */}
             <div
               className={`singleMenus ${
                 props.extractor.page === 5 ? 'selectedMenu' : ''
@@ -78,11 +78,11 @@ const InAppBody = (props) => {
               <Configuration />
             ) : props.extractor.page === 2 ? (
               <TextExtraction />
-            ) : props.extractor.page === 3 ? (
+            ) : /* ) : props.extractor.page === 3 ? (
               <Annotation />
             ) : props.extractor.page === 4 ? (
-              <ObjectDetection />
-            ) : props.extractor.page === 5 ? (
+              <ObjectDetection />  */
+            props.extractor.page === 5 ? (
               <Dashboards />
             ) : null}
           </div>

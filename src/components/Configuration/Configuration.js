@@ -72,9 +72,8 @@ const Configuration = (props) => {
       let fileType = fileParts[1];
       console.log('Preparing the upload');
       axios
-        // .post('http://localhost:3001/sign_s3', {
-          .post('https://master.dsmflmvaq3lvd.amplifyapp.com/', {
-        //  .post('http://textapp-env.eba-qcbptihz.ap-south-1.elasticbeanstalk.com/', {
+        .post('http://localhost:3001/sign_s3', {
+          // .post('https://master.dsmflmvaq3lvd.amplifyapp.com/', {
           fileName: fileName,
           fileType: fileType,
         })
@@ -170,9 +169,10 @@ const Configuration = (props) => {
           </div>
 
           <div>
-            <button className="uploadButton" onClick={() => handleUpload()}>
+            <div className="uploadButton" onClick={() => handleUpload()}>
+              <i class="fi fi-ss-upload"></i>&nbsp;
               {props.themeLang.languageWords.Upload}
-            </button>
+            </div>
           </div>
         </div>
         <div className="uploadStatusShow">
