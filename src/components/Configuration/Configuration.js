@@ -77,8 +77,8 @@ const Configuration = (props) => {
       let fileType = fileParts[1];
       console.log('Preparing the upload');
       axios
-        .post('http://localhost:3001/sign_s3', {
-          // .post('https://master.dsmflmvaq3lvd.amplifyapp.com/', {
+        //.post('http://localhost:3001/sign_s3', {
+          .post('https://master.dsmflmvaq3lvd.amplifyapp.com/sign_s3', {
           fileName: fileName,
           fileType: fileType,
         })
