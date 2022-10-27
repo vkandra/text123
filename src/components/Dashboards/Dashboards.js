@@ -174,10 +174,12 @@ const Dashboards = (props) => {
       },
     ];
     let processedFileList = list.filter((file) => {
-      return file.processed_date !== 'N/A';
+      return file.documentStatus === 'Processed';
     });
     let unprocessedFileList = list.filter((file) => {
-      return file.processed_date === 'N/A';
+      return (
+        file.documentStatus === 'N/A' || file.documentStatus === 'Not Processed'
+      );
     });
     processedFileList.sort(function (a, b) {
       // Turn your strings into dates, and then subtract them
@@ -188,6 +190,8 @@ const Dashboards = (props) => {
     let notProcessedFileList = unprocessedFileList.filter((file) => {
       return file.documentStatus === 'Not Processed';
     });
+
+    // console.log(list);
 
     let processingFileList = unprocessedFileList.filter((file) => {
       return file.documentStatus !== 'Not Processed';
