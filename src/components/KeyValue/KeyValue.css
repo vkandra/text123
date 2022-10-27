@@ -47,6 +47,17 @@
   color: #1f1e1e;
   min-height: 26px;
 }
+.favouriteButton {
+  display: unset;
+  outline: none;
+  cursor: pointer;
+  /* background: whitesmoke; */
+  color: forestgreen;
+  font-size: 0.7rem;
+  /* border: 1px solid #ccc; */
+  border-radius: 5px;
+  margin-right: 5px;
+}
 .textAreaDivButtons {
   /* border: 1px solid green; */
   display: flex;

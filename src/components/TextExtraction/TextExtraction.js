@@ -19,6 +19,7 @@ import '@react-pdf-viewer/core/lib/styles/index.css';
 import '@react-pdf-viewer/default-layout/lib/styles/index.css';
 import { Worker } from '@react-pdf-viewer/core';
 import viewPdf from './sample2.pdf';
+import Favourites from '../Favourites/Favourites';
 
 const TextExtraction = (props) => {
   // console.log(props.singleDocument.singleDocKeysValues);
@@ -253,6 +254,14 @@ const TextExtraction = (props) => {
             >
               {props.themeLang.languageWords.Raw_Data}
             </div>
+            <div
+              className={`${
+                props.extractor.textDataTab === 4 ? 'selectedDataTab' : ''
+              }`}
+              onClick={() => changeDataTabs(4)}
+            >
+              Favourites
+            </div>
           </div>
           <div className="docTabData">
             {props.extractor.textDataTab === 1 &&
@@ -264,6 +273,9 @@ const TextExtraction = (props) => {
             ) : props.extractor.textDataTab === 3 &&
               props.singleDocument.singleDocumentStatus === 'Processed' ? (
               <RawDocData />
+            ) : props.extractor.textDataTab === 4 &&
+              props.singleDocument.singleDocumentStatus === 'Processed' ? (
+              <Favourites />
             ) : (
               <div className="dataNotExt">
                 {props.themeLang.languageWords.Data_Not_Extracted}

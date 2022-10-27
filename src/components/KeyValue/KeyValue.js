@@ -1,5 +1,5 @@
 import './KeyValue.css';
-import React from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux/es/exports';
 import {
   editKeysValuesRawData,
@@ -8,6 +8,8 @@ import {
 import { userEditedKVRTList } from '../../actions/extractor';
 
 const KeyValue = (props) => {
+  const [isFav, setIsFav] = useState(false);
+
   const handleEditing = (type) => {
     const { singleDocument } = props;
     singleDocument.editedKeysValuesRawData.type = type;
@@ -66,18 +68,35 @@ const KeyValue = (props) => {
     // console.log(props.extractor.userEditedKeyValueRaw);
   };
 
+  const handleFavourite = () => {
+    if (isFav) {
+      setIsFav(false);
+    } else {
+      setIsFav(true);
+    }
+  };
+
   return (
     <div className="keyValue">
       {/* ---------------------- KEYS ------------------------- */}
       <div className="keySectionAll">
         <div className="currentDataAndEdit">
           <div className="currentDataDisplayKV">
+            <div className="favouriteButton" onClick={() => handleFavourite()}>
+              {isFav ? (
+                <i class="fi fi-sr-bookmark"></i>
+              ) : (
+                <i class="fi fi-rr-bookmark"></i>
+              )}
+            </div>
             {props.singleKeyValue.editedKey}
           </div>
+
           <button
             className="editTextButton"
             onClick={() => handleEditing('key')}
           >
+            {/* <i class="fi fi-rr-edit"></i> */}
             {props.themeLang.languageWords.Edit}
           </button>
         </div>

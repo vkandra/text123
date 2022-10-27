@@ -7,6 +7,7 @@ import TextExtraction from '../../components/TextExtraction/TextExtraction';
 import ObjectDetection from '../../components/ObjectDetection/ObjectDetection';
 import Dashboards from '../../components/Dashboards/Dashboards';
 import Configuration from '../../components/Configuration/Configuration';
+import Templates from '../../components/Templates/Templates';
 
 import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
@@ -65,6 +66,15 @@ const InAppBody = (props) => {
             </div> */}
             <div
               className={`singleMenus ${
+                props.extractor.page === 4 ? 'selectedMenu' : ''
+              }`}
+              id="singleMenu4"
+              onClick={() => changeMainTabs(4)}
+            >
+              Templates
+            </div>
+            <div
+              className={`singleMenus ${
                 props.extractor.page === 5 ? 'selectedMenu' : ''
               }`}
               id="singleMenu5"
@@ -82,7 +92,9 @@ const InAppBody = (props) => {
               <Annotation />
             ) : props.extractor.page === 4 ? (
               <ObjectDetection />  */
-            props.extractor.page === 5 ? (
+            props.extractor.page === 4 ? (
+              <Templates />
+            ) : props.extractor.page === 5 ? (
               <Dashboards />
             ) : null}
           </div>
