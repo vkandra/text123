@@ -1,7 +1,10 @@
 import './TextExtraction.css';
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux/es/exports';
-import { changeTextDataTabOperation } from '../../actions/extractor';
+import {
+  changeTextDataTabOperation,
+  clearEditedKVRTList,
+} from '../../actions/extractor';
 
 import KeyValueDocData from '../KeyValueDocData/KeyValueDocData';
 import RawDocData from '../RawDocData/RawDocData';
@@ -30,7 +33,7 @@ const TextExtraction = (props) => {
 
   useEffect(() => {
     if (props.singleDocument.selectedDocumentsDetails.length !== 0) {
-      getSingleSelectedDocId();
+      checkForEdits();
     }
 
     const { documents } = props;
@@ -92,6 +95,10 @@ const TextExtraction = (props) => {
   };
 
   const gotoNextFile = () => {
+    if (props.extractor.userEditedKeyValueRawTable.length > 0) {
+      alert('WARNING!\n -> Data Not Saved! \n -> Please SAVE Edited Data ');
+      return;
+    }
     let id = document.getElementById('singleDocSelect').value;
     let count = 0;
     for (let file of props.singleDocument.selectedDocumentsDetails) {
@@ -101,7 +108,7 @@ const TextExtraction = (props) => {
       }
     }
     // console.log(props.singleDocument.selectedDocumentsDetails[count]);
-    console.log(count);
+    // console.log(count);
     if (props.singleDocument.selectedDocumentsDetails.length === count) {
       return;
     } else {
@@ -109,11 +116,15 @@ const TextExtraction = (props) => {
         props.singleDocument.selectedDocumentsDetails[count].documentId;
 
       // props.dispatch(dropdownSelected(count));
-      getSingleSelectedDocId();
+      checkForEdits();
     }
   };
 
   const gotoPrevFile = () => {
+    if (props.extractor.userEditedKeyValueRawTable.length > 0) {
+      alert('WARNING!\n -> Data Not Saved! \n -> Please SAVE Edited Data ');
+      return;
+    }
     var id = document.getElementById('singleDocSelect').value;
     console.log(id);
     console.log(props.singleDocument.selectedDocumentsDetails);
@@ -133,6 +144,17 @@ const TextExtraction = (props) => {
         props.singleDocument.selectedDocumentsDetails[count - 2].documentId;
 
       // props.dispatch(dropdownSelected(count - 2));
+      checkForEdits();
+    }
+  };
+
+  const checkForEdits = () => {
+    console.log(props.extractor.userEditedKeyValueRawTable.length);
+    if (props.extractor.userEditedKeyValueRawTable.length > 0) {
+      alert('WARNING!\n -> Data Not Saved! \n -> Please SAVE Edited Data ');
+      return;
+    } else {
+      // props.dispatch(clearEditedKVRTList([]));
       getSingleSelectedDocId();
     }
   };
@@ -147,7 +169,7 @@ const TextExtraction = (props) => {
                 name="documents"
                 id="singleDocSelect"
                 onChange={() => {
-                  getSingleSelectedDocId();
+                  checkForEdits();
                 }}
               >
                 <optgroup label={props.themeLang.languageWords.Select_Document}>
