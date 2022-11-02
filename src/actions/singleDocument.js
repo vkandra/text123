@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { clearEditedKVRTList } from './extractor';
 
 // ACTION TYPES
 export const SINGLE_DOC_DETAIL = 'SINGLE_DOC_DETAIL';
@@ -35,7 +36,9 @@ export function fetchSingleFileData(data) {
         dispatch(arrangeTableData(res.data));
         dispatch(arrangeRawAll(res.data));
         dispatch(arrangeTablesAll(res.data));
-        // console.log(assignSingleFileData(res.data));
+        console.log(assignSingleFileData(res.data));
+
+        // dispatch(clearEditedKVRTList());
       });
   };
 }

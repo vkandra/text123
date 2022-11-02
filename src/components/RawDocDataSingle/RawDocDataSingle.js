@@ -59,6 +59,7 @@ const RawDocDataSingle = (props) => {
         }
       }
     }
+
     // console.log(singleDocument.editedKeysValuesRawData);
     props.dispatch(saveEditedKeysValuesRawData(singleDocument));
 
@@ -69,6 +70,13 @@ const RawDocDataSingle = (props) => {
     props.dispatch(editKeysValuesRawData(singleDocument));
     // console.log(singleDocument.editedKeysValuesRawData);
     // console.log(props.extractor.userEditedKeyValueRaw);
+  };
+
+  const cancelEditingKVRData = () => {
+    const { singleDocument } = props;
+    singleDocument.editedKeysValuesRawData.type = '';
+    singleDocument.editedKeysValuesRawData.index = -1;
+    props.dispatch(editKeysValuesRawData(singleDocument));
   };
 
   return (
@@ -100,6 +108,12 @@ const RawDocDataSingle = (props) => {
             ></textarea>
             <div className="textAreaButtonsDiv">
               {/* <button>Extr.</button> */}
+              <button
+                className="editCompleteButton"
+                onClick={() => cancelEditingKVRData()}
+              >
+                Cancel
+              </button>
               <button
                 className="editCompleteButton"
                 onClick={() => saveEditedKVRData()}

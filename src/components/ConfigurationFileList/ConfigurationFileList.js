@@ -27,7 +27,7 @@ const ConfigurationFileList = (props) => {
   // console.log(props.renderCount);
   useEffect(() => {
     console.log(props.renderCount);
-  }, props.renderCount);
+  }, [props.renderCount]);
 
   const selectAllDocuments = (allDocs) => {
     var selectedDocs = [];
@@ -232,7 +232,7 @@ const ConfigurationFileList = (props) => {
     <div className="configurationFileList">
       <div className="refreshIc">
         <div className="refreshIcDiv" onClick={refreshComp}>
-          <i class="fi fi-rr-refresh"></i>
+          <i className="fi fi-rr-refresh"></i>
         </div>
       </div>
       <div className="proNotProButtons">

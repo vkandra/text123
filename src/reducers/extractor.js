@@ -4,6 +4,7 @@ import {
   HANDLE_FILE_CHANGE,
   HANDLE_PROCESSED_FILE_TAB_CHANGE,
   USER_EDITED_KVRT_LIST,
+  CLEAR_EDITED_KVRT_LIST,
 } from '../actions/extractor';
 
 const extractorDocumentState = {
@@ -41,9 +42,19 @@ export default function extractor(state = extractorDocumentState, action) {
       };
     case USER_EDITED_KVRT_LIST:
       // console.log(action.data);
-      extractorDocumentState.userEditedKeyValueRawTable.push(action.data);
+      // extractorDocumentState.userEditedKeyValueRawTable.push(action.data);
       return {
         ...state,
+        userEditedKeyValueRawTable: [
+          ...state.userEditedKeyValueRawTable,
+          action.data,
+        ],
+      };
+    case CLEAR_EDITED_KVRT_LIST:
+      // console.log(action.data);
+      return {
+        ...state,
+        userEditedKeyValueRawTable: action.data,
       };
     default:
       return state;

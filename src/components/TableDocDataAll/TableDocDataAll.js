@@ -118,6 +118,15 @@ const TableDocDataAll = (props) => {
     // console.log(props.extractor.userEditedTable);
   };
 
+  const cancelEditingKVRData = () => {
+    const { singleDocument } = props;
+    singleDocument.editedTableData.type = '';
+    singleDocument.editedTableData.tableNum = 0;
+    singleDocument.editedTableData.rowNum = -1;
+    singleDocument.editedTableData.index = -1;
+    props.dispatch(editTableData(singleDocument));
+  };
+
   return (
     <div className="tableDocDataAll">
       {/* {props.tableDataSingle.editedData} */}
@@ -145,6 +154,12 @@ const TableDocDataAll = (props) => {
             onChange={captureEditedText}
           ></textarea>
           <div className="textAreaButtonsDiv">
+            <button
+              className="editCompleteButton"
+              onClick={() => cancelEditingKVRData()}
+            >
+              Cancel
+            </button>
             <button
               className="editCompleteButton"
               onClick={() => saveEditedTableSingleData()}

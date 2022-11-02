@@ -29,7 +29,9 @@ const KeyValue = (props) => {
     let dataEditUser = JSON.parse(
       JSON.stringify(props.singleDocument.editedKeysValuesRawData)
     );
+
     props.dispatch(userEditedKVRTList(dataEditUser));
+    console.log(props.extractor.userEditedKeyValueRawTable);
     const { singleDocument } = props;
     // console.log(singleDocument.singleDocKeysValues.length);
     for (var i = 0; i < singleDocument.singleDocKeysValues.length; i++) {
@@ -38,7 +40,8 @@ const KeyValue = (props) => {
         props.singleKeyValue.index ===
         singleDocument.singleDocKeysValues[i].index
       ) {
-        if (singleDocument.editedKeysValuesRawData.text === '') {
+        console.log(singleDocument.editedKeysValuesRawData.text);
+        if (singleDocument.editedKeysValuesRawData.text == '') {
           break;
         } else {
           if (singleDocument.editedKeysValuesRawData.type === 'key') {
@@ -68,6 +71,13 @@ const KeyValue = (props) => {
     // console.log(props.extractor.userEditedKeyValueRaw);
   };
 
+  const cancelEditingKVRData = () => {
+    const { singleDocument } = props;
+    singleDocument.editedKeysValuesRawData.type = '';
+    singleDocument.editedKeysValuesRawData.index = -1;
+    props.dispatch(editKeysValuesRawData(singleDocument));
+  };
+
   const handleFavourite = () => {
     if (isFav) {
       setIsFav(false);
@@ -84,9 +94,9 @@ const KeyValue = (props) => {
           <div className="currentDataDisplayKV">
             <div className="favouriteButton" onClick={() => handleFavourite()}>
               {isFav ? (
-                <i class="fi fi-sr-bookmark"></i>
+                <i className="fi fi-sr-bookmark"></i>
               ) : (
-                <i class="fi fi-rr-bookmark"></i>
+                <i className="fi fi-rr-bookmark"></i>
               )}
             </div>
             {props.singleKeyValue.editedKey}
@@ -96,7 +106,7 @@ const KeyValue = (props) => {
             className="editTextButton"
             onClick={() => handleEditing('key')}
           >
-            {/* <i class="fi fi-rr-edit"></i> */}
+            {/* <i className="fi fi-rr-edit"></i> */}
             {props.themeLang.languageWords.Edit}
           </button>
         </div>
@@ -111,6 +121,12 @@ const KeyValue = (props) => {
             ></textarea>
             <div className="textAreaButtonsDiv">
               {/* <button>Extr.</button> */}
+              <button
+                className="editCompleteButton"
+                onClick={() => cancelEditingKVRData()}
+              >
+                Cancel
+              </button>
               <button
                 className="editCompleteButton"
                 onClick={() => saveEditedKVRData()}
@@ -133,7 +149,7 @@ const KeyValue = (props) => {
       {/* -------------------- VALUES --------------------- */}
       <div className="valueSectionAll">
         <div className="currentDataAndEdit">
-          <div className="currentDataDisplayKV">
+          <div className="currentDataDisplay">
             {props.singleKeyValue.editedValue}
           </div>
           <button
@@ -154,6 +170,12 @@ const KeyValue = (props) => {
             ></textarea>
             <div className="textAreaButtonsDiv">
               {/* <button>Extr.</button> */}
+              <button
+                className="editCompleteButton"
+                onClick={() => cancelEditingKVRData()}
+              >
+                Cancel
+              </button>
               <button
                 className="editCompleteButton"
                 onClick={() => saveEditedKVRData()}

@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { fetchSingleFileData } from './singleDocument';
 
 // ACTION TYPES
 export const CHANGE_TAB_OPERATION = 'CHANGE_TAB_OPERATION';
@@ -7,6 +8,7 @@ export const HANDLE_FILE_CHANGE = 'HANDLE_FILE_CHANGE';
 export const HANDLE_PROCESSED_FILE_TAB_CHANGE =
   'HANDLE_PROCESSED_FILE_TAB_CHANGE';
 export const USER_EDITED_KVRT_LIST = 'USER_EDITED_KVRT_LIST';
+export const CLEAR_EDITED_KVRT_LIST = 'CLEAR_EDITED_KVRT_LIST';
 
 // ACTION CREATORS
 export function changeTabOperation(data) {
@@ -45,6 +47,14 @@ export function userEditedKVRTList(data) {
   };
 }
 
+export function clearEditedKVRTList(data) {
+  // console.log(data);
+  return {
+    type: CLEAR_EDITED_KVRT_LIST,
+    data: data,
+  };
+}
+
 export function postEditedDataAPI(data) {
   return (dispatch) => {
     console.log(data);
@@ -55,7 +65,11 @@ export function postEditedDataAPI(data) {
       )
       .then(function (response) {
         console.log(response);
+
+        const refreshDocData = [data.user_id, data.doc_id];
+        dispatch(fetchSingleFileData(refreshDocData));
         // dispatch(fetchRawDocumentsDetailsAPI(data.user_id));
+        dispatch(clearEditedKVRTList([]));
       })
       .catch(function (error) {
         console.log(error);
