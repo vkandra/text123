@@ -61,13 +61,21 @@ const ExtractedDocumentDetails = (props) => {
         </div>
       </div>
       <div className="documentDetailAction">
-        <button
-          className="saveDataButton"
-          onClick={() => saveAndSendEditedData()}
-        >
-          <i className="fi fi-rr-disk"></i>&nbsp;{' '}
-          {props.themeLang.languageWords.Save}
-        </button>
+        {props.extractor.userEditedKeyValueRawTable.length > 0 ? (
+          <button
+            className="saveDataButton"
+            onClick={() => saveAndSendEditedData()}
+          >
+            <i className="fi fi-rr-disk"></i>&nbsp;{' '}
+            {props.themeLang.languageWords.Save}
+          </button>
+        ) : (
+          <button className="disDataButton">
+            <i className="fi fi-rr-disk"></i>&nbsp;{' '}
+            {props.themeLang.languageWords.Save}
+          </button>
+        )}
+
         <button className="downloadButton" onClick={() => downloadEditedData()}>
           <i className="fi fi-rr-download"></i> &nbsp;
           {props.themeLang.languageWords.Download}

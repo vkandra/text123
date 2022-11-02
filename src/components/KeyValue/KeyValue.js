@@ -20,6 +20,7 @@ const KeyValue = (props) => {
 
   const captureEditedText = (e) => {
     const { singleDocument } = props;
+    console.log(e.target.value);
     singleDocument.editedKeysValuesRawData.text = e.target.value;
     props.dispatch(editKeysValuesRawData(singleDocument));
     // console.log(singleDocument.editedKeysValuesRawData);
@@ -31,7 +32,7 @@ const KeyValue = (props) => {
     );
 
     props.dispatch(userEditedKVRTList(dataEditUser));
-    console.log(props.extractor.userEditedKeyValueRawTable);
+    // console.log(props.extractor.userEditedKeyValueRawTable);
     const { singleDocument } = props;
     // console.log(singleDocument.singleDocKeysValues.length);
     for (var i = 0; i < singleDocument.singleDocKeysValues.length; i++) {
@@ -40,9 +41,10 @@ const KeyValue = (props) => {
         props.singleKeyValue.index ===
         singleDocument.singleDocKeysValues[i].index
       ) {
-        console.log(singleDocument.editedKeysValuesRawData.text);
+        // console.log(singleDocument.editedKeysValuesRawData.text);
         if (singleDocument.editedKeysValuesRawData.text == '') {
-          break;
+          cancelEditingKVRData();
+          return;
         } else {
           if (singleDocument.editedKeysValuesRawData.type === 'key') {
             singleDocument.singleDocKeysValues[i].editedKey =
