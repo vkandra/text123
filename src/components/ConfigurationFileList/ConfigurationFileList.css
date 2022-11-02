@@ -107,6 +107,13 @@
   margin-top: 2px;
   cursor: pointer;
 }
+.configFlLstTableHeaderSelectAll:focus {
+  outline: none;
+}
+.configFlLstTableHeaderSelectAll:hover {
+  background: lightyellow;
+  transition: 0.3s;
+}
 .configFlLstTableHeaderUnSelectAll {
   padding: 5px;
   min-width: 100px;
@@ -118,9 +125,8 @@
   border: 1px solid lightgray;
   cursor: pointer;
 }
-.configFlLstTableHeaderSelectAll:hover {
-  background: lightyellow;
-  transition: 0.3s;
+.configFlLstTableHeaderUnSelectAll:focus {
+  outline: none;
 }
 .no-documents {
   display: flex;

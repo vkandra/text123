@@ -246,3 +246,6 @@
   overflow: hidden;
   white-space: nowrap;
 }
+#singleDocSelect:focus {
+  outline: none;
+}

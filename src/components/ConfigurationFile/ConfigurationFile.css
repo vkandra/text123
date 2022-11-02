@@ -42,10 +42,14 @@
   border: 1px solid lightgray;
   border-radius: 5px;
   cursor: pointer;
+  /* outline: none; */
 }
 .configFlLstTableRowSelect:hover {
   background: lightyellow;
   transition: 0.3s;
+}
+.configFlLstTableRowSelect:focus {
+  outline: none;
 }
 .configFlLstTableRowUnselect {
   padding: 5px;
@@ -57,4 +61,7 @@
   background: yellowgreen;
   border: 1px solid lightgray;
   cursor: pointer;
+}
+.configFlLstTableRowUnselect:focus {
+  outline: none;
 }

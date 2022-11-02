@@ -1,0 +1,34 @@
+.favourites {
+  padding-left: 2%;
+  height: 100%;
+  width: 100%;
+  /* border: 1px solid black; */
+}
+.favouritesText {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  height: 100%;
+  border: 1px solid #ccc;
+  /* border: 1px solid black; */
+}
+.favouritesHeader {
+  padding-top: 3px;
+  width: 50%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 3px;
+  /* border: 1px solid black; */
+}
+
+#selectDataType {
+  width: 150px;
+  border: thin solid #ccc;
+  border-radius: 4px;
+  padding-bottom: 3px;
+  cursor: pointer;
+}
+#selectDataType:focus {
+  outline: none;
+}
