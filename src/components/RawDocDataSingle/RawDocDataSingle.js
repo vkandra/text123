@@ -48,7 +48,8 @@ const RawDocDataSingle = (props) => {
             singleDocument.singleDocRawAll[i].pageData[j].page
         ) {
           if (singleDocument.editedKeysValuesRawData.text === '') {
-            break;
+            cancelEditingKVRData();
+            return;
           } else {
             if (singleDocument.editedKeysValuesRawData.type === 'text') {
               singleDocument.singleDocRawAll[i].pageData[j].editedText =

@@ -8,6 +8,7 @@ import {
 } from '../../actions/extractor';
 
 const ExtractedDocumentDetails = (props) => {
+  // console.log(props.singleDocument.singleDocumentId);
   const saveAndSendEditedData = () => {
     // console.log(props.extractor.userEditedKeyValueRawTable);
     let editedData = {

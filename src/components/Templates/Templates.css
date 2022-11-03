@@ -1,0 +1,78 @@
+.templates {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  /* border: 1px solid yellow; */
+  width: 100%;
+  height: 100%;
+}
+
+.templateTopSection {
+  border-bottom: 1px solid #ccc;
+  height: 75px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px;
+}
+.createDeleteTemplate {
+  height: 100%;
+  width: 70%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  /* padding: 5px; */
+}
+.templateCreationDiv {
+  width: 40%;
+  height: 100%;
+  padding-left: 10px;
+}
+.templateDeletionDiv {
+  width: 48%;
+  height: 100%;
+  border-left: 1px solid #ccc;
+  padding-left: 4%;
+}
+
+.templateLabel {
+  color: #1e1e1e;
+  font-weight: bold;
+}
+
+.formActionTemplate {
+  /* border: 1px solid black; */
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 4px;
+}
+.createTemplateButton {
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.deleteTemplateButton {
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-left: 10px;
+}
+.newTempInput {
+  border: 1px solid #ccc;
+}
+.selectOption {
+  min-width: 170px;
+  border: 1px solid #ccc;
+}
+.newTempInput:focus {
+  outline: none;
+}
+.selectOption:focus {
+  outline: none;
+}

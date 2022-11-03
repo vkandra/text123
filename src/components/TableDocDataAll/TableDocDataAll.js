@@ -51,7 +51,8 @@ const TableDocDataAll = (props) => {
               singleDocument.singleDocTablesAll[i].tableHeader[j].index
           ) {
             if (singleDocument.editedTableData.text === '') {
-              break;
+              cancelEditingKVRData();
+              return;
             } else {
               if (singleDocument.editedTableData.type === 'header') {
                 singleDocument.singleDocTablesAll[i].tableHeader[j].editedData =
@@ -88,7 +89,8 @@ const TableDocDataAll = (props) => {
                   .index
             ) {
               if (singleDocument.editedTableData.text === '') {
-                break;
+                cancelEditingKVRData();
+                return;
               } else {
                 if (singleDocument.editedTableData.type === 'rowdata') {
                   singleDocument.singleDocTablesAll[i].tableData[j].rowData[
