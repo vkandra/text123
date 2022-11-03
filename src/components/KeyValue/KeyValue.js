@@ -4,6 +4,7 @@ import { connect } from 'react-redux/es/exports';
 import {
   editKeysValuesRawData,
   saveEditedKeysValuesRawData,
+  favUnfavFetchData,
 } from '../../actions/singleDocument';
 import { userEditedKVRTList } from '../../actions/extractor';
 
@@ -27,13 +28,19 @@ const KeyValue = (props) => {
   };
 
   const saveEditedKVRData = () => {
+    const { singleDocument } = props;
+    if (singleDocument.editedKeysValuesRawData.text === '') {
+      cancelEditingKVRData();
+      return;
+    }
+
     let dataEditUser = JSON.parse(
       JSON.stringify(props.singleDocument.editedKeysValuesRawData)
     );
 
     props.dispatch(userEditedKVRTList(dataEditUser));
     // console.log(props.extractor.userEditedKeyValueRawTable);
-    const { singleDocument } = props;
+    // const { singleDocument } = props;
     // console.log(singleDocument.singleDocKeysValues.length);
     for (var i = 0; i < singleDocument.singleDocKeysValues.length; i++) {
       // console.log(i);
@@ -42,7 +49,7 @@ const KeyValue = (props) => {
         singleDocument.singleDocKeysValues[i].index
       ) {
         // console.log(singleDocument.editedKeysValuesRawData.text);
-        if (singleDocument.editedKeysValuesRawData.text == '') {
+        if (singleDocument.editedKeysValuesRawData.text === '') {
           cancelEditingKVRData();
           return;
         } else {
@@ -82,9 +89,11 @@ const KeyValue = (props) => {
 
   const handleFavourite = () => {
     if (isFav) {
-      setIsFav(false);
+      // setIsFav(false);
     } else {
       setIsFav(true);
+      let data = [];
+      props.singleDocument.dispatch(favUnfavFetchData(data));
     }
   };
 
@@ -138,7 +147,8 @@ const KeyValue = (props) => {
             </div>
           </div>
         ) : null}
-        {props.singleKeyValue.key !== props.singleKeyValue.editedKey ? (
+        {String(props.singleKeyValue.key).valueOf() !==
+        String(props.singleKeyValue.editedKey).valueOf() ? (
           <div className="orgnlExtractedDataDisplayArea">
             <div className="orgnlExtDataTxt">
               {props.themeLang.languageWords.Extracted_Data}:{' '}
@@ -188,7 +198,8 @@ const KeyValue = (props) => {
           </div>
         ) : null}
 
-        {props.singleKeyValue.value !== props.singleKeyValue.editedValue ? (
+        {String(props.singleKeyValue.value).valueOf() !==
+        String(props.singleKeyValue.editedValue).valueOf() ? (
           <div className="orgnlExtractedDataDisplayArea">
             <div className="orgnlExtDataTxt">
               {props.themeLang.languageWords.Extracted_Data}:{' '}

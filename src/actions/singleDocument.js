@@ -20,28 +20,6 @@ export const SAVE_EDITED_TABLE_DATA = 'SAVE_EDITED_TABLE_DATA';
 export const DROPDOWN_SELECTED = 'DROPDOWN_SELECTED';
 
 // ACTION CREATORS
-export function fetchSingleFileData(data) {
-  return (dispatch) => {
-    axios
-      .get(
-        `https://4xjuok1l6c.execute-api.ap-south-1.amazonaws.com/output?user_id=${data[0]}&job_id=${data[1]}`
-      )
-      .then((res) => {
-        // console.log(res.data);
-        dispatch(assignSingleFileData(res.data));
-        dispatch(arrangeKeysData(res.data));
-        dispatch(arrangeValuesData(res.data));
-        dispatch(arrangeKeysValues(res.data));
-        dispatch(arrangeRawData(res.data));
-        dispatch(arrangeTableData(res.data));
-        dispatch(arrangeRawAll(res.data));
-        dispatch(arrangeTablesAll(res.data));
-        console.log(assignSingleFileData(res.data));
-
-        // dispatch(clearEditedKVRTList());
-      });
-  };
-}
 
 export function singleDocDetail(data) {
   // console.log(data);
@@ -160,4 +138,62 @@ export function dropdownSelected(data) {
     type: DROPDOWN_SELECTED,
     data: data,
   };
+}
+
+// API Calls
+
+export function fetchSingleFileData(data) {
+  return (dispatch) => {
+    axios
+      .get(
+        `https://4xjuok1l6c.execute-api.ap-south-1.amazonaws.com/output?user_id=${data[0]}&job_id=${data[1]}`
+      )
+      .then((res) => {
+        // console.log(res.data);
+        dispatch(assignSingleFileData(res.data));
+        dispatch(arrangeKeysData(res.data));
+        dispatch(arrangeValuesData(res.data));
+        dispatch(arrangeKeysValues(res.data));
+        dispatch(arrangeRawData(res.data));
+        dispatch(arrangeTableData(res.data));
+        dispatch(arrangeRawAll(res.data));
+        dispatch(arrangeTablesAll(res.data));
+        console.log(assignSingleFileData(res.data));
+
+        // dispatch(clearEditedKVRTList());
+      });
+  };
+}
+
+export function favUnfavFetchData(data) {
+  if (data[0] === 'fav') {
+    return (dispatch) => {
+      axios
+        .post(
+          `https://lkv9swpfm7.execute-api.ap-south-1.amazonaws.com/`,
+          data[1]
+        )
+        .then((res) => {
+          console.log(res);
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    };
+  }
+  if (data[0] === 'unfav') {
+  }
+  if (data[0] === 'fetch') {
+  }
+
+  // var abc = {
+  //   bills: [
+  //     {default: { keys: ['abc', 'klk'], table: [], raw: []}},
+  //     {electric: {keys: [], table: [], raw: []}}
+  //     ],
+  //   others: [
+  //     {default: { keys: ['abc', 'klk'], table: [], raw: []}},
+  //     {electric: {keys: [], table: [], raw: []}}
+  //     ],
+  //   };
 }

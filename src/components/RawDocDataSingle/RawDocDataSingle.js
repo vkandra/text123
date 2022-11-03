@@ -27,12 +27,17 @@ const RawDocDataSingle = (props) => {
   };
 
   const saveEditedKVRData = () => {
+    const { singleDocument } = props;
+    if (singleDocument.editedKeysValuesRawData.text === '') {
+      cancelEditingKVRData();
+      return;
+    }
     let dataEditUser = JSON.parse(
       JSON.stringify(props.singleDocument.editedKeysValuesRawData)
     );
     props.dispatch(userEditedKVRTList(dataEditUser));
 
-    const { singleDocument } = props;
+    // const { singleDocument } = props;
     // console.log(singleDocument.singleDocRawAll.length);
     for (var i = 0; i < singleDocument.singleDocRawAll.length; i++) {
       // console.log(i);
@@ -74,10 +79,12 @@ const RawDocDataSingle = (props) => {
   };
 
   const cancelEditingKVRData = () => {
+    console.log('cancel');
     const { singleDocument } = props;
     singleDocument.editedKeysValuesRawData.type = '';
     singleDocument.editedKeysValuesRawData.index = -1;
     props.dispatch(editKeysValuesRawData(singleDocument));
+    console.log(props.extractor.userEditedKeyValueRawTable);
   };
 
   return (
@@ -124,7 +131,8 @@ const RawDocDataSingle = (props) => {
             </div>
           </div>
         ) : null}
-        {props.singleRawData.text !== props.singleRawData.editedText ? (
+        {String(props.singleRawData.text).valueOf() !==
+        String(props.singleRawData.editedText).valueOf() ? (
           <div className="orgnlExtractedDataDisplayArea">
             <div className="orgnlExtDataTxt">
               {props.themeLang.languageWords.Extracted_Data}:{' '}

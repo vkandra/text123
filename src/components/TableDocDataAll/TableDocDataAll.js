@@ -28,12 +28,19 @@ const TableDocDataAll = (props) => {
   };
 
   const saveEditedTableSingleData = () => {
+    const { singleDocument } = props;
+
+    if (singleDocument.editedTableData.text === '') {
+      cancelEditingKVRData();
+      return;
+    }
+
     let dataEditUser = JSON.parse(
       JSON.stringify(props.singleDocument.editedTableData)
     );
     props.dispatch(userEditedKVRTList(dataEditUser));
 
-    const { singleDocument } = props;
+    // const { singleDocument } = props;
 
     if (singleDocument.editedTableData.type === 'header') {
       for (let i = 0; i < singleDocument.singleDocTablesAll.length; i++) {
@@ -171,7 +178,8 @@ const TableDocDataAll = (props) => {
           </div>
         </div>
       ) : null}
-      {props.tableDataSingle.data !== props.tableDataSingle.editedData ? (
+      {String(props.tableDataSingle.data).valueOf() !==
+      String(props.tableDataSingle.editedData).valueOf() ? (
         <div className="orgnlExtractedDataDisplayArea">
           <div className="orgnlExtDataTxt">
             {props.themeLang.languageWords.Extracted_Data}:{' '}
