@@ -4,6 +4,7 @@ export const SIGN_UP_OPERATION = 'SIGN_UP_OPERATION';
 export const FORGOT_PASSWORD_CLICKED = 'FORGOT_PASSWORD_CLICKED';
 export const PASS_SENT_TO_EMAIL = 'PASS_SENT_TO_EMAIL';
 export const CHECK_REP_PASS = 'CHECK_REP_PASS';
+export const CHECK_LOADING = 'CHECK_LOADING';
 
 // ACTION CREATORS
 export function signInOperation(data) {
@@ -33,6 +34,12 @@ export function passSentToEmail(data) {
 export function checkRepPass(data) {
   return {
     type: CHECK_REP_PASS,
+    data: data,
+  };
+}
+export function checkLoading(data) {
+  return {
+    type: CHECK_LOADING,
     data: data,
   };
 }

@@ -10,6 +10,7 @@ import {
   fetchTemplateNamesAPI,
   clearSelectedFiles,
 } from '../../actions/documents';
+import { fetchTemplateData } from '../../actions/singleDocument';
 
 const Configuration = (props) => {
   const [success, setSuccess] = useState(false);
@@ -47,6 +48,17 @@ const Configuration = (props) => {
     var userID = props.user.token;
 
     props.dispatch(fetchRawDocumentsDetailsAPI(userID));
+
+    // Fetching Template Data
+    let fetchReqData = {
+      key: '',
+      table: '',
+      text: '',
+      user_id: props.user.token,
+      template_name: '',
+      status: 'fetch_template_details',
+    };
+    props.dispatch(fetchTemplateData(fetchReqData));
 
     let data = { user_id: userID };
     props.dispatch(fetchTemplateNamesAPI(data));

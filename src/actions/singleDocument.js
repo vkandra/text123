@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { clearEditedKVRTList } from './extractor';
 
 // ACTION TYPES
 export const SINGLE_DOC_DETAIL = 'SINGLE_DOC_DETAIL';
@@ -18,6 +17,7 @@ export const SAVE_EDITED_KEYS_VALUES_RAW_DATA =
   'SAVE_EDITED_KEYS_VALUES_RAW_DATA';
 export const SAVE_EDITED_TABLE_DATA = 'SAVE_EDITED_TABLE_DATA';
 export const DROPDOWN_SELECTED = 'DROPDOWN_SELECTED';
+export const UPDATE_TEMPLATE_DETAILS = 'UPDATE_TEMPLATE_DETAILS';
 
 // ACTION CREATORS
 
@@ -140,6 +140,14 @@ export function dropdownSelected(data) {
   };
 }
 
+export function updateTemplateDetails(data) {
+  // console.log(data);
+  return {
+    type: UPDATE_TEMPLATE_DETAILS,
+    data: data,
+  };
+}
+
 // API Calls
 
 export function fetchSingleFileData(data) {
@@ -165,35 +173,29 @@ export function fetchSingleFileData(data) {
   };
 }
 
-export function favUnfavFetchData(data) {
-  if (data[0] === 'fav') {
-    return (dispatch) => {
-      axios
-        .post(
-          `https://lkv9swpfm7.execute-api.ap-south-1.amazonaws.com/`,
-          data[1]
-        )
-        .then((res) => {
-          console.log(res);
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
-    };
-  }
-  if (data[0] === 'unfav') {
-  }
-  if (data[0] === 'fetch') {
-  }
-
-  // var abc = {
-  //   bills: [
-  //     {default: { keys: ['abc', 'klk'], table: [], raw: []}},
-  //     {electric: {keys: [], table: [], raw: []}}
-  //     ],
-  //   others: [
-  //     {default: { keys: ['abc', 'klk'], table: [], raw: []}},
-  //     {electric: {keys: [], table: [], raw: []}}
-  //     ],
-  //   };
+export function fetchTemplateData(data) {
+  return (dispatch) => {
+    axios
+      .post(
+        `https://lkv9swpfm7.execute-api.ap-south-1.amazonaws.com/fvrt`,
+        data
+      )
+      .then((res) => {
+        // console.log('Template Data -> ', res.data);
+        dispatch(updateTemplateDetails(res.data));
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
 }
+// var abc = {
+//   bills: [
+//     {default: { keys: ['abc', 'klk'], table: [], raw: []}},
+//     {electric: {keys: [], table: [], raw: []}}
+//     ],
+//   others: [
+//     {default: { keys: ['abc', 'klk'], table: [], raw: []}},
+//     {electric: {keys: [], table: [], raw: []}}
+//     ],
+//   };

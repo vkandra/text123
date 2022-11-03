@@ -4,6 +4,7 @@ import {
   FORGOT_PASSWORD_CLICKED,
   PASS_SENT_TO_EMAIL,
   CHECK_REP_PASS,
+  CHECK_LOADING,
 } from '../actions/user';
 
 const initialUserState = {
@@ -26,6 +27,7 @@ const initialUserState = {
   repeatPassVisible: false,
   repeatPass: false,
   signUpPass: '',
+  loading: false,
 };
 
 export default function user(state = initialUserState, action) {
@@ -54,6 +56,12 @@ export default function user(state = initialUserState, action) {
       // console.log('ACTION_in_reducer ', action);
       return {
         ...state,
+      };
+    case CHECK_LOADING:
+      // console.log('ACTION_in_reducer ', action);
+      return {
+        ...state,
+        loading: action.data,
       };
     default:
       return state;

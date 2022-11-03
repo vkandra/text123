@@ -1,15 +1,36 @@
 import './KeyValue.css';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux/es/exports';
 import {
   editKeysValuesRawData,
   saveEditedKeysValuesRawData,
-  favUnfavFetchData,
+  fetchTemplateData,
 } from '../../actions/singleDocument';
 import { userEditedKVRTList } from '../../actions/extractor';
+import axios from 'axios';
 
 const KeyValue = (props) => {
   const [isFav, setIsFav] = useState(false);
+
+  useEffect(() => {
+    let currentTemplate = String(
+      props.singleDocument.singleDocumentTemplate
+    ).valueOf();
+    let templateNamesKeys = Object.keys(props.singleDocument.templateDetails);
+    let templateNamesValues = Object.values(
+      props.singleDocument.templateDetails
+    );
+
+    let allTemplateDetails = props.singleDocument.templateDetails;
+
+    // console.log(allTemplateDetails);
+    for (let i in templateNamesKeys) {
+      if (currentTemplate === String(templateNamesKeys[i]).valueOf()) {
+        console.log(templateNamesValues[i]);
+      }
+    }
+    // console.log(templateNamesKeys);
+  }, []);
 
   const handleEditing = (type) => {
     const { singleDocument } = props;
@@ -88,12 +109,66 @@ const KeyValue = (props) => {
   };
 
   const handleFavourite = () => {
+    let fetchReqData = {
+      key: '',
+      table: '',
+      text: '',
+      user_id: props.user.token,
+      template_name: '',
+      status: 'fetch_template_details',
+    };
+
     if (isFav) {
+      let data = {
+        key: props.singleKeyValue.editedKey,
+        table: '',
+        text: '',
+        user_id: props.user.token,
+        template_name: props.singleDocument.singleDocumentTemplate,
+        status: 'remove_fvrt',
+      };
+      console.log(data);
+      // props.dispatch(favUnfavTemplateData(data));
+      axios
+        .post(
+          `https://lkv9swpfm7.execute-api.ap-south-1.amazonaws.com/fvrt`,
+          data
+        )
+        .then((res) => {
+          // console.log('Message Fav/UnFav -> ', res.data);
+          setIsFav(false);
+          props.dispatch(fetchTemplateData(fetchReqData));
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
       // setIsFav(false);
     } else {
-      setIsFav(true);
-      let data = [];
-      props.singleDocument.dispatch(favUnfavFetchData(data));
+      let data = {
+        key: props.singleKeyValue.editedKey,
+        table: '',
+        text: '',
+        user_id: props.user.token,
+        template_name: props.singleDocument.singleDocumentTemplate,
+        status: 'add_fvrt',
+      };
+
+      console.log(data);
+      // props.dispatch(favUnfavTemplateData(data));
+      axios
+        .post(
+          `https://lkv9swpfm7.execute-api.ap-south-1.amazonaws.com/fvrt`,
+          data
+        )
+        .then((res) => {
+          // console.log('Message Fav/UnFav -> ', res.data);
+          setIsFav(true);
+          props.dispatch(fetchTemplateData(fetchReqData));
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+      // setIsFav(true);
     }
   };
 

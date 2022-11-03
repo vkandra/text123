@@ -14,6 +14,7 @@ import {
   SAVE_EDITED_TABLE_DATA,
   SINGLE_DOC_DETAIL,
   DROPDOWN_SELECTED,
+  UPDATE_TEMPLATE_DETAILS,
 } from '../actions/singleDocument';
 
 const initialsingleDocumentState = {
@@ -65,6 +66,7 @@ const initialsingleDocumentState = {
     index: -1,
     text: '',
   },
+  templateDetails: {},
 };
 
 export default function singleDocument(
@@ -161,6 +163,12 @@ export default function singleDocument(
       return {
         ...state,
         dropdownSelected: action.data,
+      };
+    case UPDATE_TEMPLATE_DETAILS:
+      // console.log(action.data);
+      return {
+        ...state,
+        templateDetails: action.data,
       };
 
     default:
