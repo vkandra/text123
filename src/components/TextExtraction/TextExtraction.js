@@ -1,5 +1,5 @@
 import './TextExtraction.css';
-import React, { useEffect } from 'react';
+import React, { useEffect, componentWillUnmount } from 'react';
 import { connect } from 'react-redux/es/exports';
 import {
   changeTextDataTabOperation,
@@ -35,10 +35,20 @@ const TextExtraction = (props) => {
     if (props.singleDocument.selectedDocumentsDetails.length !== 0) {
       checkForEdits();
     }
-
-    const { documents } = props;
-    console.log(documents);
+    // const { documents } = props;
+    // console.log(documents);
   }, []);
+
+  useEffect(() => {
+    // let data1 = [
+    //   props.singleDocument.singleDocKeysValues,
+    //   props.singleDocument.singleDocTablesAll,
+    //   props.singleDocument.singleDocRawAll,
+    // ];
+    // let data2 = props.singleDocument.templateDetails;
+    // let data = [data1, data2];
+    // console.log(data);
+  }, [props.singleDocument.singleDocumentId]);
 
   const getSingleSelectedDocId = () => {
     const { singleDocument } = props;
@@ -72,7 +82,9 @@ const TextExtraction = (props) => {
 
     var userID = props.user.token;
     var documentId = props.singleDocument.singleDocumentId;
-    var singleDocParams = [userID, documentId];
+    let templateDetails = props.singleDocument.templateDetails;
+    var singleDocParams = [userID, documentId, templateDetails];
+
     props.dispatch(fetchSingleFileData(singleDocParams));
 
     for (let file of props.singleDocument.selectedDocumentsDetails) {

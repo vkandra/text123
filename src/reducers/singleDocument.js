@@ -15,6 +15,7 @@ import {
   SINGLE_DOC_DETAIL,
   DROPDOWN_SELECTED,
   UPDATE_TEMPLATE_DETAILS,
+  MERGE_TEMPLATE_FILE_DETAILS,
 } from '../actions/singleDocument';
 
 const initialsingleDocumentState = {
@@ -51,14 +52,14 @@ const initialsingleDocumentState = {
   singleDocumentEditedRawData: [],
   // RAW DATA - REARRANGED
   singleDocRawAll: [],
-  // Edited Keys Values Rawdata
+  // Edited Single Cell Keys Values Rawdata
   editedKeysValuesRawData: {
     type: '',
     pageNo: -1,
     index: -1,
     text: '',
   },
-  // Edited Table data
+  // Edited Single Cell Table data
   editedTableData: {
     type: '',
     tableNum: 0,
@@ -165,6 +166,12 @@ export default function singleDocument(
         dropdownSelected: action.data,
       };
     case UPDATE_TEMPLATE_DETAILS:
+      // console.log(action.data);
+      return {
+        ...state,
+        templateDetails: action.data,
+      };
+    case MERGE_TEMPLATE_FILE_DETAILS:
       // console.log(action.data);
       return {
         ...state,

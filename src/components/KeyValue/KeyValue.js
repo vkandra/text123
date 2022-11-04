@@ -26,7 +26,7 @@ const KeyValue = (props) => {
     // console.log(allTemplateDetails);
     for (let i in templateNamesKeys) {
       if (currentTemplate === String(templateNamesKeys[i]).valueOf()) {
-        console.log(templateNamesValues[i]);
+        let subTemplates = templateNamesValues[i];
       }
     }
     // console.log(templateNamesKeys);

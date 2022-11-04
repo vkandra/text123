@@ -18,6 +18,7 @@ export const SAVE_EDITED_KEYS_VALUES_RAW_DATA =
 export const SAVE_EDITED_TABLE_DATA = 'SAVE_EDITED_TABLE_DATA';
 export const DROPDOWN_SELECTED = 'DROPDOWN_SELECTED';
 export const UPDATE_TEMPLATE_DETAILS = 'UPDATE_TEMPLATE_DETAILS';
+export const MERGE_TEMPLATE_FILE_DETAILS = 'MERGE_TEMPLATE_FILE_DETAILS';
 
 // ACTION CREATORS
 
@@ -147,7 +148,13 @@ export function updateTemplateDetails(data) {
     data: data,
   };
 }
-
+export function mergeTemplateFileDetails(data) {
+  // console.log(data);
+  return {
+    type: MERGE_TEMPLATE_FILE_DETAILS,
+    data: data,
+  };
+}
 // API Calls
 
 export function fetchSingleFileData(data) {

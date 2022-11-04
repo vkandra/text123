@@ -66,7 +66,11 @@ export function postEditedDataAPI(data) {
       .then(function (response) {
         console.log(response);
 
-        const refreshDocData = [data.user_id, data.doc_id];
+        const refreshDocData = [
+          data.user_id,
+          data.doc_id,
+          data.templateDetails,
+        ];
         dispatch(fetchSingleFileData(refreshDocData));
         // dispatch(fetchRawDocumentsDetailsAPI(data.user_id));
         dispatch(clearEditedKVRTList([]));
