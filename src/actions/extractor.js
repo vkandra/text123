@@ -70,6 +70,7 @@ export function postEditedDataAPI(data) {
           data.user_id,
           data.doc_id,
           data.templateDetails,
+          data.templateName,
         ];
         dispatch(fetchSingleFileData(refreshDocData));
         // dispatch(fetchRawDocumentsDetailsAPI(data.user_id));

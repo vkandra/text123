@@ -158,10 +158,11 @@ export function mergeTemplateFileDetails(data) {
 // API Calls
 
 export function fetchSingleFileData(data) {
+  console.log(data[3]);
   return (dispatch) => {
     axios
       .get(
-        `https://4xjuok1l6c.execute-api.ap-south-1.amazonaws.com/output?user_id=${data[0]}&job_id=${data[1]}`
+        `https://4xjuok1l6c.execute-api.ap-south-1.amazonaws.com/output?user_id=${data[0]}&job_id=${data[1]}&template_id=${data[3]}`
       )
       .then((res) => {
         // console.log(res.data);

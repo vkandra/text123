@@ -83,7 +83,8 @@ const TextExtraction = (props) => {
     var userID = props.user.token;
     var documentId = props.singleDocument.singleDocumentId;
     let templateDetails = props.singleDocument.templateDetails;
-    var singleDocParams = [userID, documentId, templateDetails];
+    let templateName = props.singleDocument.singleDocumentTemplate;
+    var singleDocParams = [userID, documentId, templateDetails, templateName];
 
     props.dispatch(fetchSingleFileData(singleDocParams));
 

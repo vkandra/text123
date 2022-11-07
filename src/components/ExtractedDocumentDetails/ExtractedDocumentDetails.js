@@ -16,6 +16,7 @@ const ExtractedDocumentDetails = (props) => {
       doc_id: props.singleDocument.singleDocumentId,
       input: props.extractor.userEditedKeyValueRawTable,
       templateDetails: props.singleDocument.templateDetails,
+      templateName: props.singleDocument.singleDocumentTemplate,
     };
     // console.log(editedData);
     props.dispatch(postEditedDataAPI(editedData));
