@@ -4,6 +4,8 @@ import { connect } from 'react-redux/es/exports';
 import axios from 'axios';
 // import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import S3 from 'react-aws-s3';
+
 import ConfigurationFileList from '../ConfigurationFileList/ConfigurationFileList';
 import {
   fetchRawDocumentsDetailsAPI,
@@ -12,13 +14,25 @@ import {
 } from '../../actions/documents';
 import { fetchTemplateData } from '../../actions/singleDocument';
 
+// installed using npm install buffer --save
+window.Buffer = window.Buffer || require('buffer').Buffer;
+
 const Configuration = (props) => {
   const [success, setSuccess] = useState(false);
-  const [url, setUrl] = useState('');
+  // const [url, setUrl] = useState('');
   const [error, setError] = useState(false);
   const [renderCount, setRenderCount] = useState(0);
+  const [selectedFile, setSelectedFile] = useState([]);
 
   var uploadInput;
+
+  const config = {
+    bucketName: process.env.REACT_APP_BUCKET_NAME,
+    dirName: `input_/${props.user.token}`,
+    region: process.env.REACT_APP_REGION,
+    accessKeyId: process.env.REACT_APP_ACCESS,
+    secretAccessKey: process.env.REACT_APP_SECRET,
+  };
 
   if (success === true) {
     props.dispatch(fetchRawDocumentsDetailsAPI(props.user.token));
@@ -64,11 +78,60 @@ const Configuration = (props) => {
     props.dispatch(fetchTemplateNamesAPI(data));
   }, []);
 
-  // HANDLING FILES UPLOAD
-  const handleChange = (ev) => {
+  // HANDLING FILES UPLOAD 2
+  const handleFileInput = (e) => {
     setError(false);
     setSuccess(false);
-    setUrl('');
+    setSelectedFile(e.target.files);
+    console.log(e.target.files);
+  };
+
+  const uploadFile = async (file) => {
+    const ReactS3Client = new S3(config);
+    setError(false);
+    setSuccess(false);
+
+    let fileNameArray = [];
+    let fileSizeArray = [];
+
+    console.log('Preparing the upload');
+    // console.log(ReactS3Client);
+    for (let i = 0; i < selectedFile.length; i++) {
+      // the name of the file uploaded is used to upload it to S3
+      // console.log(selectedFile[i]);
+
+      ReactS3Client.uploadFile(selectedFile[i], selectedFile[i].name)
+        .then((data) => {
+          fileNameArray.push(selectedFile[i].name);
+          fileSizeArray.push(selectedFile[i].size);
+          setSuccess(true);
+          console.log('Link from s3 -> ', data.location);
+          let dataOfTemplate = {
+            user_id: props.user.token,
+            doc_name: fileNameArray,
+            size: fileSizeArray,
+            category: document.getElementById('singleTemplateSelect').value,
+          };
+          props.dispatch(fetchTemplateNamesAPI(dataOfTemplate));
+          setTimeout(() => {
+            props.dispatch(fetchRawDocumentsDetailsAPI(props.user.token));
+          }, 1000);
+          setRenderCount(renderCount + 1);
+          props.dispatch(clearSelectedFiles());
+        })
+        .catch((err) => {
+          setError(true);
+          console.log(JSON.stringify(error));
+        });
+    }
+  };
+
+  // HANDLING FILES UPLOAD
+  const handleChange = (ev) => {
+    // setError(false);
+    // setSuccess(false);
+    // setUrl('');
+    // console.log(typeof ev);
   };
   const handleUpload = (ev) => {
     setError(false);
@@ -98,7 +161,7 @@ const Configuration = (props) => {
           var returnData = response.data.data.returnData;
           var signedRequest = returnData.signedRequest;
           var recUrl = returnData.url;
-          setUrl(recUrl);
+          // setUrl(recUrl);
           console.log('Recieved a signed request ' + signedRequest);
 
           var options = {
@@ -157,10 +220,11 @@ const Configuration = (props) => {
             <input
               id="selectedFilesForUploading"
               multiple
-              onChange={() => handleChange()}
-              ref={(ref) => {
-                uploadInput = ref;
-              }}
+              // onChange={() => handleChange()}
+              onChange={handleFileInput}
+              // ref={(ref) => {
+              //   uploadInput = ref;
+              // }}
               type="file"
             />
           </div>
@@ -191,7 +255,11 @@ const Configuration = (props) => {
           </div>
 
           <div>
-            <div className="uploadButton" onClick={() => handleUpload()}>
+            {/* <div className="uploadButton" onClick={() => handleUpload()}> */}
+            <div
+              className="uploadButton"
+              onClick={() => uploadFile(selectedFile)}
+            >
               <i className="fi fi-ss-upload"></i>&nbsp;
               {props.themeLang.languageWords.Upload}
             </div>
