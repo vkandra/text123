@@ -7,29 +7,35 @@ import {
   fetchTemplateData,
 } from '../../actions/singleDocument';
 import { userEditedKVRTList } from '../../actions/extractor';
+import { fetchSingleFileData } from '../../actions/singleDocument';
 import axios from 'axios';
 
 const KeyValue = (props) => {
   const [isFav, setIsFav] = useState(false);
 
   useEffect(() => {
-    let currentTemplate = String(
-      props.singleDocument.singleDocumentTemplate
-    ).valueOf();
-    let templateNamesKeys = Object.keys(props.singleDocument.templateDetails);
-    let templateNamesValues = Object.values(
-      props.singleDocument.templateDetails
-    );
+    // let currentTemplate = String(
+    //   props.singleDocument.singleDocumentTemplate
+    // ).valueOf();
+    // let templateNamesKeys = Object.keys(props.singleDocument.templateDetails);
+    // let templateNamesValues = Object.values(
+    //   props.singleDocument.templateDetails
+    // );
 
-    let allTemplateDetails = props.singleDocument.templateDetails;
+    // let allTemplateDetails = props.singleDocument.templateDetails;
 
-    // console.log(allTemplateDetails);
-    for (let i in templateNamesKeys) {
-      if (currentTemplate === String(templateNamesKeys[i]).valueOf()) {
-        let subTemplates = templateNamesValues[i];
-      }
-    }
+    // // console.log(allTemplateDetails);
+    // for (let i in templateNamesKeys) {
+    //   if (currentTemplate === String(templateNamesKeys[i]).valueOf()) {
+    //     let subTemplates = templateNamesValues[i];
+    //   }
+    // }
     // console.log(templateNamesKeys);
+    if (props.singleKeyValue.fvrt === 'True') {
+      setIsFav(true);
+    } else {
+      setIsFav(false);
+    }
   }, []);
 
   const handleEditing = (type) => {
@@ -118,6 +124,13 @@ const KeyValue = (props) => {
       status: 'fetch_template_details',
     };
 
+    const refreshDocData = [
+      props.user.token,
+      props.singleDocument.singleDocumentId,
+      props.singleDocument.templateDetails,
+      props.singleDocument.singleDocumentTemplate,
+    ];
+
     if (isFav) {
       let data = {
         key: props.singleKeyValue.editedKey,
@@ -138,6 +151,7 @@ const KeyValue = (props) => {
           // console.log('Message Fav/UnFav -> ', res.data);
           setIsFav(false);
           props.dispatch(fetchTemplateData(fetchReqData));
+          props.dispatch(fetchSingleFileData(refreshDocData));
         })
         .catch(function (error) {
           console.log(error);
@@ -164,6 +178,7 @@ const KeyValue = (props) => {
           // console.log('Message Fav/UnFav -> ', res.data);
           setIsFav(true);
           props.dispatch(fetchTemplateData(fetchReqData));
+          props.dispatch(fetchSingleFileData(refreshDocData));
         })
         .catch(function (error) {
           console.log(error);
@@ -171,6 +186,8 @@ const KeyValue = (props) => {
       // setIsFav(true);
     }
   };
+
+  // console.log(props.singleKeyValue.fvrt);
 
   return (
     <div className="keyValue">

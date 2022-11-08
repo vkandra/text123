@@ -39,6 +39,7 @@ const singleDocumentLogger =
             editedKey: action.data.Edited_output.keys_extracted_data[i].value,
             editedValue:
               action.data.Edited_output.values_extracted_data[i].value,
+            fvrt: action.data.Edited_output.keys_extracted_data[i].fvrt,
           });
         }
       }

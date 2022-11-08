@@ -197,13 +197,3 @@ export function fetchTemplateData(data) {
       });
   };
 }
-// var abc = {
-//   bills: [
-//     {default: { keys: ['abc', 'klk'], table: [], raw: []}},
-//     {electric: {keys: [], table: [], raw: []}}
-//     ],
-//   others: [
-//     {default: { keys: ['abc', 'klk'], table: [], raw: []}},
-//     {electric: {keys: [], table: [], raw: []}}
-//     ],
-//   };
