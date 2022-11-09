@@ -7,48 +7,9 @@ import {
   fetchTemplateData,
 } from '../../actions/singleDocument';
 import { userEditedKVRTList } from '../../actions/extractor';
-import { singleFileTemplateUnusedKeys } from '../../actions/singleDocument';
-// import { fetchSingleFileData } from '../../actions/singleDocument';
 // import axios from 'axios';
 
 const KeyValueTemplate = (props) => {
-  const [isFav, setIsFav] = useState(false);
-
-  useEffect(() => {
-    // let currentTemplate = String(
-    //   props.singleDocument.singleDocumentTemplate
-    // ).valueOf();
-    // let templateNamesKeys = Object.keys(props.singleDocument.templateDetails2);
-    // let templateNamesValues = Object.values(
-    //   props.singleDocument.templateDetails2
-    // );
-
-    // let subTemplate1 = 'Template1';
-    // let subTemplate2 = 'Template2';
-
-    // for (let i in templateNamesKeys) {
-    //   if (currentTemplate === String(templateNamesKeys[i]).valueOf()) {
-    //     let subTemplates = templateNamesValues[i];
-
-    //     let subKeys = Object.keys(subTemplates[0]);
-    //     let subValues = Object.values(subTemplates[0]);
-
-    //     for (let j in subKeys) {
-    //       if (subTemplate1 === String(subKeys[j]).valueOf()) {
-    //         let allSubValues = subValues[j];
-    //       }
-    //     }
-    //   }
-    // }
-
-    // For showing favourite and unfavourite
-    if (props.singleKeyValue.fvrt === 'True') {
-      setIsFav(true);
-    } else {
-      setIsFav(false);
-    }
-  }, []);
-
   const handleEditing = (type) => {
     const { singleDocument } = props;
     singleDocument.editedKeysValuesRawData.type = type;

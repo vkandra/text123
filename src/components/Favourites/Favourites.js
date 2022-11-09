@@ -5,46 +5,6 @@ import KeyValueTemplate from '../KeyValueTemplate/KeyValueTemplate';
 import { singleFileTemplateUnusedKeys } from '../../actions/singleDocument';
 
 const Favourites = (props) => {
-  useEffect(() => {
-    const { singleDocument } = props;
-    for (let i = 0; i < singleDocument.templateUnusedKeys.length; i++) {
-      for (
-        let j = 0;
-        j < singleDocument.templateSingleDocKeysValues.length;
-        j++
-      ) {
-        if (
-          String(
-            singleDocument.templateSingleDocKeysValues[j].key
-          ).valueOf() === String(singleDocument.templateUnusedKeys[i]).valueOf()
-        ) {
-          singleDocument.templateUnusedKeys =
-            singleDocument.templateUnusedKeys.filter(
-              (item) => item !== props.singleDocument.templateUnusedKeys[i]
-            );
-          props.dispatch(singleFileTemplateUnusedKeys(singleDocument));
-        }
-      }
-
-      // let notfoundkeys =
-      //   props.singleDocument.templateDetailsKVRTsingleFile.keys;
-      // let keys = props.singleDocument.templateSingleDocKeysValues;
-      // let favkeys = props.singleDocument.templateDetailsKVRTsingleFile.keys;
-
-      // for (let i = 0; i < favkeys.length; i++) {
-      //   for (let j = 0; j < keys.length; j++) {
-      //     if (String(favkeys[i]).valueOf() === String(keys[j].key).valueOf()) {
-      //       notfoundkeys = notfoundkeys.filter((item) => item !== keys[j].key);
-      //     }
-      //   }
-      // }
-      // props.dispatch(singleFileTemplateUnusedKeys(notfoundkeys));
-    }
-  }, [
-    props.singleDocument.singleDocumentEditedContent,
-    props.singleDocument.templateDetails,
-  ]);
-
   return (
     <div className="favourites">
       <div className="favouritesText">
@@ -81,10 +41,8 @@ const Favourites = (props) => {
             )
           )}
           <div className="missingKeysText">Missing Keys -</div>
-          {props.singleDocument.templateUnusedKeys.map((singleKey, index) => (
-            <div className="missingKeys" key={singleKey.index}>
-              {singleKey}
-            </div>
+          {props.singleDocument.templateUnusedKeys.map((txt) => (
+            <div className="missingKeys">{txt}</div>
           ))}
         </div>
       </div>

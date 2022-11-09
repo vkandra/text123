@@ -1,9 +1,9 @@
 import './TextExtraction.css';
-import React, { useEffect, componentWillUnmount } from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux/es/exports';
 import {
   changeTextDataTabOperation,
-  clearEditedKVRTList,
+  // clearEditedKVRTList,
 } from '../../actions/extractor';
 
 import KeyValueDocData from '../KeyValueDocData/KeyValueDocData';
@@ -14,7 +14,7 @@ import {
   fetchSingleFileData,
   singleDocDetail,
   dropdownSelected,
-  singleFileTemplateDetails,
+  // singleFileTemplateDetails,
 } from '../../actions/singleDocument';
 
 import { Viewer } from '@react-pdf-viewer/core';
@@ -26,42 +26,11 @@ import viewPdf from './sample2.pdf';
 import Favourites from '../Favourites/Favourites';
 
 const TextExtraction = (props) => {
-  // console.log(props.singleDocument.singleDocKeysValues);
-
-  // console.log(props.singleDocument.singleDocTablesAll);
-
-  // console.log(props.singleDocument.singleDocRawAll);
-
   useEffect(() => {
     if (props.singleDocument.selectedDocumentsDetails.length !== 0) {
       checkForEdits();
     }
-    // const { documents } = props;
-    // console.log(documents);
   }, []);
-
-  useEffect(() => {
-    // console.log(typeof props.singleDocument.singleDocKeysValues);
-    if (
-      (Object.keys(props.singleDocument.singleDocKeysValues).length > 0 ||
-        Object.keys(props.singleDocument.singleDocTablesAll).length > 0 ||
-        Object.keys(props.singleDocument.singleDocRawAll).length > 0) &&
-      Object.keys(props.singleDocument.templateDetails).length > 0
-    ) {
-      let data = [
-        props.singleDocument.singleDocKeysValues,
-        props.singleDocument.singleDocTablesAll,
-        props.singleDocument.singleDocRawAll,
-        props.singleDocument.templateDetails,
-        props.singleDocument.singleDocumentTemplate,
-      ];
-      // console.log('Assign');
-      props.dispatch(singleFileTemplateDetails(data));
-    }
-  }, [
-    props.singleDocument.singleDocumentEditedContent,
-    props.singleDocument.templateDetails,
-  ]);
 
   const getSingleSelectedDocId = () => {
     const { singleDocument } = props;

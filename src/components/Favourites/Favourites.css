@@ -61,10 +61,12 @@
 }
 .missingKeysText {
   font-weight: 700;
-  margin-top: 4px;
+  margin-top: 6px;
 }
 .missingKeys {
-  border: 1px solid #ccc;
+  border: 1px solid rgb(229, 229, 229);
   /* height: 28px; */
-  padding-left: 2px;
+  padding-left: 4px;
+  width: 41%;
+  color: #7f7f7f;
 }

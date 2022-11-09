@@ -15,9 +15,6 @@ import {
   SINGLE_DOC_DETAIL,
   DROPDOWN_SELECTED,
   UPDATE_TEMPLATE_DETAILS,
-  MERGE_TEMPLATE_FILE_DETAILS,
-  SINGLE_FILE_TEMPLATE_DETAILS,
-  SINGLE_FILE_TEMPLATE_UNUSED_KEYS,
 } from '../actions/singleDocument';
 
 const initialsingleDocumentState = {
@@ -72,7 +69,7 @@ const initialsingleDocumentState = {
     text: '',
   },
   templateDetails: {},
-  templateDetailsKVRTsingleFile: {},
+  templateAllKeys: [],
   templateUnusedKeys: [],
   templateDetails2: {
     Bills: [
@@ -185,6 +182,8 @@ export default function singleDocument(
         ...state,
         singleDocKeysValues: action.data[0],
         templateSingleDocKeysValues: action.data[1],
+        templateAllKeys: action.data[2],
+        templateUnusedKeys: action.data[3],
       };
     case ARRANGE_RAW_DATA:
       // console.log(action.data);
@@ -243,25 +242,6 @@ export default function singleDocument(
       return {
         ...state,
         templateDetails: action.data,
-      };
-    case MERGE_TEMPLATE_FILE_DETAILS:
-      // console.log(action.data);
-      return {
-        ...state,
-        templateDetails: action.data,
-      };
-    case SINGLE_FILE_TEMPLATE_DETAILS:
-      // console.log(action.data);
-      return {
-        ...state,
-        templateDetailsKVRTsingleFile: action.data,
-        templateUnusedKeys: action.data.keys,
-      };
-    case SINGLE_FILE_TEMPLATE_UNUSED_KEYS:
-      // console.log(action.data);
-      return {
-        ...state,
-        // templateUnusedKeys: action.data,
       };
 
     default:

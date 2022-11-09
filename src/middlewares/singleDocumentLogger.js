@@ -3,6 +3,7 @@ const singleDocumentLogger =
   (next) =>
   (action) => {
     // MIDDLEWARE CODES
+
     if (typeof action !== 'function') {
       // console.log('ACTION_TYPE : ', action.type);
     }
@@ -25,42 +26,118 @@ const singleDocumentLogger =
       action.data = [valuesExtractedData, valuesEditedData];
     }
     if (action.type === 'ARRANGE_KEYS_VALUES') {
-      var singleDocKeysValues = [];
-      var templateSingleDocKeysValues = [];
-      if (action.data.Textracted_output.keys_extracted_data.length !== 0) {
-        for (
-          var i = 0;
-          i < action.data.Textracted_output.keys_extracted_data.length;
-          i++
-        ) {
-          singleDocKeysValues.push({
-            index: action.data.Textracted_output.keys_extracted_data[i].index,
-            key: action.data.Textracted_output.keys_extracted_data[i].value,
-            value: action.data.Textracted_output.values_extracted_data[i].value,
-            editedKey: action.data.Edited_output.keys_extracted_data[i].value,
-            editedValue:
-              action.data.Edited_output.values_extracted_data[i].value,
-            fvrt: action.data.Edited_output.keys_extracted_data[i].fvrt,
-          });
+      //
 
-          if (
-            action.data.Edited_output.keys_extracted_data[i].fvrt === 'True'
-          ) {
-            templateSingleDocKeysValues.push({
-              index: action.data.Textracted_output.keys_extracted_data[i].index,
-              key: action.data.Textracted_output.keys_extracted_data[i].value,
-              value:
-                action.data.Textracted_output.values_extracted_data[i].value,
-              editedKey: action.data.Edited_output.keys_extracted_data[i].value,
-              editedValue:
-                action.data.Edited_output.values_extracted_data[i].value,
-              fvrt: action.data.Edited_output.keys_extracted_data[i].fvrt,
-            });
+      let allFavouriteKeys;
+
+      let currentTemplate = String(action.data[2]).valueOf();
+      let templateNamesKeys = Object.keys(action.data[1]);
+      let templateNamesValues = Object.values(action.data[1]);
+
+      let subTemplate1 = 'Default';
+
+      // console.log(Object.keys(action.data[3]).length);
+
+      for (let i in templateNamesKeys) {
+        if (currentTemplate === String(templateNamesKeys[i]).valueOf()) {
+          let subTemplates = templateNamesValues[i];
+          // console.log(subTemplates[0]);
+
+          let subKeys = Object.keys(subTemplates[0]);
+          let subValues = Object.values(subTemplates[0]);
+
+          for (let j in subKeys) {
+            if (subTemplate1 === String(subKeys[j]).valueOf()) {
+              allFavouriteKeys = subValues[j];
+              break;
+            }
           }
         }
       }
 
-      action.data = [singleDocKeysValues, templateSingleDocKeysValues];
+      //
+
+      var singleDocKeysValues = [];
+      var templateSingleDocKeysValues = [];
+      let thisDocKeys = [];
+      if (action.data[0].Textracted_output.keys_extracted_data.length !== 0) {
+        for (
+          var i = 0;
+          i < action.data[0].Textracted_output.keys_extracted_data.length;
+          i++
+        ) {
+          singleDocKeysValues.push({
+            index:
+              action.data[0].Textracted_output.keys_extracted_data[i].index,
+            key: action.data[0].Textracted_output.keys_extracted_data[i].value,
+            value:
+              action.data[0].Textracted_output.values_extracted_data[i].value,
+            editedKey:
+              action.data[0].Edited_output.keys_extracted_data[i].value,
+            editedValue:
+              action.data[0].Edited_output.values_extracted_data[i].value,
+            fvrt: action.data[0].Edited_output.keys_extracted_data[i].fvrt,
+          });
+
+          if (
+            action.data[0].Edited_output.keys_extracted_data[i].fvrt === 'True'
+          ) {
+            templateSingleDocKeysValues.push({
+              index:
+                action.data[0].Textracted_output.keys_extracted_data[i].index,
+              key: action.data[0].Textracted_output.keys_extracted_data[i]
+                .value,
+              value:
+                action.data[0].Textracted_output.values_extracted_data[i].value,
+              editedKey:
+                action.data[0].Edited_output.keys_extracted_data[i].value,
+              editedValue:
+                action.data[0].Edited_output.values_extracted_data[i].value,
+              fvrt: action.data[0].Edited_output.keys_extracted_data[i].fvrt,
+            });
+            thisDocKeys.push(
+              action.data[0].Edited_output.keys_extracted_data[i].value
+            );
+
+            // if(String(action.data[0].Edited_output.keys_extracted_data[i].value).valueOf() === )
+          }
+        }
+      }
+
+      let allFavKeys = allFavouriteKeys.keys;
+
+      let absentKeys = [];
+
+      if (thisDocKeys.length === 0) {
+        allFavKeys = allFavKeys.filter((item) => item !== '');
+
+        absentKeys = allFavKeys;
+      } else {
+        for (let i = 0; i < thisDocKeys.length; i++) {
+          for (let j = 0; j < allFavKeys.length; j++) {
+            if (
+              String(thisDocKeys[i]).valueOf() ===
+              String(allFavKeys[j]).valueOf()
+            ) {
+              allFavKeys = allFavKeys.filter((item) => item !== thisDocKeys[i]);
+            }
+            if (String(allFavKeys[j]).valueOf() === '') {
+              allFavKeys = allFavKeys.filter((item) => item !== allFavKeys[j]);
+            }
+          }
+        }
+        absentKeys = allFavKeys;
+      }
+      console.log(allFavouriteKeys.keys);
+      console.log(absentKeys);
+
+      // console.log(action.data);
+      action.data = [
+        singleDocKeysValues,
+        templateSingleDocKeysValues,
+        allFavouriteKeys.keys,
+        absentKeys,
+      ];
     }
     if (action.type === 'ARRANGE_RAW_DATA') {
       var rawDataExtractedData = [];
@@ -220,40 +297,6 @@ const singleDocumentLogger =
       action.data = allTableData;
     }
 
-    if (action.type === 'SINGLE_FILE_TEMPLATE_DETAILS') {
-      // console.log(action.data.length);
-      let refreshedData;
-
-      let currentTemplate = String(action.data[4]).valueOf();
-      let templateNamesKeys = Object.keys(action.data[3]);
-      let templateNamesValues = Object.values(action.data[3]);
-
-      let subTemplate1 = 'Default';
-
-      // console.log(Object.keys(action.data[3]).length);
-
-      for (let i in templateNamesKeys) {
-        if (currentTemplate === String(templateNamesKeys[i]).valueOf()) {
-          let subTemplates = templateNamesValues[i];
-          // console.log(subTemplates[0]);
-
-          let subKeys = Object.keys(subTemplates[0]);
-          let subValues = Object.values(subTemplates[0]);
-
-          for (let j in subKeys) {
-            if (subTemplate1 === String(subKeys[j]).valueOf()) {
-              refreshedData = subValues[j];
-            }
-          }
-        }
-      }
-
-      action.data = refreshedData;
-      // console.log(action.data);
-    }
-    // console.log(singleDocKeysValues);
-    // console.log(singleDocRawAllData);
-    // console.log(allTableData);
     next(action);
   };
 
