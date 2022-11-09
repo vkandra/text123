@@ -14,6 +14,7 @@ import {
   fetchSingleFileData,
   singleDocDetail,
   dropdownSelected,
+  singleFileTemplateDetails,
 } from '../../actions/singleDocument';
 
 import { Viewer } from '@react-pdf-viewer/core';
@@ -40,15 +41,27 @@ const TextExtraction = (props) => {
   }, []);
 
   useEffect(() => {
-    // let data1 = [
-    //   props.singleDocument.singleDocKeysValues,
-    //   props.singleDocument.singleDocTablesAll,
-    //   props.singleDocument.singleDocRawAll,
-    // ];
-    // let data2 = props.singleDocument.templateDetails;
-    // let data = [data1, data2];
-    // console.log(data);
-  }, [props.singleDocument.singleDocumentId]);
+    // console.log(typeof props.singleDocument.singleDocKeysValues);
+    if (
+      (Object.keys(props.singleDocument.singleDocKeysValues).length > 0 ||
+        Object.keys(props.singleDocument.singleDocTablesAll).length > 0 ||
+        Object.keys(props.singleDocument.singleDocRawAll).length > 0) &&
+      Object.keys(props.singleDocument.templateDetails).length > 0
+    ) {
+      let data = [
+        props.singleDocument.singleDocKeysValues,
+        props.singleDocument.singleDocTablesAll,
+        props.singleDocument.singleDocRawAll,
+        props.singleDocument.templateDetails,
+        props.singleDocument.singleDocumentTemplate,
+      ];
+      // console.log('Assign');
+      props.dispatch(singleFileTemplateDetails(data));
+    }
+  }, [
+    props.singleDocument.singleDocumentEditedContent,
+    props.singleDocument.templateDetails,
+  ]);
 
   const getSingleSelectedDocId = () => {
     const { singleDocument } = props;
@@ -74,11 +87,12 @@ const TextExtraction = (props) => {
     singleDocument.singleDocumentTemplate = fileDetail.template_name;
 
     singleDocument.singleDocKeysValues = [];
+    singleDocument.templateSingleDocKeysValues = [];
     singleDocument.singleDocTablesAll = [];
     singleDocument.singleDocRawAll = [];
 
     props.dispatch(singleDocDetail(singleDocument));
-    console.log(singleDocument.singleDocumentStatus);
+    // console.log(singleDocument.singleDocumentStatus);
 
     var userID = props.user.token;
     var documentId = props.singleDocument.singleDocumentId;
@@ -162,7 +176,7 @@ const TextExtraction = (props) => {
   };
 
   const checkForEdits = () => {
-    console.log(props.extractor.userEditedKeyValueRawTable.length);
+    // console.log(props.extractor.userEditedKeyValueRawTable.length);
     if (props.extractor.userEditedKeyValueRawTable.length > 0) {
       alert('WARNING!\n -> Data Not Saved! \n -> Please SAVE Edited Data ');
       return;

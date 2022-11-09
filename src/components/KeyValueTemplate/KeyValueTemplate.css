@@ -1,0 +1,131 @@
+.keyValueTemplate {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  border-bottom: 1px solid #ccc;
+  border-left: 1px solid #ccc;
+  border-right: 1px solid #ccc;
+}
+.keySectionAll {
+  /* border: 1px solid black; */
+  margin: 0;
+  padding: 0;
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  margin-right: 3%;
+  padding-top: 5px;
+  padding-left: 5px;
+}
+.valueSectionAll {
+  /* border: 1px solid black; */
+  margin: 0;
+  padding: 0;
+  width: 56%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding-top: 5px;
+}
+.currentDataAndEdit {
+  /* border: 1px solid brown; */
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+}
+.currentDataDisplayKV {
+  /* border: 1px solid black; */
+  width: 100%;
+  margin-right: -14%;
+  font-size: 1rem;
+  color: #1f1e1e;
+  min-height: 26px;
+}
+.favouriteButton {
+  display: unset;
+  outline: none;
+  cursor: pointer;
+  /* background: whitesmoke; */
+  color: forestgreen;
+  font-size: 0.7rem;
+  /* border: 1px solid #ccc; */
+  border-radius: 5px;
+  margin-right: 5px;
+}
+.textAreaDivButtons {
+  /* border: 1px solid green; */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-end;
+  width: 100%;
+  padding-top: 5px;
+}
+
+.textAreaSection {
+  width: 100%;
+}
+.textAreaButtonsDiv {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  width: 90%;
+  margin: 0;
+  padding: 0;
+}
+.orgnlExtractedDataDisplayArea {
+  background: #e6e6fa;
+  width: 100%;
+  margin-bottom: 4px;
+  margin-top: 4px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  display: flex;
+  flex-direction: column;
+}
+.orgnlExtDataTxt {
+  /* border: 1px solid black; */
+  background: #388e3c;
+  color: white;
+  width: 90px;
+  font-size: 0.8rem;
+  padding-left: 2px;
+  /* font-weight: bold; */
+  /* font-family: unset; */
+}
+.orgnlExtData {
+  font-size: 0.9rem;
+  color: #172337;
+  padding-left: 2px;
+  padding-bottom: 3px;
+}
+.editTextButton {
+  display: none;
+}
+.currentDataAndEdit:hover .editTextButton {
+  display: unset;
+  outline: none;
+  cursor: pointer;
+  background: whitesmoke;
+  color: #1f1e1e;
+  font-size: 0.7rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+.editCompleteButton {
+  outline: none;
+  cursor: pointer;
+  background: whitesmoke;
+  color: #1f1e1e;
+  font-size: 0.7rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-top: 3px;
+}

@@ -14,7 +14,7 @@ import Footer from '../../components/Footer/Footer';
 
 const InAppBody = (props) => {
   const { signOut, user } = props;
-  console.log(signOut);
+  // console.log(signOut);
 
   const changeMainTabs = (tabNum) => {
     const { extractor } = props;

@@ -16,6 +16,8 @@ import {
   DROPDOWN_SELECTED,
   UPDATE_TEMPLATE_DETAILS,
   MERGE_TEMPLATE_FILE_DETAILS,
+  SINGLE_FILE_TEMPLATE_DETAILS,
+  SINGLE_FILE_TEMPLATE_UNUSED_KEYS,
 } from '../actions/singleDocument';
 
 const initialsingleDocumentState = {
@@ -42,6 +44,8 @@ const initialsingleDocumentState = {
   singleDocumentEditedValue: [],
   // KEYS VALUES - REARRANGED
   singleDocKeysValues: [],
+  // TEMPLATE KEYS VALUES - REARRANGED
+  templateSingleDocKeysValues: [],
   // TABLES
   singleDocumentTextractedTables: [],
   singleDocumentEditedTables: [],
@@ -68,6 +72,74 @@ const initialsingleDocumentState = {
     text: '',
   },
   templateDetails: {},
+  templateDetailsKVRTsingleFile: {},
+  templateUnusedKeys: [],
+  templateDetails2: {
+    Bills: [
+      {
+        Template2: {
+          keys: ['', 'BALANCE', 'Credit Purchase'],
+          table: [],
+          raw: [],
+        },
+      },
+    ],
+    Report: [
+      {
+        Template1: {
+          keys: [
+            '',
+            '23% NET:',
+            'A + B - 1 (the increase in the index of Material and in the index of Labor represent 188% of the raises taken into account)',
+            'A=',
+            'Admin',
+            'Assuming a 2012 unit price of $70.88 (rounded to $7100 table below) for Ball end-wire rope. awaging. the formula calculation for 2015 1a as follows:',
+            'Host:',
+            'P2013',
+            'PINC will therefore absorb the increase according to section',
+            'Program Name',
+            'The difference 1a 0.2%. According to section 2.6. the increase would be applied as follows:',
+            'The difference is 18.5%. which falle under section 2.7. Hance, the sacalation will be applied as follown:',
+            'The numbers in Table 2 are used for hypothetical purposen.',
+            'The parties shall agree on apecific lot size per part number which may be amonded from',
+            'VAT:',
+          ],
+          table: [],
+          raw: [],
+        },
+        Hello: {
+          keys: [
+            '',
+            'BALANCE',
+            'Credit Purchase',
+            'Assuming a 2012 unit price of $70.88 (rounded to $7100 table below) for Ball end-wire rope. awaging. the formula calculation for 2015 1a as follows:',
+            'Host:',
+          ],
+          table: [],
+          raw: [],
+        },
+        World: {
+          keys: ['', 'BALANCE', 'Credit Purchase'],
+          table: [],
+          raw: [],
+        },
+        Default: {
+          keys: ['', 'BALANCE', 'Credit Purchase'],
+          table: [],
+          raw: [],
+        },
+      },
+    ],
+    others: [
+      {
+        Default: {
+          keys: ['', 'BALANCE', 'Credit Purchase'],
+          table: [],
+          raw: [],
+        },
+      },
+    ],
+  },
 };
 
 export default function singleDocument(
@@ -111,7 +183,8 @@ export default function singleDocument(
       // console.log(action.data);
       return {
         ...state,
-        singleDocKeysValues: action.data,
+        singleDocKeysValues: action.data[0],
+        templateSingleDocKeysValues: action.data[1],
       };
     case ARRANGE_RAW_DATA:
       // console.log(action.data);
@@ -176,6 +249,19 @@ export default function singleDocument(
       return {
         ...state,
         templateDetails: action.data,
+      };
+    case SINGLE_FILE_TEMPLATE_DETAILS:
+      // console.log(action.data);
+      return {
+        ...state,
+        templateDetailsKVRTsingleFile: action.data,
+        templateUnusedKeys: action.data.keys,
+      };
+    case SINGLE_FILE_TEMPLATE_UNUSED_KEYS:
+      // console.log(action.data);
+      return {
+        ...state,
+        // templateUnusedKeys: action.data,
       };
 
     default:

@@ -26,6 +26,7 @@ const singleDocumentLogger =
     }
     if (action.type === 'ARRANGE_KEYS_VALUES') {
       var singleDocKeysValues = [];
+      var templateSingleDocKeysValues = [];
       if (action.data.Textracted_output.keys_extracted_data.length !== 0) {
         for (
           var i = 0;
@@ -41,10 +42,25 @@ const singleDocumentLogger =
               action.data.Edited_output.values_extracted_data[i].value,
             fvrt: action.data.Edited_output.keys_extracted_data[i].fvrt,
           });
+
+          if (
+            action.data.Edited_output.keys_extracted_data[i].fvrt === 'True'
+          ) {
+            templateSingleDocKeysValues.push({
+              index: action.data.Textracted_output.keys_extracted_data[i].index,
+              key: action.data.Textracted_output.keys_extracted_data[i].value,
+              value:
+                action.data.Textracted_output.values_extracted_data[i].value,
+              editedKey: action.data.Edited_output.keys_extracted_data[i].value,
+              editedValue:
+                action.data.Edited_output.values_extracted_data[i].value,
+              fvrt: action.data.Edited_output.keys_extracted_data[i].fvrt,
+            });
+          }
         }
       }
 
-      action.data = singleDocKeysValues;
+      action.data = [singleDocKeysValues, templateSingleDocKeysValues];
     }
     if (action.type === 'ARRANGE_RAW_DATA') {
       var rawDataExtractedData = [];
@@ -202,6 +218,38 @@ const singleDocumentLogger =
         }
       }
       action.data = allTableData;
+    }
+
+    if (action.type === 'SINGLE_FILE_TEMPLATE_DETAILS') {
+      // console.log(action.data.length);
+      let refreshedData;
+
+      let currentTemplate = String(action.data[4]).valueOf();
+      let templateNamesKeys = Object.keys(action.data[3]);
+      let templateNamesValues = Object.values(action.data[3]);
+
+      let subTemplate1 = 'Default';
+
+      // console.log(Object.keys(action.data[3]).length);
+
+      for (let i in templateNamesKeys) {
+        if (currentTemplate === String(templateNamesKeys[i]).valueOf()) {
+          let subTemplates = templateNamesValues[i];
+          // console.log(subTemplates[0]);
+
+          let subKeys = Object.keys(subTemplates[0]);
+          let subValues = Object.values(subTemplates[0]);
+
+          for (let j in subKeys) {
+            if (subTemplate1 === String(subKeys[j]).valueOf()) {
+              refreshedData = subValues[j];
+            }
+          }
+        }
+      }
+
+      action.data = refreshedData;
+      // console.log(action.data);
     }
     // console.log(singleDocKeysValues);
     // console.log(singleDocRawAllData);

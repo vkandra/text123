@@ -19,6 +19,9 @@ export const SAVE_EDITED_TABLE_DATA = 'SAVE_EDITED_TABLE_DATA';
 export const DROPDOWN_SELECTED = 'DROPDOWN_SELECTED';
 export const UPDATE_TEMPLATE_DETAILS = 'UPDATE_TEMPLATE_DETAILS';
 export const MERGE_TEMPLATE_FILE_DETAILS = 'MERGE_TEMPLATE_FILE_DETAILS';
+export const SINGLE_FILE_TEMPLATE_DETAILS = 'SINGLE_FILE_TEMPLATE_DETAILS';
+export const SINGLE_FILE_TEMPLATE_UNUSED_KEYS =
+  'SINGLE_FILE_TEMPLATE_UNUSED_KEYS';
 
 // ACTION CREATORS
 
@@ -155,10 +158,25 @@ export function mergeTemplateFileDetails(data) {
     data: data,
   };
 }
+export function singleFileTemplateDetails(data) {
+  // console.log(data);
+  return {
+    type: SINGLE_FILE_TEMPLATE_DETAILS,
+    data: data,
+  };
+}
+export function singleFileTemplateUnusedKeys(data) {
+  // console.log(data);
+  return {
+    type: SINGLE_FILE_TEMPLATE_UNUSED_KEYS,
+    data: data,
+  };
+}
+
 // API Calls
 
 export function fetchSingleFileData(data) {
-  console.log(data[3]);
+  // console.log(data[3]);
   return (dispatch) => {
     axios
       .get(
@@ -174,7 +192,7 @@ export function fetchSingleFileData(data) {
         dispatch(arrangeTableData(res.data));
         dispatch(arrangeRawAll(res.data));
         dispatch(arrangeTablesAll(res.data));
-        console.log(assignSingleFileData(res.data));
+        // console.log(assignSingleFileData(res.data));
 
         // dispatch(clearEditedKVRTList());
       });
