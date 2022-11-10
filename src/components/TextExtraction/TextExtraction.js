@@ -59,6 +59,8 @@ const TextExtraction = (props) => {
     singleDocument.templateSingleDocKeysValues = [];
     singleDocument.singleDocTablesAll = [];
     singleDocument.singleDocRawAll = [];
+    singleDocument.templateAllKeys = [];
+    singleDocument.templateUnusedKeys = [];
 
     props.dispatch(singleDocDetail(singleDocument));
     // console.log(singleDocument.singleDocumentStatus);
