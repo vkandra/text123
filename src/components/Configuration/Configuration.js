@@ -70,11 +70,12 @@ const Configuration = (props) => {
       text: '',
       user_id: props.user.token,
       template_name: '',
+      subtemplate: 'default',
       status: 'fetch_template_details',
     };
     props.dispatch(fetchTemplateData(fetchReqData));
 
-    let data = { user_id: userID };
+    let data = { user_id: userID, subtemplate: 'default' };
     props.dispatch(fetchTemplateNamesAPI(data));
   }, []);
 
@@ -111,6 +112,7 @@ const Configuration = (props) => {
             doc_name: fileNameArray,
             size: fileSizeArray,
             category: document.getElementById('singleTemplateSelect').value,
+            subtemplate: 'default',
           };
           props.dispatch(fetchTemplateNamesAPI(dataOfTemplate));
           setTimeout(() => {
@@ -179,6 +181,7 @@ const Configuration = (props) => {
                 doc_name: fileNameArray,
                 size: fileSizeArray,
                 category: document.getElementById('singleTemplateSelect').value,
+                subtemplate: 'default',
               };
               props.dispatch(fetchTemplateNamesAPI(dataOfTemplate));
               setTimeout(() => {

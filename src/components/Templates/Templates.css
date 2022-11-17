@@ -19,14 +19,14 @@
 }
 .createDeleteTemplate {
   height: 100%;
-  width: 70%;
+  width: 80%;
   display: flex;
   align-items: center;
   justify-content: space-between;
   /* padding: 5px; */
 }
 .templateCreationDiv {
-  width: 40%;
+  width: 48%;
   height: 100%;
   padding-left: 10px;
 }
@@ -34,7 +34,7 @@
   width: 48%;
   height: 100%;
   border-left: 1px solid #ccc;
-  padding-left: 4%;
+  padding-left: 2%;
 }
 
 .templateLabel {
@@ -75,4 +75,27 @@
 }
 .selectOption:focus {
   outline: none;
+}
+
+@media screen and (max-width: 1250px) {
+  .createDeleteTemplate {
+    height: 100%;
+    width: 80%;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    justify-content: space-around;
+    /* padding: 5px; */
+  }
+  .templateTopSection {
+    height: 150px;
+  }
+  .templateCreationDiv {
+    width: 80%;
+  }
+  .templateDeletionDiv {
+    border-left: none;
+    padding-left: 1.5%;
+    width: 80%;
+  }
 }

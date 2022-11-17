@@ -190,3 +190,20 @@ export function fetchTemplateData(data) {
       });
   };
 }
+
+export function addDeletefetchTemplate(data) {
+  return (dispatch) => {
+    axios
+      .post(
+        `https://2wehobnzu6.execute-api.ap-south-1.amazonaws.com/add_delete`,
+        data
+      )
+      .then((res) => {
+        console.log('Response -> ', res.data);
+        dispatch(updateTemplateDetails(res.data));
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
+}

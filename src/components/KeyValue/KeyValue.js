@@ -121,6 +121,7 @@ const KeyValue = (props) => {
       text: '',
       user_id: props.user.token,
       template_name: '',
+      subtemplate: 'default',
       status: 'fetch_template_details',
     };
 
@@ -138,6 +139,7 @@ const KeyValue = (props) => {
         text: '',
         user_id: props.user.token,
         template_name: props.singleDocument.singleDocumentTemplate,
+        subtemplate: 'default',
         status: 'remove_fvrt',
       };
       console.log(data);
@@ -164,6 +166,7 @@ const KeyValue = (props) => {
         text: '',
         user_id: props.user.token,
         template_name: props.singleDocument.singleDocumentTemplate,
+        subtemplate: 'default',
         status: 'add_fvrt',
       };
 
