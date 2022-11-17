@@ -70,12 +70,12 @@ const Configuration = (props) => {
       text: '',
       user_id: props.user.token,
       template_name: '',
-      subtemplate: 'default',
+      sub_template: 'Default',
       status: 'fetch_template_details',
     };
     props.dispatch(fetchTemplateData(fetchReqData));
 
-    let data = { user_id: userID, subtemplate: 'default' };
+    let data = { user_id: userID, sub_template: 'Default' };
     props.dispatch(fetchTemplateNamesAPI(data));
   }, []);
 
@@ -101,10 +101,11 @@ const Configuration = (props) => {
       // the name of the file uploaded is used to upload it to S3
       // console.log(selectedFile[i]);
 
+      fileNameArray.push(selectedFile[i].name);
+      fileSizeArray.push(selectedFile[i].size);
+
       ReactS3Client.uploadFile(selectedFile[i], selectedFile[i].name)
         .then((data) => {
-          fileNameArray.push(selectedFile[i].name);
-          fileSizeArray.push(selectedFile[i].size);
           setSuccess(true);
           console.log('Link from s3 -> ', data.location);
           let dataOfTemplate = {
@@ -112,7 +113,7 @@ const Configuration = (props) => {
             doc_name: fileNameArray,
             size: fileSizeArray,
             category: document.getElementById('singleTemplateSelect').value,
-            subtemplate: 'default',
+            sub_template: 'Default',
           };
           props.dispatch(fetchTemplateNamesAPI(dataOfTemplate));
           setTimeout(() => {
@@ -181,7 +182,7 @@ const Configuration = (props) => {
                 doc_name: fileNameArray,
                 size: fileSizeArray,
                 category: document.getElementById('singleTemplateSelect').value,
-                subtemplate: 'default',
+                sub_template: 'Default',
               };
               props.dispatch(fetchTemplateNamesAPI(dataOfTemplate));
               setTimeout(() => {
