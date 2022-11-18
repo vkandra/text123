@@ -49,8 +49,8 @@ const initialDocumentsState = {
   },
   // templateNames: ['Receipt', 'Bill', 'Other'],
   templateNames: [
-    { id: 1, name: 'Receipt' },
-    { id: 2, name: 'Bill' },
+    { id: 1, name: 'Report' },
+    { id: 2, name: 'Bills' },
     { id: 3, name: 'Other' },
   ],
   chart2data: {
