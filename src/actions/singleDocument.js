@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { updateSubTemplateNames } from './documents';
 
 // ACTION TYPES
 export const SINGLE_DOC_DETAIL = 'SINGLE_DOC_DETAIL';
@@ -174,7 +175,7 @@ export function fetchSingleFileData(data) {
   };
 }
 
-export function fetchTemplateData(data) {
+export function fetchTemplateDataAPI(data) {
   return (dispatch) => {
     axios
       .post(
@@ -191,7 +192,7 @@ export function fetchTemplateData(data) {
   };
 }
 
-export function addDeletefetchTemplate(data) {
+export function addDeletefetchTemplateAPI(data) {
   return (dispatch) => {
     axios
       .post(
@@ -199,8 +200,13 @@ export function addDeletefetchTemplate(data) {
         data
       )
       .then((res) => {
-        console.log('Response -> ', res.data);
-        dispatch(updateTemplateDetails(res.data));
+        // console.log('Response -> ', res.data);
+        // dispatch(updateTemplateDetails(res.data));
+
+        if (data.action === 'fetch') {
+          // console.log(res.data);
+          dispatch(updateSubTemplateNames(res.data));
+        }
       })
       .catch(function (error) {
         console.log(error);

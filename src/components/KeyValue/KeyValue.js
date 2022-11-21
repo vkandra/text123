@@ -4,7 +4,7 @@ import { connect } from 'react-redux/es/exports';
 import {
   editKeysValuesRawData,
   saveEditedKeysValuesRawData,
-  fetchTemplateData,
+  fetchTemplateDataAPI,
 } from '../../actions/singleDocument';
 import { userEditedKVRTList } from '../../actions/extractor';
 import { fetchSingleFileData } from '../../actions/singleDocument';
@@ -152,7 +152,7 @@ const KeyValue = (props) => {
         .then((res) => {
           // console.log('Message Fav/UnFav -> ', res.data);
           setIsFav(false);
-          props.dispatch(fetchTemplateData(fetchReqData));
+          props.dispatch(fetchTemplateDataAPI(fetchReqData));
           props.dispatch(fetchSingleFileData(refreshDocData));
         })
         .catch(function (error) {
@@ -180,7 +180,7 @@ const KeyValue = (props) => {
         .then((res) => {
           // console.log('Message Fav/UnFav -> ', res.data);
           setIsFav(true);
-          props.dispatch(fetchTemplateData(fetchReqData));
+          props.dispatch(fetchTemplateDataAPI(fetchReqData));
           props.dispatch(fetchSingleFileData(refreshDocData));
         })
         .catch(function (error) {

@@ -6,6 +6,7 @@ import {
   CLEAR_SELECTED_FILES,
   ASSIGN_DASHBOARD_DATA,
   UPDATE_TEMPLATE_NAMES,
+  UPDATE_SUBTEMPLATE_NAMES,
 } from '../actions/documents';
 
 const initialDocumentsState = {
@@ -49,11 +50,8 @@ const initialDocumentsState = {
     ],
   },
   // templateNames: ['Receipt', 'Bill', 'Other'],
-  templateNames: [
-    { id: 1, name: 'Report' },
-    { id: 2, name: 'Bills' },
-    { id: 3, name: 'Other' },
-  ],
+  templateNames: [],
+  subTemplateNames: [],
   chart2data: {
     labels: [],
     datasets: [
@@ -130,6 +128,12 @@ export default function documents(state = initialDocumentsState, action) {
       return {
         ...state,
         templateNames: action.data,
+      };
+    case UPDATE_SUBTEMPLATE_NAMES:
+      // console.log('ACTION_in_reducer ', action.data);
+      return {
+        ...state,
+        subTemplateNames: action.data,
       };
     default:
       return state;

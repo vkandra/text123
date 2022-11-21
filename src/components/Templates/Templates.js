@@ -1,7 +1,7 @@
 import './Templates.css';
 import React from 'react';
 import { connect } from 'react-redux/es/exports';
-import { addDeletefetchTemplate } from '../../actions/singleDocument';
+import { addDeletefetchTemplateAPI } from '../../actions/singleDocument';
 
 const Templates = (props) => {
   const createSubTemp = () => {
@@ -14,7 +14,7 @@ const Templates = (props) => {
       sub_template: subTempName,
       action: 'add',
     };
-    props.dispatch(addDeletefetchTemplate(data));
+    props.dispatch(addDeletefetchTemplateAPI(data));
   };
 
   const deleteSubTemp = () => {
@@ -27,7 +27,7 @@ const Templates = (props) => {
       sub_template: selectedSubTemp,
       action: 'delete',
     };
-    props.dispatch(addDeletefetchTemplate(data));
+    props.dispatch(addDeletefetchTemplateAPI(data));
   };
 
   const fetchData = () => {
@@ -37,7 +37,7 @@ const Templates = (props) => {
       sub_template: '',
       action: 'fetch',
     };
-    props.dispatch(addDeletefetchTemplate(data));
+    props.dispatch(addDeletefetchTemplateAPI(data));
   };
 
   return (

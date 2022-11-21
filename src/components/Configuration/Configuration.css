@@ -2,12 +2,15 @@
   height: 98.5%;
 }
 .uploadFilesSection {
-  height: 6%;
+  height: 8%;
   /* border: 1px solid black; */
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  margin: 0.5%;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 3px;
+  margin-bottom: 3px;
 }
 .uploadFileText {
   /* border: thin solid #ccc; */
@@ -19,9 +22,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  color: #384988;
 }
 .fileUploadSectionMain {
-  width: 80%;
+  width: 88%;
   /* border: 1px solid #000000; */
   display: flex;
   justify-content: space-between;
@@ -41,12 +45,15 @@
 }
 .templateDropdown {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-direction: column;
+  margin-top: -2px;
 }
 .templateLabel {
-  font-size: 1rem;
+  font-size: 0.7rem;
   font-weight: bold;
+  /* font-style: italic; */
 }
 #singleTemplateSelect {
   width: 150px;
@@ -56,6 +63,16 @@
   cursor: pointer;
 }
 #singleTemplateSelect:focus {
+  outline: none;
+}
+#singleSubTemplateSelect {
+  width: 150px;
+  border: thin solid #ccc;
+  border-radius: 4px;
+  padding-bottom: 3px;
+  cursor: pointer;
+}
+#singleSubTemplateSelect:focus {
   outline: none;
 }
 .uploadButton {
@@ -70,17 +87,20 @@
   justify-content: space-evenly;
   align-items: center;
   border-radius: 4px;
+  margin-top: 5px;
 }
 .uploadButton i {
   margin-top: 5px;
 }
 .uploadButton:hover {
   font-weight: 600;
-  background: yellow;
+  background: lightyellow;
 }
 .uploadStatusShow {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   font-size: 0.8rem;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   font-weight: bold;

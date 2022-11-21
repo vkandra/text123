@@ -76,6 +76,20 @@ const documentsLogger =
 
       action.data = templateNames;
     }
+    if (action.type === 'UPDATE_SUBTEMPLATE_NAMES') {
+      let subTemplateNames = [];
+
+      if (action.data === null) {
+        let obj = { id: 1, name: 'Default' };
+        subTemplateNames.push(obj);
+      }
+      for (let i = 0; i < action.data.length; i++) {
+        let obj = { id: i, name: action.data[i] };
+        subTemplateNames.push(obj);
+      }
+
+      action.data = subTemplateNames;
+    }
 
     next(action);
   };

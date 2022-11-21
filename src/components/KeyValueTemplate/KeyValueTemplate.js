@@ -4,7 +4,7 @@ import { connect } from 'react-redux/es/exports';
 import {
   editKeysValuesRawData,
   saveEditedKeysValuesRawData,
-  fetchTemplateData,
+  // fetchTemplateDataAPI,
 } from '../../actions/singleDocument';
 import { userEditedKVRTList } from '../../actions/extractor';
 // import axios from 'axios';

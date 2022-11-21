@@ -12,7 +12,10 @@ import {
   fetchTemplateNamesAPI,
   clearSelectedFiles,
 } from '../../actions/documents';
-import { fetchTemplateData } from '../../actions/singleDocument';
+import {
+  fetchTemplateDataAPI,
+  addDeletefetchTemplateAPI,
+} from '../../actions/singleDocument';
 
 // installed using npm install buffer --save
 window.Buffer = window.Buffer || require('buffer').Buffer;
@@ -73,11 +76,23 @@ const Configuration = (props) => {
       sub_template: 'Default',
       status: 'fetch_template_details',
     };
-    props.dispatch(fetchTemplateData(fetchReqData));
+    props.dispatch(fetchTemplateDataAPI(fetchReqData));
 
     let data = { user_id: userID, sub_template: 'Default' };
     props.dispatch(fetchTemplateNamesAPI(data));
   }, []);
+
+  useEffect(() => {
+    let category = document.getElementById('singleTemplateSelect').value;
+    let reqBody = {
+      user_id: props.user.token,
+      main_template: category,
+      sub_template: '',
+      action: 'fetch',
+    };
+    props.dispatch(addDeletefetchTemplateAPI(reqBody));
+    // console.log(props.documents.subTemplateNames);
+  }, [props.documents.templateNames]);
 
   // HANDLING FILES UPLOAD 2
   const handleFileInput = (e) => {
@@ -113,7 +128,8 @@ const Configuration = (props) => {
             doc_name: fileNameArray,
             size: fileSizeArray,
             category: document.getElementById('singleTemplateSelect').value,
-            sub_template: 'Default',
+            sub_template: document.getElementById('singleSubTemplateSelect')
+              .value,
           };
           props.dispatch(fetchTemplateNamesAPI(dataOfTemplate));
           setTimeout(() => {
@@ -129,96 +145,24 @@ const Configuration = (props) => {
     }
   };
 
-  // HANDLING FILES UPLOAD
-  const handleChange = (ev) => {
-    // setError(false);
-    // setSuccess(false);
-    // setUrl('');
-    // console.log(typeof ev);
-  };
-  const handleUpload = (ev) => {
-    setError(false);
-    setSuccess(false);
-    var userID = props.user.token;
-    let fileNameArray = [];
-    let fileSizeArray = [];
-    // console.log(document.getElementById('singleTemplateSelect').value);
-    for (let i = 0; i < uploadInput.files.length; i++) {
-      fileNameArray.push(uploadInput.files[i].name);
-      fileSizeArray.push(uploadInput.files[i].size);
-
-      let file = uploadInput.files[i];
-      // Split the filename to get the name and type
-
-      let fileParts = uploadInput.files[i].name.split('.');
-      let fileName = fileParts[0];
-      let fileType = fileParts[1];
-      console.log('Preparing the upload');
-      axios
-        //.post('http://localhost:3001/sign_s3', {
-        .post('https://master.dsmflmvaq3lvd.amplifyapp.com/sign_s3', {
-          fileName: fileName,
-          fileType: fileType,
-        })
-        .then((response) => {
-          var returnData = response.data.data.returnData;
-          var signedRequest = returnData.signedRequest;
-          var recUrl = returnData.url;
-          // setUrl(recUrl);
-          console.log('Recieved a signed request ' + signedRequest);
-
-          var options = {
-            headers: {
-              'Content-Type': fileType,
-            },
-          };
-          axios
-            .put(signedRequest, file, options)
-            .then((result) => {
-              console.log('Response from s3');
-              setSuccess(true);
-              let dataOfTemplate = {
-                user_id: userID,
-                doc_name: fileNameArray,
-                size: fileSizeArray,
-                category: document.getElementById('singleTemplateSelect').value,
-                sub_template: 'Default',
-              };
-              props.dispatch(fetchTemplateNamesAPI(dataOfTemplate));
-              setTimeout(() => {
-                props.dispatch(fetchRawDocumentsDetailsAPI(props.user.token));
-              }, 1000);
-              setRenderCount(renderCount + 1);
-              props.dispatch(clearSelectedFiles());
-            })
-            .catch((error) => {
-              // alert('ERROR ' + JSON.stringify(error));
-              setError(true);
-            });
-        })
-        .catch((error) => {
-          alert(JSON.stringify(error));
-        });
-    }
+  const getSelectedTemplate = () => {
+    let category = document.getElementById('singleTemplateSelect').value;
+    let reqBody = {
+      user_id: props.user.token,
+      main_template: category,
+      sub_template: '',
+      action: 'fetch',
+    };
+    props.dispatch(addDeletefetchTemplateAPI(reqBody));
   };
 
   return (
     <div className="configuration">
-      {/* <ToastContainer
-        position="top-right"
-        autoClose={2000}
-        hideProgressBar
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-      /> */}
       <div className="uploadFilesSection">
         <div className="fileUploadSectionMain">
           <div className="uploadFileText">
-            {props.themeLang.languageWords.Upload_Files} :
+            {/* {props.themeLang.languageWords.Upload_Files}  */}
+            UPLOAD FILE(s) :
           </div>
           <div>
             <input
@@ -235,16 +179,17 @@ const Configuration = (props) => {
 
           <div className="templateDropdown">
             <div className="templateLabel">
-              {props.themeLang.languageWords.Select_a_Template} : &nbsp;
+              {/* {props.themeLang.languageWords.Select_a_Template} */}
+              &nbsp;Select Main Template :
             </div>
             <select
               name="templates"
               id="singleTemplateSelect"
-              // onChange={() => {
-              //   getSelectedTemplate();
-              // }}
+              onChange={() => {
+                getSelectedTemplate();
+              }}
             >
-              <optgroup label={props.themeLang.languageWords.Select_a_Template}>
+              <optgroup label="Select Main Template">
                 {props.documents.templateNames.map((singletemplate, index) => (
                   <option
                     key={singletemplate.id}
@@ -254,6 +199,33 @@ const Configuration = (props) => {
                     {singletemplate.name}
                   </option>
                 ))}
+              </optgroup>
+            </select>
+          </div>
+          <div className="templateDropdown">
+            <div className="templateLabel">
+              {/* {props.themeLang.languageWords.Select_a_Template} */}
+              &nbsp;Select Sub-Template :
+            </div>
+            <select
+              name="templates"
+              id="singleSubTemplateSelect"
+              // onChange={() => {
+              //   getSelectedTemplate();
+              // }}
+            >
+              <optgroup label="Select Sub-Template">
+                {props.documents.subTemplateNames.map(
+                  (singletemplate, index) => (
+                    <option
+                      key={singletemplate.id}
+                      singletemplate={singletemplate}
+                      value={singletemplate.name}
+                    >
+                      {singletemplate.name}
+                    </option>
+                  )
+                )}
               </optgroup>
             </select>
           </div>
@@ -302,3 +274,88 @@ const mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps)(Configuration);
+
+/* <ToastContainer
+        position="top-right"
+        autoClose={2000}
+        hideProgressBar
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      /> */
+
+// // HANDLING FILES UPLOAD
+// const handleChange = (ev) => {
+//   // setError(false);
+//   // setSuccess(false);
+//   // setUrl('');
+//   // console.log(typeof ev);
+// };
+// const handleUpload = (ev) => {
+//   setError(false);
+//   setSuccess(false);
+//   var userID = props.user.token;
+//   let fileNameArray = [];
+//   let fileSizeArray = [];
+//   // console.log(document.getElementById('singleTemplateSelect').value);
+//   for (let i = 0; i < uploadInput.files.length; i++) {
+//     fileNameArray.push(uploadInput.files[i].name);
+//     fileSizeArray.push(uploadInput.files[i].size);
+
+//     let file = uploadInput.files[i];
+//     // Split the filename to get the name and type
+
+//     let fileParts = uploadInput.files[i].name.split('.');
+//     let fileName = fileParts[0];
+//     let fileType = fileParts[1];
+//     console.log('Preparing the upload');
+//     axios
+//       //.post('http://localhost:3001/sign_s3', {
+//       .post('https://master.dsmflmvaq3lvd.amplifyapp.com/sign_s3', {
+//         fileName: fileName,
+//         fileType: fileType,
+//       })
+//       .then((response) => {
+//         var returnData = response.data.data.returnData;
+//         var signedRequest = returnData.signedRequest;
+//         var recUrl = returnData.url;
+//         // setUrl(recUrl);
+//         console.log('Recieved a signed request ' + signedRequest);
+
+//         var options = {
+//           headers: {
+//             'Content-Type': fileType,
+//           },
+//         };
+//         axios
+//           .put(signedRequest, file, options)
+//           .then((result) => {
+//             console.log('Response from s3');
+//             setSuccess(true);
+//             let dataOfTemplate = {
+//               user_id: userID,
+//               doc_name: fileNameArray,
+//               size: fileSizeArray,
+//               category: document.getElementById('singleTemplateSelect').value,
+//               sub_template: 'Default',
+//             };
+//             props.dispatch(fetchTemplateNamesAPI(dataOfTemplate));
+//             setTimeout(() => {
+//               props.dispatch(fetchRawDocumentsDetailsAPI(props.user.token));
+//             }, 1000);
+//             setRenderCount(renderCount + 1);
+//             props.dispatch(clearSelectedFiles());
+//           })
+//           .catch((error) => {
+//             // alert('ERROR ' + JSON.stringify(error));
+//             setError(true);
+//           });
+//       })
+//       .catch((error) => {
+//         alert(JSON.stringify(error));
+//       });
+//   }
+// };

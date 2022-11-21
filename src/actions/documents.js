@@ -10,6 +10,7 @@ export const ASSIGN_RAW_DOCUMENTS_DATA = 'ASSIGN_RAW_DOCUMENTS_DATA';
 export const CLEAR_SELECTED_FILES = 'CLEAR_SELECTED_FILES';
 export const ASSIGN_DASHBOARD_DATA = 'ASSIGN_DASHBOARD_DATA';
 export const UPDATE_TEMPLATE_NAMES = 'UPDATE_TEMPLATE_NAMES';
+export const UPDATE_SUBTEMPLATE_NAMES = 'UPDATE_SUBTEMPLATE_NAMES';
 
 // ACTION CREATORS
 export function assignAllReceivedDocumentsData(data) {
@@ -57,6 +58,13 @@ export function assignDashboardData(data) {
 export function updateTemplateNames(data) {
   return {
     type: UPDATE_TEMPLATE_NAMES,
+    data: data,
+  };
+}
+
+export function updateSubTemplateNames(data) {
+  return {
+    type: UPDATE_SUBTEMPLATE_NAMES,
     data: data,
   };
 }
@@ -141,20 +149,20 @@ export function fetchTemplateNamesAPI(data) {
         data
       )
       .then(function (response) {
-        // console.log(response.data.Document_category);
-        // console.log(Object.keys(data).length);
-        if (Object.keys(data).length === 1) {
-          if (response.data.user_id === data.user_id) {
-            dispatch(updateTemplateNames(response.data.Document_category));
-          } else {
-            console.log(
-              'User Id mismatch, asked templates for ' +
-                data.user_id +
-                ', instead recieving for ' +
-                response.data.user_id
-            );
-          }
+        console.log(response.data);
+        console.log(Object.keys(data).length);
+        // if (Object.keys(data).length === 1) {
+        if (response.data.user_id === data.user_id) {
+          dispatch(updateTemplateNames(response.data.Document_category));
+        } else {
+          console.log(
+            'User Id mismatch, asked templates for ' +
+              data.user_id +
+              ', instead recieving for ' +
+              response.data.user_id
+          );
         }
+        // }
         // dispatch(fetchRawDocumentsDetailsAPI(data.user_id));
         // dispatch(clearSelectedFiles());
       })
