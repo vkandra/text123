@@ -47,6 +47,9 @@ const ConfigurationFile = (props) => {
       <div className="configFlLstTableRowDocId">
         {props.document.template_name}
       </div>
+      <div className="configFlLstTableRowSubtemplate">
+        {props.document.sub_template_name}
+      </div>
       <div className="configFlLstTableRowDocType">
         {props.document.documentType === 'application/pdf' ||
         props.document.documentType === 'pdf'

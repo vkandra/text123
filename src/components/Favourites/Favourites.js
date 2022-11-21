@@ -9,9 +9,13 @@ const Favourites = (props) => {
     <div className="favourites">
       <div className="favouritesText">
         <div className="favouritesHeader">
-          <div>
+          <div className="templateDiv">
             {props.themeLang.languageWords.Template} : &nbsp;
             <b>{props.singleDocument.singleDocumentTemplate}</b>
+          </div>
+          <div className="subTemplateDiv">
+            Sub-Template : &nbsp;
+            <b>{props.singleDocument.singleDocumentSubTemplate}</b>
           </div>
           <div>
             <select id="selectDataType">

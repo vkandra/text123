@@ -23,6 +23,7 @@ const initialDocumentsState = {
       step_fun_execution_id: '',
       processed_date: '',
       template_name: '',
+      sub_template_name: '',
     },
   ],
   filteredFilelistNotProcessed: [],

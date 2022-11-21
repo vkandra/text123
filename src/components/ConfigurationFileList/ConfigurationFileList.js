@@ -260,13 +260,16 @@ const ConfigurationFileList = (props) => {
 
       <div className="configFlLstTableHeader">
         <div className="configFlLstTableHeaderDocName">
-          {props.themeLang.languageWords.Doc_Name}
+          {/* {props.themeLang.languageWords.Doc_Name} */}
+          Document Name
         </div>
         <div className="configFlLstTableHeaderDocId">
           {props.themeLang.languageWords.Template}
         </div>
+        <div className="configFlLstTableHeaderSubtemplate">Sub-Template</div>
         <div className="configFlLstTableHeaderDocType">
-          {props.themeLang.languageWords.Doc_Type}
+          {/* {props.themeLang.languageWords.Doc_Type} */}
+          Type
         </div>
         <div className="configFlLstTableHeaderUploadedOn">
           {props.themeLang.languageWords.Uploaded_On}

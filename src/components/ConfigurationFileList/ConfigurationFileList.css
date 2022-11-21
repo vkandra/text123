@@ -81,19 +81,23 @@
   border-right: 1px solid #ccc;
 }
 .configFlLstTableHeaderDocId {
-  width: 15%;
+  width: 7%;
 }
 .configFlLstTableHeaderDocName {
-  width: 29%;
+  width: 35%;
+  padding-left: 10px;
 }
 .configFlLstTableHeaderDocType {
-  width: 10%;
+  width: 5%;
+}
+.configFlLstTableHeaderSubtemplate {
+  width: 16%;
 }
 .configFlLstTableHeaderUploadedOn {
-  width: 14%;
+  width: 10%;
 }
 .configFlLstTableHeaderDocStats {
-  width: 13%;
+  width: 8%;
 }
 .configFlLstTableHeaderSelectAll {
   padding: 5px;

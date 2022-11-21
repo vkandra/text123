@@ -10,27 +10,36 @@
   background: rgb(246, 245, 245);
 }
 .configFlLstTableRowDocId {
-  width: 15%;
-  padding-right: 5px;
+  width: 7%;
+  padding-left: 4px;
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
 }
 .configFlLstTableRowDocName {
-  width: 29%;
+  width: 35%;
   padding-right: 5px;
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
 }
 .configFlLstTableRowDocType {
-  width: 10%;
+  width: 5%;
+  padding-left: 4px;
+}
+.configFlLstTableRowSubtemplate {
+  width: 16%;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  padding-left: 4px;
 }
 .configFlLstTableRowUploadedOn {
-  width: 14%;
+  width: 10%;
+  padding-left: 4px;
 }
 .configFlLstTableRowDocStats {
-  width: 13%;
+  width: 8%;
 }
 .configFlLstTableRowSelect {
   padding: 5px;

@@ -43,9 +43,15 @@ const ExtractedDocumentDetails = (props) => {
           </div>
           <div>
             {props.themeLang.languageWords.Template} : &nbsp;
-            <span className="actualDocDataDetail">
-              {props.singleDocument.singleDocumentTemplate}
-            </span>
+            {props.singleDocument.singleDocumentSubTemplate !== '' ? (
+              <span className="actualDocDataDetail">
+                {' '}
+                {props.singleDocument.singleDocumentSubTemplate} (
+                {props.singleDocument.singleDocumentTemplate})
+              </span>
+            ) : (
+              <span className="actualDocDataDetail"></span>
+            )}
           </div>
         </div>
         <div className="documentSingleDetailSection">

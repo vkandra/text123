@@ -35,6 +35,7 @@ const documentsLogger =
             action.data.Document_Details[i].step_fun_execution_id.S,
           processed_date: action.data.Document_Details[i].processed_date.S,
           template_name: action.data.Document_Details[i].template.S,
+          sub_template_name: action.data.Document_Details[i].sub_template.S,
         });
       }
       // fetchedAllDocsData.documentDetails.push({
