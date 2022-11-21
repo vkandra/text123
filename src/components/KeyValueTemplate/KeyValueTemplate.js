@@ -127,7 +127,7 @@ const KeyValueTemplate = (props) => {
   //           // console.log('Message Fav/UnFav -> ', res.data);
   //           setIsFav(false);
   //           props.dispatch(fetchTemplateData(fetchReqData));
-  //           props.dispatch(fetchSingleFileData(refreshDocData));
+  //           props.dispatch(fetchSingleFileDataAPI(refreshDocData));
   //         })
   //         .catch(function (error) {
   //           console.log(error);
@@ -154,7 +154,7 @@ const KeyValueTemplate = (props) => {
   //           // console.log('Message Fav/UnFav -> ', res.data);
   //           setIsFav(true);
   //           props.dispatch(fetchTemplateData(fetchReqData));
-  //           props.dispatch(fetchSingleFileData(refreshDocData));
+  //           props.dispatch(fetchSingleFileDataAPI(refreshDocData));
   //         })
   //         .catch(function (error) {
   //           console.log(error);

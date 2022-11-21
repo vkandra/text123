@@ -11,7 +11,7 @@ import RawDocData from '../RawDocData/RawDocData';
 import TableDocData from '../TableDocData/TableDocData';
 import ExtractedDocumentDetails from '../ExtractedDocumentDetails/ExtractedDocumentDetails';
 import {
-  fetchSingleFileData,
+  fetchSingleFileDataAPI,
   singleDocDetail,
   dropdownSelected,
   // singleFileTemplateDetails,
@@ -70,9 +70,16 @@ const TextExtraction = (props) => {
     var documentId = props.singleDocument.singleDocumentId;
     let templateDetails = props.singleDocument.templateDetails;
     let templateName = props.singleDocument.singleDocumentTemplate;
-    var singleDocParams = [userID, documentId, templateDetails, templateName];
+    let subTemplateName = props.singleDocument.singleDocumentSubTemplate;
+    var singleDocParams = [
+      userID,
+      documentId,
+      templateDetails,
+      templateName,
+      subTemplateName,
+    ];
 
-    props.dispatch(fetchSingleFileData(singleDocParams));
+    props.dispatch(fetchSingleFileDataAPI(singleDocParams));
 
     for (let file of props.singleDocument.selectedDocumentsDetails) {
       if (id === file.documentId) {

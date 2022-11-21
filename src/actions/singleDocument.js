@@ -151,7 +151,7 @@ export function updateTemplateDetails(data) {
 
 // API Calls
 
-export function fetchSingleFileData(data) {
+export function fetchSingleFileDataAPI(data) {
   console.log(data);
   return (dispatch) => {
     axios
@@ -163,7 +163,7 @@ export function fetchSingleFileData(data) {
         dispatch(assignSingleFileData(res.data));
         dispatch(arrangeKeysData(res.data));
         dispatch(arrangeValuesData(res.data));
-        dispatch(arrangeKeysValues([res.data, data[2], data[3]]));
+        dispatch(arrangeKeysValues([res.data, data[2], data[3], data[4]]));
         dispatch(arrangeRawData(res.data));
         dispatch(arrangeTableData(res.data));
         dispatch(arrangeRawAll(res.data));

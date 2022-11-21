@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { fetchSingleFileData } from './singleDocument';
+import { fetchSingleFileDataAPI } from './singleDocument';
 
 // ACTION TYPES
 export const CHANGE_TAB_OPERATION = 'CHANGE_TAB_OPERATION';
@@ -71,8 +71,9 @@ export function postEditedDataAPI(data) {
           data.doc_id,
           data.templateDetails,
           data.templateName,
+          data.subTemplateName,
         ];
-        dispatch(fetchSingleFileData(refreshDocData));
+        dispatch(fetchSingleFileDataAPI(refreshDocData));
         // dispatch(fetchRawDocumentsDetailsAPI(data.user_id));
         dispatch(clearEditedKVRTList([]));
       })

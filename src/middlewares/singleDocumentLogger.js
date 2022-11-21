@@ -34,8 +34,7 @@ const singleDocumentLogger =
       let templateNamesKeys = Object.keys(action.data[1]);
       let templateNamesValues = Object.values(action.data[1]);
 
-      let subTemplate1 = 'Default';
-
+      let subTemplate1 = action.data[3];
       // console.log(Object.keys(action.data[3]).length);
 
       for (let i in templateNamesKeys) {
@@ -108,6 +107,8 @@ const singleDocumentLogger =
 
       let absentKeys = [];
 
+      console.log(thisDocKeys);
+
       if (thisDocKeys.length === 0) {
         allFavKeys = allFavKeys.filter((item) => item !== '');
 
@@ -119,7 +120,7 @@ const singleDocumentLogger =
               String(thisDocKeys[i]).valueOf() ===
               String(allFavKeys[j]).valueOf()
             ) {
-              allFavKeys = allFavKeys.filter((item) => item !== thisDocKeys[i]);
+              allFavKeys = allFavKeys.filter((item) => item !== allFavKeys[j]);
             }
             if (String(allFavKeys[j]).valueOf() === '') {
               allFavKeys = allFavKeys.filter((item) => item !== allFavKeys[j]);

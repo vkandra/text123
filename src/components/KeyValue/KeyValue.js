@@ -7,7 +7,7 @@ import {
   fetchTemplateDataAPI,
 } from '../../actions/singleDocument';
 import { userEditedKVRTList } from '../../actions/extractor';
-import { fetchSingleFileData } from '../../actions/singleDocument';
+import { fetchSingleFileDataAPI } from '../../actions/singleDocument';
 import axios from 'axios';
 
 const KeyValue = (props) => {
@@ -121,7 +121,7 @@ const KeyValue = (props) => {
       text: '',
       user_id: props.user.token,
       template_name: '',
-      sub_template: 'Default',
+      sub_template: props.singleDocument.singleDocumentSubTemplate,
       status: 'fetch_template_details',
     };
 
@@ -130,6 +130,7 @@ const KeyValue = (props) => {
       props.singleDocument.singleDocumentId,
       props.singleDocument.templateDetails,
       props.singleDocument.singleDocumentTemplate,
+      props.singleDocument.singleDocumentSubTemplate,
     ];
 
     if (isFav) {
@@ -139,7 +140,7 @@ const KeyValue = (props) => {
         text: '',
         user_id: props.user.token,
         template_name: props.singleDocument.singleDocumentTemplate,
-        sub_template: 'Default',
+        sub_template: props.singleDocument.singleDocumentSubTemplate,
         status: 'remove_fvrt',
       };
       console.log(data);
@@ -153,7 +154,7 @@ const KeyValue = (props) => {
           // console.log('Message Fav/UnFav -> ', res.data);
           setIsFav(false);
           props.dispatch(fetchTemplateDataAPI(fetchReqData));
-          props.dispatch(fetchSingleFileData(refreshDocData));
+          props.dispatch(fetchSingleFileDataAPI(refreshDocData));
         })
         .catch(function (error) {
           console.log(error);
@@ -166,7 +167,7 @@ const KeyValue = (props) => {
         text: '',
         user_id: props.user.token,
         template_name: props.singleDocument.singleDocumentTemplate,
-        sub_template: 'Default',
+        sub_template: props.singleDocument.singleDocumentSubTemplate,
         status: 'add_fvrt',
       };
 
@@ -181,7 +182,7 @@ const KeyValue = (props) => {
           // console.log('Message Fav/UnFav -> ', res.data);
           setIsFav(true);
           props.dispatch(fetchTemplateDataAPI(fetchReqData));
-          props.dispatch(fetchSingleFileData(refreshDocData));
+          props.dispatch(fetchSingleFileDataAPI(refreshDocData));
         })
         .catch(function (error) {
           console.log(error);
