@@ -104,7 +104,6 @@ const singleDocumentLogger =
       }
 
       let allFavKeys = allFavouriteKeys.keys;
-
       let absentKeys = [];
 
       console.log(thisDocKeys);
@@ -114,20 +113,26 @@ const singleDocumentLogger =
 
         absentKeys = allFavKeys;
       } else {
-        for (let i = 0; i < thisDocKeys.length; i++) {
-          for (let j = 0; j < allFavKeys.length; j++) {
+        for (let i = 0; i < allFavKeys.length; i++) {
+          for (let j = 0; j < thisDocKeys.length; j++) {
             if (
-              String(thisDocKeys[i]).valueOf() ===
-              String(allFavKeys[j]).valueOf()
+              String(allFavKeys[i]).valueOf() ===
+              String(thisDocKeys[j]).valueOf()
             ) {
-              allFavKeys = allFavKeys.filter((item) => item !== allFavKeys[j]);
+              break;
+              // console.log('found');
+              // allFavKeys = allFavKeys.filter((item) => item !== allFavKeys[j]);
             }
-            if (String(allFavKeys[j]).valueOf() === '') {
-              allFavKeys = allFavKeys.filter((item) => item !== allFavKeys[j]);
+            if (j == thisDocKeys.length - 1) {
+              if (String(allFavKeys[i]).valueOf() === '') {
+                // allFavKeys = allFavKeys.filter((item) => item !== allFavKeys[j]);
+                break;
+              }
+              absentKeys.push(allFavKeys[i]);
             }
           }
         }
-        absentKeys = allFavKeys;
+        // absentKeys = allFavKeys;
       }
       console.log(allFavouriteKeys.keys);
       console.log(absentKeys);
