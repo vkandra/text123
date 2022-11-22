@@ -145,7 +145,7 @@ const Configuration = (props) => {
     }
   };
 
-  const getSelectedTemplate = () => {
+  const getSelectedSubTemplates = () => {
     let category = document.getElementById('singleTemplateSelect').value;
     let reqBody = {
       user_id: props.user.token,
@@ -186,7 +186,7 @@ const Configuration = (props) => {
               name="templates"
               id="singleTemplateSelect"
               onChange={() => {
-                getSelectedTemplate();
+                getSelectedSubTemplates();
               }}
             >
               <optgroup label="Select Main Template">
@@ -207,13 +207,7 @@ const Configuration = (props) => {
               {/* {props.themeLang.languageWords.Select_a_Template} */}
               &nbsp;Select Sub-Template :
             </div>
-            <select
-              name="templates"
-              id="singleSubTemplateSelect"
-              // onChange={() => {
-              //   getSelectedTemplate();
-              // }}
-            >
+            <select name="templates" id="singleSubTemplateSelect">
               <optgroup label="Select Sub-Template">
                 {props.documents.subTemplateNames.map(
                   (singletemplate, index) => (

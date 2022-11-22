@@ -15,6 +15,8 @@ const Templates = (props) => {
       action: 'add',
     };
     props.dispatch(addDeletefetchTemplateAPI(data));
+    fetchData();
+    document.getElementById('subTempName').value = '';
   };
 
   const deleteSubTemp = () => {
@@ -28,16 +30,30 @@ const Templates = (props) => {
       action: 'delete',
     };
     props.dispatch(addDeletefetchTemplateAPI(data));
+    document.getElementById('subTempSel1').value = '';
+    fetchData();
   };
 
   const fetchData = () => {
+    const selectedMainTemp = document.getElementById('mainTempSel2').value;
     let data = {
       user_id: props.user.token,
-      main_template: '',
+      main_template: selectedMainTemp,
       sub_template: '',
       action: 'fetch',
     };
     props.dispatch(addDeletefetchTemplateAPI(data));
+  };
+
+  const getSelectedSubTemplates = () => {
+    let category = document.getElementById('mainTempSel2').value;
+    let reqBody = {
+      user_id: props.user.token,
+      main_template: category,
+      sub_template: '',
+      action: 'fetch',
+    };
+    props.dispatch(addDeletefetchTemplateAPI(reqBody));
   };
 
   return (
@@ -48,11 +64,34 @@ const Templates = (props) => {
             <div className="templateLabel">Create Sub-Template</div>
 
             <div className="formActionTemplate">
-              <select className="selectOption" id="mainTempSel1">
+              {/* <select className="selectOption" id="mainTempSel1">
                 <option>Report</option>
                 <option>Bills</option>
                 <option>Others</option>
+              </select> */}
+
+              <select
+                id="mainTempSel1"
+                className="selectOption"
+                onChange={() => {
+                  getSelectedSubTemplates();
+                }}
+              >
+                <optgroup label="Select Main Template">
+                  {props.documents.templateNames.map(
+                    (singletemplate, index) => (
+                      <option
+                        key={singletemplate.id}
+                        singletemplate={singletemplate}
+                        value={singletemplate.name}
+                      >
+                        {singletemplate.name}
+                      </option>
+                    )
+                  )}
+                </optgroup>
               </select>
+
               <input
                 placeholder="New Sub-Template Name"
                 name="newTemplate"
@@ -72,16 +111,54 @@ const Templates = (props) => {
           <div className="templateDeletionDiv">
             <div className="templateLabel">Delete Sub-Template</div>
             <div className="formActionTemplate">
-              <select className="selectOption" id="mainTempSel2">
+              {/* <select className="selectOption" id="mainTempSel2">
                 <option>Report</option>
                 <option>Bills</option>
                 <option>Others</option>
+              </select> */}
+              <select
+                id="mainTempSel2"
+                className="selectOption"
+                onChange={() => {
+                  getSelectedSubTemplates();
+                }}
+              >
+                <optgroup label="Select Main Template">
+                  {props.documents.templateNames.map(
+                    (singletemplate, index) => (
+                      <option
+                        key={singletemplate.id}
+                        singletemplate={singletemplate}
+                        value={singletemplate.name}
+                      >
+                        {singletemplate.name}
+                      </option>
+                    )
+                  )}
+                </optgroup>
               </select>
-              <select className="selectOption" id="subTempSel1">
+              {/* <select className="selectOption" id="subTempSel1">
                 <option>Hello</option>
                 <option>World</option>
                 <option>Cosmos</option>
+              </select> */}
+
+              <select className="selectOption" id="subTempSel1">
+                <optgroup label="Select Sub-Template">
+                  {props.documents.subTemplateNames.map(
+                    (singletemplate, index) => (
+                      <option
+                        key={singletemplate.id}
+                        singletemplate={singletemplate}
+                        value={singletemplate.name}
+                      >
+                        {singletemplate.name}
+                      </option>
+                    )
+                  )}
+                </optgroup>
               </select>
+
               <button
                 type="button"
                 className="btn btn-danger deleteTemplateButton"
@@ -89,7 +166,7 @@ const Templates = (props) => {
               >
                 Delete
               </button>
-              <button onClick={() => fetchData()}>fetch</button>
+              {/* <button onClick={() => fetchData()}>fetch</button> */}
             </div>
           </div>
         </div>
@@ -100,7 +177,10 @@ const Templates = (props) => {
 
 const mapStateToProps = (state) => {
   return {
+    extractor: state.extractor,
+    documents: state.documents,
     user: state.user,
+    themeLang: state.themeLang,
   };
 };
 
