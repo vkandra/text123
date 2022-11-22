@@ -1,9 +1,21 @@
 import './Templates.css';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux/es/exports';
 import { addDeletefetchTemplateAPI } from '../../actions/singleDocument';
 
 const Templates = (props) => {
+  useEffect(() => {
+    let category = document.getElementById('mainTempSel2').value;
+    let reqBody = {
+      user_id: props.user.token,
+      main_template: category,
+      sub_template: '',
+      action: 'fetch',
+    };
+    props.dispatch(addDeletefetchTemplateAPI(reqBody));
+    // console.log(props.documents.subTemplateNames);
+  }, []);
+
   const createSubTemp = () => {
     const selectedMainTemp = document.getElementById('mainTempSel1').value;
     const subTempName = document.getElementById('subTempName').value;
