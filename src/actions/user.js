@@ -5,6 +5,7 @@ export const FORGOT_PASSWORD_CLICKED = 'FORGOT_PASSWORD_CLICKED';
 export const PASS_SENT_TO_EMAIL = 'PASS_SENT_TO_EMAIL';
 export const CHECK_REP_PASS = 'CHECK_REP_PASS';
 export const CHECK_LOADING = 'CHECK_LOADING';
+export const SET_USER_PREFERENCES = 'SET_USER_PREFERENCES';
 
 // ACTION CREATORS
 export function signInOperation(data) {
@@ -40,6 +41,12 @@ export function checkRepPass(data) {
 export function checkLoading(data) {
   return {
     type: CHECK_LOADING,
+    data: data,
+  };
+}
+export function setUserPreferences(data) {
+  return {
+    type: SET_USER_PREFERENCES,
     data: data,
   };
 }

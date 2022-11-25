@@ -11,12 +11,15 @@ export const CLEAR_SELECTED_FILES = 'CLEAR_SELECTED_FILES';
 export const ASSIGN_DASHBOARD_DATA = 'ASSIGN_DASHBOARD_DATA';
 export const UPDATE_TEMPLATE_NAMES = 'UPDATE_TEMPLATE_NAMES';
 export const UPDATE_SUBTEMPLATE_NAMES = 'UPDATE_SUBTEMPLATE_NAMES';
+export const SORT_BY_DATA = 'SORT_BY_DATA';
+export const SEARCH_BY_DATA = 'SEARCH_BY_DATA';
 
 // ACTION CREATORS
-export function assignAllReceivedDocumentsData(data) {
+export function assignAllReceivedDocumentsData(data, preferences) {
   return {
     type: ASSIGN_ALL_RECEIVED_DOCUMENTS_DATA,
     data: data,
+    preferences: preferences,
   };
 }
 
@@ -69,8 +72,21 @@ export function updateSubTemplateNames(data) {
   };
 }
 
+export function sortByData(data) {
+  return {
+    type: SORT_BY_DATA,
+    data: data,
+  };
+}
+export function searchByData(data) {
+  return {
+    type: SEARCH_BY_DATA,
+    data: data,
+  };
+}
+
 // API CALLS WITH THUNK AND AXIOS
-export function fetchRawDocumentsDetailsAPI(data) {
+export function fetchRawDocumentsDetailsAPI(data, preferences) {
   return (dispatch) => {
     axios
       .get(
@@ -79,7 +95,7 @@ export function fetchRawDocumentsDetailsAPI(data) {
       .then((res) => {
         console.log('All Doc Details Fetched');
         dispatch(assignRawDocumentsData(res.data));
-        dispatch(assignAllReceivedDocumentsData(res.data));
+        dispatch(assignAllReceivedDocumentsData(res.data, preferences));
       });
   };
 }
@@ -93,7 +109,6 @@ export function startExtractionProcessAPI(data) {
       )
       .then(function (response) {
         console.log(response);
-        dispatch(fetchRawDocumentsDetailsAPI(data.user_id));
         dispatch(clearSelectedFiles());
       })
       .catch(function (error) {
@@ -112,7 +127,9 @@ export function stopExtractionProcessAPI(data) {
       )
       .then(function (response) {
         console.log(response);
-        dispatch(fetchRawDocumentsDetailsAPI(data.user_id));
+        dispatch(
+          fetchRawDocumentsDetailsAPI(data.user_id, data.user_preferences)
+        );
         dispatch(clearSelectedFiles());
       })
       .catch(function (error) {
@@ -131,7 +148,6 @@ export function deleteFilesDataAPI(data) {
       )
       .then(function (response) {
         console.log(response);
-        dispatch(fetchRawDocumentsDetailsAPI(data.user_id));
         dispatch(clearSelectedFiles());
       })
       .catch(function (error) {
@@ -162,8 +178,6 @@ export function fetchTemplateNamesAPI(data) {
               response.data.user_id
           );
         }
-        // }
-        // dispatch(fetchRawDocumentsDetailsAPI(data.user_id));
         // dispatch(clearSelectedFiles());
       })
       .catch(function (error) {

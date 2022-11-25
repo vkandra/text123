@@ -4,9 +4,10 @@
   justify-content: space-around;
   align-items: center;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  margin-top: 4px;
+  margin: 1px 0px;
+  border-bottom: 1px solid rgb(228, 227, 227);
 }
-.optionalBackground {
+.configurationFile:hover {
   background: rgb(246, 245, 245);
 }
 .configFlLstTableRowDocId {
@@ -15,6 +16,7 @@
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
+  user-select: none;
 }
 .configFlLstTableRowDocName {
   width: 35%;
@@ -26,6 +28,7 @@
 .configFlLstTableRowDocType {
   width: 5%;
   padding-left: 4px;
+  user-select: none;
 }
 .configFlLstTableRowSubtemplate {
   width: 16%;
@@ -33,13 +36,16 @@
   overflow: hidden;
   white-space: nowrap;
   padding-left: 4px;
+  user-select: none;
 }
 .configFlLstTableRowUploadedOn {
   width: 10%;
   padding-left: 4px;
+  user-select: none;
 }
 .configFlLstTableRowDocStats {
   width: 8%;
+  user-select: none;
 }
 .configFlLstTableRowSelect {
   padding: 5px;

@@ -74,7 +74,6 @@ export function postEditedDataAPI(data) {
           data.subTemplateName,
         ];
         dispatch(fetchSingleFileDataAPI(refreshDocData));
-        // dispatch(fetchRawDocumentsDetailsAPI(data.user_id));
         dispatch(clearEditedKVRTList([]));
       })
       .catch(function (error) {

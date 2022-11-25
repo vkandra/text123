@@ -38,7 +38,9 @@ const Header = (props) => {
 
       <div className="dropiconbutton">
         <div>
-          {props.themeLang.languageWords.Hi} {user.attributes.name}!
+          <span className="onlyHi">{props.themeLang.languageWords.Hi}</span>{' '}
+          {user.attributes.name}
+          <span className="onlyHi">!</span>
         </div>
 
         <div className="languageDiv">

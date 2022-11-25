@@ -5,6 +5,7 @@ import {
   PASS_SENT_TO_EMAIL,
   CHECK_REP_PASS,
   CHECK_LOADING,
+  SET_USER_PREFERENCES,
 } from '../actions/user';
 
 const initialUserState = {
@@ -28,6 +29,19 @@ const initialUserState = {
   repeatPass: false,
   signUpPass: '',
   loading: false,
+
+  // USER PREFERENCES LIKE LANGUAGE, SORTING, THEME SELECTION
+  preferences: [
+    { language: 'en' },
+    { theme: 'bright' },
+    { sort: [{ value: 3 }, { asDs: 'Desc.' }] },
+    [
+      'ducumentName',
+      'template_name',
+      'sub_template_name',
+      'documentUploadDate',
+    ],
+  ],
 };
 
 export default function user(state = initialUserState, action) {
@@ -62,6 +76,11 @@ export default function user(state = initialUserState, action) {
       return {
         ...state,
         loading: action.data,
+      };
+    case SET_USER_PREFERENCES:
+      // console.log('ACTION_in_reducer ', action);
+      return {
+        ...state,
       };
     default:
       return state;

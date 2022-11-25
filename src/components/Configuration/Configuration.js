@@ -24,7 +24,7 @@ const Configuration = (props) => {
   const [success, setSuccess] = useState(false);
   // const [url, setUrl] = useState('');
   const [error, setError] = useState(false);
-  const [renderCount, setRenderCount] = useState(0);
+
   const [selectedFile, setSelectedFile] = useState([]);
 
   var uploadInput;
@@ -38,11 +38,15 @@ const Configuration = (props) => {
   };
 
   if (success === true) {
-    props.dispatch(fetchRawDocumentsDetailsAPI(props.user.token));
+    props.dispatch(
+      fetchRawDocumentsDetailsAPI(props.user.token, props.user.preferences)
+    );
     document.getElementById('selectedFilesForUploading').value = '';
     setTimeout(() => {
       setSuccess(false);
-      props.dispatch(fetchRawDocumentsDetailsAPI(props.user.token));
+      props.dispatch(
+        fetchRawDocumentsDetailsAPI(props.user.token, props.user.preferences)
+      );
     }, 5000);
   }
 
@@ -54,7 +58,12 @@ const Configuration = (props) => {
         props.documents.documentDetails[i].documentStatus === 'Queued'
       ) {
         setTimeout(() => {
-          props.dispatch(fetchRawDocumentsDetailsAPI(props.user.token));
+          props.dispatch(
+            fetchRawDocumentsDetailsAPI(
+              props.user.token,
+              props.user.preferences
+            )
+          );
         }, 5000);
         break;
       }
@@ -64,7 +73,7 @@ const Configuration = (props) => {
   useEffect(() => {
     var userID = props.user.token;
 
-    props.dispatch(fetchRawDocumentsDetailsAPI(userID));
+    props.dispatch(fetchRawDocumentsDetailsAPI(userID, props.user.preferences));
 
     // Fetching Template Data
     let fetchReqData = {
@@ -133,9 +142,14 @@ const Configuration = (props) => {
           };
           props.dispatch(fetchTemplateNamesAPI(dataOfTemplate));
           setTimeout(() => {
-            props.dispatch(fetchRawDocumentsDetailsAPI(props.user.token));
+            props.dispatch(
+              fetchRawDocumentsDetailsAPI(
+                props.user.token,
+                props.user.preferences
+              )
+            );
           }, 1000);
-          setRenderCount(renderCount + 1);
+
           props.dispatch(clearSelectedFiles());
         })
         .catch((err) => {
@@ -253,7 +267,7 @@ const Configuration = (props) => {
         </div>
       </div>
       <hr className="horizontal-line-1"></hr>
-      <ConfigurationFileList renderCount={renderCount} />
+      <ConfigurationFileList />
     </div>
   );
 };

@@ -256,5 +256,74 @@
   cursor: pointer;
 }
 
+.sortGroup {
+  margin-right: 40px;
+  /* visibility: hidden; */
+}
+.sortSelect {
+  margin-right: 3px;
+}
+
+#sortValue {
+  /* width: 200px; */
+  border: thin solid #ccc;
+  border-radius: 4px;
+  /* padding-bottom: 3px; */
+  cursor: pointer;
+}
+#sortValue:focus {
+  outline: none;
+}
+#sortAsDs {
+  /* width: 200px; */
+  border: thin solid #ccc;
+  border-radius: 4px;
+  /* padding-bottom: 3px; */
+  cursor: pointer;
+}
+#sortAsDs:focus {
+  outline: none;
+}
+.searchGroup {
+  margin-right: 40px;
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-end;
+  /* visibility: hidden; */
+  /* border: 1px solid black; */
+  /* height: 100%; */
+}
+#searchName {
+  height: 26px;
+  border: 1px solid #ccc;
+  font-size: 0.9rem;
+  border-bottom-left-radius: 5px;
+  border-top-left-radius: 5px;
+}
+#searchName:focus {
+  outline: none;
+}
+#clearSearchField {
+  background: white;
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  border-right: 1px solid #ccc;
+  color: grey;
+  width: 30px;
+  height: 26px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom-right-radius: 5px;
+  border-top-right-radius: 5px;
+}
+#clearSearchField:hover {
+  cursor: pointer;
+}
+#clearSearchField:active {
+  border: 1px solid #0000;
+  cursor: pointer;
+}
+
 @media screen and (min-width: 1228px) {
 }

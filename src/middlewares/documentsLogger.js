@@ -63,6 +63,36 @@ const documentsLogger =
             file.documentStatus === 'Queued'
           );
         });
+
+      const sortByValue = action.preferences[2].sort[0].value;
+      const sortByAsDs = action.preferences[2].sort[1].asDs;
+      const valueArray = action.preferences[3];
+
+      if (fetchedAllDocsData.processedFileList.length > 1) {
+        if (sortByAsDs === 'Asc.') {
+          fetchedAllDocsData.processedFileList.sort((a, b) =>
+            a[valueArray[sortByValue]].localeCompare(b[valueArray[sortByValue]])
+          );
+        } else {
+          fetchedAllDocsData.processedFileList.sort((a, b) =>
+            b[valueArray[sortByValue]].localeCompare(a[valueArray[sortByValue]])
+          );
+        }
+      }
+
+      if (fetchedAllDocsData.notProcessedFileList.length > 1) {
+        if (sortByAsDs === 'Asc.') {
+          fetchedAllDocsData.notProcessedFileList.sort((a, b) =>
+            a[valueArray[sortByValue]].localeCompare(b[valueArray[sortByValue]])
+          );
+        } else {
+          fetchedAllDocsData.notProcessedFileList.sort((a, b) =>
+            b[valueArray[sortByValue]].localeCompare(a[valueArray[sortByValue]])
+          );
+        }
+      }
+      console.log(sortByValue, sortByAsDs);
+
       //   console.log(fetchedAllDocsData);
       action.data = fetchedAllDocsData;
     }

@@ -7,6 +7,8 @@ import {
   ASSIGN_DASHBOARD_DATA,
   UPDATE_TEMPLATE_NAMES,
   UPDATE_SUBTEMPLATE_NAMES,
+  SORT_BY_DATA,
+  SEARCH_BY_DATA,
 } from '../actions/documents';
 
 const initialDocumentsState = {
@@ -30,6 +32,15 @@ const initialDocumentsState = {
   filteredFilelistNotProcessed: [],
   filteredFilelistProcessed: [],
   selectedDocuments: [],
+
+  // SORT
+  sortByDataElements: ['Name', true],
+
+  // SEARCH
+  searchProcessedParam: [],
+  searchProcessed: [],
+  searchNotProcessedParam: [],
+  searchNotProcessed: [],
 
   // Dashboard Data
   processedFileList: [],
@@ -135,6 +146,19 @@ export default function documents(state = initialDocumentsState, action) {
         ...state,
         subTemplateNames: action.data,
       };
+    case SORT_BY_DATA:
+      // console.log('ACTION_in_reducer ', action.data);
+      return {
+        ...state,
+        // documentDetails: action.data,
+      };
+    case SEARCH_BY_DATA:
+      // console.log('ACTION_in_reducer ', action.data);
+      return {
+        ...state,
+        // documentDetails: action.data,
+      };
+
     default:
       return state;
   }

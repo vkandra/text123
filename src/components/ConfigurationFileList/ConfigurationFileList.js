@@ -1,5 +1,5 @@
 import './ConfigurationFileList.css';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux/es/exports';
 
 import {
@@ -12,22 +12,57 @@ import {
 } from '../../actions/singleDocument';
 import ConfigurationFile from '../ConfigurationFile/ConfigurationFile';
 import {
+  fetchRawDocumentsDetailsAPI,
   clearSelectedFiles,
   startExtractionProcessAPI,
   stopExtractionProcessAPI,
   deleteFilesDataAPI,
-} from '../../actions/documents';
-import { fetchRawDocumentsDetailsAPI } from '../../actions/documents';
-import {
   selectDocumentsConfiguration,
   unselectDocumentsConfiguration,
+  sortByData,
 } from '../../actions/documents';
+import { setUserPreferences } from '../../actions/user';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
+import { faCircleXmark } from '@fortawesome/free-solid-svg-icons';
 
 const ConfigurationFileList = (props) => {
-  // console.log(props.renderCount);
+  const [searching, setSearching] = useState(false);
+  const [searchProcessedArray, setSearchProcessedArray] = useState([]);
+  const [searchNotProcessedArray, setSearchNotProcessedArray] = useState([]);
+  // let searchProcessedArray = [];
+  // let searchNotProcessedArray = [];
   useEffect(() => {
-    console.log(props.renderCount);
-  }, [props.renderCount]);
+    if (
+      props.documents.filteredFilelistProcessed.length > 1 ||
+      props.documents.filteredFilelistNotProcessed.length > 1
+    ) {
+      const { user } = props;
+      console.log(
+        user.preferences[2].sort[0].value,
+        user.preferences[2].sort[1].asDs
+      );
+      document.getElementById('sortValue').value =
+        user.preferences[2].sort[0].value;
+      document.getElementById('sortAsDs').value =
+        user.preferences[2].sort[1].asDs;
+      // performSorting();
+    }
+  }, [props.documents.totalDocuments]);
+
+  // useEffect(() => {
+  //   const { user } = props;
+  //   console.log(
+  //     user.preferences[2].sort[0].value,
+  //     user.preferences[2].sort[1].asDs
+  //   );
+  //   document.getElementById('sortValue').value =
+  //     user.preferences[2].sort[0].value;
+  //   document.getElementById('sortAsDs').value =
+  //     user.preferences[2].sort[1].asDs;
+
+  //     performSorting();
+  // }, []);
 
   const selectAllDocuments = (allDocs) => {
     var selectedDocs = [];
@@ -88,11 +123,13 @@ const ConfigurationFileList = (props) => {
         stateMachineArn:
           'arn:aws:states:ap-south-1:565442373753:stateMachine:Textract_State_Machine',
       };
-      // console.log(dataStart);
+      // console.log(dataStart.user_id);
       // console.log(props.documents.filteredFilelistNotProcessed);
       props.dispatch(startExtractionProcessAPI(dataStart));
       setTimeout(() => {
-        props.dispatch(fetchRawDocumentsDetailsAPI(props.user.token));
+        props.dispatch(
+          fetchRawDocumentsDetailsAPI(props.user.token, props.user.preferences)
+        );
       }, 2000);
     }
   };
@@ -130,11 +167,14 @@ const ConfigurationFileList = (props) => {
         arn: docArn[0],
         doc_id: docIds,
         user_id: props.user.token,
+        user_preferences: props.user.preferences,
       };
 
       props.dispatch(stopExtractionProcessAPI(data));
       setTimeout(() => {
-        props.dispatch(fetchRawDocumentsDetailsAPI(props.user.token));
+        props.dispatch(
+          fetchRawDocumentsDetailsAPI(props.user.token, props.user.preferences)
+        );
       }, 2000);
     }
   };
@@ -184,11 +224,13 @@ const ConfigurationFileList = (props) => {
       }
       assembledData = { delete_input: data };
     }
-
+    // console.log(assembledData.user_id);
     // console.log(props.documents.filteredFilelistNotProcessed);
     props.dispatch(deleteFilesDataAPI(assembledData));
     setTimeout(() => {
-      props.dispatch(fetchRawDocumentsDetailsAPI(props.user.token));
+      props.dispatch(
+        fetchRawDocumentsDetailsAPI(props.user.token, props.user.preferences)
+      );
     }, 4000);
   };
 
@@ -221,16 +263,151 @@ const ConfigurationFileList = (props) => {
     props.dispatch(handleProcessedFileTabChange(extractor));
 
     props.dispatch(clearSelectedFiles());
-    console.log(props.documents.documentDetails);
+    // console.log(props.documents.documentDetails);
   };
 
   const refreshComp = () => {
-    props.dispatch(fetchRawDocumentsDetailsAPI(props.user.token));
+    props.dispatch(
+      fetchRawDocumentsDetailsAPI(props.user.token, props.user.preferences)
+    );
+  };
+
+  const performSorting = () => {
+    const sortByValue = parseInt(document.getElementById('sortValue').value);
+    const sortByAsDs = document.getElementById('sortAsDs').value;
+    console.log(sortByValue);
+    console.log(sortByAsDs);
+
+    const { documents } = props;
+    const { user } = props;
+
+    user.preferences[2].sort[0].value = sortByValue;
+    user.preferences[2].sort[1].asDs = sortByAsDs;
+
+    props.dispatch(setUserPreferences(user));
+
+    // let docDetails1 = documents.filteredFilelistNotProcessed;
+    // let docDetails2 = documents.filteredFilelistProcessed;
+
+    console.log(
+      documents.filteredFilelistNotProcessed.length,
+      documents.filteredFilelistProcessed.length
+    );
+
+    const valueArray = props.user.preferences[3];
+    // console.log(docDetails);
+    console.log(documents.filteredFilelistNotProcessed);
+    console.log(documents.filteredFilelistNotProcessed);
+    if (documents.filteredFilelistNotProcessed.length > 1) {
+      if (sortByAsDs === 'Asc.') {
+        documents.filteredFilelistNotProcessed.sort((a, b) =>
+          a[valueArray[sortByValue]].localeCompare(b[valueArray[sortByValue]])
+        );
+      } else {
+        documents.filteredFilelistNotProcessed.sort((a, b) =>
+          b[valueArray[sortByValue]].localeCompare(a[valueArray[sortByValue]])
+        );
+      }
+    }
+
+    if (documents.filteredFilelistProcessed.length > 1) {
+      if (sortByAsDs === 'Asc.') {
+        documents.filteredFilelistProcessed.sort((a, b) =>
+          a[valueArray[sortByValue]].localeCompare(b[valueArray[sortByValue]])
+        );
+      } else {
+        documents.filteredFilelistProcessed.sort((a, b) =>
+          b[valueArray[sortByValue]].localeCompare(a[valueArray[sortByValue]])
+        );
+      }
+    }
+    // console.log(docDetails);
+    props.dispatch(sortByData(documents));
+  };
+
+  const handleChange = (e) => {
+    console.log(e.target.value);
+    if (e.target.value !== '') {
+      setSearching(true);
+    } else {
+      setSearching(false);
+    }
+    const textToSearch = e.target.value;
+    const { documents } = props;
+    let searchNtPrArray = [];
+    let searchPrArray = [];
+    for (let i in documents.filteredFilelistNotProcessed) {
+      if (
+        documents.filteredFilelistNotProcessed[i].ducumentName
+          .toLowerCase()
+          .includes(textToSearch.toLowerCase())
+      ) {
+        searchNtPrArray.push(documents.filteredFilelistNotProcessed[i]);
+      }
+    }
+    for (let i in documents.filteredFilelistProcessed) {
+      if (
+        documents.filteredFilelistProcessed[i].ducumentName
+          .toLowerCase()
+          .includes(textToSearch.toLowerCase())
+      ) {
+        searchPrArray.push(documents.filteredFilelistProcessed[i]);
+      }
+    }
+    setSearchNotProcessedArray(searchNtPrArray);
+    setSearchProcessedArray(searchPrArray);
+    console.log(searchProcessedArray);
+    // console.log(props.extractor.processedFileTab);
+  };
+  const clearSearchText = (e) => {
+    document.getElementById('searchName').value = null;
+    setSearching(false);
+    setSearchProcessedArray([]);
+    setSearchNotProcessedArray([]);
   };
 
   return (
     <div className="configurationFileList">
       <div className="refreshIc">
+        <div className="searchGroup">
+          <input
+            type="text"
+            id="searchName"
+            placeholder="Search Document Name"
+            onChange={handleChange}
+          ></input>
+          <div id="clearSearchField" onClick={clearSearchText}>
+            {searching ? (
+              <FontAwesomeIcon icon={faCircleXmark} id="searchIc" />
+            ) : (
+              <FontAwesomeIcon icon={faMagnifyingGlass} id="searchIc" />
+            )}
+          </div>
+        </div>
+        <div className="sortGroup">
+          <div className="sortDiv">
+            <span>Sort By : </span>
+            <select
+              id="sortValue"
+              className="sortSelect"
+              onChange={performSorting}
+            >
+              <option value={'0'}>Doc. Name</option>
+              <option value={'1'}>Template</option>
+              <option value={'2'}>Sub-Template</option>
+              <option value={'3'}>Up. Date</option>
+            </select>
+            <select
+              id="sortAsDs"
+              className="sortSelectAdDs"
+              onChange={performSorting}
+            >
+              <option>Asc.</option>
+              <option>Desc.</option>
+            </select>
+          </div>
+        </div>
+
         <div className="refreshIcDiv" onClick={refreshComp}>
           <i className="fi fi-rr-refresh"></i>
         </div>
@@ -328,29 +505,38 @@ const ConfigurationFileList = (props) => {
       ) : props.extractor.processedFileTab === 1 &&
         props.documents.filteredFilelistNotProcessed.length !== 0 ? (
         <div className="configFlLstTableBody">
-          {props.documents.filteredFilelistNotProcessed.map(
-            (document, index) =>
-              index % 2 == 0 ? (
-                <ConfigurationFile
-                  document={document}
-                  key={document.documentId}
-                  background={true}
-                  index={index}
-                />
-              ) : (
-                <ConfigurationFile
-                  document={document}
-                  key={document.documentId}
-                  background={false}
-                  index={index}
-                />
+          {!searching
+            ? props.documents.filteredFilelistNotProcessed.map(
+                (document, index) =>
+                  index % 2 == 0 ? (
+                    <ConfigurationFile
+                      document={document}
+                      key={document.documentId}
+                      background={true}
+                      index={index}
+                    />
+                  ) : (
+                    <ConfigurationFile
+                      document={document}
+                      key={document.documentId}
+                      background={false}
+                      index={index}
+                    />
+                  )
+                // <ConfigurationFile
+                //   document={document}
+                //   key={document.documentId}
+                //   index={index}
+                // />
               )
-            // <ConfigurationFile
-            //   document={document}
-            //   key={document.documentId}
-            //   index={index}
-            // />
-          )}
+            : searchNotProcessedArray.map((document, index) => (
+                <ConfigurationFile
+                  document={document}
+                  key={document.documentId}
+                  index={index}
+                />
+              ))}
+          {/* {} */}
         </div>
       ) : props.extractor.processedFileTab === 2 &&
         props.documents.filteredFilelistProcessed.length === 0 ? (
@@ -360,23 +546,31 @@ const ConfigurationFileList = (props) => {
       ) : props.extractor.processedFileTab === 2 &&
         props.documents.filteredFilelistProcessed.length !== 0 ? (
         <div className="configFlLstTableBody">
-          {props.documents.filteredFilelistProcessed.map((document, index) =>
-            index % 2 == 0 ? (
-              <ConfigurationFile
-                document={document}
-                key={document.documentId}
-                background={true}
-                index={index}
-              />
-            ) : (
-              <ConfigurationFile
-                document={document}
-                key={document.documentId}
-                background={false}
-                index={index}
-              />
-            )
-          )}
+          {!searching
+            ? props.documents.filteredFilelistProcessed.map((document, index) =>
+                index % 2 == 0 ? (
+                  <ConfigurationFile
+                    document={document}
+                    key={document.documentId}
+                    background={true}
+                    index={index}
+                  />
+                ) : (
+                  <ConfigurationFile
+                    document={document}
+                    key={document.documentId}
+                    background={false}
+                    index={index}
+                  />
+                )
+              )
+            : searchProcessedArray.map((document, index) => (
+                <ConfigurationFile
+                  document={document}
+                  key={document.documentId}
+                  index={index}
+                />
+              ))}
         </div>
       ) : null}
 
