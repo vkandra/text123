@@ -13,7 +13,7 @@ export const en = {
   Text_Extraction: 'Text Extraction',
   Annotation: 'Annotation',
   Object_Detection: 'Object Detection',
-  Dashboards: 'Dashboards',
+  Dashboard: 'Dashboard',
   Not_Processed: 'Not Processed',
   Processed: 'Processed',
   Doc_Name: 'Doc. Name',

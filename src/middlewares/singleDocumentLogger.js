@@ -106,7 +106,7 @@ const singleDocumentLogger =
       let allFavKeys = allFavouriteKeys.keys;
       let absentKeys = [];
 
-      console.log(thisDocKeys);
+      // console.log(thisDocKeys);
 
       if (thisDocKeys.length === 0) {
         allFavKeys = allFavKeys.filter((item) => item !== '');
@@ -134,8 +134,8 @@ const singleDocumentLogger =
         }
         // absentKeys = allFavKeys;
       }
-      console.log(allFavouriteKeys.keys);
-      console.log(absentKeys);
+      // console.log(allFavouriteKeys.keys);
+      // console.log(absentKeys);
 
       // console.log(action.data);
       action.data = [

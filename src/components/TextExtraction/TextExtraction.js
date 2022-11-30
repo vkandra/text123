@@ -264,6 +264,9 @@ const TextExtraction = (props) => {
               }`}
               onClick={() => changeDataTabs(1)}
             >
+              {/* <i class="fa-solid fa-brackets-curly"></i> */}
+              {/* <i class="fa-thin fa-brackets-curly"></i> */}
+              &#xFF5B; &#xFF5D;
               {props.themeLang.languageWords.Key_Value}
             </div>
             <div
@@ -272,6 +275,7 @@ const TextExtraction = (props) => {
               }`}
               onClick={() => changeDataTabs(2)}
             >
+              <i class="fa-solid fa-table"></i>&nbsp;&nbsp;
               {props.themeLang.languageWords.Table}
             </div>
             <div
@@ -280,6 +284,7 @@ const TextExtraction = (props) => {
               }`}
               onClick={() => changeDataTabs(3)}
             >
+              <i class="fa-solid fa-list-ul"></i>&nbsp;&nbsp;
               {props.themeLang.languageWords.Raw_Data}
             </div>
             <div
@@ -288,7 +293,7 @@ const TextExtraction = (props) => {
               }`}
               onClick={() => changeDataTabs(4)}
             >
-              Favourites
+              <i class="fa-solid fa-bookmark"></i>&nbsp;&nbsp; Favorites
             </div>
           </div>
           <div className="docTabData">

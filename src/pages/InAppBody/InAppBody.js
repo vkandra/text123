@@ -25,6 +25,7 @@ const InAppBody = (props) => {
   return (
     <div className="inAppBody">
       <Header />
+      {/* {window.screen.width} */}
       <div className="appBody">
         <div className="bodyContainer">
           <div className="menuContainer">
@@ -35,6 +36,7 @@ const InAppBody = (props) => {
               id="singleMenu1"
               onClick={() => changeMainTabs(1)}
             >
+              <i className="fa-solid fa-list menuicon"></i> &nbsp;&nbsp;
               {props.themeLang.languageWords.Configuration}
             </div>
             <div
@@ -44,6 +46,8 @@ const InAppBody = (props) => {
               id="singleMenu2"
               onClick={() => changeMainTabs(2)}
             >
+              <i className="fa-solid fa-arrows-turn-to-dots  menuicon"></i>{' '}
+              &nbsp;&nbsp;
               {props.themeLang.languageWords.Text_Extraction}
             </div>
             {/* <div
@@ -71,7 +75,8 @@ const InAppBody = (props) => {
               id="singleMenu4"
               onClick={() => changeMainTabs(4)}
             >
-              Templates
+              <i className="fa-solid fa-folder-tree menuicon"></i>
+              &nbsp;&nbsp;Templates
             </div>
             <div
               className={`singleMenus ${
@@ -80,7 +85,8 @@ const InAppBody = (props) => {
               id="singleMenu5"
               onClick={() => changeMainTabs(5)}
             >
-              {props.themeLang.languageWords.Dashboards}
+              <i className="fa-solid fa-chart-line menuicon"></i> &nbsp;&nbsp;
+              {props.themeLang.languageWords.Dashboard}
             </div>
           </div>
           <div className="visualBodyContainer">

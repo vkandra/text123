@@ -1,28 +1,32 @@
 .configuration {
-  height: 98.5%;
+  height: 100%;
+  /* border: 1px solid black; */
 }
 .uploadFilesSection {
   height: 8%;
-  /* border: 1px solid black; */
+  /* border: 1px solid blue; */
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  margin-left: 10px;
-  margin-right: 10px;
-  margin-top: 3px;
-  margin-bottom: 3px;
+  margin-left: 5px;
+  margin-right: 5px;
+  margin-top: 5px;
+  margin-bottom: 2px;
 }
 .uploadFileText {
   /* border: thin solid #ccc; */
   /* font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; */
-  font-size: 1rem;
-  font-weight: bold;
+  font-size: 0.8rem;
+  font-weight: 700;
   /* width: 200px; */
   /* padding-top: 0.5em; */
   display: flex;
   justify-content: center;
   align-items: center;
   color: #384988;
+}
+#selectedFilesForUploading {
+  font-size: 0.8rem;
 }
 .fileUploadSectionMain {
   width: 88%;
@@ -35,12 +39,12 @@
 .fileUploadSectionMain div input::file-selector-button {
   font-weight: bold;
   color: #1e1e1e;
-  padding: 0.5em;
+  padding: 0.3em;
   border: thin solid #ccc;
   border-radius: none;
   cursor: pointer;
   background: none;
-  font-size: 0.9rem;
+  font-size: 0.7rem;
   border-radius: 4px;
 }
 .templateDropdown {
@@ -51,12 +55,13 @@
   margin-top: -2px;
 }
 .templateLabel {
-  font-size: 0.7rem;
+  font-size: 0.6rem;
   font-weight: bold;
   /* font-style: italic; */
 }
 #singleTemplateSelect {
   width: 150px;
+  font-size: 0.8rem;
   border: thin solid #ccc;
   border-radius: 4px;
   padding-bottom: 3px;
@@ -66,7 +71,8 @@
   outline: none;
 }
 #singleSubTemplateSelect {
-  width: 200px;
+  width: 180px;
+  font-size: 0.8rem;
   border: thin solid #ccc;
   border-radius: 4px;
   padding-bottom: 3px;
@@ -77,40 +83,39 @@
 }
 .uploadButton {
   /* margin-top: 12px; */
-  width: 110px;
-  height: 30px;
-  border: 1px solid #ccc;
-  font-weight: 500;
-  background: floralwhite;
+  width: 100px;
+  height: 25px;
+  border: 1px solid #384988;
+  font-size: 0.8rem;
+  /* background: floralwhite; */
   cursor: pointer;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  border-radius: 4px;
+  border-radius: 15px;
   margin-top: 5px;
+  color: #384988;
+  font-weight: 700;
 }
-.uploadButton i {
-  margin-top: 5px;
-}
+
 .uploadButton:hover {
-  font-weight: 600;
-  background: lightyellow;
+  background: #97f3bd;
 }
 .uploadStatusShow {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  font-size: 0.8rem;
+  font-size: 0.6rem;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   font-weight: bold;
   width: 12%;
   margin-top: 5px;
-  /* border: 1px solid black; */
+  /* border: 1px solid green; */
 }
 
 @media screen and (max-width: 1228px) {
-  .uploadFilesSection {
+  /* .uploadFilesSection {
     height: 7%;
   }
   .uploadFileText {
@@ -118,5 +123,5 @@
   }
   .fileUploadSectionMain div input::file-selector-button {
     font-size: 0.8rem;
-  }
+  } */
 }

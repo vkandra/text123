@@ -81,13 +81,15 @@ const ExtractedDocumentDetails = (props) => {
           </button>
         ) : (
           <button className="disDataButton">
-            <i className="fi fi-rr-disk"></i>&nbsp;{' '}
+            {/* <i className="fi fi-rr-disk"></i> */}
+            <i class="fa-solid fa-floppy-disk"></i>&nbsp;{' '}
             {props.themeLang.languageWords.Save}
           </button>
         )}
 
         <button className="downloadButton" onClick={() => downloadEditedData()}>
-          <i className="fi fi-rr-download"></i> &nbsp;
+          {/* <i className="fi fi-rr-download"></i> */}
+          <i class="fa-solid fa-download"></i>&nbsp;
           {props.themeLang.languageWords.Download}
         </button>
         {/* <button className="deleteButton">Delete</button> */}

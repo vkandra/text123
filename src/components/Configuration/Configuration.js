@@ -1,7 +1,7 @@
 import './Configuration.css';
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux/es/exports';
-import axios from 'axios';
+// import axios from 'axios';
 // import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import S3 from 'react-aws-s3';
@@ -27,7 +27,7 @@ const Configuration = (props) => {
 
   const [selectedFile, setSelectedFile] = useState([]);
 
-  var uploadInput;
+  // var uploadInput;
 
   const config = {
     bucketName: process.env.REACT_APP_BUCKET_NAME,
@@ -244,7 +244,8 @@ const Configuration = (props) => {
               className="uploadButton"
               onClick={() => uploadFile(selectedFile)}
             >
-              <i className="fi fi-ss-upload"></i>&nbsp;
+              <i class="fa-solid fa-upload"></i>
+              {/* <i className="fi fi-ss-upload"></i>&nbsp; */}
               {props.themeLang.languageWords.Upload}
             </div>
           </div>

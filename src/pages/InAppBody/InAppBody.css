@@ -1,14 +1,11 @@
-.inAppBody {
-  height: 83vh;
-}
-
 .appBody {
-  height: 83vh;
+  /* border: 1px solid red; */
+  height: 86.5vh;
 }
 
 .bodyContainer {
   /* border: 1px solid black; */
-  margin: 20px;
+  margin: 6px;
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
@@ -16,36 +13,52 @@
 
 .menuContainer {
   /* border: 1px solid blue; */
-  width: 200px;
+  min-width: 12vw;
 }
 
 .visualBodyContainer {
   border: 2px solid gainsboro;
-  margin-left: 20px;
-  width: 95vw;
-  height: 80vh;
+  margin-left: 6px;
+  width: 87vw;
+  height: 85vh;
 }
 
 .singleMenus {
-  border: 2px solid gainsboro;
-  height: 40px;
+  border: 2px solid #ccc;
+  height: 33px;
   margin-bottom: 5px;
+  font-size: 0.7rem;
   font-family: Arial, Helvetica, sans-serif;
   font-weight: 600;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   cursor: pointer;
   user-select: none;
-  min-width: 150px;
+  padding-left: 5px;
+  padding-right: 2px;
+  padding-top: 2px;
+  text-transform: uppercase;
+  text-overflow: ellipsis;
+  color: #384988;
+  white-space: nowrap;
+  /* min-width: 150px; */
   /* background: wheat; */
+}
+.menuicon {
+  /* border: 1px solid red; */
+  height: 12px;
+  width: 12px;
+  margin-top: -2px;
 }
 
 .singleMenus:hover {
-  border: 2px solid darkorange;
+  border: 2px solid #384988;
   transition: 0.3s;
 }
 
 .selectedMenu {
-  background: rgb(193, 238, 255);
+  background: #97f3bd;
+  border: 2px solid #384988;
+  /* color: #384988; */
 }

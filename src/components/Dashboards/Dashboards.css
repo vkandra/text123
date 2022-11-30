@@ -1,3 +1,8 @@
+.dashboards {
+  /* border: 1px solid black; */
+  height: 100%;
+  overflow: auto;
+}
 .datesBox {
   /* border: 1px solid #ccc; */
   margin: 10px 0px 10px 10px;
@@ -6,6 +11,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  font-size: 0.85rem;
   font-weight: bold;
 }
 .datesBox button {
@@ -24,9 +30,10 @@
 .datesBox input {
   border-radius: none;
   border: 1px solid #ccc;
+  font-size: 0.85rem;
 }
 .datesBox i {
-  font-size: 1.3rem;
+  font-size: 1rem;
   font-weight: bolder;
   color: #008000;
   padding-top: 5px;
@@ -56,10 +63,11 @@
   margin: 5px 0px 5px 10px;
   color: #1e1e1e;
   font-weight: bold;
+  font-size: 0.85rem;
 }
 .allCards {
   /* border: 1px solid #ccc; */
-  height: 120px;
+  height: 100px;
   width: 100%;
   display: flex;
   justify-content: space-around;
@@ -80,7 +88,7 @@
   background: #2c3546;
   color: white;
   font-weight: bold;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
 }
 .cardValue {
   height: 60%;
@@ -89,7 +97,7 @@
   justify-content: center;
   align-items: center;
   /* border: 1px solid #ccc; */
-  font-size: 2rem;
+  font-size: 1.8rem;
   font-weight: bold;
   color: #008000;
 }
@@ -104,13 +112,13 @@
   border: 1px solid #ccc;
   margin: 2px;
   width: 49%;
-  height: 300px;
+  height: 270px;
   box-shadow: 0px 0px 5px grey;
 }
 .chart2nd {
   border: 1px solid #ccc;
   margin: 2px;
   width: 49%;
-  height: 300px;
+  height: 270px;
   box-shadow: 0px 0px 5px grey;
 }

@@ -31,6 +31,7 @@
 .templateDiv {
   /* border: thin solid #ccc; */
   width: 25%;
+  font-size: 0.85rem;
 }
 .subTemplateDiv {
   /* border: thin solid #ccc; */
@@ -38,6 +39,7 @@
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
+  font-size: 0.85rem;
 }
 
 #selectDataType {
@@ -45,6 +47,7 @@
   border: thin solid #ccc;
   border-radius: 4px;
   padding-bottom: 3px;
+  font-size: 0.85rem;
   cursor: pointer;
 }
 #selectDataType:focus {
@@ -61,6 +64,7 @@
   align-items: center;
   /* width: 100%; */
   border: 1px solid #ccc;
+  font-size: 0.9rem;
 }
 .templateKeysAndValues {
   /* border: 2px solid yellowgreen; */
@@ -72,6 +76,7 @@
 }
 .missingKeysText {
   font-weight: 700;
+  font-size: 0.9rem;
   margin-top: 6px;
 }
 .missingKeys {
@@ -79,5 +84,6 @@
   /* height: 28px; */
   padding-left: 4px;
   width: 41%;
+  font-size: 0.85rem;
   color: #7f7f7f;
 }

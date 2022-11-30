@@ -122,6 +122,7 @@ const RawDocDataSingle = (props) => {
               >
                 Cancel
               </button>
+              &nbsp; &nbsp;
               <button
                 className="editCompleteButton"
                 onClick={() => saveEditedKVRData()}

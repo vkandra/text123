@@ -234,6 +234,7 @@ const KeyValue = (props) => {
               >
                 Cancel
               </button>
+              &nbsp; &nbsp;
               <button
                 className="editCompleteButton"
                 onClick={() => saveEditedKVRData()}
@@ -284,6 +285,7 @@ const KeyValue = (props) => {
               >
                 Cancel
               </button>
+              &nbsp; &nbsp;
               <button
                 className="editCompleteButton"
                 onClick={() => saveEditedKVRData()}

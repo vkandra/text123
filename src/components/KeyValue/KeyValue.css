@@ -43,9 +43,9 @@
   /* border: 1px solid black; */
   width: 100%;
   margin-right: -14%;
-  font-size: 1rem;
+  font-size: 0.85rem;
   color: #1f1e1e;
-  min-height: 26px;
+  min-height: 22px;
 }
 .favouriteButton {
   display: unset;
@@ -69,7 +69,11 @@
 }
 
 .textAreaSection {
+  font-size: 0.85rem;
   width: 100%;
+}
+.textAreaSection:focus {
+  outline: none;
 }
 .textAreaButtonsDiv {
   display: flex;
@@ -115,7 +119,7 @@
   cursor: pointer;
   background: whitesmoke;
   color: #1f1e1e;
-  font-size: 0.7rem;
+  font-size: 0.6rem;
   border: 1px solid #ccc;
   border-radius: 5px;
 }
@@ -124,7 +128,7 @@
   cursor: pointer;
   background: whitesmoke;
   color: #1f1e1e;
-  font-size: 0.7rem;
+  font-size: 0.6rem;
   border: 1px solid #ccc;
   border-radius: 5px;
   margin-top: 3px;

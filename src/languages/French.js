@@ -13,7 +13,7 @@ export const fr = {
   Text_Extraction: 'Extraction de texte',
   Annotation: 'Annotation',
   Object_Detection: "Détection d'objet",
-  Dashboards: 'Tableaux de bord',
+  Dashboard: 'Tableaux de bord',
   Not_Processed: 'Non traité',
   Processed: 'Traité',
   Doc_Name: 'Doc. Nom',

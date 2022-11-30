@@ -169,6 +169,7 @@ const TableDocDataAll = (props) => {
             >
               Cancel
             </button>
+            &nbsp; &nbsp;
             <button
               className="editCompleteButton"
               onClick={() => saveEditedTableSingleData()}

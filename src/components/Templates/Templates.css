@@ -52,22 +52,34 @@
 }
 .createTemplateButton {
   height: 30px;
+  font-size: 0.85rem;
   display: flex;
   justify-content: center;
   align-items: center;
+  border-radius: 20px;
 }
 .deleteTemplateButton {
   height: 30px;
+  font-size: 0.85rem;
   display: flex;
   justify-content: center;
   align-items: center;
+  border-radius: 20px;
   padding-left: 10px;
+}
+.createTemplateButton:focus {
+  outline: none;
+}
+.deleteTemplateButton:focus {
+  outline: none;
 }
 .newTempInput {
   border: 1px solid #ccc;
+  font-size: 0.85rem;
 }
 .selectOption {
-  min-width: 170px;
+  min-width: 140px;
+  font-size: 0.85rem;
   border: 1px solid #ccc;
 }
 .newTempInput:focus {

@@ -1,5 +1,5 @@
 .header {
-  height: 9vh;
+  height: 8vh;
   /* background-color: rgb(31, 30, 30); */
   background: #1f1f1f;
   color: white;
@@ -27,6 +27,7 @@
   justify-content: space-between;
   align-items: center;
   width: 400px;
+  font-size: 0.85rem;
 }
 .inupoutButton {
   outline: none;
@@ -61,11 +62,11 @@
   align-items: center;
   padding: 4px;
   font-weight: 200;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
 }
 .languageDiv i {
-  font-size: 18px;
-  margin-top: 7px;
+  font-size: 15px;
+  margin-top: 4px;
   color: white;
 }
 #languageSelect {
@@ -74,6 +75,9 @@
   border-radius: 4px;
   color: white;
   cursor: pointer;
+}
+#languageSelect:focus {
+  outline: none;
 }
 #languageSelect option {
   background: white;
