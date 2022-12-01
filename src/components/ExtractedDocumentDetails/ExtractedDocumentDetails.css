@@ -50,6 +50,7 @@
   justify-content: center;
   align-items: center;
   border-radius: 20px;
+  height: 24px;
 }
 
 .documentDetailAction .downloadButton {
@@ -58,12 +59,12 @@
 }
 
 .documentDetailAction .saveDataButton {
-  color: blueviolet;
-  border: 1px solid blueviolet;
+  color: #384988;
+  border: 1px solid #384988;
 }
 
 .saveDataButton:hover {
-  background: blueviolet;
+  background: #384988;
   color: white;
 }
 
