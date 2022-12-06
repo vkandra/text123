@@ -1,6 +1,8 @@
 import './ConfigurationFile.css';
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux/es/exports';
+import squareCheck from '../../Pictures/square-check-solid.svg';
+import squareBlank from '../../Pictures/square-regular.svg';
 
 import {
   selectDocumentsConfiguration,
@@ -67,14 +69,16 @@ const ConfigurationFile = (props) => {
           className="configFlLstTableRowSelect"
           onClick={() => selectDocument(props.document.documentId)}
         >
-          {props.themeLang.languageWords.Select}
+          {/* {props.themeLang.languageWords.Select} */}
+          <img src={squareBlank} />
         </button>
       ) : (
         <button
           className="configFlLstTableRowUnselect"
           onClick={() => unselectDocument(props.document.documentId)}
         >
-          {props.themeLang.languageWords.Selected}
+          {/* {props.themeLang.languageWords.Selected} */}
+          <img src={squareCheck} />
         </button>
       )}
     </div>

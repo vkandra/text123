@@ -27,9 +27,12 @@ const Header = (props) => {
     // console.log(languages[langSelected]);
   };
 
-  const refreshPage = () => {
-    // signOut();
-    window.location.reload();
+  const signUserOut = () => {
+    console.log('signing out');
+    signOut();
+    setTimeout(() => {
+      window.location.reload();
+    }, 3000);
   };
 
   return (
@@ -61,8 +64,10 @@ const Header = (props) => {
         {/* <Link to="/"> */}
         <div className="inupoutButton" onClick={signOut}>
           {/* <div className="inupoutDiv" onClick={refreshPage}> */}
-          {props.themeLang.languageWords.Sign_Out}&nbsp;
-          <i className="fi fi-sr-exit"></i>
+          <span onClick={signUserOut}>
+            {props.themeLang.languageWords.Sign_Out}&nbsp;
+            <i className="fi fi-sr-exit"></i>
+          </span>
           {/* </div> */}
         </div>
         {/* </Link> */}

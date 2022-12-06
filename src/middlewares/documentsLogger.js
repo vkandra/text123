@@ -69,26 +69,70 @@ const documentsLogger =
       const valueArray = action.preferences[3];
 
       if (fetchedAllDocsData.processedFileList.length > 1) {
-        if (sortByAsDs === 'Asc.') {
-          fetchedAllDocsData.processedFileList.sort((a, b) =>
-            a[valueArray[sortByValue]].localeCompare(b[valueArray[sortByValue]])
-          );
+        if (sortByValue === 3) {
+          if (sortByAsDs === 'Asc.') {
+            fetchedAllDocsData.processedFileList.sort(function (a, b) {
+              return (
+                Date.parse(a[valueArray[sortByValue]]) -
+                Date.parse(b[valueArray[sortByValue]])
+              );
+            });
+          } else {
+            fetchedAllDocsData.processedFileList.sort(function (a, b) {
+              return (
+                Date.parse(b[valueArray[sortByValue]]) -
+                Date.parse(a[valueArray[sortByValue]])
+              );
+            });
+          }
         } else {
-          fetchedAllDocsData.processedFileList.sort((a, b) =>
-            b[valueArray[sortByValue]].localeCompare(a[valueArray[sortByValue]])
-          );
+          if (sortByAsDs === 'Asc.') {
+            fetchedAllDocsData.processedFileList.sort((a, b) =>
+              a[valueArray[sortByValue]].localeCompare(
+                b[valueArray[sortByValue]]
+              )
+            );
+          } else {
+            fetchedAllDocsData.processedFileList.sort((a, b) =>
+              b[valueArray[sortByValue]].localeCompare(
+                a[valueArray[sortByValue]]
+              )
+            );
+          }
         }
       }
 
       if (fetchedAllDocsData.notProcessedFileList.length > 1) {
-        if (sortByAsDs === 'Asc.') {
-          fetchedAllDocsData.notProcessedFileList.sort((a, b) =>
-            a[valueArray[sortByValue]].localeCompare(b[valueArray[sortByValue]])
-          );
+        if (sortByValue === 3) {
+          if (sortByAsDs === 'Asc.') {
+            fetchedAllDocsData.notProcessedFileList.sort(function (a, b) {
+              return (
+                Date.parse(a[valueArray[sortByValue]]) -
+                Date.parse(b[valueArray[sortByValue]])
+              );
+            });
+          } else {
+            fetchedAllDocsData.notProcessedFileList.sort(function (a, b) {
+              return (
+                Date.parse(b[valueArray[sortByValue]]) -
+                Date.parse(a[valueArray[sortByValue]])
+              );
+            });
+          }
         } else {
-          fetchedAllDocsData.notProcessedFileList.sort((a, b) =>
-            b[valueArray[sortByValue]].localeCompare(a[valueArray[sortByValue]])
-          );
+          if (sortByAsDs === 'Asc.') {
+            fetchedAllDocsData.notProcessedFileList.sort((a, b) =>
+              a[valueArray[sortByValue]].localeCompare(
+                b[valueArray[sortByValue]]
+              )
+            );
+          } else {
+            fetchedAllDocsData.notProcessedFileList.sort((a, b) =>
+              b[valueArray[sortByValue]].localeCompare(
+                a[valueArray[sortByValue]]
+              )
+            );
+          }
         }
       }
       console.log(sortByValue, sortByAsDs);

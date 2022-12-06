@@ -1,6 +1,8 @@
 import './ConfigurationFileList.css';
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux/es/exports';
+import squareCheck from '../../Pictures/square-check-solid.svg';
+import squareBlank from '../../Pictures/square-regular.svg';
 
 import {
   changeTabOperation,
@@ -275,8 +277,8 @@ const ConfigurationFileList = (props) => {
   const performSorting = () => {
     const sortByValue = parseInt(document.getElementById('sortValue').value);
     const sortByAsDs = document.getElementById('sortAsDs').value;
-    console.log(sortByValue);
-    console.log(sortByAsDs);
+    // console.log(sortByValue);
+    // console.log(sortByAsDs);
 
     const { documents } = props;
     const { user } = props;
@@ -289,36 +291,73 @@ const ConfigurationFileList = (props) => {
     // let docDetails1 = documents.filteredFilelistNotProcessed;
     // let docDetails2 = documents.filteredFilelistProcessed;
 
-    console.log(
-      documents.filteredFilelistNotProcessed.length,
-      documents.filteredFilelistProcessed.length
-    );
+    // console.log(
+    //   documents.filteredFilelistNotProcessed.length,
+    //   documents.filteredFilelistProcessed.length
+    // );
 
     const valueArray = props.user.preferences[3];
     // console.log(docDetails);
-    console.log(documents.filteredFilelistNotProcessed);
-    console.log(documents.filteredFilelistNotProcessed);
+    // console.log(documents.filteredFilelistNotProcessed);
+    // console.log(documents.filteredFilelistNotProcessed);
+
     if (documents.filteredFilelistNotProcessed.length > 1) {
-      if (sortByAsDs === 'Asc.') {
-        documents.filteredFilelistNotProcessed.sort((a, b) =>
-          a[valueArray[sortByValue]].localeCompare(b[valueArray[sortByValue]])
-        );
+      if (sortByValue === 3) {
+        if (sortByAsDs === 'Asc.') {
+          documents.filteredFilelistNotProcessed.sort(function (a, b) {
+            return (
+              Date.parse(a[valueArray[sortByValue]]) -
+              Date.parse(b[valueArray[sortByValue]])
+            );
+          });
+        } else {
+          documents.filteredFilelistNotProcessed.sort(function (a, b) {
+            return (
+              Date.parse(b[valueArray[sortByValue]]) -
+              Date.parse(a[valueArray[sortByValue]])
+            );
+          });
+        }
       } else {
-        documents.filteredFilelistNotProcessed.sort((a, b) =>
-          b[valueArray[sortByValue]].localeCompare(a[valueArray[sortByValue]])
-        );
+        if (sortByAsDs === 'Asc.') {
+          documents.filteredFilelistNotProcessed.sort((a, b) =>
+            a[valueArray[sortByValue]].localeCompare(b[valueArray[sortByValue]])
+          );
+        } else {
+          documents.filteredFilelistNotProcessed.sort((a, b) =>
+            b[valueArray[sortByValue]].localeCompare(a[valueArray[sortByValue]])
+          );
+        }
       }
     }
 
     if (documents.filteredFilelistProcessed.length > 1) {
-      if (sortByAsDs === 'Asc.') {
-        documents.filteredFilelistProcessed.sort((a, b) =>
-          a[valueArray[sortByValue]].localeCompare(b[valueArray[sortByValue]])
-        );
+      if (sortByValue === 3) {
+        if (sortByAsDs === 'Asc.') {
+          documents.filteredFilelistProcessed.sort(function (a, b) {
+            return (
+              Date.parse(a[valueArray[sortByValue]]) -
+              Date.parse(b[valueArray[sortByValue]])
+            );
+          });
+        } else {
+          documents.filteredFilelistProcessed.sort(function (a, b) {
+            return (
+              Date.parse(b[valueArray[sortByValue]]) -
+              Date.parse(a[valueArray[sortByValue]])
+            );
+          });
+        }
       } else {
-        documents.filteredFilelistProcessed.sort((a, b) =>
-          b[valueArray[sortByValue]].localeCompare(a[valueArray[sortByValue]])
-        );
+        if (sortByAsDs === 'Asc.') {
+          documents.filteredFilelistProcessed.sort((a, b) =>
+            a[valueArray[sortByValue]].localeCompare(b[valueArray[sortByValue]])
+          );
+        } else {
+          documents.filteredFilelistProcessed.sort((a, b) =>
+            b[valueArray[sortByValue]].localeCompare(a[valueArray[sortByValue]])
+          );
+        }
       }
     }
     // console.log(docDetails);
@@ -463,7 +502,8 @@ const ConfigurationFileList = (props) => {
             className="configFlLstTableHeaderUnSelectAll"
             onClick={() => unselectAllDocuments()}
           >
-            {props.themeLang.languageWords.All_Selected}
+            {/* {props.themeLang.languageWords.All_Selected} */}
+            <img src={squareCheck} />
           </button>
         ) : props.extractor.processedFileTab === 2 &&
           props.documents.filteredFilelistProcessed.length ===
@@ -472,7 +512,8 @@ const ConfigurationFileList = (props) => {
             className="configFlLstTableHeaderUnSelectAll"
             onClick={() => unselectAllDocuments()}
           >
-            {props.themeLang.languageWords.All_Selected}
+            {/* {props.themeLang.languageWords.All_Selected} */}
+            <img src={squareCheck} />
           </button>
         ) : props.extractor.processedFileTab === 1 &&
           props.documents.filteredFilelistNotProcessed.length !==
@@ -483,7 +524,8 @@ const ConfigurationFileList = (props) => {
               selectAllDocuments(props.documents.filteredFilelistNotProcessed)
             }
           >
-            {props.themeLang.languageWords.Select_All}
+            {/* {props.themeLang.languageWords.Select_All} */}
+            <img src={squareBlank} />
           </button>
         ) : props.extractor.processedFileTab === 2 &&
           props.documents.filteredFilelistProcessed.length !==
@@ -494,7 +536,8 @@ const ConfigurationFileList = (props) => {
               selectAllDocuments(props.documents.filteredFilelistProcessed)
             }
           >
-            {props.themeLang.languageWords.Select_All}
+            {/* {props.themeLang.languageWords.Select_All} */}
+            <img src={squareBlank} />
           </button>
         ) : null}
       </div>
