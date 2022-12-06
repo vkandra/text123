@@ -42,26 +42,14 @@ const ConfigurationFile = (props) => {
   };
 
   return (
-    <div className="configurationFile" id="configFileSingle">
-      <div className="configFlLstTableRowDocName">
-        {props.document.ducumentName}
-      </div>
-      <div className="configFlLstTableRowDocId">
-        {props.document.template_name}
-      </div>
-      <div className="configFlLstTableRowSubtemplate">
-        {props.document.sub_template_name}
-      </div>
-      <div className="configFlLstTableRowDocType">
-        {props.document.documentType === 'application/pdf' ||
-        props.document.documentType === 'pdf'
-          ? 'PDF'
-          : 'Image'}
-      </div>
-      <div className="configFlLstTableRowUploadedOn">{formedDate}</div>
-      <div className="configFlLstTableRowDocStats">
-        {props.document.documentStatus}
-      </div>
+    <div
+      className={`configurationFile ${
+        !props.documents.selectedDocuments.includes(props.document.documentId)
+          ? null
+          : 'selectedDocumentStyle'
+      }`}
+      id="configFileSingle"
+    >
       {!props.documents.selectedDocuments.includes(
         props.document.documentId
       ) ? (
@@ -81,6 +69,25 @@ const ConfigurationFile = (props) => {
           <img src={squareCheck} />
         </button>
       )}
+      <div className="configFlLstTableRowDocName">
+        {props.document.ducumentName}
+      </div>
+      <div className="configFlLstTableRowDocId">
+        {props.document.template_name}
+      </div>
+      <div className="configFlLstTableRowSubtemplate">
+        {props.document.sub_template_name}
+      </div>
+      <div className="configFlLstTableRowDocType">
+        {props.document.documentType === 'application/pdf' ||
+        props.document.documentType === 'pdf'
+          ? 'PDF'
+          : 'Image'}
+      </div>
+      <div className="configFlLstTableRowUploadedOn">{formedDate}</div>
+      <div className="configFlLstTableRowDocStats">
+        {props.document.documentStatus}
+      </div>
     </div>
   );
 };

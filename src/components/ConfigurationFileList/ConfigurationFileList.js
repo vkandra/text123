@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux/es/exports';
 import squareCheck from '../../Pictures/square-check-solid.svg';
 import squareBlank from '../../Pictures/square-regular.svg';
+import squareMinus from '../../Pictures/square-minus-solid.svg';
 
 import {
   changeTabOperation,
@@ -65,6 +66,8 @@ const ConfigurationFileList = (props) => {
 
   //     performSorting();
   // }, []);
+
+  // console.log(props.documents.filteredFilelistProcessed.length);
 
   const selectAllDocuments = (allDocs) => {
     var selectedDocs = [];
@@ -477,24 +480,6 @@ const ConfigurationFileList = (props) => {
       </div>
 
       <div className="configFlLstTableHeader">
-        <div className="configFlLstTableHeaderDocName">
-          {/* {props.themeLang.languageWords.Doc_Name} */}
-          Document Name
-        </div>
-        <div className="configFlLstTableHeaderDocId">
-          {props.themeLang.languageWords.Template}
-        </div>
-        <div className="configFlLstTableHeaderSubtemplate">Sub-Template</div>
-        <div className="configFlLstTableHeaderDocType">
-          {/* {props.themeLang.languageWords.Doc_Type} */}
-          Type
-        </div>
-        <div className="configFlLstTableHeaderUploadedOn">
-          {props.themeLang.languageWords.Uploaded_On}
-        </div>
-        <div className="configFlLstTableHeaderDocStats">
-          {props.themeLang.languageWords.Status}
-        </div>
         {props.extractor.processedFileTab === 1 &&
         props.documents.filteredFilelistNotProcessed.length ===
           props.documents.selectedDocuments.length ? (
@@ -516,8 +501,7 @@ const ConfigurationFileList = (props) => {
             <img src={squareCheck} />
           </button>
         ) : props.extractor.processedFileTab === 1 &&
-          props.documents.filteredFilelistNotProcessed.length !==
-            props.documents.selectedDocuments.length ? (
+          props.documents.selectedDocuments.length === 0 ? (
           <button
             className="configFlLstTableHeaderSelectAll"
             onClick={() =>
@@ -528,8 +512,7 @@ const ConfigurationFileList = (props) => {
             <img src={squareBlank} />
           </button>
         ) : props.extractor.processedFileTab === 2 &&
-          props.documents.filteredFilelistProcessed.length !==
-            props.documents.selectedDocuments.length ? (
+          props.documents.selectedDocuments.length === 0 ? (
           <button
             className="configFlLstTableHeaderSelectAll"
             onClick={() =>
@@ -539,7 +522,51 @@ const ConfigurationFileList = (props) => {
             {/* {props.themeLang.languageWords.Select_All} */}
             <img src={squareBlank} />
           </button>
+        ) : props.extractor.processedFileTab === 1 &&
+          props.documents.filteredFilelistNotProcessed.length !==
+            props.documents.selectedDocuments.length &&
+          props.documents.selectedDocuments.length > 0 ? (
+          <button
+            className="configFlLstTableHeaderSelectAll"
+            onClick={() =>
+              selectAllDocuments(props.documents.filteredFilelistNotProcessed)
+            }
+          >
+            {/* {props.themeLang.languageWords.Select_All} */}
+            <img src={squareMinus} />
+          </button>
+        ) : props.extractor.processedFileTab === 2 &&
+          props.documents.filteredFilelistProcessed.length !==
+            props.documents.selectedDocuments.length &&
+          props.documents.selectedDocuments.length > 0 ? (
+          <button
+            className="configFlLstTableHeaderSelectAll"
+            onClick={() =>
+              selectAllDocuments(props.documents.filteredFilelistProcessed)
+            }
+          >
+            {/* {props.themeLang.languageWords.Select_All} */}
+            <img src={squareMinus} />
+          </button>
         ) : null}
+        <div className="configFlLstTableHeaderDocName">
+          {/* {props.themeLang.languageWords.Doc_Name} */}
+          Document Name
+        </div>
+        <div className="configFlLstTableHeaderDocId">
+          {props.themeLang.languageWords.Template}
+        </div>
+        <div className="configFlLstTableHeaderSubtemplate">Sub-Template</div>
+        <div className="configFlLstTableHeaderDocType">
+          {/* {props.themeLang.languageWords.Doc_Type} */}
+          Type
+        </div>
+        <div className="configFlLstTableHeaderUploadedOn">
+          {props.themeLang.languageWords.Uploaded_On}
+        </div>
+        <div className="configFlLstTableHeaderDocStats">
+          {props.themeLang.languageWords.Status}
+        </div>
       </div>
       <hr className="tableHeadBodyLine"></hr>
       {props.extractor.processedFileTab === 1 &&

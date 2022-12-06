@@ -5,11 +5,18 @@
   align-items: center;
   font-size: 0.85rem;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  margin: 1px 0px;
+  /* margin: 0px 0px; */
+  /* height: 25px; */
   border-bottom: 1px solid rgb(228, 227, 227);
 }
 .configurationFile:hover {
   background: rgb(246, 245, 245);
+}
+.selectedDocumentStyle {
+  background: rgb(234, 234, 234);
+}
+.selectedDocumentStyle:hover {
+  background: rgb(234, 234, 234) !important;
 }
 .configFlLstTableRowDocId {
   width: 7%;
@@ -21,7 +28,7 @@
 }
 .configFlLstTableRowDocName {
   width: 35%;
-  padding-right: 5px;
+  /* padding-right: 1px; */
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
@@ -50,22 +57,26 @@
 }
 .configFlLstTableRowSelect {
   padding: 3px;
-  min-width: 100px;
+  min-width: 30px;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   font-size: 0.8rem;
   font-weight: 500;
   background: none;
   /* border: 1px solid lightgray; */
   border: none;
+  /* border-right: 1px solid #ccc; */
   /* border-radius: 15px; */
   cursor: pointer;
   color: #384988;
+  opacity: 0.7;
   /* outline: none; */
 }
 .configFlLstTableRowSelect:hover {
   /* border: 1px solid #384988; */
   border: none;
   transition: 0.3s;
+  opacity: 0.8;
+  /* border-right: 1px solid #ccc; */
 }
 .configFlLstTableRowSelect:focus {
   outline: none;
@@ -75,7 +86,7 @@
 }
 .configFlLstTableRowUnselect {
   padding: 3px;
-  min-width: 100px;
+  min-width: 30px;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   font-size: 0.8rem;
   font-weight: 500;
@@ -84,7 +95,9 @@
   background: none;
   /* border: 1px solid #384988; */
   border: none;
+  /* border-right: 1px solid #ccc; */
   cursor: pointer;
+  opacity: 0.7;
 }
 .configFlLstTableRowUnselect:focus {
   outline: none;
