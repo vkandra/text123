@@ -86,6 +86,9 @@ const singleDocumentLogger =
               page: action.data[0].Edited_output.keys_extracted_data[i][j].page,
               repeat:
                 action.data[0].Edited_output.keys_extracted_data[i][j].repeat,
+              secondary_index:
+                action.data[0].Edited_output.keys_extracted_data[i][j]
+                  .secondary_index,
             });
           }
           singleDocKeysValuesPage.push(singleDocKeysValues);

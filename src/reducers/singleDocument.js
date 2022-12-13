@@ -61,6 +61,7 @@ const initialsingleDocumentState = {
     index: -1,
     text: '',
     repeat: 0,
+    secondary_index: 0,
   },
   // Edited Single Cell Table data
   editedTableData: {

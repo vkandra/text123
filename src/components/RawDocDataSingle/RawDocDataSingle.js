@@ -73,6 +73,7 @@ const RawDocDataSingle = (props) => {
     singleDocument.editedKeysValuesRawData.pageNo = -1;
     singleDocument.editedKeysValuesRawData.index = -1;
     singleDocument.editedKeysValuesRawData.text = '';
+    singleDocument.editedKeysValuesRawData.secondary_index = 0;
     singleDocument.editedKeysValuesRawData.repeat = 0;
     props.dispatch(editKeysValuesRawData(singleDocument));
     // console.log(singleDocument.editedKeysValuesRawData);

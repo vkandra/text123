@@ -27,6 +27,8 @@ const KeyValue = (props) => {
     singleDocument.editedKeysValuesRawData.index = props.singleKeyValue.index;
     singleDocument.editedKeysValuesRawData.pageNo = props.singleKeyValue.page;
     singleDocument.editedKeysValuesRawData.repeat = props.singleKeyValue.repeat;
+    singleDocument.editedKeysValuesRawData.secondary_index =
+      props.singleKeyValue.secondary_index;
     props.dispatch(editKeysValuesRawData(singleDocument));
     // console.log(props.singleKeyValue);
   };
@@ -90,6 +92,7 @@ const KeyValue = (props) => {
     singleDocument.editedKeysValuesRawData.index = -1;
     singleDocument.editedKeysValuesRawData.text = '';
     singleDocument.editedKeysValuesRawData.repeat = 0;
+    singleDocument.editedKeysValuesRawData.secondary_index = 0;
     props.dispatch(editKeysValuesRawData(singleDocument));
     // console.log(singleDocument.editedKeysValuesRawData);
     // console.log(props.extractor.userEditedKeyValueRaw);
