@@ -28,121 +28,135 @@ const singleDocumentLogger =
     if (action.type === 'ARRANGE_KEYS_VALUES') {
       //
 
-      let allFavouriteKeys;
+      // let allFavouriteKeys;
 
-      let currentTemplate = String(action.data[2]).valueOf();
-      let templateNamesKeys = Object.keys(action.data[1]);
-      let templateNamesValues = Object.values(action.data[1]);
+      // let currentTemplate = String(action.data[2]).valueOf();
+      // let templateNamesKeys = Object.keys(action.data[1]);
+      // let templateNamesValues = Object.values(action.data[1]);
 
-      let subTemplate1 = action.data[3];
+      // let subTemplate1 = action.data[3];
       // console.log(Object.keys(action.data[3]).length);
 
-      for (let i in templateNamesKeys) {
-        if (currentTemplate === String(templateNamesKeys[i]).valueOf()) {
-          let subTemplates = templateNamesValues[i];
-          // console.log(subTemplates[0]);
+      // for (let i in templateNamesKeys) {
+      //   if (currentTemplate === String(templateNamesKeys[i]).valueOf()) {
+      //     let subTemplates = templateNamesValues[i];
+      //     // console.log(subTemplates[0]);
 
-          let subKeys = Object.keys(subTemplates[0]);
-          let subValues = Object.values(subTemplates[0]);
+      //     let subKeys = Object.keys(subTemplates[0]);
+      //     let subValues = Object.values(subTemplates[0]);
 
-          for (let j in subKeys) {
-            if (subTemplate1 === String(subKeys[j]).valueOf()) {
-              allFavouriteKeys = subValues[j];
-              break;
-            }
-          }
-        }
-      }
-
-      //
+      //     for (let j in subKeys) {
+      //       if (subTemplate1 === String(subKeys[j]).valueOf()) {
+      //         allFavouriteKeys = subValues[j];
+      //         break;
+      //       }
+      //     }
+      //   }
+      // }
 
       var singleDocKeysValues = [];
-      var templateSingleDocKeysValues = [];
-      let thisDocKeys = [];
+      var singleDocKeysValuesPage = [];
+      // var templateSingleDocKeysValues = [];
+      // let thisDocKeys = [];
       if (action.data[0].Textracted_output.keys_extracted_data.length !== 0) {
         for (
           var i = 0;
           i < action.data[0].Textracted_output.keys_extracted_data.length;
           i++
         ) {
-          singleDocKeysValues.push({
-            index:
-              action.data[0].Textracted_output.keys_extracted_data[i].index,
-            key: action.data[0].Textracted_output.keys_extracted_data[i].value,
-            value:
-              action.data[0].Textracted_output.values_extracted_data[i].value,
-            editedKey:
-              action.data[0].Edited_output.keys_extracted_data[i].value,
-            editedValue:
-              action.data[0].Edited_output.values_extracted_data[i].value,
-            fvrt: action.data[0].Edited_output.keys_extracted_data[i].fvrt,
-          });
-
-          if (
-            action.data[0].Edited_output.keys_extracted_data[i].fvrt === 'True'
+          for (
+            let j = 0;
+            j < action.data[0].Textracted_output.keys_extracted_data[i].length;
+            j++
           ) {
-            templateSingleDocKeysValues.push({
+            singleDocKeysValues.push({
               index:
-                action.data[0].Textracted_output.keys_extracted_data[i].index,
-              key: action.data[0].Textracted_output.keys_extracted_data[i]
+                action.data[0].Textracted_output.keys_extracted_data[i][j]
+                  .index,
+              key: action.data[0].Textracted_output.keys_extracted_data[i][j]
                 .value,
               value:
-                action.data[0].Textracted_output.values_extracted_data[i].value,
+                action.data[0].Textracted_output.values_extracted_data[i][j]
+                  .value,
               editedKey:
-                action.data[0].Edited_output.keys_extracted_data[i].value,
+                action.data[0].Edited_output.keys_extracted_data[i][j].value,
               editedValue:
-                action.data[0].Edited_output.values_extracted_data[i].value,
-              fvrt: action.data[0].Edited_output.keys_extracted_data[i].fvrt,
+                action.data[0].Edited_output.values_extracted_data[i][j].value,
+              fvrt: action.data[0].Edited_output.keys_extracted_data[i][j].fvrt,
+              page: action.data[0].Edited_output.keys_extracted_data[i][j].page,
+              repeat:
+                action.data[0].Edited_output.keys_extracted_data[i][j].repeat,
             });
-            thisDocKeys.push(
-              action.data[0].Edited_output.keys_extracted_data[i].value
-            );
-
-            // if(String(action.data[0].Edited_output.keys_extracted_data[i].value).valueOf() === )
           }
+          singleDocKeysValuesPage.push(singleDocKeysValues);
+          singleDocKeysValues = [];
+
+          // if (
+          //   action.data[0].Edited_output.keys_extracted_data[i].fvrt === 'True'
+          // ) {
+          //   templateSingleDocKeysValues.push({
+          //     index:
+          //       action.data[0].Textracted_output.keys_extracted_data[i].index,
+          //     key: action.data[0].Textracted_output.keys_extracted_data[i]
+          //       .value,
+          //     value:
+          //       action.data[0].Textracted_output.values_extracted_data[i].value,
+          //     editedKey:
+          //       action.data[0].Edited_output.keys_extracted_data[i].value,
+          //     editedValue:
+          //       action.data[0].Edited_output.values_extracted_data[i].value,
+          //     fvrt: action.data[0].Edited_output.keys_extracted_data[i].fvrt,
+          //   });
+          //   thisDocKeys.push(
+          //     action.data[0].Edited_output.keys_extracted_data[i].value
+          //   );
+
+          // if(String(action.data[0].Edited_output.keys_extracted_data[i].value).valueOf() === )
+          // }
         }
       }
+      console.log(singleDocKeysValuesPage);
 
-      let allFavKeys = allFavouriteKeys.keys;
-      let absentKeys = [];
+      // let allFavKeys = allFavouriteKeys.keys;
+      // let absentKeys = [];
 
-      // console.log(thisDocKeys);
+      // // console.log(thisDocKeys);
 
-      if (thisDocKeys.length === 0) {
-        allFavKeys = allFavKeys.filter((item) => item !== '');
+      // if (thisDocKeys.length === 0) {
+      //   allFavKeys = allFavKeys.filter((item) => item !== '');
 
-        absentKeys = allFavKeys;
-      } else {
-        for (let i = 0; i < allFavKeys.length; i++) {
-          for (let j = 0; j < thisDocKeys.length; j++) {
-            if (
-              String(allFavKeys[i]).valueOf() ===
-              String(thisDocKeys[j]).valueOf()
-            ) {
-              break;
-              // console.log('found');
-              // allFavKeys = allFavKeys.filter((item) => item !== allFavKeys[j]);
-            }
-            if (j == thisDocKeys.length - 1) {
-              if (String(allFavKeys[i]).valueOf() === '') {
-                // allFavKeys = allFavKeys.filter((item) => item !== allFavKeys[j]);
-                break;
-              }
-              absentKeys.push(allFavKeys[i]);
-            }
-          }
-        }
-        // absentKeys = allFavKeys;
-      }
+      //   absentKeys = allFavKeys;
+      // } else {
+      //   for (let i = 0; i < allFavKeys.length; i++) {
+      //     for (let j = 0; j < thisDocKeys.length; j++) {
+      //       if (
+      //         String(allFavKeys[i]).valueOf() ===
+      //         String(thisDocKeys[j]).valueOf()
+      //       ) {
+      //         break;
+      //         // console.log('found');
+      //         // allFavKeys = allFavKeys.filter((item) => item !== allFavKeys[j]);
+      //       }
+      //       if (j == thisDocKeys.length - 1) {
+      //         if (String(allFavKeys[i]).valueOf() === '') {
+      //           // allFavKeys = allFavKeys.filter((item) => item !== allFavKeys[j]);
+      //           break;
+      //         }
+      //         absentKeys.push(allFavKeys[i]);
+      //       }
+      //     }
+      //   }
+      // absentKeys = allFavKeys;
+      // }
       // console.log(allFavouriteKeys.keys);
       // console.log(absentKeys);
 
       // console.log(action.data);
       action.data = [
-        singleDocKeysValues,
-        templateSingleDocKeysValues,
-        allFavouriteKeys.keys,
-        absentKeys,
+        singleDocKeysValuesPage,
+        // templateSingleDocKeysValues,
+        // allFavouriteKeys.keys,
+        // absentKeys,
       ];
     }
     if (action.type === 'ARRANGE_RAW_DATA') {

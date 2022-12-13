@@ -60,6 +60,7 @@ const initialsingleDocumentState = {
     pageNo: -1,
     index: -1,
     text: '',
+    repeat: 0,
   },
   // Edited Single Cell Table data
   editedTableData: {
@@ -182,9 +183,9 @@ export default function singleDocument(
       return {
         ...state,
         singleDocKeysValues: action.data[0],
-        templateSingleDocKeysValues: action.data[1],
-        templateAllKeys: action.data[2],
-        templateUnusedKeys: action.data[3],
+        // templateSingleDocKeysValues: action.data[1],
+        // templateAllKeys: action.data[2],
+        // templateUnusedKeys: action.data[3],
       };
     case ARRANGE_RAW_DATA:
       // console.log(action.data);

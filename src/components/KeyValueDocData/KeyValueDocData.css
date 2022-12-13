@@ -2,6 +2,7 @@
   padding-left: 2%;
   height: 100%;
   width: 100%;
+
   /* border: 1px solid black; */
 }
 .keysandvaluesText {
@@ -27,12 +28,4 @@
   font-weight: 600;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   text-align: center;
-}
-.keysAndValues {
-  /* border: 1px solid black; */
-  height: 93%;
-  width: 100%;
-  overflow: auto;
-  margin: 0;
-  padding: 0;
 }

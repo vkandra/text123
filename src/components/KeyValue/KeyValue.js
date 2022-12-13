@@ -14,23 +14,6 @@ const KeyValue = (props) => {
   const [isFav, setIsFav] = useState(false);
 
   useEffect(() => {
-    // let currentTemplate = String(
-    //   props.singleDocument.singleDocumentTemplate
-    // ).valueOf();
-    // let templateNamesKeys = Object.keys(props.singleDocument.templateDetails);
-    // let templateNamesValues = Object.values(
-    //   props.singleDocument.templateDetails
-    // );
-
-    // let allTemplateDetails = props.singleDocument.templateDetails;
-
-    // // console.log(allTemplateDetails);
-    // for (let i in templateNamesKeys) {
-    //   if (currentTemplate === String(templateNamesKeys[i]).valueOf()) {
-    //     let subTemplates = templateNamesValues[i];
-    //   }
-    // }
-    // console.log(templateNamesKeys);
     if (props.singleKeyValue.fvrt === 'True') {
       setIsFav(true);
     } else {
@@ -42,6 +25,8 @@ const KeyValue = (props) => {
     const { singleDocument } = props;
     singleDocument.editedKeysValuesRawData.type = type;
     singleDocument.editedKeysValuesRawData.index = props.singleKeyValue.index;
+    singleDocument.editedKeysValuesRawData.pageNo = props.singleKeyValue.page;
+    singleDocument.editedKeysValuesRawData.repeat = props.singleKeyValue.repeat;
     props.dispatch(editKeysValuesRawData(singleDocument));
     // console.log(props.singleKeyValue);
   };
@@ -71,24 +56,26 @@ const KeyValue = (props) => {
     // console.log(singleDocument.singleDocKeysValues.length);
     for (var i = 0; i < singleDocument.singleDocKeysValues.length; i++) {
       // console.log(i);
-      if (
-        props.singleKeyValue.index ===
-        singleDocument.singleDocKeysValues[i].index
-      ) {
-        // console.log(singleDocument.editedKeysValuesRawData.text);
-        if (singleDocument.editedKeysValuesRawData.text === '') {
-          cancelEditingKVRData();
-          return;
-        } else {
-          if (singleDocument.editedKeysValuesRawData.type === 'key') {
-            singleDocument.singleDocKeysValues[i].editedKey =
-              singleDocument.editedKeysValuesRawData.text;
-            break;
-          }
-          if (singleDocument.editedKeysValuesRawData.type === 'value') {
-            singleDocument.singleDocKeysValues[i].editedValue =
-              singleDocument.editedKeysValuesRawData.text;
-            break;
+      for (let j = 0; j < singleDocument.singleDocKeysValues[i].length; j++) {
+        if (
+          props.singleKeyValue.index ===
+          singleDocument.singleDocKeysValues[i][j].index
+        ) {
+          // console.log(singleDocument.editedKeysValuesRawData.text);
+          if (singleDocument.editedKeysValuesRawData.text === '') {
+            cancelEditingKVRData();
+            return;
+          } else {
+            if (singleDocument.editedKeysValuesRawData.type === 'key') {
+              singleDocument.singleDocKeysValues[i][j].editedKey =
+                singleDocument.editedKeysValuesRawData.text;
+              break;
+            }
+            if (singleDocument.editedKeysValuesRawData.type === 'value') {
+              singleDocument.singleDocKeysValues[i][j].editedValue =
+                singleDocument.editedKeysValuesRawData.text;
+              break;
+            }
           }
         }
       }
@@ -102,6 +89,7 @@ const KeyValue = (props) => {
     singleDocument.editedKeysValuesRawData.pageNo = -1;
     singleDocument.editedKeysValuesRawData.index = -1;
     singleDocument.editedKeysValuesRawData.text = '';
+    singleDocument.editedKeysValuesRawData.repeat = 0;
     props.dispatch(editKeysValuesRawData(singleDocument));
     // console.log(singleDocument.editedKeysValuesRawData);
     // console.log(props.extractor.userEditedKeyValueRaw);

@@ -159,7 +159,7 @@ export function fetchSingleFileDataAPI(data) {
         `https://4xjuok1l6c.execute-api.ap-south-1.amazonaws.com/output?user_id=${data[0]}&job_id=${data[1]}&template_id=${data[3]}`
       )
       .then((res) => {
-        // console.log(res.data);
+        console.log(res.data);
         dispatch(assignSingleFileData(res.data));
         dispatch(arrangeKeysData(res.data));
         dispatch(arrangeValuesData(res.data));

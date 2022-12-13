@@ -2,7 +2,7 @@ import './KeyValueDocData.css';
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux/es/exports';
 import KeysDocData from '../KeyValue/KeyValue';
-import KeyValue from '../KeyValue/KeyValue';
+import KeyValuePage from '../KeyValuePage/KeyValuePage';
 
 const KeyValueDocData = (props) => {
   const fetchData = () => {
@@ -17,13 +17,10 @@ const KeyValueDocData = (props) => {
           {props.themeLang.languageWords.Values}
         </div>
       </div>
-      <div className="keysAndValues">
+      <div className="keysAndValuesPage">
         {props.singleDocument.singleDocKeysValues.map(
-          (singleKeyValue, index) => (
-            <KeyValue
-              singleKeyValue={singleKeyValue}
-              key={singleKeyValue.index}
-            />
+          (singleKeyValuePage, index) => (
+            <KeyValuePage singleKeyValuePage={singleKeyValuePage} key={index} />
           )
         )}
       </div>
