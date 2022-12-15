@@ -83,6 +83,42 @@ const KeyValue = (props) => {
       }
     }
 
+    // For Changing template save
+    for (
+      let i = 0;
+      i < singleDocument.templateSingleDocKeysValues.length;
+      i++
+    ) {
+      if (props.singleKeyValue) {
+        for (
+          let j = 0;
+          j < singleDocument.templateSingleDocKeysValues[i].length;
+          j++
+        ) {
+          if (
+            props.singleKeyValue.index ===
+            singleDocument.templateSingleDocKeysValues[i][j].index
+          ) {
+            if (singleDocument.editedKeysValuesRawData.text === '') {
+              cancelEditingKVRData();
+              return;
+            } else {
+              if (singleDocument.editedKeysValuesRawData.type === 'key') {
+                singleDocument.templateSingleDocKeysValues[i][j].editedKey =
+                  singleDocument.editedKeysValuesRawData.text;
+                break;
+              }
+              if (singleDocument.editedKeysValuesRawData.type === 'value') {
+                singleDocument.templateSingleDocKeysValues[i][j].editedValue =
+                  singleDocument.editedKeysValuesRawData.text;
+                break;
+              }
+            }
+          }
+        }
+      }
+    }
+
     // console.log(singleDocument.editedKeysValuesRawData);
 
     props.dispatch(saveEditedKeysValuesRawData(singleDocument));

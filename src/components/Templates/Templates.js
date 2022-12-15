@@ -2,6 +2,7 @@ import './Templates.css';
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux/es/exports';
 import { addDeletefetchTemplateAPI } from '../../actions/singleDocument';
+import { updateSubTemplateNames } from '../../actions/documents';
 
 const Templates = (props) => {
   useEffect(() => {
@@ -65,6 +66,7 @@ const Templates = (props) => {
       sub_template: '',
       action: 'fetch',
     };
+    props.dispatch(updateSubTemplateNames([]));
     props.dispatch(addDeletefetchTemplateAPI(reqBody));
   };
 

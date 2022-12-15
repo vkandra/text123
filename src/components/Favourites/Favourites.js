@@ -1,7 +1,7 @@
 import './Favourites.css';
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux/es/exports';
-import KeyValueTemplate from '../KeyValueTemplate/KeyValueTemplate';
+import KeyValuePageTemplate from '../KeyValuePageTemplate/KeyValuePageTemplate';
 import { singleFileTemplateUnusedKeys } from '../../actions/singleDocument';
 
 const Favourites = (props) => {
@@ -17,13 +17,13 @@ const Favourites = (props) => {
             Sub-Template : &nbsp;
             <b>{props.singleDocument.singleDocumentSubTemplate}</b>
           </div>
-          <div>
+          {/* <div>
             <select id="selectDataType">
               <option value={'1'}>Key-Value</option>
               <option value={'2'}>Table</option>
               <option value={'3'}>Raw Data</option>
             </select>
-          </div>
+          </div> */}
         </div>
       </div>
       <div className="templateContent">
@@ -37,10 +37,10 @@ const Favourites = (props) => {
         </div>
         <div className="templateKeysAndValues">
           {props.singleDocument.templateSingleDocKeysValues.map(
-            (singleKeyValue, index) => (
-              <KeyValueTemplate
-                singleKeyValue={singleKeyValue}
-                key={singleKeyValue.index}
+            (singleKeyValuePage) => (
+              <KeyValuePageTemplate
+                singleKeyValuePage={singleKeyValuePage}
+                key={singleKeyValuePage[0].index.toString()}
               />
             )
           )}

@@ -56,7 +56,7 @@ const singleDocumentLogger =
 
       var singleDocKeysValues = [];
       var singleDocKeysValuesPage = [];
-      // var templateSingleDocKeysValues = [];
+      var templateSingleDocKeysValues = []; // Pagewise
       // let thisDocKeys = [];
       if (action.data[0].Textracted_output.keys_extracted_data.length !== 0) {
         for (
@@ -93,31 +93,16 @@ const singleDocumentLogger =
           }
           singleDocKeysValuesPage.push(singleDocKeysValues);
           singleDocKeysValues = [];
-
-          // if (
-          //   action.data[0].Edited_output.keys_extracted_data[i].fvrt === 'True'
-          // ) {
-          //   templateSingleDocKeysValues.push({
-          //     index:
-          //       action.data[0].Textracted_output.keys_extracted_data[i].index,
-          //     key: action.data[0].Textracted_output.keys_extracted_data[i]
-          //       .value,
-          //     value:
-          //       action.data[0].Textracted_output.values_extracted_data[i].value,
-          //     editedKey:
-          //       action.data[0].Edited_output.keys_extracted_data[i].value,
-          //     editedValue:
-          //       action.data[0].Edited_output.values_extracted_data[i].value,
-          //     fvrt: action.data[0].Edited_output.keys_extracted_data[i].fvrt,
-          //   });
-          //   thisDocKeys.push(
-          //     action.data[0].Edited_output.keys_extracted_data[i].value
-          //   );
-
-          // if(String(action.data[0].Edited_output.keys_extracted_data[i].value).valueOf() === )
-          // }
         }
       }
+
+      templateSingleDocKeysValues = action.data[0].fvrt_kv_output;
+
+      templateSingleDocKeysValues = templateSingleDocKeysValues.filter(
+        (e) => e.length
+      );
+      let absentKeys = action.data[0].missing_keys;
+
       console.log(singleDocKeysValuesPage);
 
       // let allFavKeys = allFavouriteKeys.keys;
@@ -157,9 +142,9 @@ const singleDocumentLogger =
       // console.log(action.data);
       action.data = [
         singleDocKeysValuesPage,
-        // templateSingleDocKeysValues,
+        templateSingleDocKeysValues,
+        absentKeys,
         // allFavouriteKeys.keys,
-        // absentKeys,
       ];
     }
     if (action.type === 'ARRANGE_RAW_DATA') {

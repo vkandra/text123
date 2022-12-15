@@ -204,7 +204,7 @@ export function addDeletefetchTemplateAPI(data) {
         // dispatch(updateTemplateDetails(res.data));
 
         if (data.action === 'fetch') {
-          // console.log(res.data);
+          console.log(res.data);
           dispatch(updateSubTemplateNames(res.data));
         }
       })
