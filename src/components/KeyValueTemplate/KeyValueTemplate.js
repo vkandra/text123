@@ -152,7 +152,7 @@ const KeyValueTemplate = (props) => {
             {props.themeLang.languageWords.Edit}
           </button> */}
         </div>
-        {props.singleDocument.editedKeysValuesRawData.type === 'key' &&
+        {/* {props.singleDocument.editedKeysValuesRawData.type === 'key' &&
         props.singleDocument.editedKeysValuesRawData.index ===
           props.singleKeyValue.index ? (
           <div className="textAreaDivButtons">
@@ -176,7 +176,7 @@ const KeyValueTemplate = (props) => {
               </button>
             </div>
           </div>
-        ) : null}
+        ) : null} */}
         {String(props.singleKeyValue.key).valueOf() !==
         String(props.singleKeyValue.editedKey).valueOf() ? (
           <div className="orgnlExtractedDataDisplayArea">
