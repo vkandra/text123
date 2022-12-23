@@ -6,6 +6,9 @@ import {
   CHECK_REP_PASS,
   CHECK_LOADING,
   SET_USER_PREFERENCES,
+  SET_TEMPLATE_DATA,
+  SET_SELECTED_MAIN_TEMPLATE,
+  SET_SUBTEMPLATES_DATA,
 } from '../actions/user';
 
 const initialUserState = {
@@ -42,6 +45,14 @@ const initialUserState = {
       'documentUploadDate',
     ],
   ],
+
+  // Templates Data
+  selectedMainTemplate: '',
+  subtemplatesData: [],
+  templatesData: {
+    user_id: '',
+    template_details: [],
+  },
 };
 
 export default function user(state = initialUserState, action) {
@@ -82,6 +93,25 @@ export default function user(state = initialUserState, action) {
       return {
         ...state,
       };
+    case SET_TEMPLATE_DATA:
+      // console.log('ACTION_in_reducer ', action);
+      return {
+        ...state,
+        templatesData: action.data,
+      };
+    case SET_SELECTED_MAIN_TEMPLATE:
+      // console.log('ACTION_in_reducer ', action);
+      return {
+        ...state,
+        selectedMainTemplate: action.data,
+      };
+    case SET_SUBTEMPLATES_DATA:
+      // console.log('ACTION_in_reducer ', action);
+      return {
+        ...state,
+        subtemplatesData: action.data,
+      };
+
     default:
       return state;
   }

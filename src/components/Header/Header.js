@@ -65,7 +65,7 @@ const Header = (props) => {
         <div className="inupoutButton" onClick={signOut}>
           {/* <div className="inupoutDiv" onClick={refreshPage}> */}
           <span onClick={signUserOut}>
-            {props.themeLang.languageWords.Sign_Out}&nbsp;
+            {/* {props.themeLang.languageWords.Sign_Out}&nbsp; */}
             <i className="fi fi-sr-exit"></i>
           </span>
           {/* </div> */}

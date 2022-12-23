@@ -16,6 +16,7 @@ import {
   fetchTemplateDataAPI,
   addDeletefetchTemplateAPI,
 } from '../../actions/singleDocument';
+import { fetchTemplatesDataAPI } from '../../actions/user';
 
 // installed using npm install buffer --save
 window.Buffer = window.Buffer || require('buffer').Buffer;
@@ -73,6 +74,8 @@ const Configuration = (props) => {
   useEffect(() => {
     var userID = props.user.token;
 
+    let obj1 = { user_id: userID };
+    props.dispatch(fetchTemplatesDataAPI(obj1));
     props.dispatch(fetchRawDocumentsDetailsAPI(userID, props.user.preferences));
 
     // Fetching Template Data
@@ -132,13 +135,31 @@ const Configuration = (props) => {
         .then((data) => {
           setSuccess(true);
           console.log('Link from s3 -> ', data.location);
+          let subTempName = document.getElementById(
+            'singleSubTemplateSelect'
+          ).value;
+          let subTempId = '';
+          for (
+            let i = 0;
+            i < props.singleDocument.saveSubTempDetails.length;
+            i++
+          ) {
+            if (
+              props.singleDocument.saveSubTempDetails[i].sub_template_name ===
+              subTempName
+            ) {
+              subTempId =
+                props.singleDocument.saveSubTempDetails[i].sub_template_id;
+              break;
+            }
+          }
           let dataOfTemplate = {
             user_id: props.user.token,
             doc_name: fileNameArray,
             size: fileSizeArray,
             category: document.getElementById('singleTemplateSelect').value,
-            sub_template: document.getElementById('singleSubTemplateSelect')
-              .value,
+            sub_template: subTempName,
+            sub_template_id: subTempId,
           };
           props.dispatch(fetchTemplateNamesAPI(dataOfTemplate));
           setTimeout(() => {
@@ -279,6 +300,7 @@ const mapStateToProps = (state) => {
     documents: state.documents,
     user: state.user,
     themeLang: state.themeLang,
+    singleDocument: state.singleDocument,
   };
 };
 

@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 // ACTION TYPES
 export const SIGN_IN_OPERATION = 'SIGN_IN_OPERATION';
 export const SIGN_UP_OPERATION = 'SIGN_UP_OPERATION';
@@ -6,6 +8,9 @@ export const PASS_SENT_TO_EMAIL = 'PASS_SENT_TO_EMAIL';
 export const CHECK_REP_PASS = 'CHECK_REP_PASS';
 export const CHECK_LOADING = 'CHECK_LOADING';
 export const SET_USER_PREFERENCES = 'SET_USER_PREFERENCES';
+export const SET_TEMPLATE_DATA = 'SET_TEMPLATE_DATA';
+export const SET_SELECTED_MAIN_TEMPLATE = 'SET_SELECTED_MAIN_TEMPLATE';
+export const SET_SUBTEMPLATES_DATA = 'SET_SUBTEMPLATES_DATA';
 
 // ACTION CREATORS
 export function signInOperation(data) {
@@ -48,5 +53,45 @@ export function setUserPreferences(data) {
   return {
     type: SET_USER_PREFERENCES,
     data: data,
+  };
+}
+
+export function setTemplateData(data) {
+  return {
+    type: SET_TEMPLATE_DATA,
+    data: data,
+  };
+}
+
+export function setSelectedMainTemplate(data) {
+  return {
+    type: SET_SELECTED_MAIN_TEMPLATE,
+    data: data,
+  };
+}
+
+export function setSubtemplatesData(data) {
+  return {
+    type: SET_SUBTEMPLATES_DATA,
+    data: data,
+  };
+}
+
+// API Calls
+export function fetchTemplatesDataAPI(data) {
+  return (dispatch) => {
+    // console.log(data);
+    axios
+      .post(
+        `https://8kis55n5f4.execute-api.ap-south-1.amazonaws.com/subtemp`,
+        data
+      )
+      .then(function (response) {
+        console.log(response);
+        dispatch(setTemplateData(response.data));
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   };
 }

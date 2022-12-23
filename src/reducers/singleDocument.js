@@ -15,6 +15,7 @@ import {
   SINGLE_DOC_DETAIL,
   DROPDOWN_SELECTED,
   UPDATE_TEMPLATE_DETAILS,
+  SAVE_SUBTEMP_TEMPLATE_DETAILS,
 } from '../actions/singleDocument';
 
 const initialsingleDocumentState = {
@@ -140,6 +141,7 @@ const initialsingleDocumentState = {
       },
     ],
   },
+  saveSubTempDetails: [],
 };
 
 export default function singleDocument(
@@ -245,6 +247,12 @@ export default function singleDocument(
       return {
         ...state,
         templateDetails: action.data,
+      };
+    case SAVE_SUBTEMP_TEMPLATE_DETAILS:
+      // console.log(action.data);
+      return {
+        ...state,
+        saveSubTempDetails: action.data,
       };
 
     default:

@@ -33,7 +33,7 @@
   outline: none;
   color: rgb(255, 208, 208);
   height: 40px;
-  min-width: 100px;
+  /* min-width: 100px; */
   cursor: pointer;
   display: flex;
   justify-content: center;

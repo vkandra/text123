@@ -19,6 +19,7 @@ export const SAVE_EDITED_KEYS_VALUES_RAW_DATA =
 export const SAVE_EDITED_TABLE_DATA = 'SAVE_EDITED_TABLE_DATA';
 export const DROPDOWN_SELECTED = 'DROPDOWN_SELECTED';
 export const UPDATE_TEMPLATE_DETAILS = 'UPDATE_TEMPLATE_DETAILS';
+export const SAVE_SUBTEMP_TEMPLATE_DETAILS = 'SAVE_SUBTEMP_TEMPLATE_DETAILS';
 
 // ACTION CREATORS
 
@@ -148,6 +149,13 @@ export function updateTemplateDetails(data) {
     data: data,
   };
 }
+export function saveSubtempDetails(data) {
+  // console.log(data);
+  return {
+    type: SAVE_SUBTEMP_TEMPLATE_DETAILS,
+    data: data,
+  };
+}
 
 // API Calls
 
@@ -200,12 +208,17 @@ export function addDeletefetchTemplateAPI(data) {
         data
       )
       .then((res) => {
-        // console.log('Response -> ', res.data);
+        console.log('Response -> ', res.data);
         // dispatch(updateTemplateDetails(res.data));
 
         if (data.action === 'fetch') {
           console.log(res.data);
-          dispatch(updateSubTemplateNames(res.data));
+          let sub_templateNames = [];
+          for (let i = 0; i < res.data.length; i++) {
+            sub_templateNames.push(res.data[i].sub_template_name);
+          }
+          dispatch(updateSubTemplateNames(sub_templateNames));
+          dispatch(saveSubtempDetails(res.data));
         }
       })
       .catch(function (error) {

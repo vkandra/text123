@@ -1,0 +1,60 @@
+.testComponent {
+  /* overflow-y: scroll; */
+  border: 1px solid black;
+  max-height: 90%;
+  width: 100%;
+  /* overflow: auto; */
+  /* display: flex; */
+  /* justify-content: flex-start; */
+  /* align-items: flex-start; */
+}
+
+.testComponent .p-column-filter-operator {
+  display: none;
+}
+.testComponent .p-column-filter-menu-button:focus {
+  box-shadow: 0 0 0 0.05rem #c7d2fe !important;
+}
+.testComponent .p-datatable .p-sortable-column:focus {
+  box-shadow: none !important;
+}
+.testComponent .p-checkbox:not(.p-checkbox-disabled) .p-checkbox-box.p-focus {
+  box-shadow: none !important;
+}
+.testComponent .p-link:focus {
+  box-shadow: 0 0 0 0.05rem #c7d2fe !important;
+}
+.testComponent .p-paginator {
+  background: #f8f9fa !important;
+  padding: 2px !important;
+  font-size: 0.9rem !important;
+}
+.testComponent .p-component {
+  font-size: 0.9rem !important;
+}
+.testComponent .p-paginator-page {
+  font-size: 0.9rem !important;
+}
+.testComponent .p-dropdown-label {
+  font-size: 0.9rem !important;
+  padding-left: 0.3rem;
+}
+.testComponent .pi {
+  font-size: 0.8rem !important;
+}
+.testComponent .p-datatable-header {
+  padding: 0.2rem 0.2rem !important;
+}
+.testComponent th {
+  font-size: 0.9rem !important;
+  padding: 0.2rem 0.2rem 0.2rem 0.5rem !important;
+}
+.testComponent td {
+  font-size: 0.9rem !important;
+  padding: 0.2rem 0.2rem 0.2rem 0.5rem !important;
+  height: 30px;
+  border-right: 1px solid #ccc !important;
+  text-overflow: ellipsis !important;
+  overflow: hidden !important;
+  white-space: nowrap !important;
+}
