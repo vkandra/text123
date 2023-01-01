@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux/es/exports';
 import axios from 'axios';
 import { fetchTemplatesDataAPI, setSubtemplatesData } from '../../actions/user';
+import { addDeletefetchTemplateAPI } from '../../actions/singleDocument';
 
 import 'primeicons/primeicons.css';
 import 'primereact/resources/themes/lara-light-indigo/theme.css';
@@ -72,8 +73,8 @@ const TemplatesSubTable = (props) => {
           className="deleteSubTemButton"
           onClick={() => deleteSubTempCheck(rowData)}
         >
-          {/* <i class="pi pi-minus-circle"></i> */}
-          <i class="fa-solid fa-circle-minus"></i>
+          {/* <i className="pi pi-minus-circle"></i> */}
+          <i className="fa-solid fa-circle-minus"></i>
         </div>
       );
     }
@@ -139,15 +140,186 @@ const TemplatesSubTable = (props) => {
     // setGlobalFilterValue(value);
   };
 
+  const addNewSubTemplate = () => {
+    const selectedMainTemp = props.user.selectedMainTemplate;
+    const subTempName = document.getElementById('subTempName').value;
+    const subTempCust = document.getElementById('subTempCust').value;
+    const subTempDept = document.getElementById('subTempDept').value;
+    const subTempProj = document.getElementById('subTempProj').value;
+    const subTempDet = document.getElementById('subTempDet').value;
+    console.log(selectedMainTemp, subTempName);
+
+    if (subTempName === 'Default' || subTempName === 'default') {
+      alert('Subtemplate Name cannot be "Default".');
+      document.getElementById('subTempName').value = '';
+      return;
+    }
+
+    let allSubTempNames = [];
+    for (let i in props.user.subtemplatesData) {
+      if (subTempName === props.user.subtemplatesData[i].name) {
+        alert(
+          'Subtemplate Name cannot be same as already created Subtemplates.'
+        );
+        document.getElementById('subTempName').value = '';
+        return;
+      }
+    }
+    console.log(props.user.subtemplatesData);
+
+    let data = {
+      user_id: props.user.token,
+      main_template: selectedMainTemp,
+      sub_template: subTempName,
+      customer_name: subTempCust,
+      department_name: subTempDept,
+      project_name: subTempProj,
+      other_details: subTempDet,
+      action: 'add',
+    };
+    props.dispatch(addDeletefetchTemplateAPI(data));
+    fetchData();
+    document.getElementById('subTempName').value = '';
+    document.getElementById('subTempCust').value = '';
+    document.getElementById('subTempDept').value = '';
+    document.getElementById('subTempProj').value = '';
+    document.getElementById('subTempDet').value = '';
+  };
+
   return (
     <div className="templatesSubTable">
+      {/* Add New Template Modal */}
+      <div
+        className="modal fade"
+        id="AddNewTemplateModal"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="AddNewTemplateModalLabel"
+        aria-hidden="true"
+      >
+        <div className="modal-dialog" role="document">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h5 className="modal-title" id="AddNewTemplateModalLabel">
+                Add New Sub-Template
+              </h5>
+              <button
+                type="button"
+                className="close"
+                data-dismiss="modal"
+                aria-label="Close"
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div className="modal-body">
+              <div className="modalContent">
+                <div className="leftSectionModalAddNewSub">
+                  Main Template :{' '}
+                </div>
+                <div className="rightSectionModalAddNewSub">
+                  {props.user.selectedMainTemplate}
+                </div>
+              </div>
+              <div className="modalContent">
+                <div className="leftSectionModalAddNewSub">
+                  Sub-Template Name :{' '}
+                </div>
+                <div className="rightSectionModalAddNewSub">
+                  <input
+                    placeholder="New Sub-Template Name"
+                    name="newTemplate"
+                    className="newTempInput"
+                    id="subTempName"
+                  ></input>
+                </div>
+              </div>
+              <div className="modalContent">
+                <div className="leftSectionModalAddNewSub">
+                  Customer Name :{' '}
+                </div>
+                <div className="rightSectionModalAddNewSub">
+                  <input
+                    placeholder="Customer Name"
+                    name="Customer"
+                    className="newTempInput"
+                    id="subTempCust"
+                  ></input>
+                </div>
+              </div>
+              <div className="modalContent">
+                <div className="leftSectionModalAddNewSub">
+                  Department Name :{' '}
+                </div>
+                <div className="rightSectionModalAddNewSub">
+                  <input
+                    placeholder="Department Name"
+                    name="Department"
+                    className="newTempInput"
+                    id="subTempDept"
+                  ></input>
+                </div>
+              </div>
+              <div className="modalContent">
+                <div className="leftSectionModalAddNewSub">Project Name : </div>
+                <div className="rightSectionModalAddNewSub">
+                  <input
+                    placeholder="Project Name"
+                    name="Project"
+                    className="newTempInput"
+                    id="subTempProj"
+                  ></input>
+                </div>
+              </div>
+              <div className="modalContent">
+                <div className="leftSectionModalAddNewSub">
+                  Other Details :{' '}
+                </div>
+                <div className="rightSectionModalAddNewSub">
+                  <textarea
+                    placeholder="Other Details"
+                    name="Others"
+                    className="newTempTextarea"
+                    id="subTempDet"
+                  ></textarea>
+                </div>
+              </div>
+            </div>
+            <div className="modal-footer">
+              <button
+                type="button"
+                className="btn btn-secondary"
+                data-dismiss="modal"
+              >
+                Close
+              </button>
+              <button
+                type="button"
+                className="btn btn-primary"
+                onClick={addNewSubTemplate}
+              >
+                Add New Sub-Template
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      {/* Add New Template Modal Ends */}
+
       <div className="headerComponent">
         <div className="subtempTabLabel">Subtemplates List - </div>
         <div className="addNewSubTempButton">
           <div className="addNewSubicon">
-            <i class="fa-solid fa-circle-plus"></i>
+            <i className="fa-solid fa-circle-plus"></i>
           </div>
-          <div className="addNewSubLabel">Add New&nbsp;</div>
+          <div
+            className="addNewSubLabel"
+            data-toggle="modal"
+            data-target="#AddNewTemplateModal"
+            onClick={addNewSubTemplate}
+          >
+            Add New&nbsp;
+          </div>
         </div>
         <div className="searchGroup1">
           <input

@@ -33,16 +33,16 @@
   background: #ccc;
   font-weight: 500;
   height: 32px;
-  margin-bottom: -1px;
-  z-index: 2;
+  /* margin-bottom: -1px; */
+  /* z-index: 2; */
 }
 .selectedMain {
   color: #384988;
-  background: white;
+  background: white !important;
 }
 .subtemplatesSection {
   /* border: 1px solid #ccc; */
-  z-index: 1;
+  /* z-index: 0; */
   height: 92%;
   width: 99%;
   margin-left: 5px;

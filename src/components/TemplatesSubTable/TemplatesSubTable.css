@@ -1,6 +1,41 @@
 .templatesSubTable {
   height: 100%;
 }
+.modalContent {
+  /* border: 1px solid black; */
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin-bottom: 10px;
+}
+.selectOption:focus {
+  outline: none;
+}
+.selectOption {
+  min-width: 150px;
+}
+.leftSectionModalAddNewSub {
+  width: 35%;
+  font-weight: 500;
+  font-size: 0.85rem;
+}
+.rightSectionModalAddNewSub {
+  font-weight: 400;
+  font-size: 0.85rem;
+}
+.newTempInput {
+  width: 250px;
+}
+.newTempInput:focus {
+  outline: none;
+}
+.newTempTextarea:focus {
+  outline: none;
+}
+.newTempTextarea {
+  width: 250px;
+  min-height: 30px;
+}
 .headerComponent {
   border: 1px solid #ccc;
   width: 100%;
