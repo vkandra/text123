@@ -17,6 +17,8 @@
   margin-top: 4px;
   margin-left: 5px;
   cursor: pointer;
+  /* position: relative; */
+  /* z-index: 1; */
 }
 .mainTemplateTabs {
   border-top: 1px solid rgb(190, 190, 190);
@@ -32,8 +34,9 @@
   color: #1c1c1c;
   background: #ccc;
   font-weight: 500;
+  /* position: relative; */
   height: 32px;
-  /* margin-bottom: -1px; */
+  margin-bottom: 2px;
   /* z-index: 2; */
 }
 .selectedMain {
@@ -43,6 +46,7 @@
 .subtemplatesSection {
   /* border: 1px solid #ccc; */
   /* z-index: 0; */
+  /* position: static; */
   height: 92%;
   width: 99%;
   margin-left: 5px;

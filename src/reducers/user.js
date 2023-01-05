@@ -47,7 +47,7 @@ const initialUserState = {
   ],
 
   // Templates Data
-  selectedMainTemplate: '',
+  selectedMainTemplate: 'Bills',
   subtemplatesData: [],
   templatesData: {
     user_id: '',

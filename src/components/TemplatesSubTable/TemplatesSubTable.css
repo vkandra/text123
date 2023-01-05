@@ -45,6 +45,7 @@
   align-items: center;
   padding: 0px 7px;
   color: #384988;
+  /* position: static; */
 }
 .tableSubTemp {
   width: 100%;
@@ -183,6 +184,14 @@
   justify-content: center !important;
 }
 
+.totalKeysNum:hover {
+  color: #384988;
+  text-decoration: underline;
+}
+.totalFilesNum:hover {
+  color: #384988;
+  text-decoration: underline;
+}
 /* Prime Table Styling */
 .p-column-filter-operator {
   display: none;
@@ -235,4 +244,12 @@
   text-overflow: ellipsis !important;
   overflow: hidden !important;
   white-space: nowrap !important;
+}
+
+.tableSubTemp2 table {
+  border: 1px solid rgb(237, 237, 237);
+}
+
+.modal-body2 {
+  padding: 10px;
 }

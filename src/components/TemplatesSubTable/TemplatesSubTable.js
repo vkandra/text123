@@ -19,7 +19,7 @@ import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import { faCircleXmark } from '@fortawesome/free-solid-svg-icons';
 
 const TemplatesSubTable = (props) => {
-  //   const [subdata, setSubdata] = useState([]);
+  const [favdata, setFavdata] = useState(<div></div>);
   //   const [globalFilterValue, setGlobalFilterValue] = useState('');
   const [searching, setSearching] = useState(false);
   const [filters, setFilters] = useState({
@@ -109,6 +109,166 @@ const TemplatesSubTable = (props) => {
       .catch(function (error) {
         console.log(error);
       });
+  };
+
+  const viewFavButton = (rowData) => {
+    if (rowData.total_keys > 0) {
+      return (
+        <div>
+          <div
+            className="modal fade"
+            id="ViewFavouritesModal"
+            tabindex="-1"
+            role="dialog"
+            aria-labelledby="ViewFavouritesModalLabel"
+            aria-hidden="true"
+          >
+            <div className="modal-dialog" role="document">
+              <div className="modal-content">
+                <div className="modal-header">
+                  <h5 className="modal-title" id="ViewFavouritesModalLabel">
+                    Favourite Keywords
+                  </h5>
+                  <button
+                    type="button"
+                    className="close"
+                    data-dismiss="modal"
+                    aria-label="Close"
+                  >
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div className="modal-body2">{favdata}</div>
+              </div>
+            </div>
+          </div>
+          <span
+            data-toggle="modal"
+            data-target="#ViewFavouritesModal"
+            onClick={() => viewFavTable(rowData)}
+            className="totalKeysNum"
+          >
+            {rowData.total_keys}
+          </span>
+        </div>
+      );
+    } else {
+      return <span>{rowData.total_keys}</span>;
+    }
+  };
+
+  const viewFavTable = (rowData) => {
+    setFavdata(
+      <DataTable
+        value={rowData.key_details}
+        responsiveLayout="scroll"
+        paginator
+        rows={10}
+        paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
+        size="small"
+        emptyMessage="No Subtemplates found!"
+        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+        className="tableSubTemp2"
+      >
+        <Column field="key" header="Keys" sortable></Column>
+        <Column
+          field="page"
+          header="Page No."
+          sortable
+          className="numPart"
+        ></Column>
+        <Column
+          field="repeat"
+          header="Repeat No."
+          sortable
+          className="numPart"
+        ></Column>
+      </DataTable>
+    );
+  };
+
+  const viewFilesButton = (rowData) => {
+    if (rowData.total_files > 0) {
+      return (
+        <div>
+          <div
+            className="modal fade"
+            id="ViewFilesModal"
+            tabindex="-1"
+            role="dialog"
+            aria-labelledby="ViewFilesModalLabel"
+            aria-hidden="true"
+          >
+            <div className="modal-dialog" role="document">
+              <div className="modal-content">
+                <div className="modal-header">
+                  <h5 className="modal-title" id="ViewFilesModalLabel">
+                    Files
+                  </h5>
+                  <button
+                    type="button"
+                    className="close"
+                    data-dismiss="modal"
+                    aria-label="Close"
+                  >
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div className="modal-body2">{favdata}</div>
+              </div>
+            </div>
+          </div>
+          <span
+            data-toggle="modal"
+            data-target="#ViewFilesModal"
+            onClick={() => viewFilesTable(rowData)}
+            className="totalFilesNum"
+          >
+            {rowData.total_files}
+          </span>
+        </div>
+      );
+    } else {
+      return <span>{rowData.total_files}</span>;
+    }
+  };
+
+  const viewFilesTable = (rowData) => {
+    setFavdata(
+      <DataTable
+        value={rowData.file_details}
+        responsiveLayout="scroll"
+        paginator
+        rows={10}
+        paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
+        size="small"
+        emptyMessage="No Subtemplates found!"
+        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+        className="tableSubTemp2"
+      >
+        <Column
+          selectionMode="multiple"
+          className="checkboxCell"
+          style={{
+            maxWidth: '3em',
+            display: 'none',
+          }}
+        ></Column>
+        <Column
+          field="document_name"
+          header="Doc. Name"
+          sortable
+          // className="numPart"
+        ></Column>
+        <Column
+          field="doc_status"
+          header="Status"
+          sortable
+          // className="numPart"
+        ></Column>
+        {/* <Column field="key" header="Keys" sortable></Column> */}
+      </DataTable>
+    );
   };
 
   // Global Search Input
@@ -316,7 +476,7 @@ const TemplatesSubTable = (props) => {
             className="addNewSubLabel"
             data-toggle="modal"
             data-target="#AddNewTemplateModal"
-            onClick={addNewSubTemplate}
+            // onClick={addNewSubTemplate}
           >
             Add New&nbsp;
           </div>
@@ -409,23 +569,26 @@ const TemplatesSubTable = (props) => {
           ></Column>
 
           <Column
-            field="total_keys"
+            // field="total_keys"
             header="Fav. Keys"
             sortable
             dataType="numeric"
             filterPlaceholder="Search by Qty."
             className="numPart"
+            body={viewFavButton}
+            // onClick={viewFavTable}
             // style={{ minWidth: '8rem' }}
             filter
           ></Column>
 
           <Column
-            field="total_files"
+            // field="total_files"
             header="Total Files"
             sortable
             dataType="numeric"
             filterPlaceholder="Search by Qty."
             className="numPart"
+            body={viewFilesButton}
             // style={{ minWidth: '8rem' }}
             filter
           ></Column>
