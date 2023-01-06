@@ -1,11 +1,7 @@
 import './Templates.css';
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux/es/exports';
-import { addDeletefetchTemplateAPI } from '../../actions/singleDocument';
-import { updateSubTemplateNames } from '../../actions/documents';
-import TestComponent from '../TestComponent/TestComponent';
 import {
-  setTemplateData,
   setSelectedMainTemplate,
   setSubtemplatesData,
   fetchTemplatesDataAPI,
@@ -26,8 +22,6 @@ const Templates = (props) => {
         );
       }
     }
-
-    // assignSubTempDataToReducer();
   }, []);
 
   useEffect(() => {
@@ -55,35 +49,9 @@ const Templates = (props) => {
     props.dispatch(setSelectedMainTemplate(mainTempName));
   };
 
-  const createSubTemp = () => {
-    const selectedMainTemp = document.getElementById('mainTempSel1').value;
-    const subTempName = document.getElementById('subTempName').value;
-    console.log(selectedMainTemp, subTempName);
-    let data = {
-      user_id: props.user.token,
-      main_template: selectedMainTemp,
-      sub_template: subTempName,
-      action: 'add',
-    };
-    props.dispatch(addDeletefetchTemplateAPI(data));
-    fetchData();
-    document.getElementById('subTempName').value = '';
-  };
-
-  const fetchData = () => {
-    const selectedMainTemp = document.getElementById('mainTempSel2').value;
-    let data = {
-      user_id: props.user.token,
-      main_template: selectedMainTemp,
-      sub_template: '',
-      action: 'fetch',
-    };
-    props.dispatch(addDeletefetchTemplateAPI(data));
-  };
-
   return (
     <div className="templates">
-      {props.user.token == props.user.templatesData.user_id ? (
+      {props.user.token === props.user.templatesData.user_id ? (
         <div className="mainTemplates">
           {props.user.templatesData.template_details.map(
             (singletemplate, index) => (
@@ -106,8 +74,9 @@ const Templates = (props) => {
           )}
         </div>
       ) : (
-        <div>User Not Found!</div>
+        <div className="loadingTempData">Loading Data... Please Wait!</div>
       )}
+      {/* <div className="loadingTempData">Loading Data... Please Wait!</div> */}
       {props.user.templatesData.template_details.length > 0 ? (
         <div className="subtemplatesSection">
           <TemplatesSubTable
@@ -129,103 +98,3 @@ const mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps)(Templates);
-
-// export default Templates;
-{
-  /* <div className="templateTopSection">
-        <div className="createDeleteTemplate">
-          <div className="templateCreationDiv">
-            <div className="templateLabel">Create Sub-Template</div>
-
-            <div className="formActionTemplate">
-              <select
-                id="mainTempSel1"
-                className="selectOption"
-                onChange={() => {
-                  getSelectedSubTemplates();
-                }}
-              >
-                <optgroup label="Select Main Template">
-                  {props.documents.templateNames.map(
-                    (singletemplate, index) => (
-                      <option
-                        key={singletemplate.id}
-                        singletemplate={singletemplate}
-                        value={singletemplate.name}
-                      >
-                        {singletemplate.name}
-                      </option>
-                    )
-                  )}
-                </optgroup>
-              </select>
-
-              <input
-                placeholder="New Sub-Template Name"
-                name="newTemplate"
-                className="newTempInput"
-                id="subTempName"
-              ></input>
-
-              <button
-                type="button"
-                className="btn btn-success createTemplateButton"
-                onClick={() => createSubTemp()}
-              >
-                Create
-              </button>
-            </div>
-          </div>
-          <div className="templateDeletionDiv">
-            <div className="templateLabel">Delete Sub-Template</div>
-            <div className="formActionTemplate">
-              <select
-                id="mainTempSel2"
-                className="selectOption"
-                onChange={() => {
-                  getSelectedSubTemplates();
-                }}
-              >
-                <optgroup label="Select Main Template">
-                  {props.documents.templateNames.map(
-                    (singletemplate, index) => (
-                      <option
-                        key={singletemplate.id}
-                        singletemplate={singletemplate}
-                        value={singletemplate.name}
-                      >
-                        {singletemplate.name}
-                      </option>
-                    )
-                  )}
-                </optgroup>
-              </select>
-
-              <select className="selectOption" id="subTempSel1">
-                <optgroup label="Select Sub-Template">
-                  {props.documents.subTemplateNames.map(
-                    (singletemplate, index) => (
-                      <option
-                        key={singletemplate.id}
-                        singletemplate={singletemplate}
-                        value={singletemplate.name}
-                      >
-                        {singletemplate.name}
-                      </option>
-                    )
-                  )}
-                </optgroup>
-              </select>
-
-              <button
-                type="button"
-                className="btn btn-danger deleteTemplateButton"
-                onClick={() => deleteSubTemp()}
-              >
-                Delete
-              </button>
-            </div>
-          </div>
-        </div>
-      </div> */
-}

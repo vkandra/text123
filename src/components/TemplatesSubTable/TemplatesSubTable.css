@@ -1,6 +1,16 @@
 .templatesSubTable {
   height: 100%;
 }
+.tableSubTemp2 table {
+  border: 1px solid rgb(237, 237, 237);
+}
+
+.FavKeywordSubTempTable {
+  /* max-width: 260px; */
+  text-overflow: ellipsis !important;
+  overflow: hidden !important;
+  white-space: nowrap !important;
+}
 .modalContent {
   /* border: 1px solid black; */
   display: flex;
@@ -241,15 +251,23 @@
   height: 33px;
   /* font-weight: 400; */
   /* border-right: 1px solid #ccc !important; */
-  text-overflow: ellipsis !important;
+  /* text-overflow: ellipsis !important;
   overflow: hidden !important;
-  white-space: nowrap !important;
+  white-space: nowrap !important; */
 }
-
-.tableSubTemp2 table {
-  border: 1px solid rgb(237, 237, 237);
+.otherDetailsdivMain {
+  width: 100%;
 }
-
+.otherDetailsdiv {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  /* max-width: 140px; */
+}
+.otherDetailsdiv:hover {
+  color: #384988;
+  text-decoration: underline;
+}
 .modal-body2 {
   padding: 10px;
 }

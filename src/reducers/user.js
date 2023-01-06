@@ -9,6 +9,7 @@ import {
   SET_TEMPLATE_DATA,
   SET_SELECTED_MAIN_TEMPLATE,
   SET_SUBTEMPLATES_DATA,
+  SET_SUBTEMPLATES_FILE_TABLE_DATA,
 } from '../actions/user';
 
 const initialUserState = {
@@ -53,6 +54,7 @@ const initialUserState = {
     user_id: '',
     template_details: [],
   },
+  subTempFileTable: [],
 };
 
 export default function user(state = initialUserState, action) {
@@ -111,7 +113,12 @@ export default function user(state = initialUserState, action) {
         ...state,
         subtemplatesData: action.data,
       };
-
+    case SET_SUBTEMPLATES_FILE_TABLE_DATA:
+      // console.log('ACTION_in_reducer ', action);
+      return {
+        ...state,
+        subTempFileTable: action.data,
+      };
     default:
       return state;
   }

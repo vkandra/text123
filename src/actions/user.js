@@ -11,6 +11,8 @@ export const SET_USER_PREFERENCES = 'SET_USER_PREFERENCES';
 export const SET_TEMPLATE_DATA = 'SET_TEMPLATE_DATA';
 export const SET_SELECTED_MAIN_TEMPLATE = 'SET_SELECTED_MAIN_TEMPLATE';
 export const SET_SUBTEMPLATES_DATA = 'SET_SUBTEMPLATES_DATA';
+export const SET_SUBTEMPLATES_FILE_TABLE_DATA =
+  'SET_SUBTEMPLATES_FILE_TABLE_DATA';
 
 // ACTION CREATORS
 export function signInOperation(data) {
@@ -73,6 +75,13 @@ export function setSelectedMainTemplate(data) {
 export function setSubtemplatesData(data) {
   return {
     type: SET_SUBTEMPLATES_DATA,
+    data: data,
+  };
+}
+
+export function setSubtemplatesFileTableData(data) {
+  return {
+    type: SET_SUBTEMPLATES_FILE_TABLE_DATA,
     data: data,
   };
 }

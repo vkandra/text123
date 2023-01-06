@@ -1,0 +1,40 @@
+.templatesSubTableFiles {
+  margin: 0px;
+  padding: 0px;
+}
+
+.tableSubTemp3 table {
+  border: 1px solid rgb(237, 237, 237);
+}
+
+.documentNameSubTempTable {
+  text-overflow: ellipsis !important;
+  overflow: hidden !important;
+  white-space: nowrap !important;
+}
+
+.subActionBu {
+  /* border: 1px solid black; */
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.viewFileDataButton {
+  background: none;
+  color: blueviolet;
+  border: 1px solid blueviolet;
+}
+.viewFileDatadisabledButton {
+  border: 1px solid #ccc;
+}
+.colorGreen {
+  color: green;
+}
+.colorRed {
+  color: red;
+}
+.colorBlue {
+  color: #384988;
+}

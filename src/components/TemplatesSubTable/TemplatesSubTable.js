@@ -4,6 +4,9 @@ import { connect } from 'react-redux/es/exports';
 import axios from 'axios';
 import { fetchTemplatesDataAPI, setSubtemplatesData } from '../../actions/user';
 import { addDeletefetchTemplateAPI } from '../../actions/singleDocument';
+import TemplatesSubTableFiles from '../TemplatesSubTableFiles/TemplatesSubTableFiles';
+import { setSubtemplatesFileTableData } from '../../actions/user';
+import { setTemplateData } from '../../actions/user';
 
 import 'primeicons/primeicons.css';
 import 'primereact/resources/themes/lara-light-indigo/theme.css';
@@ -20,6 +23,8 @@ import { faCircleXmark } from '@fortawesome/free-solid-svg-icons';
 
 const TemplatesSubTable = (props) => {
   const [favdata, setFavdata] = useState(<div></div>);
+  const [otherDetails, setOtherDetails] = useState('');
+
   //   const [globalFilterValue, setGlobalFilterValue] = useState('');
   const [searching, setSearching] = useState(false);
   const [filters, setFilters] = useState({
@@ -61,6 +66,15 @@ const TemplatesSubTable = (props) => {
   }, []);
 
   const fetchData = () => {
+    let obj1 = { user_id: props.user.token };
+    props.dispatch(fetchTemplatesDataAPI(obj1));
+  };
+  const fetchData2 = () => {
+    let templatesData = {
+      user_id: '',
+      template_details: [],
+    };
+    props.dispatch(setTemplateData(templatesData));
     let obj1 = { user_id: props.user.token };
     props.dispatch(fetchTemplatesDataAPI(obj1));
   };
@@ -123,7 +137,7 @@ const TemplatesSubTable = (props) => {
             aria-labelledby="ViewFavouritesModalLabel"
             aria-hidden="true"
           >
-            <div className="modal-dialog" role="document">
+            <div className="modal-dialog modal-lg" role="document">
               <div className="modal-content">
                 <div className="modal-header">
                   <h5 className="modal-title" id="ViewFavouritesModalLabel">
@@ -157,10 +171,13 @@ const TemplatesSubTable = (props) => {
     }
   };
 
-  const viewFavTable = (rowData) => {
+  const viewFavTable = (data) => {
+    const favKeyword = (rawData) => {
+      return <div className="FavKeywordSubTempTable">{rawData.key}</div>;
+    };
     setFavdata(
       <DataTable
-        value={rowData.key_details}
+        value={data.key_details}
         responsiveLayout="scroll"
         paginator
         rows={10}
@@ -169,19 +186,28 @@ const TemplatesSubTable = (props) => {
         emptyMessage="No Subtemplates found!"
         currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
         className="tableSubTemp2"
+        // style={{ width: '100%' }}
       >
-        <Column field="key" header="Keys" sortable></Column>
+        <Column
+          field="key"
+          header="Keys"
+          sortable
+          style={{ maxWidth: '560px' }}
+          body={favKeyword}
+        ></Column>
         <Column
           field="page"
           header="Page No."
           sortable
           className="numPart"
+          style={{ maxWidth: '110px' }}
         ></Column>
         <Column
           field="repeat"
           header="Repeat No."
           sortable
           className="numPart"
+          style={{ maxWidth: '110px' }}
         ></Column>
       </DataTable>
     );
@@ -199,7 +225,7 @@ const TemplatesSubTable = (props) => {
             aria-labelledby="ViewFilesModalLabel"
             aria-hidden="true"
           >
-            <div className="modal-dialog" role="document">
+            <div className="modal-dialog  modal-lg" role="document">
               <div className="modal-content">
                 <div className="modal-header">
                   <h5 className="modal-title" id="ViewFilesModalLabel">
@@ -214,7 +240,9 @@ const TemplatesSubTable = (props) => {
                     <span aria-hidden="true">&times;</span>
                   </button>
                 </div>
-                <div className="modal-body2">{favdata}</div>
+                <div className="modal-body2">
+                  <TemplatesSubTableFiles />
+                </div>
               </div>
             </div>
           </div>
@@ -233,42 +261,54 @@ const TemplatesSubTable = (props) => {
     }
   };
 
-  const viewFilesTable = (rowData) => {
-    setFavdata(
-      <DataTable
-        value={rowData.file_details}
-        responsiveLayout="scroll"
-        paginator
-        rows={10}
-        paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
-        size="small"
-        emptyMessage="No Subtemplates found!"
-        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
-        className="tableSubTemp2"
-      >
-        <Column
-          selectionMode="multiple"
-          className="checkboxCell"
-          style={{
-            maxWidth: '3em',
-            display: 'none',
-          }}
-        ></Column>
-        <Column
-          field="document_name"
-          header="Doc. Name"
-          sortable
-          // className="numPart"
-        ></Column>
-        <Column
-          field="doc_status"
-          header="Status"
-          sortable
-          // className="numPart"
-        ></Column>
-        {/* <Column field="key" header="Keys" sortable></Column> */}
-      </DataTable>
+  const viewFilesTable = (data) => {
+    props.dispatch(setSubtemplatesFileTableData(data.file_details));
+  };
+
+  const viewOtherDetailsButton = (rowData) => {
+    return (
+      <div className="otherDetailsdivMain">
+        <div
+          className="modal fade"
+          id="ViewOtherDetailsModal"
+          tabindex="-1"
+          role="dialog"
+          aria-labelledby="ViewOtherDetailsModalLabel"
+          aria-hidden="true"
+        >
+          <div className="modal-dialog" role="document">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h5 className="modal-title" id="ViewOtherDetailsModalLabel">
+                  Other Details
+                </h5>
+                <button
+                  type="button"
+                  className="close"
+                  data-dismiss="modal"
+                  aria-label="Close"
+                >
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div className="modal-body">{otherDetails}</div>
+            </div>
+          </div>
+        </div>
+        <div
+          data-toggle="modal"
+          data-target="#ViewOtherDetailsModal"
+          onClick={() => setDetails(rowData)}
+          className="otherDetailsdiv"
+        >
+          {rowData.other_details}
+        </div>
+      </div>
     );
+  };
+
+  const setDetails = (Data) => {
+    setOtherDetails(Data.other_details);
   };
 
   // Global Search Input
@@ -315,7 +355,6 @@ const TemplatesSubTable = (props) => {
       return;
     }
 
-    let allSubTempNames = [];
     for (let i in props.user.subtemplatesData) {
       if (subTempName === props.user.subtemplatesData[i].name) {
         alert(
@@ -495,7 +534,7 @@ const TemplatesSubTable = (props) => {
               <FontAwesomeIcon icon={faMagnifyingGlass} id="searchIc" />
             )}
           </div>
-          <div className="refreshIcDiv" onClick={fetchData}>
+          <div className="refreshIcDiv" onClick={fetchData2}>
             <i className="fi fi-rr-refresh"></i>
           </div>
         </div>
@@ -509,8 +548,8 @@ const TemplatesSubTable = (props) => {
           paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
           rowsPerPageOptions={[10, 20, 30]}
           size="small"
-          //   selection={selectedProduct1}
-          //   onSelectionChange={(e) => setSelectedProduct1(e.value)}
+          // selection={selectedProduct1}
+          // onSelectionChange={(e) => setSelectedProduct1(e.value)}
           //   header={header}
           filters={filters}
           scrollable
@@ -562,14 +601,15 @@ const TemplatesSubTable = (props) => {
           <Column
             field="other_details"
             header="Other Details"
+            body={viewOtherDetailsButton}
             // sortable
             // filter
             // filterPlaceholder="Search by Name"
-            // style={{ minWidth: '8rem' }}
+            style={{ maxWidth: '150px' }}
           ></Column>
 
           <Column
-            // field="total_keys"
+            field="total_keys"
             header="Fav. Keys"
             sortable
             dataType="numeric"
@@ -577,19 +617,19 @@ const TemplatesSubTable = (props) => {
             className="numPart"
             body={viewFavButton}
             // onClick={viewFavTable}
-            // style={{ minWidth: '8rem' }}
+            style={{ maxWidth: '130px' }}
             filter
           ></Column>
 
           <Column
-            // field="total_files"
+            field="total_files"
             header="Total Files"
             sortable
             dataType="numeric"
             filterPlaceholder="Search by Qty."
             className="numPart"
             body={viewFilesButton}
-            // style={{ minWidth: '8rem' }}
+            style={{ maxWidth: '130px' }}
             filter
           ></Column>
 
@@ -606,7 +646,7 @@ const TemplatesSubTable = (props) => {
               maxWidth: '4rem',
             }}
             body={deleteSubTemplateButton}
-            onClick={deleteSubTempCheck}
+            // onClick={deleteSubTempCheck}
           />
         </DataTable>
       </div>
