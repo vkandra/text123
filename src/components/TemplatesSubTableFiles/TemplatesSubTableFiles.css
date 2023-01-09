@@ -26,6 +26,11 @@
   color: blueviolet;
   border: 1px solid blueviolet;
 }
+
+.viewFileDataButton:hover {
+  background: blueviolet;
+  color: white;
+}
 .viewFileDatadisabledButton {
   border: 1px solid #ccc;
 }

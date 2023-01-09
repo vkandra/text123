@@ -13,12 +13,12 @@
 }
 
 .configurationFileListFourButtons {
-  padding: 0.3em;
-  min-width: 100px;
+  /* padding: 0.3em; */
+  min-width: 98px;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   font-size: 0.85rem;
   font-weight: 500;
-  color: whitesmoke;
+  /* color: whitesmoke; */
   outline: none;
   border: none;
   display: flex;
@@ -34,7 +34,7 @@
   padding-top: 5px;
 }
 .configurationFileListFourDisabledButtons {
-  padding: 0.3em;
+  /* padding: 0.3em; */
   min-width: 100px;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   font-size: 0.85rem;
@@ -47,29 +47,55 @@
   justify-content: center;
   align-items: center;
   border-radius: 20px;
+  border: 1px solid lightgray;
 }
 .configurationFileListFourDisabledButtons i {
   padding-top: 5px;
-}
-.configurationFileListFourButtons:hover {
-  opacity: 0.8;
-  transition: 0.3s;
 }
 .emptyButtonDiv {
   padding: 0.4em;
   width: 100px;
 }
 .startExtractionButton {
-  background: forestgreen;
+  /* background: forestgreen; */
+  border: 1px solid forestgreen;
+  color: forestgreen;
+  background: white;
 }
 .stopExtractionButton {
-  background: rgb(63, 63, 63);
+  /* background: rgb(63, 63, 63); */
+  border: 1px solid rgb(63, 63, 63);
+  color: rgb(63, 63, 63);
+  background: white;
 }
 .viewExtractedDataButton {
-  background: blueviolet;
+  /* background: blueviolet; */
+  border: 1px solid blueviolet;
+  color: blueviolet;
+  background: white;
 }
 .deleteExtractedFileButton {
+  /* background: darkred; */
+  border: 1px solid darkred;
+  color: darkred;
+  background: white;
+}
+
+.startExtractionButton:hover {
+  background: forestgreen;
+  color: white;
+}
+.stopExtractionButton:hover {
+  background: rgb(63, 63, 63);
+  color: white;
+}
+.viewExtractedDataButton:hover {
+  background: blueviolet;
+  color: white;
+}
+.deleteExtractedFileButton:hover {
   background: darkred;
+  color: white;
 }
 
 .configFlLstTableHeader {
