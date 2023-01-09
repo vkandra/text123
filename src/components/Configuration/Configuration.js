@@ -127,11 +127,16 @@ const Configuration = (props) => {
     for (let i = 0; i < selectedFile.length; i++) {
       // the name of the file uploaded is used to upload it to S3
       // console.log(selectedFile[i]);
+      let selectedFileName = selectedFile[i].name.replace(/-/g, '_');
+      selectedFileName = selectedFileName.replace(/ /g, '_');
+      selectedFileName = selectedFileName.replace(/[^a-zA-Z0-9_]/g, '.');
 
-      fileNameArray.push(selectedFile[i].name);
+      fileNameArray.push(selectedFileName);
       fileSizeArray.push(selectedFile[i].size);
 
-      ReactS3Client.uploadFile(selectedFile[i], selectedFile[i].name)
+      // console.log(name.replace(/ /g, '_'));
+
+      ReactS3Client.uploadFile(selectedFile[i], selectedFileName)
         .then((data) => {
           setSuccess(true);
           console.log('Link from s3 -> ', data.location);
