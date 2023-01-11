@@ -25,6 +25,8 @@ import { Worker } from '@react-pdf-viewer/core';
 import viewPdf from './sample2.pdf';
 import Favourites from '../Favourites/Favourites';
 
+import { Image } from 'primereact/image';
+
 const TextExtraction = (props) => {
   useEffect(() => {
     if (props.singleDocument.selectedDocumentsDetails.length !== 0) {
@@ -219,11 +221,19 @@ const TextExtraction = (props) => {
                 </div>
               ) : (
                 <div className="imageDisplaydiv">
-                  <img
+                  {/* <img
                     id="imageDisplay"
                     // src="https://images.freeimages.com/images/previews/d0f/nuclear-power-plant-1314782.jpg"
                     src={props.singleDocument.singleDocumentDownloadLink}
                     alt="Not Found"
+                  /> */}
+                  <Image
+                    imageClassName="imageDisplay"
+                    // downloadable
+                    // src="https://images.freeimages.com/images/previews/d0f/nuclear-power-plant-1314782.jpg"
+                    src={props.singleDocument.singleDocumentDownloadLink}
+                    alt="Not Found"
+                    preview
                   />
                 </div>
               )}
