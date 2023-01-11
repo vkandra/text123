@@ -43,3 +43,8 @@
 .colorBlue {
   color: #384988;
 }
+.textPart {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-end !important;
+}

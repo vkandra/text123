@@ -95,34 +95,42 @@ const TemplatesSubTable = (props) => {
   };
 
   const deleteSubTempCheck = (rowdata) => {
-    console.log(rowdata.name);
-    const selectedMainTemp = props.user.selectedMainTemplate;
-    const selectedSubTemp = rowdata.name;
-    const selectedSubTempId = rowdata.sub_template_id;
-    console.log(selectedMainTemp, selectedSubTemp);
-    let data = {
-      user_id: props.user.token,
-      main_template: selectedMainTemp,
-      sub_template: selectedSubTemp,
-      sub_template_id: selectedSubTempId,
-      action: 'delete',
-    };
+    console.log(rowdata.total_files);
+    if (rowdata.total_files > 0) {
+      alert(
+        'Please delete all the files associated with this subtemplate before deleting the subtemplate.\n\nWarning: Once you delete a file, all the data associated with the file will get deleted.'
+      );
+      return;
+    } else {
+      const selectedMainTemp = props.user.selectedMainTemplate;
+      const selectedSubTemp = rowdata.name;
+      const selectedSubTempId = rowdata.sub_template_id;
+      console.log(selectedMainTemp, selectedSubTemp);
+      let data = {
+        user_id: props.user.token,
+        main_template: selectedMainTemp,
+        sub_template: selectedSubTemp,
+        sub_template_id: selectedSubTempId,
+        action: 'delete',
+      };
 
-    axios
-      .post(
-        `https://2wehobnzu6.execute-api.ap-south-1.amazonaws.com/add_delete`,
-        data
-      )
-      .then((res) => {
-        const filteredsubtemplatesData = props.user.subtemplatesData.filter(
-          (item) => item.sub_template_id !== selectedSubTempId
-        );
-        props.dispatch(setSubtemplatesData(filteredsubtemplatesData));
-        fetchData();
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+      axios
+        .post(
+          `https://2wehobnzu6.execute-api.ap-south-1.amazonaws.com/add_delete`,
+          data
+        )
+        .then((res) => {
+          const filteredsubtemplatesData = props.user.subtemplatesData.filter(
+            (item) => item.sub_template_id !== selectedSubTempId
+          );
+          props.dispatch(setSubtemplatesData(filteredsubtemplatesData));
+          fetchData();
+          alert(`Subtemplate ${data.sub_template} deleted Successfully!`);
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    }
   };
 
   const viewFavButton = (rowData) => {

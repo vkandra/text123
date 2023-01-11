@@ -92,7 +92,7 @@ const TemplatesSubTableFiles = (props) => {
           header="Doc. Name"
           sortable
           style={{
-            maxWidth: '640px',
+            maxWidth: '630px',
           }}
           body={documentName}
         ></Column>
@@ -102,6 +102,7 @@ const TemplatesSubTableFiles = (props) => {
           sortable
           style={{ maxWidth: '110px' }}
           body={documentStatus}
+          className="textPart"
         ></Column>
         {/* <Column field="key" header="Keys" sortable></Column> */}
       </DataTable>
