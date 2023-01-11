@@ -6,25 +6,24 @@ import KeyValue from '../KeyValue/KeyValue';
 const KeyValuePage = (props) => {
   return (
     <div className="keyValuePage">
-      <div className="keyValuePageText">
-        {props.themeLang.languageWords.Page_No}{' '}
-        {props.singleKeyValuePage[0].page}
-      </div>
-
-      {/* {props.singleDocPage.pageData.map((singleRawData, index) => (
-        <div className="rawDocDataValues" key={singleRawData.index}>
-          <RawDocDataSingle singleRawData={singleRawData} />
+      {props.singleKeyValuePage.length > 0 ? (
+        <div className="keyValuePageText">
+          {props.themeLang.languageWords.Page_No}{' '}
+          {props.singleKeyValuePage[0].page}
         </div>
-      ))} */}
-      <div className="keysAndValues">
-        {props.singleKeyValuePage.map((singleKeyValue, index) => (
-          // <div>{singleKeyValue.index}</div>
-          <KeyValue
-            singleKeyValue={singleKeyValue}
-            key={singleKeyValue.index}
-          />
-        ))}
-      </div>
+      ) : null}
+
+      {props.singleKeyValuePage.length > 0 ? (
+        <div className="keysAndValues">
+          {props.singleKeyValuePage.map((singleKeyValue, index) => (
+            // <div>{singleKeyValue.index}</div>
+            <KeyValue
+              singleKeyValue={singleKeyValue}
+              key={singleKeyValue.index}
+            />
+          ))}
+        </div>
+      ) : null}
     </div>
   );
 };
