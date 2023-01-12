@@ -13,6 +13,14 @@ import logoUrl from '../../Pictures/aLPHA.png';
 
 const Header = (props) => {
   useEffect(() => {
+    if (props.userDet.username.includes('@')) {
+      console.log('not Verified');
+      document.getElementById('hiddenSignOutButton').click();
+      alert(
+        'You will receive a verification code in your E-mail id. \nPlease sign in with your credentials and enter the code you received in mail.'
+      );
+      window.location.reload();
+    }
     changeLanguage();
   }, []);
   const { signOut, user } = useAuthenticator();
@@ -42,7 +50,7 @@ const Header = (props) => {
       <div className="dropiconbutton">
         <div>
           <span className="onlyHi">{props.themeLang.languageWords.Hi}</span>{' '}
-          {user.attributes.name}
+          {/* {user.attributes.name} */}
           <span className="onlyHi">!</span>
         </div>
 
@@ -62,7 +70,11 @@ const Header = (props) => {
 
         {/* {props.userDetails.attributes.name} */}
         {/* <Link to="/"> */}
-        <div className="inupoutButton" onClick={signOut}>
+        <div
+          className="inupoutButton"
+          id="hiddenSignOutButton"
+          onClick={signOut}
+        >
           {/* <div className="inupoutDiv" onClick={refreshPage}> */}
           <span onClick={signUserOut}>
             {/* {props.themeLang.languageWords.Sign_Out}&nbsp; */}
