@@ -22,7 +22,10 @@ const App = (props) => {
     <Router>
       <Routes>
         <Route path="/" element={<Homepage />} />
-        <Route path="/app" element={user ? <InAppBody /> : <AmpLogin />} />
+        <Route
+          path="/app"
+          element={user ? <InAppBody userDet={user} /> : <AmpLogin />}
+        />
         {/* <Route path="/signin" element={<SignIn />} /> */}
         {/* <Route path="/signup" element={<SignUp />} /> */}
       </Routes>
