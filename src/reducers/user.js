@@ -17,8 +17,9 @@ const initialUserState = {
   isLoggedIn: true,
   userFirstName: '',
   userLastName: '',
-  userId: 0,
-  token: 'f6d86aa8-57d4-442a-b159-ee46e97df492',
+  token: '',
+  // token: 'f6d86aa8-57d4-442a-b159-ee46e97df492',
+  email: '',
 
   // SIGN IN SECTION
   signInEmail: '',

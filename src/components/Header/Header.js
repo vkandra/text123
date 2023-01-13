@@ -2,7 +2,7 @@ import './Header.css';
 import { Link } from 'react-router-dom';
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux/es/exports';
-// import { signInOperation } from '../../actions/user';
+import { signInOperation } from '../../actions/user';
 // import { signUpOperation } from '../../actions/user';
 import { useAuthenticator } from '@aws-amplify/ui-react';
 
@@ -20,6 +20,17 @@ const Header = (props) => {
         'You will receive a verification code in your E-mail id. \nPlease sign in with your credentials and enter the code you received in mail.'
       );
       window.location.reload();
+    } else {
+      const { user } = props.userPr;
+      console.log(props.userPr);
+      // console.log(user);
+      props.userPr.token = props.userDet.username;
+      props.userPr.isLoggedIn = true;
+      props.userPr.signUp = false;
+      props.userPr.userFirstName = props.userDet.attributes.name;
+      props.userPr.email = props.userDet.attributes.email;
+      console.log(props.userPr);
+      props.dispatch(signInOperation(props.userPr));
     }
     changeLanguage();
   }, []);
@@ -50,7 +61,7 @@ const Header = (props) => {
       <div className="dropiconbutton">
         <div>
           <span className="onlyHi">{props.themeLang.languageWords.Hi}</span>{' '}
-          {/* {user.attributes.name} */}
+          {props.userPr.userFirstName}
           <span className="onlyHi">!</span>
         </div>
 
@@ -68,7 +79,6 @@ const Header = (props) => {
           </select>
         </div>
 
-        {/* {props.userDetails.attributes.name} */}
         {/* <Link to="/"> */}
         <div
           className="inupoutButton"
@@ -90,7 +100,7 @@ const Header = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    user: state.user,
+    userPr: state.user,
     themeLang: state.themeLang,
   };
 };
