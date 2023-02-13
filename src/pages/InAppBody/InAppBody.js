@@ -13,9 +13,9 @@ import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
 
 const InAppBody = (props) => {
-  const { signOut, user } = props;
+  // const { signOut, user } = props;
   // console.log(signOut);
-  console.log(props.userDet);
+  // console.log(props.userDet);
 
   const changeMainTabs = (tabNum) => {
     const { extractor } = props;
@@ -26,74 +26,75 @@ const InAppBody = (props) => {
   return (
     <div className="inAppBody">
       <button
-        onClick={signOut}
+        // onClick={signOut}
         style={{ display: 'none' }}
         id="hiddenSignOutButton"
       >
         Sign out
       </button>
-      <Header userDet={props.userDet} />
-      {props.userDet.username.includes('@') ? null : (
-        <div className="appBody">
-          <div className="bodyContainer">
-            <div className="menuContainer">
-              <div
-                className={`singleMenus ${
-                  props.extractor.page === 1 ? 'selectedMenu' : ''
-                }`}
-                id="singleMenu1"
-                onClick={() => changeMainTabs(1)}
-              >
-                <i className="fa-solid fa-list menuicon"></i> &nbsp;&nbsp;
-                {props.themeLang.languageWords.Configuration}
-              </div>
-              <div
-                className={`singleMenus ${
-                  props.extractor.page === 2 ? 'selectedMenu' : ''
-                }`}
-                id="singleMenu2"
-                onClick={() => changeMainTabs(2)}
-              >
-                <i className="fa-solid fa-arrows-turn-to-dots  menuicon"></i>{' '}
-                &nbsp;&nbsp;
-                {props.themeLang.languageWords.Text_Extraction}
-              </div>
-
-              <div
-                className={`singleMenus ${
-                  props.extractor.page === 4 ? 'selectedMenu' : ''
-                }`}
-                id="singleMenu4"
-                onClick={() => changeMainTabs(4)}
-              >
-                <i className="fa-solid fa-folder-tree menuicon"></i>
-                &nbsp;&nbsp;Templates
-              </div>
-              <div
-                className={`singleMenus ${
-                  props.extractor.page === 5 ? 'selectedMenu' : ''
-                }`}
-                id="singleMenu5"
-                onClick={() => changeMainTabs(5)}
-              >
-                <i className="fa-solid fa-chart-line menuicon"></i> &nbsp;&nbsp;
-                {props.themeLang.languageWords.Dashboard}
-              </div>
+      {/* <Header userDet={props.userDet} /> */}
+      <Header />
+      {/* {props.userDet.username.includes('@') ? null : ( */}
+      <div className="appBody">
+        <div className="bodyContainer">
+          <div className="menuContainer">
+            <div
+              className={`singleMenus ${
+                props.extractor.page === 1 ? 'selectedMenu' : ''
+              }`}
+              id="singleMenu1"
+              onClick={() => changeMainTabs(1)}
+            >
+              <i className="fa-solid fa-list menuicon"></i> &nbsp;&nbsp;
+              {props.themeLang.languageWords.Configuration}
             </div>
-            <div className="visualBodyContainer">
-              {props.extractor.page === 1 ? (
-                <Configuration />
-              ) : props.extractor.page === 2 ? (
-                <TextExtraction />
-              ) : props.extractor.page === 4 ? (
-                <Templates />
-              ) : props.extractor.page === 5 ? (
-                <Dashboards />
-              ) : null}
+            <div
+              className={`singleMenus ${
+                props.extractor.page === 2 ? 'selectedMenu' : ''
+              }`}
+              id="singleMenu2"
+              onClick={() => changeMainTabs(2)}
+            >
+              <i className="fa-solid fa-arrows-turn-to-dots  menuicon"></i>{' '}
+              &nbsp;&nbsp;
+              {props.themeLang.languageWords.Text_Extraction}
+            </div>
+
+            <div
+              className={`singleMenus ${
+                props.extractor.page === 4 ? 'selectedMenu' : ''
+              }`}
+              id="singleMenu4"
+              onClick={() => changeMainTabs(4)}
+            >
+              <i className="fa-solid fa-folder-tree menuicon"></i>
+              &nbsp;&nbsp;Templates
+            </div>
+            <div
+              className={`singleMenus ${
+                props.extractor.page === 5 ? 'selectedMenu' : ''
+              }`}
+              id="singleMenu5"
+              onClick={() => changeMainTabs(5)}
+            >
+              <i className="fa-solid fa-chart-line menuicon"></i> &nbsp;&nbsp;
+              {props.themeLang.languageWords.Dashboard}
             </div>
           </div>
+          <div className="visualBodyContainer">
+            {props.extractor.page === 1 ? (
+              <Configuration />
+            ) : props.extractor.page === 2 ? (
+              <TextExtraction />
+            ) : props.extractor.page === 4 ? (
+              <Templates />
+            ) : props.extractor.page === 5 ? (
+              <Dashboards />
+            ) : null}
+          </div>
         </div>
-      )}
+      </div>
+      {/* )} */}
       <Footer />
     </div>
   );

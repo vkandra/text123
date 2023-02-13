@@ -8,13 +8,13 @@ import App from './components/App';
 import reportWebVitals from './reportWebVitals';
 import { configureStore } from './store';
 
-import Amplify from 'aws-amplify';
-import config from './aws-exports';
+// import Amplify from 'aws-amplify';
+// import config from './aws-exports';
 // import { AmplifyProvider } from '@aws-amplify/ui-react';
-import awsExports from './aws-exports';
-import { AmplifyProvider, Authenticator } from '@aws-amplify/ui-react';
+// import awsExports from './aws-exports';
+// import { AmplifyProvider, Authenticator } from '@aws-amplify/ui-react';
 
-Amplify.configure(awsExports);
+// Amplify.configure(awsExports);
 
 const store = configureStore();
 
@@ -22,15 +22,15 @@ const store = configureStore();
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <AmplifyProvider>
-    <Authenticator.Provider>
-      <Provider store={store}>
-        {/* <React.StrictMode> */}
-        <App />
-        {/* </React.StrictMode> */}
-      </Provider>
-    </Authenticator.Provider>
-  </AmplifyProvider>
+  // <AmplifyProvider>
+  // {/* <Authenticator.Provider> */}
+  <Provider store={store}>
+    {/* <React.StrictMode> */}
+    <App />
+    {/* </React.StrictMode> */}
+  </Provider>
+  // </Authenticator.Provider>
+  // </AmplifyProvider>
 );
 
 // If you want to start measuring performance in your app, pass a function

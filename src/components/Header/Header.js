@@ -4,7 +4,7 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux/es/exports';
 import { signInOperation } from '../../actions/user';
 // import { signUpOperation } from '../../actions/user';
-import { useAuthenticator } from '@aws-amplify/ui-react';
+// import { useAuthenticator } from '@aws-amplify/ui-react';
 
 import languages from '../../languages';
 import { fetchUserLang } from '../../actions/themeLang';
@@ -13,28 +13,28 @@ import logoUrl from '../../Pictures/aLPHA.png';
 
 const Header = (props) => {
   useEffect(() => {
-    if (props.userDet.username.includes('@')) {
-      console.log('not Verified');
-      document.getElementById('hiddenSignOutButton').click();
-      alert(
-        'You will receive a verification code in your E-mail id. \nPlease sign in with your credentials and enter the code you received in mail.'
-      );
-      window.location.reload();
-    } else {
-      const { user } = props.userPr;
-      console.log(props.userPr);
-      // console.log(user);
-      props.userPr.token = props.userDet.username;
-      props.userPr.isLoggedIn = true;
-      props.userPr.signUp = false;
-      props.userPr.userFirstName = props.userDet.attributes.name;
-      props.userPr.email = props.userDet.attributes.email;
-      console.log(props.userPr);
-      props.dispatch(signInOperation(props.userPr));
-    }
+    // if (props.userDet.username.includes('@')) {
+    //   console.log('not Verified');
+    //   document.getElementById('hiddenSignOutButton').click();
+    //   alert(
+    //     'You will receive a verification code in your E-mail id. \nPlease sign in with your credentials and enter the code you received in mail.'
+    //   );
+    //   window.location.reload();
+    // } else {
+    //   const { user } = props.userPr;
+    //   console.log(props.userPr);
+    //   // console.log(user);
+    //   props.userPr.token = props.userDet.username;
+    //   props.userPr.isLoggedIn = true;
+    //   props.userPr.signUp = false;
+    //   props.userPr.userFirstName = props.userDet.attributes.name;
+    //   props.userPr.email = props.userDet.attributes.email;
+    //   console.log(props.userPr);
+    //   props.dispatch(signInOperation(props.userPr));
+    // }
     changeLanguage();
   }, []);
-  const { signOut, user } = useAuthenticator();
+  // const { signOut, user } = useAuthenticator();
 
   const changeLanguage = () => {
     const langSelected = document.getElementById('languageSelect').value;
@@ -48,7 +48,7 @@ const Header = (props) => {
 
   const signUserOut = () => {
     console.log('signing out');
-    signOut();
+    // signOut();
     setTimeout(() => {
       window.location.reload();
     }, 3000);
@@ -83,7 +83,7 @@ const Header = (props) => {
         <div
           className="inupoutButton"
           id="hiddenSignOutButton"
-          onClick={signOut}
+          // onClick={signOut}
         >
           {/* <div className="inupoutDiv" onClick={refreshPage}> */}
           <span onClick={signUserOut}>
