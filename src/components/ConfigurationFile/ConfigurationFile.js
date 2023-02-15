@@ -10,9 +10,12 @@ import {
 } from '../../actions/documents';
 
 const ConfigurationFile = (props) => {
-  var dateArray = props.document.documentUploadDate.split(' ', 16);
+  var dateArray = new Date(Date.parse(props.document.documentUploadDate))
+    .toUTCString()
+    .split(' ', 16);
+  // var dateArray = dateArray1[0].split('-', 16);
   var formedDate = dateArray[1] + ' ' + dateArray[2] + ' ' + dateArray[3];
-  //   console.log(props);
+  // console.log(dateArray);
 
   useEffect(() => {
     // console.log(props.background);
@@ -79,10 +82,16 @@ const ConfigurationFile = (props) => {
         {props.document.sub_template_name}
       </div>
       <div className="configFlLstTableRowDocType">
-        {props.document.documentType === 'application/pdf' ||
-        props.document.documentType === 'pdf'
+        {props.document.ducumentName.split('.').pop() === 'pdf'
           ? 'PDF'
-          : 'Image'}
+          : props.document.ducumentName.split('.').pop() ===
+            ('jpg' || 'png' || 'bmp' || 'jpeg')
+          ? 'Image'
+          : 'Other'}
+        {/* {props.document.documentType === 'application/pdf' ||
+        props.document.documentType === 'PDF'
+          ? 'PDF'
+          : 'Image'} */}
       </div>
       <div className="configFlLstTableRowUploadedOn">{formedDate}</div>
       <div className="configFlLstTableRowDocStats">

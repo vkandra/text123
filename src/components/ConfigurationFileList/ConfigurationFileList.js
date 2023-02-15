@@ -41,10 +41,10 @@ const ConfigurationFileList = (props) => {
       props.documents.filteredFilelistNotProcessed.length > 1
     ) {
       const { user } = props;
-      console.log(
-        user.preferences[2].sort[0].value,
-        user.preferences[2].sort[1].asDs
-      );
+      // console.log(
+      //   user.preferences[2].sort[0].value,
+      //   user.preferences[2].sort[1].asDs
+      // );
       document.getElementById('sortValue').value =
         user.preferences[2].sort[0].value;
       document.getElementById('sortAsDs').value =
@@ -363,6 +363,11 @@ const ConfigurationFileList = (props) => {
         }
       }
     }
+
+    // console.log(
+    //   props.documents.filteredFilelistNotProcessed,
+    //   props.documents.filteredFilelistProcessed
+    // );
     // console.log(docDetails);
     props.dispatch(sortByData(documents));
   };

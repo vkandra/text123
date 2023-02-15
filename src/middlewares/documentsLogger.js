@@ -29,7 +29,7 @@ const documentsLogger =
             action.data.Document_Details[i].documentUploadDate.S,
           documentSize: action.data.Document_Details[i].documentSize.S,
           documentPages: 1,
-          documentStatus: action.data.Document_Details[i].doc_status.S,
+          documentStatus: action.data.Document_Details[i].doc_Status.S,
           documentDownloadLink: action.data.Document_Details[i].download_link.S,
           step_fun_execution_id:
             action.data.Document_Details[i].step_fun_execution_id.S,
@@ -135,7 +135,7 @@ const documentsLogger =
           }
         }
       }
-      console.log(sortByValue, sortByAsDs);
+      // console.log(sortByValue, sortByAsDs);
 
       //   console.log(fetchedAllDocsData);
       action.data = fetchedAllDocsData;

@@ -90,10 +90,12 @@ export function fetchRawDocumentsDetailsAPI(data, preferences) {
   return (dispatch) => {
     axios
       .get(
-        `https://3qyg266ncc.execute-api.ap-south-1.amazonaws.com/doc_output?id=${data}`
+        // `https://3qyg266ncc.execute-api.ap-south-1.amazonaws.com/doc_output?id=${data}`
+        `https://functionstexextraction.azurewebsites.net/api/TextExtraction/DocumentDetailsMainTable?id=${data}`
       )
       .then((res) => {
         console.log('All Doc Details Fetched');
+        // console.log(res.data);
         dispatch(assignRawDocumentsData(res.data));
         dispatch(assignAllReceivedDocumentsData(res.data, preferences));
       });

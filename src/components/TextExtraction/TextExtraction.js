@@ -200,8 +200,9 @@ const TextExtraction = (props) => {
             <div className="displayArea"></div>
           ) : (
             <div className="displayArea">
-              {props.singleDocument.singleDocumentType === 'pdf' ||
-              props.singleDocument.singleDocumentType === 'application/pdf' ? (
+              {/* props.singleDocument.ducumentName.split('.').pop() === 'pdf' */}
+              {props.singleDocument.singleDocumentName.split('.').pop() ===
+              'pdf' ? (
                 <div className="pdf-container">
                   {/* show pdf conditionally (if we have one) */}
                   {viewPdf && (
