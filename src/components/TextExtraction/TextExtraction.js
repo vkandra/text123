@@ -22,7 +22,7 @@ import { defaultLayoutPlugin } from '@react-pdf-viewer/default-layout';
 import '@react-pdf-viewer/core/lib/styles/index.css';
 import '@react-pdf-viewer/default-layout/lib/styles/index.css';
 import { Worker } from '@react-pdf-viewer/core';
-import viewPdf from './sample2.pdf';
+// import viewPdf from './sample2.pdf';
 import Favourites from '../Favourites/Favourites';
 
 import { Image } from 'primereact/image';
@@ -205,20 +205,20 @@ const TextExtraction = (props) => {
               'pdf' ? (
                 <div className="pdf-container">
                   {/* show pdf conditionally (if we have one) */}
-                  {viewPdf && (
-                    <>
-                      <Worker workerUrl="https://unpkg.com/pdfjs-dist@2.14.305/build/pdf.worker.min.js">
-                        <Viewer
-                          fileUrl={
-                            props.singleDocument.singleDocumentDownloadLink
-                          }
-                          plugins={[defaultLayoutPluginInstance]}
-                        />
-                      </Worker>
-                    </>
-                  )}
+                  {/* {viewPdf && ( */}
+                  <>
+                    <Worker workerUrl="https://unpkg.com/pdfjs-dist@2.14.305/build/pdf.worker.min.js">
+                      <Viewer
+                        fileUrl={
+                          props.singleDocument.singleDocumentDownloadLink
+                        }
+                        plugins={[defaultLayoutPluginInstance]}
+                      />
+                    </Worker>
+                  </>
+                  {/* )} */}
                   {/* if we dont have pdf or viewpdf state is null */}
-                  {!viewPdf && <>No pdf file selected</>}
+                  {/* {!viewPdf && <>No pdf file selected</>} */}
                 </div>
               ) : (
                 <div className="imageDisplaydiv">
