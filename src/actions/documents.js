@@ -145,7 +145,8 @@ export function deleteFilesDataAPI(data) {
     // console.log(data);
     axios
       .post(
-        `https://npf3th07e5.execute-api.ap-south-1.amazonaws.com/delete`,
+        // `https://npf3th07e5.execute-api.ap-south-1.amazonaws.com/delete`,
+        `https://functionstexextraction.azurewebsites.net/api/DeleteDocumentAPI`,
         data
       )
       .then(function (response) {
