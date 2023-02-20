@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
 
 import './index.css';
-import '@aws-amplify/ui-react/styles.css';
+// import '@aws-amplify/ui-react/styles.css';
 import App from './components/App';
 import reportWebVitals from './reportWebVitals';
 import { configureStore } from './store';
