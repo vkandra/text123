@@ -61,7 +61,7 @@ const ConfigurationFile = (props) => {
           onClick={() => selectDocument(props.document.documentId)}
         >
           {/* {props.themeLang.languageWords.Select} */}
-          <img src={squareBlank} />
+          <img src={squareBlank} alt="ns" />
         </button>
       ) : (
         <button
@@ -69,7 +69,7 @@ const ConfigurationFile = (props) => {
           onClick={() => unselectDocument(props.document.documentId)}
         >
           {/* {props.themeLang.languageWords.Selected} */}
-          <img src={squareCheck} />
+          <img src={squareCheck} alt="s" />
         </button>
       )}
       <div className="configFlLstTableRowDocName">

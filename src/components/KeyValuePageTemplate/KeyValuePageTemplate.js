@@ -1,7 +1,7 @@
 import './KeyValuePageTemplate.css';
 import React from 'react';
 import { connect } from 'react-redux/es/exports';
-import KeyValue from '../KeyValue/KeyValue';
+// import KeyValue from '../KeyValue/KeyValue';
 import KeyValueTemplate from '../KeyValueTemplate/KeyValueTemplate';
 
 const KeyValuePageTemplate = (props) => {

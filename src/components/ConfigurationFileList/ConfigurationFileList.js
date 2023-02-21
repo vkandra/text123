@@ -493,7 +493,7 @@ const ConfigurationFileList = (props) => {
             onClick={() => unselectAllDocuments()}
           >
             {/* {props.themeLang.languageWords.All_Selected} */}
-            <img src={squareCheck} />
+            <img src={squareCheck} alt="ch" />
           </button>
         ) : props.extractor.processedFileTab === 2 &&
           props.documents.filteredFilelistProcessed.length ===
@@ -503,7 +503,7 @@ const ConfigurationFileList = (props) => {
             onClick={() => unselectAllDocuments()}
           >
             {/* {props.themeLang.languageWords.All_Selected} */}
-            <img src={squareCheck} />
+            <img src={squareCheck} alt="ch" />
           </button>
         ) : props.extractor.processedFileTab === 1 &&
           props.documents.selectedDocuments.length === 0 ? (
@@ -514,7 +514,7 @@ const ConfigurationFileList = (props) => {
             }
           >
             {/* {props.themeLang.languageWords.Select_All} */}
-            <img src={squareBlank} />
+            <img src={squareBlank} alt="bl" />
           </button>
         ) : props.extractor.processedFileTab === 2 &&
           props.documents.selectedDocuments.length === 0 ? (
@@ -525,7 +525,7 @@ const ConfigurationFileList = (props) => {
             }
           >
             {/* {props.themeLang.languageWords.Select_All} */}
-            <img src={squareBlank} />
+            <img src={squareBlank} alt="bl" />
           </button>
         ) : props.extractor.processedFileTab === 1 &&
           props.documents.filteredFilelistNotProcessed.length !==
@@ -538,7 +538,7 @@ const ConfigurationFileList = (props) => {
             }
           >
             {/* {props.themeLang.languageWords.Select_All} */}
-            <img src={squareMinus} />
+            <img src={squareMinus} alt="min" />
           </button>
         ) : props.extractor.processedFileTab === 2 &&
           props.documents.filteredFilelistProcessed.length !==
@@ -551,7 +551,7 @@ const ConfigurationFileList = (props) => {
             }
           >
             {/* {props.themeLang.languageWords.Select_All} */}
-            <img src={squareMinus} />
+            <img src={squareMinus} alt="min" />
           </button>
         ) : null}
         <div className="configFlLstTableHeaderDocName">
@@ -585,7 +585,7 @@ const ConfigurationFileList = (props) => {
           {!searching
             ? props.documents.filteredFilelistNotProcessed.map(
                 (document, index) =>
-                  index % 2 == 0 ? (
+                  index % 2 === 0 ? (
                     <ConfigurationFile
                       document={document}
                       key={document.documentId}
@@ -625,7 +625,7 @@ const ConfigurationFileList = (props) => {
         <div className="configFlLstTableBody">
           {!searching
             ? props.documents.filteredFilelistProcessed.map((document, index) =>
-                index % 2 == 0 ? (
+                index % 2 === 0 ? (
                   <ConfigurationFile
                     document={document}
                     key={document.documentId}

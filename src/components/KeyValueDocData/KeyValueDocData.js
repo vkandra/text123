@@ -1,13 +1,13 @@
 import './KeyValueDocData.css';
-import React, { useEffect } from 'react';
+import React from 'react';
 import { connect } from 'react-redux/es/exports';
-import KeysDocData from '../KeyValue/KeyValue';
+// import KeysDocData from '../KeyValue/KeyValue';
 import KeyValuePage from '../KeyValuePage/KeyValuePage';
 
 const KeyValueDocData = (props) => {
-  const fetchData = () => {
-    // console.log(props.singleDocument.singleDocKeysValues);
-  };
+  // const fetchData = () => {
+  //   // console.log(props.singleDocument.singleDocKeysValues);
+  // };
   return (
     <div className="keyValueDocData">
       {/* <button onClick={() => fetchData()}> Click</button> */}

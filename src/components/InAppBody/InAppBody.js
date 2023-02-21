@@ -1,10 +1,10 @@
 import './InAppBody.css';
-import React, { useEffect } from 'react';
+import React from 'react';
 import { connect } from 'react-redux/es/exports';
 import { changeTabOperation } from '../../actions/extractor';
-import Annotation from '../../components/Annotation/Annotation';
+// import Annotation from '../../components/Annotation/Annotation';
 import TextExtraction from '../../components/TextExtraction/TextExtraction';
-import ObjectDetection from '../../components/ObjectDetection/ObjectDetection';
+// import ObjectDetection from '../../components/ObjectDetection/ObjectDetection';
 import Dashboards from '../../components/Dashboards/Dashboards';
 import Configuration from '../../components/Configuration/Configuration';
 import Templates from '../../components/Templates/Templates';

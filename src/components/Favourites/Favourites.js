@@ -1,8 +1,8 @@
 import './Favourites.css';
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { connect } from 'react-redux/es/exports';
 import KeyValuePageTemplate from '../KeyValuePageTemplate/KeyValuePageTemplate';
-import { singleFileTemplateUnusedKeys } from '../../actions/singleDocument';
+// import { singleFileTemplateUnusedKeys } from '../../actions/singleDocument';
 
 const Favourites = (props) => {
   return (

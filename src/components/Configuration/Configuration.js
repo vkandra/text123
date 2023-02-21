@@ -17,9 +17,10 @@ import {
   addDeletefetchTemplateAPI,
 } from '../../actions/singleDocument';
 import { fetchTemplatesDataAPI } from '../../actions/user';
-import uploadFileToBlob, { isStorageConfigured } from './azureBlob';
+import uploadFileToBlob from './azureBlob';
+// import uploadFileToBlob, { isStorageConfigured } from './azureBlob';
 
-const storageConfigured = isStorageConfigured();
+// const storageConfigured = isStorageConfigured();
 
 // installed using npm install buffer --save
 // window.Buffer = window.Buffer || require('buffer').Buffer;
@@ -31,25 +32,17 @@ const Configuration = (props) => {
 
   const [selectedFile, setSelectedFile] = useState([]);
 
-  const [blobList, setBlobList] = useState([]);
-
-  // var uploadInput;
-
-  // const config = {
-  //   bucketName: process.env.REACT_APP_BUCKET_NAME,
-  //   dirName: `input_/${props.user.token}`,
-  //   region: process.env.REACT_APP_REGION,
-  //   accessKeyId: process.env.REACT_APP_ACCESS,
-  //   secretAccessKey: process.env.REACT_APP_SECRET,
-  // };
+  // const [blobList, setBlobList] = useState([]);
 
   if (success === true) {
-    props.dispatch(
-      fetchRawDocumentsDetailsAPI(props.user.token, props.user.preferences)
-    );
+    console.log('2 is calling');
+    // props.dispatch(
+    //   fetchRawDocumentsDetailsAPI(props.user.token, props.user.preferences)
+    // );
     document.getElementById('selectedFilesForUploading').value = '';
     setTimeout(() => {
       setSuccess(false);
+      console.log('1 is calling');
       props.dispatch(
         fetchRawDocumentsDetailsAPI(props.user.token, props.user.preferences)
       );
@@ -64,6 +57,7 @@ const Configuration = (props) => {
         props.documents.documentDetails[i].documentStatus === 'Queued'
       ) {
         setTimeout(() => {
+          console.log('3 is calling');
           props.dispatch(
             fetchRawDocumentsDetailsAPI(
               props.user.token,
@@ -81,6 +75,7 @@ const Configuration = (props) => {
 
     let obj1 = { user_id: userID };
     props.dispatch(fetchTemplatesDataAPI(obj1));
+    console.log('4 is calling');
     props.dispatch(fetchRawDocumentsDetailsAPI(userID, props.user.preferences));
 
     // Fetching Template Data
@@ -119,38 +114,44 @@ const Configuration = (props) => {
     console.log(e.target.files);
   };
 
-  const uploadFile = async (file) => {
+  const uploadFile = (file) => {
     // const ReactS3Client = new S3(config);
     setError(false);
     setSuccess(false);
 
-    let fileNameArray = [];
-    let fileSizeArray = [];
+    // let fileNameArray = [];
+    // let fileSizeArray = [];
 
     console.log('Preparing the upload');
     // console.log(ReactS3Client);
     // *** UPLOAD TO AZURE STORAGE ***
-    let blobsInContainer;
+    // let blobsInContainer;
+    let allFiles = [...selectedFile];
+    console.log(allFiles);
+
     for (let i = 0; i < selectedFile.length; i++) {
+      let fileUploadStatus = uploadOnly(selectedFile[i]);
+      if (fileUploadStatus) {
+        allFiles.pop(selectedFile[i].name);
+        console.log(allFiles);
+      }
       // the name of the file uploaded is used to upload it to S3
       // console.log(selectedFile[i]);
-      let selectedFileName = selectedFile[i].name;
+      // let selectedFileName = selectedFile[i].name;
       // let selectedFileName = selectedFile[i].name.replace(/-/g, '_');
       // selectedFileName = selectedFileName.replace(/ /g, '_');
       // selectedFileName = selectedFileName.replace(/[^a-zA-Z0-9_]/g, '.');
 
-      fileNameArray.push(selectedFileName);
-      fileSizeArray.push(selectedFile[i].size);
+      // fileNameArray.push(selectedFileName);
+      // fileSizeArray.push(selectedFile[i].size);
 
       // console.log(name.replace(/ /g, '_'));
 
       // ReactS3Client.uploadFile(selectedFile[i], selectedFileName)
-      await uploadFileToBlob(selectedFile[i])
-        .then((data) => {
-          setSuccess(true);
-          console.log('Link from blob -> ', data);
 
-          /* UNCOMMENT THIS PART AFTER TEMPLATES API IS CREATED
+      // UPLOADING WAS PREVIOUSLY DONE HERE
+
+      /* UNCOMMENT THIS PART AFTER TEMPLATES API IS CREATED
       let subTempName = document.getElementById(
         'singleSubTemplateSelect'
       ).value;
@@ -176,17 +177,30 @@ const Configuration = (props) => {
       props.dispatch(fetchTemplateNamesAPI(dataOfTemplate));
       setTimeout(() => {
         props.dispatch(
+      console.log('5 is calling');
           fetchRawDocumentsDetailsAPI(props.user.token, props.user.preferences)
         );
       }, 1000);
       */
-          props.dispatch(clearSelectedFiles());
-        })
-        .catch((err) => {
-          setError(true);
-          console.log(JSON.stringify(error));
-        });
     }
+    console.log(allFiles);
+    if (allFiles.length === 0) {
+      props.dispatch(clearSelectedFiles());
+    }
+  };
+
+  const uploadOnly = async (file) => {
+    await uploadFileToBlob(file)
+      .then((data) => {
+        setSuccess(true);
+        console.log('Link from blob -> ', data);
+        return true;
+      })
+      .catch((err) => {
+        setError(true);
+        console.log(JSON.stringify(error));
+        return false;
+      });
   };
 
   const getSelectedSubTemplates = () => {
@@ -274,7 +288,7 @@ const Configuration = (props) => {
               className="uploadButton"
               onClick={() => uploadFile(selectedFile)}
             >
-              <i class="fa-solid fa-upload"></i>
+              <i className="fa-solid fa-upload"></i>
               {/* <i className="fi fi-ss-upload"></i>&nbsp; */}
               {props.themeLang.languageWords.Upload}
             </div>

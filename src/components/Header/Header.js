@@ -1,8 +1,8 @@
 import './Header.css';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux/es/exports';
-import { signInOperation } from '../../actions/user';
+// import { signInOperation } from '../../actions/user';
 // import { signUpOperation } from '../../actions/user';
 // import { useAuthenticator } from '@aws-amplify/ui-react';
 
@@ -106,35 +106,3 @@ const mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps)(Header);
-
-// const signInPerform = () => {
-//   const { user } = props;
-//   props.dispatch(signInOperation(user));
-// };
-
-// const signUpPerform = () => {
-//   const { user } = props;
-//   props.dispatch(signUpOperation(user));
-// };
-
-{
-  /* {props.user.signUp === false && props.user.isLoggedIn === true ? (
-          <Link to="/signin">
-            <button className="inupoutButton" onClick={signInPerform}>
-              Sign Out
-            </button>
-          </Link>
-        ) : props.user.signUp === false && props.user.isLoggedIn === false ? (
-          <Link to="/signup">
-            <button className="inupoutButton" onClick={signUpPerform}>
-              Sign Up
-            </button>
-          </Link>
-        ) : props.user.signUp === true && props.user.isLoggedIn === false ? (
-          <Link to="/signin">
-            <button className="inupoutButton" onClick={signInPerform}>
-              Sign In
-            </button>
-          </Link>
-        ) : null} */
-}
