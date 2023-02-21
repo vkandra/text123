@@ -3,8 +3,8 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux/es/exports';
 import { assignDashboardData } from '../../actions/documents';
 import { Line, Bar } from 'react-chartjs-2';
-// import { Chart as ChartJS } from 'chart.js/auto';
-// import { Chart } from 'react-chartjs-2';
+import { Chart as ChartJS } from 'chart.js/auto';
+import { Chart } from 'react-chartjs-2';
 
 const Dashboards = (props) => {
   // console.log(props.documents.documentDetails);
