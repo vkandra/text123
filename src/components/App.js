@@ -3,10 +3,12 @@ import React from 'react';
 import { connect } from 'react-redux/es/exports';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
-import InAppBody from '../pages/InAppBody/InAppBody';
+// import InAppBody from '../pages/InAppBody/InAppBody';
+import InAppBody from './InAppBody/InAppBody';
 // import SignIn from '../pages/SignIn/SignIn';
 // import SignUp from '../pages/SignUp.js/SignUp';
-import Homepage from '../pages/Homepage/Homepage';
+// import Homepage from '../pages/Homepage/Homepage';
+import Homepage from './Homepage/Homepage';
 
 // import { useAuthenticator } from '@aws-amplify/ui-react';
 // import { Amplify } from 'aws-amplify';
