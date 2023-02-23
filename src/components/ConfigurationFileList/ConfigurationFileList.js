@@ -124,11 +124,11 @@ const ConfigurationFileList = (props) => {
         });
       }
       let dataStart = {
-        input: JSON.stringify({ detail: { items: data } }),
-        stateMachineArn:
-          'arn:aws:states:ap-south-1:565442373753:stateMachine:Textract_State_Machine',
+        input: { detail: { items: data } },
+        // stateMachineArn:
+        // 'arn:aws:states:ap-south-1:565442373753:stateMachine:Textract_State_Machine',
       };
-      // console.log(dataStart.user_id);
+      // console.log(dataStart);
       // console.log(props.documents.filteredFilelistNotProcessed);
       props.dispatch(startExtractionProcessAPI(dataStart));
       setTimeout(() => {
