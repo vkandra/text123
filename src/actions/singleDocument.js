@@ -164,7 +164,8 @@ export function fetchSingleFileDataAPI(data) {
   return (dispatch) => {
     axios
       .get(
-        `https://4xjuok1l6c.execute-api.ap-south-1.amazonaws.com/output?user_id=${data[0]}&job_id=${data[1]}&template_id=${data[3]}`
+        // `https://4xjuok1l6c.execute-api.ap-south-1.amazonaws.com/output?user_id=${data[0]}&job_id=${data[1]}&template_id=${data[3]}`
+        `https://functionstexextraction.azurewebsites.net/api/TextExtraction/outputapi?user_id=${data[0]}&job_id=${data[1]}&template_id=Others}`
       )
       .then((res) => {
         console.log(res.data);
