@@ -35,7 +35,7 @@ const Configuration = (props) => {
   // const [blobList, setBlobList] = useState([]);
 
   if (success === true) {
-    console.log('2 is calling');
+    // console.log('2 is calling');
     // props.dispatch(
     //   fetchRawDocumentsDetailsAPI(props.user.token, props.user.preferences)
     // );
@@ -46,7 +46,7 @@ const Configuration = (props) => {
       props.dispatch(
         fetchRawDocumentsDetailsAPI(props.user.token, props.user.preferences)
       );
-    }, 5000);
+    }, 15000);
   }
 
   useEffect(() => {
@@ -175,18 +175,20 @@ const Configuration = (props) => {
         sub_template_id: subTempId,
       };
       props.dispatch(fetchTemplateNamesAPI(dataOfTemplate));
-      setTimeout(() => {
-        props.dispatch(
-      console.log('5 is calling');
-          fetchRawDocumentsDetailsAPI(props.user.token, props.user.preferences)
-        );
-      }, 1000);
+      
       */
     }
     console.log(allFiles);
     if (allFiles.length === 0) {
       props.dispatch(clearSelectedFiles());
     }
+
+    console.log('5 is calling');
+    setTimeout(() => {
+      props.dispatch(
+        fetchRawDocumentsDetailsAPI(props.user.token, props.user.preferences)
+      );
+    }, 10000);
   };
 
   const uploadOnly = async (file) => {
