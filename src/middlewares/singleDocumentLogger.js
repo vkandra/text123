@@ -230,6 +230,7 @@ const singleDocumentLogger =
       );
       tableEditedData.push(action.data.Edited_output.table_extracted_data_body);
 
+      console.log(tableExtractedData, tableEditedData);
       action.data = [tableExtractedData, tableEditedData];
     }
 
@@ -237,72 +238,74 @@ const singleDocumentLogger =
       //   console.log(
       //     action.data.Textracted_output.table_extracted_data_body[0][0]
       //   );
-      var allTableData = [];
-      if (action.data.Textracted_output.table_extracted_data_total > 0) {
-        for (
-          i = 0;
-          i < action.data.Textracted_output.table_extracted_data_total;
-          i++
-        ) {
-          allTableData.push({
-            tableNum: i,
-            tableHeader: [],
-            tableData: [],
-          });
+      // var allTableData = [];
+      // if (action.data.Textracted_output.table_extracted_data_total > 0) {
+      //   for (
+      //     i = 0;
+      //     i < action.data.Textracted_output.table_extracted_data_total;
+      //     i++
+      //   ) {
+      //     allTableData.push({
+      //       tableNum: i,
+      //       tableHeader: [],
+      //       tableData: [],
+      //     });
 
-          for (
-            j = 0;
-            j <
-            action.data.Textracted_output.table_extracted_data_headers[i]
-              .length;
-            j++
-          ) {
-            allTableData[i].tableHeader.push({
-              tableNum: i,
-              rowNum: -1,
-              index: j,
-              type: 'header',
-              data: action.data.Textracted_output.table_extracted_data_headers[
-                i
-              ][j],
-              editedData:
-                action.data.Edited_output.table_extracted_data_headers[i][j],
-            });
-          }
+      //     for (
+      //       j = 0;
+      //       j <
+      //       action.data.Textracted_output.table_extracted_data_headers[i]
+      //         .length;
+      //       j++
+      //     ) {
+      //       allTableData[i].tableHeader.push({
+      //         tableNum: i,
+      //         rowNum: -1,
+      //         index: j,
+      //         type: 'header',
+      //         data: action.data.Textracted_output.table_extracted_data_headers[
+      //           i
+      //         ][j],
+      //         editedData:
+      //           action.data.Edited_output.table_extracted_data_headers[i][j],
+      //       });
+      //     }
 
-          for (
-            j = 0;
-            j <
-            action.data.Textracted_output.table_extracted_data_body[i].length;
-            j++
-          ) {
-            allTableData[i].tableData.push({
-              index: j,
-              rowData: [],
-            });
-            for (
-              var k = 0;
-              k <
-              action.data.Textracted_output.table_extracted_data_body[i][j]
-                .length;
-              k++
-            ) {
-              allTableData[i].tableData[j].rowData.push({
-                tableNum: i,
-                rowNum: j,
-                index: k,
-                type: 'rowdata',
-                data: action.data.Textracted_output.table_extracted_data_body[
-                  i
-                ][j][k],
-                editedData:
-                  action.data.Edited_output.table_extracted_data_body[i][j][k],
-              });
-            }
-          }
-        }
-      }
-      action.data = allTableData;
+      //     for (
+      //       j = 0;
+      //       j <
+      //       action.data.Textracted_output.table_extracted_data_body[i].length;
+      //       j++
+      //     ) {
+      //       allTableData[i].tableData.push({
+      //         index: j,
+      //         rowData: [],
+      //       });
+      //       for (
+      //         var k = 0;
+      //         k <
+      //         action.data.Textracted_output.table_extracted_data_body[i][j]
+      //           .length;
+      //         k++
+      //       ) {
+      //         allTableData[i].tableData[j].rowData.push({
+      //           tableNum: i,
+      //           rowNum: j,
+      //           index: k,
+      //           type: 'rowdata',
+      //           data: action.data.Textracted_output.table_extracted_data_body[
+      //             i
+      //           ][j][k],
+      //           editedData:
+      //             action.data.Edited_output.table_extracted_data_body[i][j][k],
+      //         });
+      //       }
+      //     }
+      //   }
+      // }
+
+      console.log(action.data.Textracted_output.table_extracted_data);
+      action.data = action.data.Textracted_output.table_extracted_data;
     }
 
     next(action);
