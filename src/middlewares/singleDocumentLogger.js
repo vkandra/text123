@@ -304,8 +304,8 @@ const singleDocumentLogger =
       //   }
       // }
 
-      console.log(action.data.Textracted_output.table_extracted_data);
-      action.data = action.data.Textracted_output.table_extracted_data;
+      console.log(action.data.Edited_output.table_extracted_data);
+      action.data = action.data.Edited_output.table_extracted_data;
     }
 
     next(action);
