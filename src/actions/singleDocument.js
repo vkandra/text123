@@ -188,11 +188,12 @@ export function fetchTemplateDataAPI(data) {
   return (dispatch) => {
     axios
       .post(
-        `https://lkv9swpfm7.execute-api.ap-south-1.amazonaws.com/fvrt`,
+        // `https://lkv9swpfm7.execute-api.ap-south-1.amazonaws.com/fvrt`,
+        `https://functionstexextraction.azurewebsites.net/api/TextExtraction/fetchtemplateDataAPI`,
         data
       )
       .then((res) => {
-        // console.log('Template Data -> ', res.data);
+        console.log('Template Data -> ', res.data);
         dispatch(updateTemplateDetails(res.data));
       })
       .catch(function (error) {
@@ -202,17 +203,34 @@ export function fetchTemplateDataAPI(data) {
 }
 
 export function addDeletefetchTemplateAPI(data) {
-  return (dispatch) => {
-    axios
-      .post(
-        `https://2wehobnzu6.execute-api.ap-south-1.amazonaws.com/add_delete`,
-        data
-      )
-      .then((res) => {
-        console.log('Response -> ', res.data);
-        // dispatch(updateTemplateDetails(res.data));
+  if (data.action === 'add') {
+    return (dispatch) => {
+      axios
+        .post(
+          `https://functionstexextraction.azurewebsites.net/api/AddTemplateAPI`,
+          data
+        )
+        .then((res) => {
+          console.log('Response -> ', res.data);
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    };
+  }
+  if (data.action === 'fetch') {
+    return (dispatch) => {
+      axios
+        .post(
+          // `https://2wehobnzu6.execute-api.ap-south-1.amazonaws.com/add_delete`,
+          `https://functionstexextraction.azurewebsites.net/api/TextExtraction/fetchsubtemplateAPI`,
+          data
+        )
+        .then((res) => {
+          console.log('Response -> ', res.data);
+          // dispatch(updateTemplateDetails(res.data));
 
-        if (data.action === 'fetch') {
+          // if (data.action === 'fetch') {
           console.log(res.data);
           let sub_templateNames = [];
           for (let i = 0; i < res.data.length; i++) {
@@ -220,10 +238,11 @@ export function addDeletefetchTemplateAPI(data) {
           }
           dispatch(updateSubTemplateNames(sub_templateNames));
           dispatch(saveSubtempDetails(res.data));
-        }
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  };
+          // }
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    };
+  }
 }

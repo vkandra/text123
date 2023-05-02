@@ -116,7 +116,8 @@ const TemplatesSubTable = (props) => {
 
       axios
         .post(
-          `https://2wehobnzu6.execute-api.ap-south-1.amazonaws.com/add_delete`,
+          // `https://2wehobnzu6.execute-api.ap-south-1.amazonaws.com/add_delete`,
+          `https://functionstexextraction.azurewebsites.net/api/DeleteTemplate`,
           data
         )
         .then((res) => {

@@ -177,7 +177,8 @@ const KeyValue = (props) => {
       // props.dispatch(favUnfavTemplateData(data));
       axios
         .post(
-          `https://lkv9swpfm7.execute-api.ap-south-1.amazonaws.com/fvrt`,
+          // `https://lkv9swpfm7.execute-api.ap-south-1.amazonaws.com/fvrt`,.
+          `https://functionstexextraction.azurewebsites.net/api/TextExtraction/DeleteFvrt`,
           data
         )
         .then((res) => {
@@ -208,7 +209,8 @@ const KeyValue = (props) => {
       // props.dispatch(favUnfavTemplateData(data));
       axios
         .post(
-          `https://lkv9swpfm7.execute-api.ap-south-1.amazonaws.com/fvrt`,
+          // `https://lkv9swpfm7.execute-api.ap-south-1.amazonaws.com/fvrt`,
+          `https://functionstexextraction.azurewebsites.net/api/TextExtraction/AddDeleteFvrt`,
           data
         )
         .then((res) => {

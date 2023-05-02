@@ -468,7 +468,7 @@ const ConfigurationFileList = (props) => {
           }`}
           onClick={() => handleProcessedFileTab(1)}
         >
-          <i class="fa-solid fa-hourglass notProcIc"></i>&nbsp;&nbsp;
+          <i className="fa-solid fa-hourglass notProcIc"></i>&nbsp;&nbsp;
           {props.themeLang.languageWords.Not_Processed}
         </div>
         <div
@@ -479,7 +479,7 @@ const ConfigurationFileList = (props) => {
           }`}
           onClick={() => handleProcessedFileTab(2)}
         >
-          <i class="fa-solid fa-check-double"></i>&nbsp;&nbsp;
+          <i className="fa-solid fa-check-double"></i>&nbsp;&nbsp;
           {props.themeLang.languageWords.Processed}
         </div>
       </div>

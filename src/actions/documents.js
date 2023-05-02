@@ -165,7 +165,8 @@ export function fetchTemplateNamesAPI(data) {
     console.log(data);
     axios
       .post(
-        `https://lqshj05gd9.execute-api.ap-south-1.amazonaws.com/Textract_document_category`,
+        // `https://lqshj05gd9.execute-api.ap-south-1.amazonaws.com/Textract_document_category`,
+        `https://functionstexextraction.azurewebsites.net/api/TextExtraction/fetchtemplate`,
         data
       )
       .then(function (response) {
@@ -183,6 +184,23 @@ export function fetchTemplateNamesAPI(data) {
           );
         }
         // dispatch(clearSelectedFiles());
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
+}
+
+export function sendUploadFilesMetadataAPI(data) {
+  return (dispatch) => {
+    console.log(data);
+    axios
+      .post(
+        `https://functionstexextraction.azurewebsites.net/api/TextExtraction/InsertMetaData`,
+        data
+      )
+      .then(function (response) {
+        console.log(response.data);
       })
       .catch(function (error) {
         console.log(error);

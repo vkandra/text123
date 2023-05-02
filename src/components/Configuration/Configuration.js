@@ -11,6 +11,7 @@ import {
   fetchRawDocumentsDetailsAPI,
   fetchTemplateNamesAPI,
   clearSelectedFiles,
+  sendUploadFilesMetadataAPI,
 } from '../../actions/documents';
 import {
   fetchTemplateDataAPI,
@@ -115,43 +116,26 @@ const Configuration = (props) => {
   };
 
   const uploadFile = (file) => {
-    // const ReactS3Client = new S3(config);
     setError(false);
     setSuccess(false);
 
-    // let fileNameArray = [];
-    // let fileSizeArray = [];
-
     console.log('Preparing the upload');
-    // console.log(ReactS3Client);
     // *** UPLOAD TO AZURE STORAGE ***
-    // let blobsInContainer;
     let allFiles = [...selectedFile];
     console.log(allFiles);
+
+    let fileNameArray = [];
+    let fileSizeArray = [];
 
     for (let i = 0; i < selectedFile.length; i++) {
       let fileUploadStatus = uploadOnly(selectedFile[i]);
       if (fileUploadStatus) {
+        fileNameArray.push(selectedFile[i].name);
+        fileSizeArray.push(selectedFile[i].size);
         allFiles.pop(selectedFile[i].name);
         console.log(allFiles);
       }
-      // the name of the file uploaded is used to upload it to S3
-      // console.log(selectedFile[i]);
-      // let selectedFileName = selectedFile[i].name;
-      // let selectedFileName = selectedFile[i].name.replace(/-/g, '_');
-      // selectedFileName = selectedFileName.replace(/ /g, '_');
-      // selectedFileName = selectedFileName.replace(/[^a-zA-Z0-9_]/g, '.');
 
-      // fileNameArray.push(selectedFileName);
-      // fileSizeArray.push(selectedFile[i].size);
-
-      // console.log(name.replace(/ /g, '_'));
-
-      // ReactS3Client.uploadFile(selectedFile[i], selectedFileName)
-
-      // UPLOADING WAS PREVIOUSLY DONE HERE
-
-      /* UNCOMMENT THIS PART AFTER TEMPLATES API IS CREATED
       let subTempName = document.getElementById(
         'singleSubTemplateSelect'
       ).value;
@@ -174,9 +158,7 @@ const Configuration = (props) => {
         sub_template: subTempName,
         sub_template_id: subTempId,
       };
-      props.dispatch(fetchTemplateNamesAPI(dataOfTemplate));
-      
-      */
+      props.dispatch(sendUploadFilesMetadataAPI(dataOfTemplate));
     }
     console.log(allFiles);
     if (allFiles.length === 0) {
