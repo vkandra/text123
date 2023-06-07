@@ -98,7 +98,7 @@ const TemplatesSubTable = (props) => {
     console.log(rowdata.total_files);
     if (rowdata.total_files > 0) {
       alert(
-        'Please delete all the files associated with this subtemplate before deleting the subtemplate.\n\nWarning: Once you delete a file, all the data associated with the file will get deleted.'
+        'Please delete all the files associated with this template before deleting the template.\n\nWarning: Once you delete a file, all the data associated with the file will get deleted.'
       );
       return;
     } else {
@@ -126,7 +126,7 @@ const TemplatesSubTable = (props) => {
           );
           props.dispatch(setSubtemplatesData(filteredsubtemplatesData));
           fetchData();
-          alert(`Subtemplate ${data.sub_template} deleted Successfully!`);
+          alert(`Template ${data.sub_template} deleted Successfully!`);
         })
         .catch(function (error) {
           console.log(error);
@@ -192,7 +192,7 @@ const TemplatesSubTable = (props) => {
         rows={10}
         paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
         size="small"
-        emptyMessage="No Subtemplates found!"
+        emptyMessage="No Template found!"
         currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
         className="tableSubTemp2"
         // style={{ width: '100%' }}
@@ -359,16 +359,14 @@ const TemplatesSubTable = (props) => {
     console.log(selectedMainTemp, subTempName);
 
     if (subTempName === 'Default' || subTempName === 'default') {
-      alert('Subtemplate Name cannot be "Default".');
+      alert('Template Name cannot be "Default".');
       document.getElementById('subTempName').value = '';
       return;
     }
 
     for (let i in props.user.subtemplatesData) {
       if (subTempName === props.user.subtemplatesData[i].name) {
-        alert(
-          'Subtemplate Name cannot be same as already created Subtemplates.'
-        );
+        alert('Template Name cannot be same as already created Template.');
         document.getElementById('subTempName').value = '';
         return;
       }
@@ -409,7 +407,7 @@ const TemplatesSubTable = (props) => {
           <div className="modal-content">
             <div className="modal-header">
               <h5 className="modal-title" id="AddNewTemplateModalLabel">
-                Add New Sub-Template
+                Add New Template
               </h5>
               <button
                 type="button"
@@ -431,11 +429,11 @@ const TemplatesSubTable = (props) => {
               </div> */}
               <div className="modalContent">
                 <div className="leftSectionModalAddNewSub">
-                  Sub-Template Name :{' '}
+                  Template Name :{' '}
                 </div>
                 <div className="rightSectionModalAddNewSub">
                   <input
-                    placeholder="New Sub-Template Name"
+                    placeholder="New Template Name"
                     name="newTemplate"
                     className="newTempInput"
                     id="subTempName"
@@ -506,7 +504,7 @@ const TemplatesSubTable = (props) => {
                 className="btn btn-primary"
                 onClick={addNewSubTemplate}
               >
-                Add New Sub-Template
+                Add New Template
               </button>
             </div>
           </div>
@@ -515,7 +513,7 @@ const TemplatesSubTable = (props) => {
       {/* Add New Template Modal Ends */}
 
       <div className="headerComponent">
-        <div className="subtempTabLabel">Subtemplates List - </div>
+        <div className="subtempTabLabel">Templates List - </div>
         <div className="addNewSubTempButton">
           <div className="addNewSubicon">
             <i className="fa-solid fa-circle-plus"></i>
@@ -563,7 +561,7 @@ const TemplatesSubTable = (props) => {
           filters={filters}
           scrollable
           scrollHeight="62vh"
-          emptyMessage="No Subtemplates found!"
+          emptyMessage="No Templates found!"
           currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
           className="tableSubTemp1"
         >
@@ -577,7 +575,7 @@ const TemplatesSubTable = (props) => {
           ></Column>
           <Column
             field="name"
-            header="Subtemplate"
+            header="Template"
             sortable
             filter
             filterPlaceholder="Search by Name"

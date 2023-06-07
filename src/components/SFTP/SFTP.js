@@ -172,7 +172,7 @@ const SFTP = (props) => {
                 <div className="rightSectionModalAddNewSFTP">Default</div>
               </div> */}
               <div className="modalSFTPContent">
-                <div className="leftSectionModalAddNewSFTP">Sub-Template :</div>
+                <div className="leftSectionModalAddNewSFTP">Template :</div>
                 <div className="subTemplateSelectionSFTP">
                   {/* <div
                     className={`buttonSubSFTP ${
