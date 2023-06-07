@@ -56,19 +56,19 @@ const Templates = (props) => {
           {props.user.templatesData.template_details.map(
             (singletemplate, index) => (
               <div
-                className={`mainTemplateTabs ${
-                  props.user.selectedMainTemplate ===
-                  singletemplate.main_template_name
-                    ? 'selectedMain'
-                    : null
-                }`}
+                // className={`mainTemplateTabs ${
+                //   props.user.selectedMainTemplate ===
+                //   singletemplate.main_template_name
+                //     ? 'selectedMain'
+                //     : null
+                // }`}
                 key={index}
                 singletemplate={singletemplate}
                 onClick={() =>
                   changeMainTabs(singletemplate.main_template_name)
                 }
               >
-                {singletemplate.main_template_name}
+                {/* {singletemplate.main_template_name} */}
               </div>
             )
           )}

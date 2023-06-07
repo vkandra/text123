@@ -421,14 +421,14 @@ const TemplatesSubTable = (props) => {
               </button>
             </div>
             <div className="modal-body">
-              <div className="modalContent">
+              {/* <div className="modalContent">
                 <div className="leftSectionModalAddNewSub">
                   Main Template :{' '}
                 </div>
                 <div className="rightSectionModalAddNewSub">
                   {props.user.selectedMainTemplate}
                 </div>
-              </div>
+              </div> */}
               <div className="modalContent">
                 <div className="leftSectionModalAddNewSub">
                   Sub-Template Name :{' '}

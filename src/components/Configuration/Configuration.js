@@ -158,7 +158,9 @@ const Configuration = (props) => {
         sub_template: subTempName,
         sub_template_id: subTempId,
       };
+      // setTimeout(() => {
       props.dispatch(sendUploadFilesMetadataAPI(dataOfTemplate));
+      // }, 20000);
     }
     console.log(allFiles);
     if (allFiles.length === 0) {
