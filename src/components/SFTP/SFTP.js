@@ -1,11 +1,32 @@
 import './SFTP.css';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { sftpAdddataAPI } from '../../actions/documents';
 import { connect } from 'react-redux/es/exports';
 
+import {
+  setSelectedMainTemplate,
+  setSubtemplatesData,
+  fetchTemplatesDataAPI,
+} from '../../actions/user';
+
 const SFTP = (props) => {
   const [newSub, setNewSub] = useState(false);
+
+  useEffect(() => {
+    let obj1 = { user_id: props.user.token };
+    props.dispatch(fetchTemplatesDataAPI(obj1));
+
+    if (props.user.templatesData.user_id !== '') {
+      if (props.user.selectedMainTemplate === '') {
+        props.dispatch(
+          setSelectedMainTemplate(
+            props.user.templatesData.template_details[0].main_template_name
+          )
+        );
+      }
+    }
+  }, []);
 
   const addNewSFTP = () => {
     let SftpName = document.getElementById('sftpNameId').value;
@@ -16,31 +37,11 @@ const SFTP = (props) => {
     let FolderName = document.getElementById('sftpFolderNameId').value;
     let user_id = document.getElementById('sftpUserIdId').value;
     let key = 'abc';
-    let newSubTemp = newSub;
+    // let newSubTemp = newSub;
 
     let subTempName = '';
     if (!newSub) {
       subTempName = document.getElementById('sftpSelectedSubId').value;
-    }
-    let subTempNewName = '';
-    if (newSub) {
-      subTempNewName = document.getElementById('SFTPTempName').value;
-    }
-    let subTempCust = '';
-    if (newSub) {
-      subTempCust = document.getElementById('SFTPTempCust').value;
-    }
-    let subTempDept = '';
-    if (newSub) {
-      subTempDept = document.getElementById('SFTPTempDept').value;
-    }
-    let subTempProj = '';
-    if (newSub) {
-      subTempProj = document.getElementById('SFTPTempProj').value;
-    }
-    let subTempOther = '';
-    if (newSub) {
-      subTempOther = document.getElementById('SFTPTempDet').value;
     }
 
     let obj1 = {
@@ -49,16 +50,10 @@ const SFTP = (props) => {
       hostname: hostname,
       username: username,
       password: password,
-      FolderName: FolderName,
+      // FolderName: FolderName,
       user_id: user_id,
       key: key,
-      newSubTemp: newSubTemp,
-      subTempName: !newSub ? subTempName : '',
-      subTempNewName: newSub ? subTempNewName : '',
-      subTempCust: newSub ? subTempCust : '',
-      subTempDept: newSub ? subTempDept : '',
-      subTempProj: newSub ? subTempProj : '',
-      subTempOther: newSub ? subTempOther : '',
+      subTempName: subTempName,
     };
 
     props.dispatch(sftpAdddataAPI(obj1));
@@ -147,7 +142,7 @@ const SFTP = (props) => {
                   ></input>
                 </div>
               </div>
-              <div className="modalSFTPContent">
+              {/* <div className="modalSFTPContent">
                 <div className="leftSectionModalAddNewSFTP">Folder Name : </div>
                 <div className="rightSectionModalAddNewSFTP">
                   <input
@@ -157,7 +152,7 @@ const SFTP = (props) => {
                     id="sftpFolderNameId"
                   ></input>
                 </div>
-              </div>
+              </div> */}
               <div className="modalSFTPContent">
                 <div className="leftSectionModalAddNewSFTP">User Id :</div>
                 <div className="rightSectionModalAddNewSFTP">
@@ -170,16 +165,16 @@ const SFTP = (props) => {
                 </div>
               </div>
 
-              <div className="modalSFTPContent" id="sftpMainTemplateForm">
+              {/* <div className="modalSFTPContent" id="sftpMainTemplateForm">
                 <div className="leftSectionModalAddNewSFTP">
                   Main Template :
                 </div>
                 <div className="rightSectionModalAddNewSFTP">Default</div>
-              </div>
+              </div> */}
               <div className="modalSFTPContent">
                 <div className="leftSectionModalAddNewSFTP">Sub-Template :</div>
                 <div className="subTemplateSelectionSFTP">
-                  <div
+                  {/* <div
                     className={`buttonSubSFTP ${
                       newSub ? 'subSelectSFTP' : null
                     }`}
@@ -194,19 +189,29 @@ const SFTP = (props) => {
                     onClick={() => setNewSub(false)}
                   >
                     Existing
-                  </div>
-                  {newSub ? null : (
-                    <select
-                      id="sftpSelectedSubId"
-                      className="sftpSelectedSubClass"
-                    >
-                      <option>ABC</option>
-                      <option>ABC</option>
-                    </select>
-                  )}
+                  </div> */}
+                  {/* {newSub ? null : ( */}
+
+                  <select
+                    id="sftpSelectedSubId"
+                    className="sftpSelectedSubClass"
+                  >
+                    {console.log(
+                      props.user.templatesData.template_details[0]
+                        .sub_template_details
+                    )}
+                    {props.user.templatesData.template_details[0].sub_template_details.map(
+                      (singletemplate, index) => (
+                        // <option>ABC</option>
+                        <option>{singletemplate.name}</option>
+                      )
+                    )}
+                  </select>
+
+                  {/* )} */}
                 </div>
               </div>
-              {!newSub ? null : (
+              {/* {!newSub ? null : (
                 <div>
                   <div className="modalSFTPContent">
                     <div className="leftSectionModalAddNewSFTP">
@@ -274,7 +279,7 @@ const SFTP = (props) => {
                     </div>
                   </div>
                 </div>
-              )}
+              )} */}
             </div>
             <div className="modal-footer">
               <button
