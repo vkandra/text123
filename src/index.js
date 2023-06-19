@@ -16,6 +16,15 @@ import { configureStore } from './store';
 
 // Amplify.configure(awsExports);
 
+import { PublicClientApplication } from '@azure/msal-browser';
+import { MsalProvider } from '@azure/msal-react';
+import { msalConfig } from './azureAuth/authConfig';
+
+// Bootstrap components
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+const msalInstance = new PublicClientApplication(msalConfig);
+
 const store = configureStore();
 
 // console.log(props.userDetails.attributes.name);
@@ -26,7 +35,9 @@ root.render(
   // {/* <Authenticator.Provider> */}
   <Provider store={store}>
     {/* <React.StrictMode> */}
-    <App />
+    <MsalProvider instance={msalInstance}>
+      <App />
+    </MsalProvider>
     {/* </React.StrictMode> */}
   </Provider>
   // </Authenticator.Provider>

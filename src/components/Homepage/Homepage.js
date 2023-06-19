@@ -6,11 +6,21 @@ import Footer from '../../components/Footer/Footer';
 // import video from '../../Videos/Letters.mp4';
 
 import logoImage from '../../Pictures/aLPHA.png';
+import { useMsal } from '@azure/msal-react';
+import { loginRequest } from '../../azureAuth/authConfig';
 
 const Homepage = (props) => {
+  const { instance } = useMsal();
+
   useEffect(() => {
     // document.getElementsByClassName('vidSet')[0].play();
   }, []);
+
+  const handleLogin = (loginType) => {
+    instance.loginRedirect(loginRequest).catch((e) => {
+      console.log(e);
+    });
+  };
 
   return (
     <div className="homepage">
@@ -35,7 +45,12 @@ const Homepage = (props) => {
             width="90%"
           />
           <Link to="/app">
-            <button className="signButton">Sign In / Sign Up</button>
+            <button
+              className="signButton"
+              onClick={() => handleLogin('redirect')}
+            >
+              Sign In / Sign Up
+            </button>
           </Link>
         </div>
       </div>

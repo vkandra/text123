@@ -1,8 +1,8 @@
 import './Header.css';
 // import { Link } from 'react-router-dom';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux/es/exports';
-// import { signInOperation } from '../../actions/user';
+import { signInOperation } from '../../actions/user';
 // import { signUpOperation } from '../../actions/user';
 // import { useAuthenticator } from '@aws-amplify/ui-react';
 
@@ -11,7 +11,25 @@ import { fetchUserLang } from '../../actions/themeLang';
 
 import logoUrl from '../../Pictures/aLPHA.png';
 
+// AZURE AUTH
+import {
+  useMsal,
+  AuthenticatedTemplate,
+  UnauthenticatedTemplate,
+} from '@azure/msal-react';
+import { PageLayout } from '../../azureAuth/azureAuthComponents/PageLayout';
+import { loginRequest } from '../../azureAuth/authConfig';
+import { callMsGraph } from '../../azureAuth/graph';
+import { ProfileData } from '../../azureAuth/azureAuthComponents/ProfileData';
+import { useIsAuthenticated } from '@azure/msal-react';
+
 const Header = (props) => {
+  // const { instance } = useMsal();
+  const { instance, accounts } = useMsal();
+  const [graphData, setGraphData] = useState(null);
+
+  const isAuthenticated = useIsAuthenticated();
+
   useEffect(() => {
     // if (props.userDet.username.includes('@')) {
     //   console.log('not Verified');
@@ -32,9 +50,38 @@ const Header = (props) => {
     //   console.log(props.userPr);
     //   props.dispatch(signInOperation(props.userPr));
     // }
+    if (isAuthenticated) {
+      RequestProfileData();
+    }
     changeLanguage();
   }, []);
   // const { signOut, user } = useAuthenticator();
+
+  const RequestProfileData = () => {
+    // Silently acquires an access token which is then attached to a request for MS Graph data
+    instance
+      .acquireTokenSilent({
+        ...loginRequest,
+        account: accounts[0],
+      })
+      .then((response) => {
+        callMsGraph(response.accessToken).then((response) => {
+          setGraphData(response);
+          console.log(response);
+          const { user } = props.userPr;
+          // console.log(props.userPr);
+          props.userPr.isLoggedIn = true;
+          props.userPr.signUp = false;
+          props.userPr.userFirstName = response.givenName;
+          props.userPr.userLastName = response.surname;
+          props.userPr.fullName = response.displayName;
+          props.userPr.token = response.id;
+          props.userPr.email = response.mail;
+          console.log(props.userPr);
+          props.dispatch(signInOperation(props.userPr));
+        });
+      });
+  };
 
   const changeLanguage = () => {
     const langSelected = document.getElementById('languageSelect').value;
@@ -52,6 +99,12 @@ const Header = (props) => {
     setTimeout(() => {
       window.location.reload();
     }, 3000);
+  };
+
+  const handleLogout = (logoutType) => {
+    instance.logoutRedirect({
+      postLogoutRedirectUri: '/',
+    });
   };
 
   return (
@@ -84,9 +137,10 @@ const Header = (props) => {
           className="inupoutButton"
           id="hiddenSignOutButton"
           // onClick={signOut}
+          onClick={() => handleLogout('redirect')}
         >
           {/* <div className="inupoutDiv" onClick={refreshPage}> */}
-          <span onClick={signUserOut}>
+          <span onClick={() => handleLogout('redirect')}>
             {/* {props.themeLang.languageWords.Sign_Out}&nbsp; */}
             <i className="fi fi-sr-exit"></i>
           </span>
