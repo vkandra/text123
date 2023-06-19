@@ -16,9 +16,11 @@ export const msalConfig = {
     clientId: '2c46bdb2-5fb1-4971-a02f-090b52b1cc64',
     authority:
       'https://login.microsoftonline.com/2d6b0cf3-57fa-4619-abf9-d13e1ef2352a',
-    redirectUri: isLocal
-      ? 'http://localhost:3000/app'
-      : 'https://proud-bush-0d4184d00.2.azurestaticapps.net/app',
+    redirectUri:
+      // isLocal
+      // ? 'http://localhost:3000/app'
+      // :
+      'https://proud-bush-0d4184d00.2.azurestaticapps.net/app',
     // redirectUri: ,
   },
   cache: {
