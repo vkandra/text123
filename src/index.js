@@ -23,7 +23,7 @@ import { msalConfig } from './azureAuth/authConfig';
 // Bootstrap components
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-const msalInstance = new PublicClientApplication(msalConfig);
+// const msalInstance = new PublicClientApplication(msalConfig);
 
 const store = configureStore();
 
@@ -35,9 +35,9 @@ root.render(
   // {/* <Authenticator.Provider> */}
   <Provider store={store}>
     {/* <React.StrictMode> */}
-    <MsalProvider instance={msalInstance}>
-      <App />
-    </MsalProvider>
+    {/* <MsalProvider instance={msalInstance}> */}
+    <App />
+    {/* </MsalProvider> */}
     {/* </React.StrictMode> */}
   </Provider>
   // </Authenticator.Provider>

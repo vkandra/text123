@@ -25,10 +25,10 @@ import { useIsAuthenticated } from '@azure/msal-react';
 
 const Header = (props) => {
   // const { instance } = useMsal();
-  const { instance, accounts } = useMsal();
-  const [graphData, setGraphData] = useState(null);
+  // const { instance, accounts } = useMsal();
+  // const [graphData, setGraphData] = useState(null);
 
-  const isAuthenticated = useIsAuthenticated();
+  // const isAuthenticated = useIsAuthenticated();
 
   useEffect(() => {
     // if (props.userDet.username.includes('@')) {
@@ -50,38 +50,38 @@ const Header = (props) => {
     //   console.log(props.userPr);
     //   props.dispatch(signInOperation(props.userPr));
     // }
-    if (isAuthenticated) {
-      RequestProfileData();
-    }
+    // if (isAuthenticated) {
+    //   RequestProfileData();
+    // }
     changeLanguage();
   }, []);
   // const { signOut, user } = useAuthenticator();
 
-  const RequestProfileData = () => {
-    // Silently acquires an access token which is then attached to a request for MS Graph data
-    instance
-      .acquireTokenSilent({
-        ...loginRequest,
-        account: accounts[0],
-      })
-      .then((response) => {
-        callMsGraph(response.accessToken).then((response) => {
-          setGraphData(response);
-          console.log(response);
-          const { user } = props.userPr;
-          // console.log(props.userPr);
-          props.userPr.isLoggedIn = true;
-          props.userPr.signUp = false;
-          props.userPr.userFirstName = response.givenName;
-          props.userPr.userLastName = response.surname;
-          props.userPr.fullName = response.displayName;
-          props.userPr.token = response.id;
-          props.userPr.email = response.mail;
-          console.log(props.userPr);
-          props.dispatch(signInOperation(props.userPr));
-        });
-      });
-  };
+  // const RequestProfileData = () => {
+  //   // Silently acquires an access token which is then attached to a request for MS Graph data
+  //   instance
+  //     .acquireTokenSilent({
+  //       ...loginRequest,
+  //       account: accounts[0],
+  //     })
+  //     .then((response) => {
+  //       callMsGraph(response.accessToken).then((response) => {
+  //         setGraphData(response);
+  //         console.log(response);
+  //         const { user } = props.userPr;
+  //         // console.log(props.userPr);
+  //         props.userPr.isLoggedIn = true;
+  //         props.userPr.signUp = false;
+  //         props.userPr.userFirstName = response.givenName;
+  //         props.userPr.userLastName = response.surname;
+  //         props.userPr.fullName = response.displayName;
+  //         props.userPr.token = response.id;
+  //         props.userPr.email = response.mail;
+  //         console.log(props.userPr);
+  //         props.dispatch(signInOperation(props.userPr));
+  //       });
+  //     });
+  // };
 
   const changeLanguage = () => {
     const langSelected = document.getElementById('languageSelect').value;
@@ -101,11 +101,11 @@ const Header = (props) => {
     }, 3000);
   };
 
-  const handleLogout = (logoutType) => {
-    instance.logoutRedirect({
-      postLogoutRedirectUri: '/',
-    });
-  };
+  // const handleLogout = (logoutType) => {
+  //   instance.logoutRedirect({
+  //     postLogoutRedirectUri: '/',
+  //   });
+  // };
 
   return (
     <div className="header">
@@ -137,10 +137,12 @@ const Header = (props) => {
           className="inupoutButton"
           id="hiddenSignOutButton"
           // onClick={signOut}
-          onClick={() => handleLogout('redirect')}
+          // onClick={() => handleLogout('redirect')}
         >
           {/* <div className="inupoutDiv" onClick={refreshPage}> */}
-          <span onClick={() => handleLogout('redirect')}>
+          <span
+          // onClick={() => handleLogout('redirect')}
+          >
             {/* {props.themeLang.languageWords.Sign_Out}&nbsp; */}
             <i className="fi fi-sr-exit"></i>
           </span>

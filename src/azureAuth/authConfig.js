@@ -1,26 +1,14 @@
-/*
- * Copyright (c) Microsoft Corporation. All rights reserved.
- * Licensed under the MIT License.
- */
-
 import { LogLevel } from '@azure/msal-browser';
 
-/**
- * Configuration object to be passed to MSAL instance on creation.
- * For a full list of MSAL.js configuration parameters, visit:
- * https://github.com/AzureAD/microsoft-authentication-library-for-js/blob/dev/lib/msal-browser/docs/configuration.md
- */
 const isLocal = window.location.hostname === 'localhost';
 export const msalConfig = {
   auth: {
     clientId: '2c46bdb2-5fb1-4971-a02f-090b52b1cc64',
     authority:
       'https://login.microsoftonline.com/2d6b0cf3-57fa-4619-abf9-d13e1ef2352a',
-    redirectUri:
-      // isLocal
-      // ? 'http://localhost:3000/app'
-      // :
-      'https://proud-bush-0d4184d00.2.azurestaticapps.net/app',
+    redirectUri: isLocal
+      ? 'http://localhost:3000/app'
+      : 'https://proud-bush-0d4184d00.2.azurestaticapps.net/app',
     // redirectUri: ,
   },
   cache: {
