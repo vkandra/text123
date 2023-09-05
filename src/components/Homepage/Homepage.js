@@ -44,14 +44,14 @@ const Homepage = (props) => {
             alt="text-extractor"
             width="90%"
           />
-          <Link to="/app">
-            <button
-              className="signButton"
-              onClick={() => handleLogin('redirect')}
-            >
-              Sign In / Sign Up
-            </button>
-          </Link>
+          {/* <Link to="/app"> */}
+          <button
+            className="signButton"
+            onClick={() => handleLogin('redirect')}
+          >
+            Sign In / Sign Up
+          </button>
+          {/* </Link> */}
         </div>
       </div>
       <Footer />
