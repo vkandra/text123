@@ -8,7 +8,9 @@ export const msalConfig = {
       'https://login.microsoftonline.com/2d6b0cf3-57fa-4619-abf9-d13e1ef2352a',
     redirectUri: isLocal
       ? 'http://localhost:3000/'
-      : 'https://proud-bush-0d4184d00.2.azurestaticapps.net/',
+      : 'https://red-smoke-03fa29200.3.azurestaticapps.net/',
+    // : 'https://proud-bush-0d4184d00.2.azurestaticapps.net/',
+
     // redirectUri: ,
   },
   cache: {
