@@ -75,7 +75,7 @@ const Header = (props) => {
           props.userPr.userFirstName = response.givenName;
           props.userPr.userLastName = response.surname;
           props.userPr.fullName = response.displayName;
-          props.userPr.token = response.id;
+          // props.userPr.token = response.id;
           props.userPr.email = response.mail;
           console.log(props.userPr);
           props.dispatch(signInOperation(props.userPr));
