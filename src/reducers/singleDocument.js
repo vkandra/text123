@@ -16,6 +16,7 @@ import {
   DROPDOWN_SELECTED,
   UPDATE_TEMPLATE_DETAILS,
   SAVE_SUBTEMP_TEMPLATE_DETAILS,
+  // SAVE_BLOB_EXCEL_DETAILS,
 } from '../actions/singleDocument';
 
 const initialsingleDocumentState = {
@@ -142,6 +143,12 @@ const initialsingleDocumentState = {
     ],
   },
   saveSubTempDetails: [],
+  blobExcelDetails: {
+    storageAccountName: '',
+    containerName: '',
+    subdirectory_name: '',
+    inner_subdirectory_name: '',
+  },
 };
 
 export default function singleDocument(
@@ -254,6 +261,12 @@ export default function singleDocument(
         ...state,
         saveSubTempDetails: action.data,
       };
+    // case SAVE_BLOB_EXCEL_DETAILS:
+    //   // console.log(action.data);
+    //   return {
+    //     ...state,
+    //     blobExcelDetails: action.data,
+    //   };
 
     default:
       return state;

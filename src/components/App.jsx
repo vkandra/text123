@@ -22,15 +22,11 @@ import {
 
 import Button from 'react-bootstrap/Button';
 
-/**
- * Renders information about the signed-in user or a button to retrieve data about the user
- */
 const ProfileContent = () => {
   const { instance, accounts } = useMsal();
   const [graphData, setGraphData] = useState(null);
 
   function RequestProfileData() {
-    // Silently acquires an access token which is then attached to a request for MS Graph data
     instance
       .acquireTokenSilent({
         ...loginRequest,
@@ -58,9 +54,6 @@ const ProfileContent = () => {
   );
 };
 
-/**
- * If a user is authenticated the ProfileContent component above is rendered. Otherwise a message indicating a user is not authenticated is rendered.
- */
 const MainContent = () => {
   return (
     <div className="App">
@@ -78,9 +71,6 @@ const MainContent = () => {
 };
 
 const App = (props) => {
-  // const { user } = useAuthenticator();
-  // const { signOut, user } = props;
-  // console.log(user);
   const isAuthenticated = useIsAuthenticated();
 
   return (
@@ -88,37 +78,8 @@ const App = (props) => {
       <Routes>
         <Route
           path="/"
-          // element={<Homepage />
-          element={
-            isAuthenticated ? (
-              <InAppBody />
-            ) : (
-              <Homepage />
-              // <PageLayout>
-              //   <center>
-              //     <MainContent />
-              //   </center>
-              // </PageLayout>
-            )
-          }
+          element={isAuthenticated ? <InAppBody /> : <Homepage />}
         />
-        {/* <Route
-          path="/app"
-          // element={user ? <InAppBody userDet={user} /> : <AmpLogin />}
-          element={
-            isAuthenticated ? <InAppBody /> : <div></div>
-            // <InAppBody />
-            // (
-            //   <PageLayout>
-            //     <center>
-            //       <MainContent />
-            //     </center>
-            //   </PageLayout>
-            // )
-          }
-        /> */}
-        {/* <Route path="/signin" element={<SignIn />} /> */}
-        {/* <Route path="/signup" element={<SignUp />} /> */}
       </Routes>
     </Router>
   );
@@ -127,7 +88,6 @@ const App = (props) => {
 const mapStateToProps = (state) => {
   return {
     documents: state.documents,
-    // user: state.user,
     singleDocument: state.singleDocument,
   };
 };

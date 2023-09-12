@@ -105,7 +105,8 @@ export function downloadEditedDataAPI(data) {
 export function downloadZipOfExcelFilesAPI(data) {
   return (dispatch) => {
     const fileName = data.split('/');
-    console.log(data.split('/')[6]);
+    console.log(fileName);
+    // console.log(data.split('/')[6]);
     axios({
       url: data, //your url
       method: 'GET',
@@ -117,7 +118,7 @@ export function downloadZipOfExcelFilesAPI(data) {
       // create "a" HTML element with href to file & click
       const link = document.createElement('a');
       link.href = href;
-      link.setAttribute('download', fileName[6]); //or any other extension
+      link.setAttribute('download', fileName[4]); //or any other extension
       document.body.appendChild(link);
       link.click();
 

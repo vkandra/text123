@@ -33,6 +33,20 @@
   font-weight: 400;
   font-size: 0.85rem;
 }
+#downloadExcelIcon {
+  color: #0b5ed7;
+}
+/* #uploadExcelInputBox {
+  border: 1px solid grey;
+} */
+#doneUploadExcelIcon {
+  color: #0b5ed7;
+}
+#downloadExcelIcon:hover {
+  scale: 1.05;
+  cursor: pointer;
+  transition: 0.1s;
+}
 .newTempInput {
   width: 250px;
 }

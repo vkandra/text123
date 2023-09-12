@@ -20,10 +20,17 @@ import { Column } from 'primereact/column';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import { faCircleXmark } from '@fortawesome/free-solid-svg-icons';
+import { downloadZipOfExcelFilesAPI } from '../../actions/extractor';
+import uploadFileToBlob from './azureBlob';
+import { BounceLoader } from 'react-spinners';
 
 const TemplatesSubTable = (props) => {
   const [favdata, setFavdata] = useState(<div></div>);
   const [otherDetails, setOtherDetails] = useState('');
+
+  const [success, setSuccess] = useState(false);
+  const [error, setError] = useState(false);
+  const [excelFile, setExcelFile] = useState([]);
 
   //   const [globalFilterValue, setGlobalFilterValue] = useState('');
   const [searching, setSearching] = useState(false);
@@ -350,12 +357,21 @@ const TemplatesSubTable = (props) => {
   };
 
   const addNewSubTemplate = () => {
+    if (document.getElementById('subTempName').value === '') {
+      alert('Please Enter a Template Name!');
+      return;
+    }
+    // if(document.getElementById('uploadExcelInputBox')..files.length < 1){
+    //   alert('Please Upload an Excel Template!');
+    //   return;
+    // }
     const selectedMainTemp = props.user.selectedMainTemplate;
     const subTempName = document.getElementById('subTempName').value;
     const subTempCust = document.getElementById('subTempCust').value;
     const subTempDept = document.getElementById('subTempDept').value;
     const subTempProj = document.getElementById('subTempProj').value;
     const subTempDet = document.getElementById('subTempDet').value;
+    const excelFileName = document.getElementById('uploadExcelInputBox').value;
     console.log(selectedMainTemp, subTempName);
 
     if (subTempName === 'Default' || subTempName === 'default') {
@@ -383,13 +399,72 @@ const TemplatesSubTable = (props) => {
       other_details: subTempDet,
       action: 'add',
     };
-    props.dispatch(addDeletefetchTemplateAPI(data));
+    // props.dispatch(addDeletefetchTemplateAPI(data));
+    axios
+      .post(
+        `https://functionstexextraction.azurewebsites.net/api/AddTemplateAPI`,
+        data
+      )
+      .then((res) => {
+        console.log('Response -> ', res.data);
+        uploadFile(excelFile[0], res.data);
+        // dispatch(saveBlobExcelDetails(res.data));
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+
     fetchData();
     document.getElementById('subTempName').value = '';
     document.getElementById('subTempCust').value = '';
     document.getElementById('subTempDept').value = '';
     document.getElementById('subTempProj').value = '';
     document.getElementById('subTempDet').value = '';
+  };
+
+  const downloadExcelSample = () => {
+    props.dispatch(
+      downloadZipOfExcelFilesAPI(
+        'https://texextraction.blob.core.windows.net/cychatsamplefiles/SampleFormat.xlsx'
+      )
+    );
+  };
+
+  const handleExcelFileChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      if (file.name.endsWith('.xlsx') || file.name.endsWith('.xls')) {
+        setExcelFile([file]);
+      } else {
+        alert('Please select a valid Excel file.');
+      }
+    }
+  };
+
+  const uploadFile = (file, blobdata) => {
+    setError(false);
+    setSuccess(false);
+
+    console.log('Preparing the upload');
+    console.log(file);
+    let fileUploadStatus = uploadOnly(file, blobdata);
+    if (fileUploadStatus) {
+      console.log(file);
+    }
+  };
+
+  const uploadOnly = async (file, blobdata) => {
+    await uploadFileToBlob(file, blobdata)
+      .then((data) => {
+        setSuccess(true);
+        console.log('Link from blob -> ', data);
+        return true;
+      })
+      .catch((err) => {
+        setError(true);
+        console.log(JSON.stringify(error));
+        return false;
+      });
   };
 
   return (
@@ -488,6 +563,37 @@ const TemplatesSubTable = (props) => {
                     className="newTempTextarea"
                     id="subTempDet"
                   ></textarea>
+                </div>
+              </div>
+
+              <hr></hr>
+              <div className="modalContent">
+                <div className="leftSectionModalAddNewSub">Sample Excel :</div>
+                <div className="rightSectionModalAddNewSub">
+                  <div id="downloadExcelIcon" onClick={downloadExcelSample}>
+                    <i class="fa-solid fa-cloud-arrow-down"></i> Download
+                  </div>
+                </div>
+              </div>
+              <div className="modalContent">
+                <div className="leftSectionModalAddNewSub">Upload Excel :</div>
+                <div className="rightSectionModalAddNewSub">
+                  <div id="uploadExcelSection">
+                    <input
+                      type="file"
+                      id="uploadExcelInputBox"
+                      accept=".xlsx, .xls"
+                      onChange={handleExcelFileChange}
+                      // You can add more attributes and styles as needed
+                    />{' '}
+                    &nbsp;
+                    {success ? (
+                      <span id="doneUploadExcelIcon">
+                        <i class="fa-solid fa-circle-check"></i>
+                      </span>
+                    ) : null}
+                    {/* <BounceLoader color="#0b5ed7" size={15} /> */}
+                  </div>
                 </div>
               </div>
             </div>
@@ -607,12 +713,12 @@ const TemplatesSubTable = (props) => {
           ></Column>
           <Column
             field="other_details"
-            header="Other Details"
+            header="Details"
             body={viewOtherDetailsButton}
             // sortable
             // filter
             // filterPlaceholder="Search by Name"
-            style={{ maxWidth: '150px' }}
+            style={{ maxWidth: '100px' }}
           ></Column>
 
           <Column
@@ -630,7 +736,7 @@ const TemplatesSubTable = (props) => {
 
           <Column
             field="total_files"
-            header="Total Files"
+            header="Files"
             sortable
             dataType="numeric"
             filterPlaceholder="Search by Qty."
@@ -667,6 +773,7 @@ const mapStateToProps = (state) => {
     documents: state.documents,
     user: state.user,
     themeLang: state.themeLang,
+    singleDocument: state.singleDocument,
   };
 };
 

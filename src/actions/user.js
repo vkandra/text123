@@ -89,10 +89,11 @@ export function setSubtemplatesFileTableData(data) {
 // API Calls
 export function fetchTemplatesDataAPI(data) {
   return (dispatch) => {
-    // console.log(data);
+    console.log(data);
     axios
       .post(
-        `https://8kis55n5f4.execute-api.ap-south-1.amazonaws.com/subtemp`,
+        // `https://8kis55n5f4.execute-api.ap-south-1.amazonaws.com/subtemp`,
+        `https://functionstexextraction.azurewebsites.net/api/TextExtraction/fetchtemplateDataAPI`,
         data
       )
       .then(function (response) {

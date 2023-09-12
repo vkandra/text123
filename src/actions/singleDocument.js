@@ -21,6 +21,8 @@ export const DROPDOWN_SELECTED = 'DROPDOWN_SELECTED';
 export const UPDATE_TEMPLATE_DETAILS = 'UPDATE_TEMPLATE_DETAILS';
 export const SAVE_SUBTEMP_TEMPLATE_DETAILS = 'SAVE_SUBTEMP_TEMPLATE_DETAILS';
 
+// export const SAVE_BLOB_EXCEL_DETAILS = 'SAVE_BLOB_EXCEL_DETAILS';
+
 // ACTION CREATORS
 
 export function singleDocDetail(data) {
@@ -156,6 +158,13 @@ export function saveSubtempDetails(data) {
     data: data,
   };
 }
+// export function saveBlobExcelDetails(data) {
+//   // console.log(data);
+//   return {
+//     type: SAVE_BLOB_EXCEL_DETAILS,
+//     data: data,
+//   };
+// }
 
 // API Calls
 
@@ -203,21 +212,22 @@ export function fetchTemplateDataAPI(data) {
 }
 
 export function addDeletefetchTemplateAPI(data) {
-  if (data.action === 'add') {
-    return (dispatch) => {
-      axios
-        .post(
-          `https://functionstexextraction.azurewebsites.net/api/AddTemplateAPI`,
-          data
-        )
-        .then((res) => {
-          console.log('Response -> ', res.data);
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
-    };
-  }
+  // if (data.action === 'add') {
+  //   return (dispatch) => {
+  //     axios
+  //       .post(
+  //         `https://functionstexextraction.azurewebsites.net/api/AddTemplateAPI`,
+  //         data
+  //       )
+  //       .then((res) => {
+  //         console.log('Response -> ', res.data);
+  //         dispatch(saveBlobExcelDetails(res.data));
+  //       })
+  //       .catch(function (error) {
+  //         console.log(error);
+  //       });
+  //   };
+  // }
   if (data.action === 'fetch') {
     return (dispatch) => {
       axios
