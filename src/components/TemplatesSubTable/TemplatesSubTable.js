@@ -327,6 +327,24 @@ const TemplatesSubTable = (props) => {
     setOtherDetails(Data.other_details);
   };
 
+  const viewMapRulesButton = (rowData) => {
+    return (
+      <div className="otherDetailsdivMain">
+        <div
+          className="mapRulesToPageButton"
+          onClick={() => navigateToMapRulesPage(rowData)}
+        >
+          {/* <i className="pi pi-minus-circle"></i> */}
+          <i class="fa-solid fa-square-up-right"></i>
+        </div>
+      </div>
+    );
+  };
+
+  const navigateToMapRulesPage = (rowData) => {
+    console.log(rowData);
+  };
+
   // Global Search Input
   const clearSearchText = (e) => {
     document.getElementById('searchName').value = null;
@@ -361,10 +379,10 @@ const TemplatesSubTable = (props) => {
       alert('Please Enter a Template Name!');
       return;
     }
-    // if(document.getElementById('uploadExcelInputBox')..files.length < 1){
-    //   alert('Please Upload an Excel Template!');
-    //   return;
-    // }
+    if (document.getElementById('uploadExcelInputBox').files.length < 1) {
+      alert('Please Upload an Excel Template!');
+      return;
+    }
     const selectedMainTemp = props.user.selectedMainTemplate;
     const subTempName = document.getElementById('subTempName').value;
     const subTempCust = document.getElementById('subTempCust').value;
@@ -413,13 +431,6 @@ const TemplatesSubTable = (props) => {
       .catch(function (error) {
         console.log(error);
       });
-
-    fetchData();
-    document.getElementById('subTempName').value = '';
-    document.getElementById('subTempCust').value = '';
-    document.getElementById('subTempDept').value = '';
-    document.getElementById('subTempProj').value = '';
-    document.getElementById('subTempDet').value = '';
   };
 
   const downloadExcelSample = () => {
@@ -450,6 +461,16 @@ const TemplatesSubTable = (props) => {
     let fileUploadStatus = uploadOnly(file, blobdata);
     if (fileUploadStatus) {
       console.log(file);
+      setTimeout(() => {
+        setSuccess(false);
+        document.getElementById('uploadExcelInputBox').value = '';
+        document.getElementById('subTempName').value = '';
+        document.getElementById('subTempCust').value = '';
+        document.getElementById('subTempDept').value = '';
+        document.getElementById('subTempProj').value = '';
+        document.getElementById('subTempDet').value = '';
+        // fetchData2();
+      }, 3000);
     }
   };
 
@@ -715,6 +736,16 @@ const TemplatesSubTable = (props) => {
             field="other_details"
             header="Details"
             body={viewOtherDetailsButton}
+            // sortable
+            // filter
+            // filterPlaceholder="Search by Name"
+            style={{ maxWidth: '100px' }}
+          ></Column>
+
+          <Column
+            field="map_rules"
+            header="Map/Rules"
+            body={viewMapRulesButton}
             // sortable
             // filter
             // filterPlaceholder="Search by Name"

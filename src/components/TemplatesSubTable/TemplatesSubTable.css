@@ -127,6 +127,21 @@
   background: white;
 }
 
+.mapRulesToPageButton {
+  color: rgb(97, 105, 106);
+  font-size: 1rem;
+  width: 60px;
+  /* height: 60px; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+  /* border: 1px solid black; */
+}
+.mapRulesToPageButton:hover {
+  scale: 1.1;
+}
+
 /* Global Search Input */
 .searchGroup1 {
   margin-right: 40px;
