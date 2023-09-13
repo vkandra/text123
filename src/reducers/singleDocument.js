@@ -16,7 +16,6 @@ import {
   DROPDOWN_SELECTED,
   UPDATE_TEMPLATE_DETAILS,
   SAVE_SUBTEMP_TEMPLATE_DETAILS,
-  // SAVE_BLOB_EXCEL_DETAILS,
 } from '../actions/singleDocument';
 
 const initialsingleDocumentState = {
@@ -76,79 +75,8 @@ const initialsingleDocumentState = {
   templateDetails: {},
   templateAllKeys: [],
   templateUnusedKeys: [],
-  templateDetails2: {
-    Bills: [
-      {
-        Template2: {
-          keys: ['', 'BALANCE', 'Credit Purchase'],
-          table: [],
-          raw: [],
-        },
-      },
-    ],
-    Report: [
-      {
-        Template1: {
-          keys: [
-            '',
-            '23% NET:',
-            'A + B - 1 (the increase in the index of Material and in the index of Labor represent 188% of the raises taken into account)',
-            'A=',
-            'Admin',
-            'Assuming a 2012 unit price of $70.88 (rounded to $7100 table below) for Ball end-wire rope. awaging. the formula calculation for 2015 1a as follows:',
-            'Host:',
-            'P2013',
-            'PINC will therefore absorb the increase according to section',
-            'Program Name',
-            'The difference 1a 0.2%. According to section 2.6. the increase would be applied as follows:',
-            'The difference is 18.5%. which falle under section 2.7. Hance, the sacalation will be applied as follown:',
-            'The numbers in Table 2 are used for hypothetical purposen.',
-            'The parties shall agree on apecific lot size per part number which may be amonded from',
-            'VAT:',
-          ],
-          table: [],
-          raw: [],
-        },
-        Hello: {
-          keys: [
-            '',
-            'BALANCE',
-            'Credit Purchase',
-            'Assuming a 2012 unit price of $70.88 (rounded to $7100 table below) for Ball end-wire rope. awaging. the formula calculation for 2015 1a as follows:',
-            'Host:',
-          ],
-          table: [],
-          raw: [],
-        },
-        World: {
-          keys: ['', 'BALANCE', 'Credit Purchase'],
-          table: [],
-          raw: [],
-        },
-        Default: {
-          keys: ['', 'BALANCE', 'Credit Purchase'],
-          table: [],
-          raw: [],
-        },
-      },
-    ],
-    others: [
-      {
-        Default: {
-          keys: ['', 'BALANCE', 'Credit Purchase'],
-          table: [],
-          raw: [],
-        },
-      },
-    ],
-  },
+
   saveSubTempDetails: [],
-  blobExcelDetails: {
-    storageAccountName: '',
-    containerName: '',
-    subdirectory_name: '',
-    inner_subdirectory_name: '',
-  },
 };
 
 export default function singleDocument(
@@ -261,12 +189,6 @@ export default function singleDocument(
         ...state,
         saveSubTempDetails: action.data,
       };
-    // case SAVE_BLOB_EXCEL_DETAILS:
-    //   // console.log(action.data);
-    //   return {
-    //     ...state,
-    //     blobExcelDetails: action.data,
-    //   };
 
     default:
       return state;

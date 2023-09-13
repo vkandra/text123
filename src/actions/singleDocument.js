@@ -21,8 +21,6 @@ export const DROPDOWN_SELECTED = 'DROPDOWN_SELECTED';
 export const UPDATE_TEMPLATE_DETAILS = 'UPDATE_TEMPLATE_DETAILS';
 export const SAVE_SUBTEMP_TEMPLATE_DETAILS = 'SAVE_SUBTEMP_TEMPLATE_DETAILS';
 
-// export const SAVE_BLOB_EXCEL_DETAILS = 'SAVE_BLOB_EXCEL_DETAILS';
-
 // ACTION CREATORS
 
 export function singleDocDetail(data) {
@@ -158,13 +156,6 @@ export function saveSubtempDetails(data) {
     data: data,
   };
 }
-// export function saveBlobExcelDetails(data) {
-//   // console.log(data);
-//   return {
-//     type: SAVE_BLOB_EXCEL_DETAILS,
-//     data: data,
-//   };
-// }
 
 // API Calls
 

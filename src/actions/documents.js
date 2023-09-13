@@ -14,6 +14,8 @@ export const UPDATE_SUBTEMPLATE_NAMES = 'UPDATE_SUBTEMPLATE_NAMES';
 export const SORT_BY_DATA = 'SORT_BY_DATA';
 export const SEARCH_BY_DATA = 'SEARCH_BY_DATA';
 
+export const SET_TEMPLATES_MAP_RULES_DATA = 'SET_TEMPLATES_MAP_RULES_DATA';
+
 // ACTION CREATORS
 export function assignAllReceivedDocumentsData(data, preferences) {
   return {
@@ -81,6 +83,13 @@ export function sortByData(data) {
 export function searchByData(data) {
   return {
     type: SEARCH_BY_DATA,
+    data: data,
+  };
+}
+
+export function setTemplatesMapRulesData(data) {
+  return {
+    type: SET_TEMPLATES_MAP_RULES_DATA,
     data: data,
   };
 }

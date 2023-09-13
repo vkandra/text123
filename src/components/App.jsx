@@ -80,6 +80,22 @@ const App = (props) => {
           path="/"
           element={isAuthenticated ? <InAppBody /> : <Homepage />}
         />
+        <Route
+          path="/text-extraction"
+          element={isAuthenticated ? <InAppBody /> : <Homepage />}
+        />
+        <Route
+          path="/configuration"
+          element={isAuthenticated ? <InAppBody /> : <Homepage />}
+        />
+        <Route
+          path="/templates"
+          element={isAuthenticated ? <InAppBody /> : <Homepage />}
+        />
+        <Route
+          path="/dashboard"
+          element={isAuthenticated ? <InAppBody /> : <Homepage />}
+        />
       </Routes>
     </Router>
   );

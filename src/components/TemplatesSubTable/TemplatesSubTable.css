@@ -139,6 +139,7 @@
   /* border: 1px solid black; */
 }
 .mapRulesToPageButton:hover {
+  color: #008000;
   scale: 1.1;
 }
 

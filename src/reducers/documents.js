@@ -9,6 +9,7 @@ import {
   UPDATE_SUBTEMPLATE_NAMES,
   SORT_BY_DATA,
   SEARCH_BY_DATA,
+  SET_TEMPLATES_MAP_RULES_DATA,
 } from '../actions/documents';
 
 const initialDocumentsState = {
@@ -94,6 +95,19 @@ const initialDocumentsState = {
 
   //
   rawDocumentsDataFromAPI: {},
+
+  //TEMPLATES MAP RULES
+  templateMapRule: {
+    overlay: false,
+    templateName: '',
+    templateId: '',
+    totalFiles: 0,
+    referenceFile: 'Not Set',
+    excelUploaded: false,
+    totalFields: 0,
+    totalFieldsMapped: 0,
+    totalFieldsRules: 0,
+  },
 };
 
 export default function documents(state = initialDocumentsState, action) {
@@ -153,6 +167,12 @@ export default function documents(state = initialDocumentsState, action) {
         // documentDetails: action.data,
       };
     case SEARCH_BY_DATA:
+      // console.log('ACTION_in_reducer ', action.data);
+      return {
+        ...state,
+        // documentDetails: action.data,
+      };
+    case SET_TEMPLATES_MAP_RULES_DATA:
       // console.log('ACTION_in_reducer ', action.data);
       return {
         ...state,

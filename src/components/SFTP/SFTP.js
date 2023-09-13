@@ -192,7 +192,7 @@ const SFTP = (props) => {
                   </div> */}
                   {/* {newSub ? null : ( */}
 
-                  <select
+                  {/* <select
                     id="sftpSelectedSubId"
                     className="sftpSelectedSubClass"
                   >
@@ -206,80 +206,11 @@ const SFTP = (props) => {
                         <option>{singletemplate.name}</option>
                       )
                     )}
-                  </select>
+                  </select> */}
 
                   {/* )} */}
                 </div>
               </div>
-              {/* {!newSub ? null : (
-                <div>
-                  <div className="modalSFTPContent">
-                    <div className="leftSectionModalAddNewSFTP">
-                      New Sub-Template :
-                    </div>
-                    <div className="rightSectionModalAddNewSFTP">
-                      <input
-                        placeholder="New sub-Template Name"
-                        name="newTemplate"
-                        className="newTempInput2"
-                        id="SFTPTempName"
-                      ></input>
-                    </div>
-                  </div>
-                  <div className="modalSFTPContent">
-                    <div className="leftSectionModalAddNewSFTP">
-                      Customer Name :
-                    </div>
-                    <div className="rightSectionModalAddNewSFTP">
-                      <input
-                        placeholder="Customer Name"
-                        name="Customer"
-                        className="newTempInput2"
-                        id="SFTPTempCust"
-                      ></input>
-                    </div>
-                  </div>
-                  <div className="modalSFTPContent">
-                    <div className="leftSectionModalAddNewSFTP">
-                      Department Name :
-                    </div>
-                    <div className="rightSectionModalAddNewSFTP">
-                      <input
-                        placeholder="Department Name"
-                        name="Department"
-                        className="newTempInput2"
-                        id="SFTPTempDept"
-                      ></input>
-                    </div>
-                  </div>
-                  <div className="modalSFTPContent">
-                    <div className="leftSectionModalAddNewSFTP">
-                      Project Name :
-                    </div>
-                    <div className="rightSectionModalAddNewSFTP">
-                      <input
-                        placeholder="Project Name"
-                        name="Project"
-                        className="newTempInput2"
-                        id="SFTPTempProj"
-                      ></input>
-                    </div>
-                  </div>
-                  <div className="modalSFTPContent">
-                    <div className="leftSectionModalAddNewSFTP">
-                      Other Details :
-                    </div>
-                    <div className="rightSectionModalAddNewSFTP">
-                      <textarea
-                        placeholder="Other Details"
-                        name="Others"
-                        className="newTempTextarea2"
-                        id="SFTPTempDet"
-                      ></textarea>
-                    </div>
-                  </div>
-                </div>
-              )} */}
             </div>
             <div className="modal-footer">
               <button

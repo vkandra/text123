@@ -7,6 +7,7 @@ import { addDeletefetchTemplateAPI } from '../../actions/singleDocument';
 import TemplatesSubTableFiles from '../TemplatesSubTableFiles/TemplatesSubTableFiles';
 import { setSubtemplatesFileTableData } from '../../actions/user';
 import { setTemplateData } from '../../actions/user';
+import TemplatesMapRules from '../TemplatesMapRules/TemplatesMapRules';
 
 import 'primeicons/primeicons.css';
 import 'primereact/resources/themes/lara-light-indigo/theme.css';
@@ -24,6 +25,8 @@ import { downloadZipOfExcelFilesAPI } from '../../actions/extractor';
 import uploadFileToBlob from './azureBlob';
 import { BounceLoader } from 'react-spinners';
 
+import { setTemplatesMapRulesData } from '../../actions/documents';
+
 const TemplatesSubTable = (props) => {
   const [favdata, setFavdata] = useState(<div></div>);
   const [otherDetails, setOtherDetails] = useState('');
@@ -34,6 +37,7 @@ const TemplatesSubTable = (props) => {
 
   //   const [globalFilterValue, setGlobalFilterValue] = useState('');
   const [searching, setSearching] = useState(false);
+
   const [filters, setFilters] = useState({
     global: { value: null, matchMode: FilterMatchMode.CONTAINS },
     name: {
@@ -343,6 +347,14 @@ const TemplatesSubTable = (props) => {
 
   const navigateToMapRulesPage = (rowData) => {
     console.log(rowData);
+    const { templateMapRule } = props.documents;
+    console.log(templateMapRule);
+    templateMapRule.overlay = true;
+    templateMapRule.templateName = rowData.name;
+    templateMapRule.templateId = rowData.sub_template_id;
+    templateMapRule.totalFiles = rowData.total_files;
+    templateMapRule.excelUploaded = true;
+    props.dispatch(setTemplatesMapRulesData(templateMapRule));
   };
 
   // Global Search Input
@@ -490,6 +502,7 @@ const TemplatesSubTable = (props) => {
 
   return (
     <div className="templatesSubTable">
+      {props.documents.templateMapRule.overlay && <TemplatesMapRules />}
       {/* Add New Template Modal */}
       <div
         className="modal fade"
@@ -639,161 +652,165 @@ const TemplatesSubTable = (props) => {
       </div>
       {/* Add New Template Modal Ends */}
 
-      <div className="headerComponent">
-        <div className="subtempTabLabel">Templates List - </div>
-        <div className="addNewSubTempButton">
-          <div className="addNewSubicon">
-            <i className="fa-solid fa-circle-plus"></i>
+      {!props.documents.templateMapRule.overlay && (
+        <>
+          <div className="headerComponent">
+            <div className="subtempTabLabel">Templates List - </div>
+            <div className="addNewSubTempButton">
+              <div className="addNewSubicon">
+                <i className="fa-solid fa-circle-plus"></i>
+              </div>
+              <div
+                className="addNewSubLabel"
+                data-toggle="modal"
+                data-target="#AddNewTemplateModal"
+                // onClick={addNewSubTemplate}
+              >
+                Add New&nbsp;
+              </div>
+            </div>
+            <div className="searchGroup1">
+              <input
+                type="text"
+                id="searchName"
+                placeholder="Search Keyword"
+                onChange={handleChange}
+              ></input>
+              <div id="clearSearchField" onClick={clearSearchText}>
+                {searching ? (
+                  <FontAwesomeIcon icon={faCircleXmark} id="searchIc" />
+                ) : (
+                  <FontAwesomeIcon icon={faMagnifyingGlass} id="searchIc" />
+                )}
+              </div>
+              <div className="refreshIcDiv" onClick={fetchData2}>
+                <i className="fi fi-rr-refresh"></i>
+              </div>
+            </div>
           </div>
-          <div
-            className="addNewSubLabel"
-            data-toggle="modal"
-            data-target="#AddNewTemplateModal"
-            // onClick={addNewSubTemplate}
-          >
-            Add New&nbsp;
+          <div className="tableSubTemp">
+            <DataTable
+              value={props.user.subtemplatesData}
+              responsiveLayout="scroll"
+              paginator
+              rows={10}
+              paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
+              rowsPerPageOptions={[10, 20, 30]}
+              size="small"
+              // selection={selectedProduct1}
+              // onSelectionChange={(e) => setSelectedProduct1(e.value)}
+              //   header={header}
+              filters={filters}
+              scrollable
+              scrollHeight="62vh"
+              emptyMessage="No Templates found!"
+              currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+              className="tableSubTemp1"
+            >
+              <Column
+                selectionMode="multiple"
+                className="checkboxCell"
+                style={{
+                  maxWidth: '3em',
+                  display: 'none',
+                }}
+              ></Column>
+              <Column
+                field="name"
+                header="Template"
+                sortable
+                filter
+                filterPlaceholder="Search by Name"
+                // style={{ minWidth: '8rem' }}
+              ></Column>
+              <Column
+                field="customer_name"
+                header="Cust. Name"
+                sortable
+                filter
+                filterPlaceholder="Search by Name"
+                // style={{ minWidth: '8rem' }}
+              ></Column>
+              <Column
+                field="department_name"
+                header="Dept. Name"
+                sortable
+                filter
+                filterPlaceholder="Search by Name"
+                // style={{ minWidth: '8rem' }}
+              ></Column>
+              <Column
+                field="project_name"
+                header="Project"
+                sortable
+                filter
+                filterPlaceholder="Search by Name"
+                // style={{ minWidth: '8rem' }}
+              ></Column>
+              <Column
+                field="other_details"
+                header="Details"
+                body={viewOtherDetailsButton}
+                // sortable
+                // filter
+                // filterPlaceholder="Search by Name"
+                style={{ maxWidth: '100px' }}
+              ></Column>
+
+              <Column
+                field="map_rules"
+                header="Map/Rules"
+                body={viewMapRulesButton}
+                // sortable
+                // filter
+                // filterPlaceholder="Search by Name"
+                style={{ maxWidth: '100px' }}
+              ></Column>
+
+              <Column
+                field="total_keys"
+                header="Fav. Keys"
+                sortable
+                dataType="numeric"
+                filterPlaceholder="Search by Qty."
+                className="numPart"
+                body={viewFavButton}
+                // onClick={viewFavTable}
+                style={{ maxWidth: '130px' }}
+                filter
+              ></Column>
+
+              <Column
+                field="total_files"
+                header="Files"
+                sortable
+                dataType="numeric"
+                filterPlaceholder="Search by Qty."
+                className="numPart"
+                body={viewFilesButton}
+                style={{ maxWidth: '130px' }}
+                filter
+              ></Column>
+
+              <Column
+                headerStyle={{
+                  width: '4rem',
+                  textAlign: 'center',
+                  maxWidth: '4rem',
+                }}
+                bodyStyle={{
+                  textAlign: 'center',
+                  overflow: 'visible',
+                  width: '4rem',
+                  maxWidth: '4rem',
+                }}
+                body={deleteSubTemplateButton}
+                // onClick={deleteSubTempCheck}
+              />
+            </DataTable>
           </div>
-        </div>
-        <div className="searchGroup1">
-          <input
-            type="text"
-            id="searchName"
-            placeholder="Search Keyword"
-            onChange={handleChange}
-          ></input>
-          <div id="clearSearchField" onClick={clearSearchText}>
-            {searching ? (
-              <FontAwesomeIcon icon={faCircleXmark} id="searchIc" />
-            ) : (
-              <FontAwesomeIcon icon={faMagnifyingGlass} id="searchIc" />
-            )}
-          </div>
-          <div className="refreshIcDiv" onClick={fetchData2}>
-            <i className="fi fi-rr-refresh"></i>
-          </div>
-        </div>
-      </div>
-      <div className="tableSubTemp">
-        <DataTable
-          value={props.user.subtemplatesData}
-          responsiveLayout="scroll"
-          paginator
-          rows={10}
-          paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
-          rowsPerPageOptions={[10, 20, 30]}
-          size="small"
-          // selection={selectedProduct1}
-          // onSelectionChange={(e) => setSelectedProduct1(e.value)}
-          //   header={header}
-          filters={filters}
-          scrollable
-          scrollHeight="62vh"
-          emptyMessage="No Templates found!"
-          currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
-          className="tableSubTemp1"
-        >
-          <Column
-            selectionMode="multiple"
-            className="checkboxCell"
-            style={{
-              maxWidth: '3em',
-              display: 'none',
-            }}
-          ></Column>
-          <Column
-            field="name"
-            header="Template"
-            sortable
-            filter
-            filterPlaceholder="Search by Name"
-            // style={{ minWidth: '8rem' }}
-          ></Column>
-          <Column
-            field="customer_name"
-            header="Cust. Name"
-            sortable
-            filter
-            filterPlaceholder="Search by Name"
-            // style={{ minWidth: '8rem' }}
-          ></Column>
-          <Column
-            field="department_name"
-            header="Dept. Name"
-            sortable
-            filter
-            filterPlaceholder="Search by Name"
-            // style={{ minWidth: '8rem' }}
-          ></Column>
-          <Column
-            field="project_name"
-            header="Project"
-            sortable
-            filter
-            filterPlaceholder="Search by Name"
-            // style={{ minWidth: '8rem' }}
-          ></Column>
-          <Column
-            field="other_details"
-            header="Details"
-            body={viewOtherDetailsButton}
-            // sortable
-            // filter
-            // filterPlaceholder="Search by Name"
-            style={{ maxWidth: '100px' }}
-          ></Column>
-
-          <Column
-            field="map_rules"
-            header="Map/Rules"
-            body={viewMapRulesButton}
-            // sortable
-            // filter
-            // filterPlaceholder="Search by Name"
-            style={{ maxWidth: '100px' }}
-          ></Column>
-
-          <Column
-            field="total_keys"
-            header="Fav. Keys"
-            sortable
-            dataType="numeric"
-            filterPlaceholder="Search by Qty."
-            className="numPart"
-            body={viewFavButton}
-            // onClick={viewFavTable}
-            style={{ maxWidth: '130px' }}
-            filter
-          ></Column>
-
-          <Column
-            field="total_files"
-            header="Files"
-            sortable
-            dataType="numeric"
-            filterPlaceholder="Search by Qty."
-            className="numPart"
-            body={viewFilesButton}
-            style={{ maxWidth: '130px' }}
-            filter
-          ></Column>
-
-          <Column
-            headerStyle={{
-              width: '4rem',
-              textAlign: 'center',
-              maxWidth: '4rem',
-            }}
-            bodyStyle={{
-              textAlign: 'center',
-              overflow: 'visible',
-              width: '4rem',
-              maxWidth: '4rem',
-            }}
-            body={deleteSubTemplateButton}
-            // onClick={deleteSubTempCheck}
-          />
-        </DataTable>
-      </div>
+        </>
+      )}
     </div>
   );
 };

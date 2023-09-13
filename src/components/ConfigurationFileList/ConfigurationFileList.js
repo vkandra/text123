@@ -4,6 +4,7 @@ import { connect } from 'react-redux/es/exports';
 import squareCheck from '../../Pictures/square-check-solid.svg';
 import squareBlank from '../../Pictures/square-regular.svg';
 import squareMinus from '../../Pictures/square-minus-solid.svg';
+import { Link } from 'react-router-dom';
 
 import {
   changeTabOperation,
@@ -681,13 +682,15 @@ const ConfigurationFileList = (props) => {
           ) : (
             <div className="emptyButtonDiv"></div>
           )}
-          <button
-            className="viewExtractedDataButton configurationFileListFourButtons"
-            onClick={() => changeToTextExtractionTab()}
-          >
-            <i className="fi fi-rr-eye"></i> &nbsp;{' '}
-            {props.themeLang.languageWords.View}
-          </button>
+          <Link to="/text-extraction" style={{ textDecoration: 'none' }}>
+            <button
+              className="viewExtractedDataButton configurationFileListFourButtons"
+              onClick={() => changeToTextExtractionTab()}
+            >
+              <i className="fi fi-rr-eye"></i> &nbsp;{' '}
+              {props.themeLang.languageWords.View}
+            </button>
+          </Link>
           <button
             className="deleteExtractedFileButton configurationFileListFourButtons"
             onClick={() => deleteFilesProcess()}
