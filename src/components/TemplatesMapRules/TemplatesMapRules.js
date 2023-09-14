@@ -21,11 +21,13 @@ const TemplatesMapRules = (props) => {
   };
   return (
     <div className="templatesMapRules">
-      <div className="overlay">
-        <div className="overlay-content">
-          <h2>Overlay Content</h2>
-          <p>This is the overlay content that appears over the main page.</p>
-          <button onClick={navigateBackToTemplatesPage}>Close Overlay</button>
+      <div id="overlayHeader">
+        <div onClick={navigateBackToTemplatesPage} id="overlayBackToTemplates1">
+          <i class="fa-solid fa-circle-left"></i>
+        </div>
+        <div id="overlayLabel"> Template Mapping and Rules</div>
+        <div onClick={navigateBackToTemplatesPage} id="overlayBackToTemplates2">
+          <i class="fa-solid fa-xmark"></i>
         </div>
       </div>
     </div>

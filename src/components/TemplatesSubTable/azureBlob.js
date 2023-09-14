@@ -2,7 +2,7 @@ import { BlobServiceClient } from '@azure/storage-blob';
 
 const sasToken =
   process.env.storagesastoken ||
-  '?sv=2021-06-08&ss=b&srt=sco&sp=rwdlaciyx&se=2025-12-31T12:00:50Z&st=2023-02-14T04:00:50Z&spr=https,http&sig=bwh%2BH2GsBEjNImmf11CNzHclVXKfZnjXKhUR%2B7jY5OI%3D'; // Fill string with your SAS token
+  'sp=racwdli&st=2023-09-13T12:24:36Z&se=2025-03-30T20:24:36Z&sv=2022-11-02&sr=c&sig=5M8Zlztwr1X1vArXCUoZNT7yaWkfvzg1T1i9ciP3Y60%3D'; // Fill string with your SAS token
 const containerName = `av123`;
 const storageAccountName = process.env.storageresourcename || 'texextraction'; // Fill string with your Storage resource name
 
@@ -17,8 +17,12 @@ const getBlobsInContainer = async (containerClient, newContainerName) => {
 
   // get list of blobs in container
   // eslint-disable-next-line
+  console.log(containerClient);
+  console.log(containerClient.listBlobsFlat());
   for await (const blob of containerClient.listBlobsFlat()) {
     // if image is public, just construct URL
+    console.log(blob);
+    console.log(blob.name);
     returnedBlobUrls.push(
       `https://${storageAccountName}.blob.core.windows.net/${newContainerName}/${blob.name}`
     );
@@ -55,10 +59,10 @@ const uploadFileToBlob = async (file, blobExcelDetails) => {
 
   // upload file
   await createBlobInContainer(containerClient, file);
-
+  console.log(blobExcelDetails);
   // get list of blobs in container
-  // return getBlobsInContainer(containerClient, newContainerName);
-  return true;
+  return getBlobsInContainer(containerClient, newContainerName);
+  // return true;
 };
 // </snippet_uploadFileToBlob>
 

@@ -17,8 +17,12 @@ const getBlobsInContainer = async (containerClient) => {
 
   // get list of blobs in container
   // eslint-disable-next-line
+  // console.log(containerClient);
+  // console.log(containerClient.listBlobsFlat());
   for await (const blob of containerClient.listBlobsFlat()) {
     // if image is public, just construct URL
+    // console.log(blob);
+    // console.log(blob.name);
     returnedBlobUrls.push(
       `https://${storageAccountName}.blob.core.windows.net/${containerName}/${blob.name}`
     );

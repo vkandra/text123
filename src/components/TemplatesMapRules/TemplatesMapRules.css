@@ -1,0 +1,42 @@
+#overlayHeader {
+  /* border: 1px solid black; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#overlayLabel {
+  /* border: 1px solid brown; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 95%;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #384988;
+}
+#overlayBackToTemplates1 {
+  border: 1px solid #ccc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 3px 10px;
+  border-radius: 5px;
+  color: #008000;
+}
+#overlayBackToTemplates1:hover {
+  background: #eeeeee;
+  cursor: pointer;
+}
+#overlayBackToTemplates2 {
+  border: 1px solid #ccc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 3px 5px;
+  border-radius: 3px;
+  color: #008000;
+}
+#overlayBackToTemplates2:hover {
+  background: #eeeeee;
+  cursor: pointer;
+}
