@@ -437,7 +437,7 @@ const TemplatesSubTable = (props) => {
       )
       .then((res) => {
         console.log('Response -> ', res.data);
-        uploadFile(excelFile[0], res.data);
+        uploadFile(excelFile[0], res.data, data);
         // dispatch(saveBlobExcelDetails(res.data));
       })
       .catch(function (error) {
@@ -464,13 +464,13 @@ const TemplatesSubTable = (props) => {
     }
   };
 
-  const uploadFile = (file, blobdata) => {
+  const uploadFile = (file, blobdata, templateData) => {
     setError(false);
     setSuccess(false);
 
     console.log('Preparing the upload');
     console.log(file);
-    let fileUploadStatus = uploadOnly(file, blobdata);
+    let fileUploadStatus = uploadOnly(file, blobdata, templateData);
     if (fileUploadStatus) {
       console.log(file);
       setTimeout(() => {
@@ -486,16 +486,38 @@ const TemplatesSubTable = (props) => {
     }
   };
 
-  const uploadOnly = async (file, blobdata) => {
+  const uploadOnly = async (file, blobdata, templateData) => {
     await uploadFileToBlob(file, blobdata)
       .then((data) => {
         setSuccess(true);
         console.log('Link from blob -> ', data);
+        let data1 = {
+          storage_account_name: blobdata.storageAccountName,
+          container_name: blobdata.containerName,
+          subdirectory_name: blobdata.subdirectory_name,
+          inner_subdirectory_name: blobdata.inner_subdirectory_name,
+          blob_name: file.name,
+          userid: props.user.token,
+          template_id: blobdata.inner_subdirectory_name,
+          templatename: templateData.sub_template,
+        };
+        console.log(data1);
+        axios
+          .post(
+            `https://functionstexextraction.azurewebsites.net/api/mappingprocess?code=R_R-4meQV6aMVF_8dDq7CeIXeD5ggq9zIFaFGFEJ2--qAzFuAEljYw==`,
+            data1
+          )
+          .then((res) => {
+            console.log(res);
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
         return true;
       })
       .catch((err) => {
         setError(true);
-        console.log(JSON.stringify(error));
+        console.log('Could Not Upload Excel -> ', JSON.stringify(error));
         return false;
       });
   };

@@ -61,8 +61,8 @@ const uploadFileToBlob = async (file, blobExcelDetails) => {
   await createBlobInContainer(containerClient, file);
   console.log(blobExcelDetails);
   // get list of blobs in container
-  return getBlobsInContainer(containerClient, newContainerName);
-  // return true;
+  // return getBlobsInContainer(containerClient, newContainerName);
+  return true;
 };
 // </snippet_uploadFileToBlob>
 
