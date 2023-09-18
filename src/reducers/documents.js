@@ -108,6 +108,64 @@ const initialDocumentsState = {
     totalFieldsMapped: 0,
     totalFieldsRules: 0,
   },
+  templateMapRuleData: {
+    user_id: 'qwewqw',
+    filename: 'abc.pdf',
+    fileid: '',
+    templatename: 'Solitaire',
+    template_id: 'p102o3i4',
+    all_excel_keys: [
+      {
+        id: 'a1',
+        excel_key: 'ABC',
+        map_cytext_key: '',
+        map_cytext_value: '',
+        map_cytext_key_page: '',
+        map_cytext_key_repeat: '',
+        prompt: '',
+        uniq_id: '',
+        selection: 'map', // can also be 'prompt'
+      },
+      {
+        id: 'a2',
+        excel_key: 'DEF',
+        map_cytext_key: 'def',
+        map_cytext_value: '222',
+        map_cytext_key_page: 1,
+        map_cytext_key_repeat: 2,
+        prompt: '',
+        uniq_id: '',
+        selection: 'map', // can also be 'prompt'
+      },
+      {
+        id: 'a3',
+        excel_key: 'GHI',
+        map_cytext_key: '',
+        map_cytext_value: '',
+        map_cytext_key_page: -1,
+        map_cytext_key_repeat: -1,
+        prompt: 'GHI',
+        uniq_id: 'loooll00',
+        selection: 'prompt', // can also be 'map'
+      },
+    ],
+    all_cytext_keys: [
+      {
+        cytext_key: 'abc',
+        cytext_value: 'abc',
+        page_no: 1,
+        repeat_no: 1,
+        map_status: 'used',
+      },
+      {
+        cytext_key: 'def',
+        cytext_value: 'def',
+        page_no: 1,
+        repeat_no: 2,
+        map_status: 'not_used',
+      },
+    ],
+  },
 };
 
 export default function documents(state = initialDocumentsState, action) {

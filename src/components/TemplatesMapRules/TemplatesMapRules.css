@@ -40,3 +40,29 @@
   background: #eeeeee;
   cursor: pointer;
 }
+#midOverlay {
+  /* border: 1px solid black; */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding-top: 5px;
+}
+#midOverlayTempName {
+  font-size: 0.8rem;
+}
+#midOverlayFileName {
+  font-size: 0.8rem;
+}
+
+#overlayTableid {
+  /* border: 1px solid #ccc; */
+  width: 100%;
+}
+
+.overlayTableRow1cl th {
+  /* display: flex; */
+  text-align: center;
+  font-size: 0.85rem;
+  border: 1px solid #ccc;
+}

@@ -1,0 +1,50 @@
+.templateMapRulesRows {
+  border-bottom: 1px solid #ccc;
+}
+.templateMapRulesRows td {
+  border: 1px solid #ccc;
+}
+.tempMapRulesRowRuleId {
+  text-align: center;
+  font-size: 0.8rem;
+  width: 60px;
+}
+.tempMapRulesRowExcelKey {
+  font-size: 0.85rem;
+  padding-left: 4px;
+}
+.tempMapRulesRowMapNPrompttd {
+  width: 120px;
+}
+.tempMapRulesRowMapNPrompt {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.tempMapRulesRowMapNPrompt div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 4px;
+  font-size: 0.8rem;
+  margin: 4px 3px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.selectedSource {
+  background: lightgreen;
+}
+.tempMapRulesRowEdit {
+  text-align: center;
+  font-size: 0.9rem;
+  color: #696969;
+  cursor: pointer;
+  width: 40px;
+}
+.tempMapRulesRowEdit:hover {
+  text-align: center;
+  font-size: 0.9rem;
+  color: #696969;
+  color: black;
+}

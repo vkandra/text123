@@ -2,6 +2,7 @@ import './TemplatesMapRules.css';
 import React from 'react';
 import { connect } from 'react-redux/es/exports';
 import { setTemplatesMapRulesData } from '../../actions/documents';
+import TemplateMapRulesRows from '../TemplateMapRulesRows/TemplateMapRulesRows';
 
 const TemplatesMapRules = (props) => {
   const navigateBackToTemplatesPage = () => {
@@ -29,6 +30,35 @@ const TemplatesMapRules = (props) => {
         <div onClick={navigateBackToTemplatesPage} id="overlayBackToTemplates2">
           <i class="fa-solid fa-xmark"></i>
         </div>
+      </div>
+      <div id="midOverlay">
+        <div id="midOverlayTempName">
+          Template Name: {props.documents.templateMapRuleData.templatename}{' '}
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Reference File:{' '}
+          {props.documents.templateMapRuleData.filename}
+        </div>
+        <div id="midOverlayFileName"></div>
+      </div>
+      <div id="overlayTable">
+        <table id="overlayTableid">
+          <thead>
+            <tr id="overlayTableRow1" className="overlayTableRow1cl">
+              <th>Rule ID</th>
+              <th>I/P Attr.</th>
+              <th>Source</th>
+              <th>O/P Field</th>
+              <th>O/P Value</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            {props.documents.templateMapRuleData.all_excel_keys.map(
+              (rowData, index) => (
+                <TemplateMapRulesRows rowData={rowData} key={rowData.id} />
+              )
+            )}
+          </tbody>
+        </table>
       </div>
     </div>
   );
