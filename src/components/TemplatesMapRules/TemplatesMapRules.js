@@ -5,30 +5,18 @@ import axios from 'axios';
 import {
   setTemplatesMapRulesData,
   setTemplateRuleData,
+  singleTemplateMapRulesDataAPI,
 } from '../../actions/documents';
 import TemplateMapRulesRows from '../TemplateMapRulesRows/TemplateMapRulesRows';
 
 const TemplatesMapRules = (props) => {
-  const [load, setLoad] = useState(true);
   useEffect(() => {
     const { templateMapRule } = props.documents;
     const data = {
       user_id: props.user.token,
       template_id: templateMapRule.templateId,
     };
-    axios
-      .post(
-        `https://functionstexextraction.azurewebsites.net/api/mappingscreendata`,
-        data
-      )
-      .then((res) => {
-        console.log(res.data);
-        // props.dispatch(setTemplateRuleData(res.data));
-        setLoad(false);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+    props.dispatch(singleTemplateMapRulesDataAPI(data));
   }, []);
 
   const navigateBackToTemplatesPage = () => {
@@ -58,7 +46,7 @@ const TemplatesMapRules = (props) => {
           <i class="fa-solid fa-xmark"></i>
         </div>
       </div>
-      {load ? (
+      {props.documents.templateMapRuleLoad ? (
         <div>Loading Data...</div>
       ) : (
         <>
@@ -85,7 +73,10 @@ const TemplatesMapRules = (props) => {
               <tbody>
                 {props.documents.templateMapRuleData.all_excel_keys.map(
                   (rowData, index) => (
-                    <TemplateMapRulesRows rowData={rowData} key={rowData.id} />
+                    <TemplateMapRulesRows
+                      rowData={rowData}
+                      key={rowData.rule_id}
+                    />
                   )
                 )}
               </tbody>

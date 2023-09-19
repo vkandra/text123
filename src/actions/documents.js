@@ -14,6 +14,7 @@ export const UPDATE_SUBTEMPLATE_NAMES = 'UPDATE_SUBTEMPLATE_NAMES';
 export const SORT_BY_DATA = 'SORT_BY_DATA';
 export const SEARCH_BY_DATA = 'SEARCH_BY_DATA';
 
+export const SET_TEMPLATE_MAP_RULE_LOAD = 'SET_TEMPLATE_MAP_RULE_LOAD';
 export const SET_TEMPLATES_MAP_RULES_DATA = 'SET_TEMPLATES_MAP_RULES_DATA';
 export const SET_TEMPLATE_RULE_DATA = 'SET_TEMPLATE_RULE_DATA';
 
@@ -84,6 +85,13 @@ export function sortByData(data) {
 export function searchByData(data) {
   return {
     type: SEARCH_BY_DATA,
+    data: data,
+  };
+}
+
+export function setTemplateMapRuleLoad(data) {
+  return {
+    type: SET_TEMPLATE_MAP_RULE_LOAD,
     data: data,
   };
 }
@@ -235,6 +243,28 @@ export function sftpAdddataAPI(data) {
       )
       .then(function (response) {
         console.log(response.data);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
+}
+
+export function singleTemplateMapRulesDataAPI(data) {
+  return (dispatch) => {
+    console.log(data);
+    dispatch(setTemplateMapRuleLoad(true));
+
+    axios
+      .post(
+        `https://functionstexextraction.azurewebsites.net/api/mappingscreendata`,
+        data
+      )
+      .then((res) => {
+        console.log(res.data);
+        dispatch(setTemplateRuleData(res.data));
+        dispatch(setTemplateMapRuleLoad(false));
+        // setLoad(false);
       })
       .catch(function (error) {
         console.log(error);

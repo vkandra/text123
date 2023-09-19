@@ -9,6 +9,7 @@ import {
   UPDATE_SUBTEMPLATE_NAMES,
   SORT_BY_DATA,
   SEARCH_BY_DATA,
+  SET_TEMPLATE_MAP_RULE_LOAD,
   SET_TEMPLATES_MAP_RULES_DATA,
   SET_TEMPLATE_RULE_DATA,
 } from '../actions/documents';
@@ -109,7 +110,7 @@ const initialDocumentsState = {
     totalFieldsMapped: 0,
     totalFieldsRules: 0,
   },
-  templateMapRuleData_1: {
+  templateMapRuleData: {
     user_id: '',
     filename: '',
     fileid: '',
@@ -118,7 +119,8 @@ const initialDocumentsState = {
     all_excel_keys: [],
     all_cytext_keys: [],
   },
-  templateMapRuleData: {
+  templateMapRuleLoad: false,
+  templateMapRuleData_1: {
     user_id: 'qwewqw',
     filename: 'abc.pdf',
     fileid: '',
@@ -128,11 +130,12 @@ const initialDocumentsState = {
       {
         id: 'a1',
         excel_key: 'ABC',
-        map_cytext_key: '',
+        map_cytext_key: 'hello1',
         map_cytext_value: '',
         map_cytext_key_page: '',
         map_cytext_key_repeat: '',
-        prompt: '',
+        prompt: 'Hello1',
+        prompt_output: 'World1',
         uniq_id: '',
         selection: 'map', // can also be 'prompt'
       },
@@ -143,18 +146,20 @@ const initialDocumentsState = {
         map_cytext_value: '222',
         map_cytext_key_page: 1,
         map_cytext_key_repeat: 2,
-        prompt: '',
+        prompt: 'Hello2',
+        prompt_output: 'World2',
         uniq_id: '',
         selection: 'map', // can also be 'prompt'
       },
       {
         id: 'a3',
         excel_key: 'GHI',
-        map_cytext_key: '',
+        map_cytext_key: 'hello3',
         map_cytext_value: '',
         map_cytext_key_page: -1,
         map_cytext_key_repeat: -1,
-        prompt: 'GHI',
+        prompt: 'Hello3',
+        prompt_output: 'World3',
         uniq_id: 'loooll00',
         selection: 'prompt', // can also be 'map'
       },
@@ -172,6 +177,13 @@ const initialDocumentsState = {
         cytext_value: 'def',
         page_no: 1,
         repeat_no: 2,
+        map_status: 'not_used',
+      },
+      {
+        cytext_key: 'ghi',
+        cytext_value: 'ghi',
+        page_no: 1,
+        repeat_no: 1,
         map_status: 'not_used',
       },
     ],
@@ -251,6 +263,13 @@ export default function documents(state = initialDocumentsState, action) {
       return {
         ...state,
         // documentDetails: action.data,
+      };
+
+    case SET_TEMPLATE_MAP_RULE_LOAD:
+      // console.log('ACTION_in_reducer ', action.data);
+      return {
+        ...state,
+        templateMapRuleLoad: action.data,
       };
 
     default:

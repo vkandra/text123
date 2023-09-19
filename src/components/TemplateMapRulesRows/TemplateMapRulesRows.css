@@ -7,7 +7,10 @@
 .tempMapRulesRowRuleId {
   text-align: center;
   font-size: 0.8rem;
-  width: 60px;
+  width: 80px;
+}
+.tempMapRulesRowExcelKey {
+  width: 20%;
 }
 .bg-edited {
   background: #f4f4f4;
@@ -19,6 +22,35 @@
 .tempMapRulesRowMapNPrompttd {
   width: 120px;
 }
+.tempMapRulesRowIOPField {
+  width: 600px;
+  text-align: center;
+  padding-left: 6px;
+}
+.tempMapRulesRowIOPFieldOdiv {
+  /* border: 1px solid black; */
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 350px;
+  font-size: 0.8rem;
+}
+.tempMapRulesRowIOPFieldSelectKeysOdiv {
+  /* border: 1px solid black; */
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 350px;
+}
+.tempMapRulesRowIOPFieldSelectKeys {
+  width: 350px;
+  /* font-size: 0.8rem; */
+  border: 1px solid #ccc;
+  cursor: pointer;
+}
+.tempMapRulesRowIOPFieldSelectKeys:focus {
+  outline: none;
+}
 .tempMapRulesRowMapNPrompt {
   display: flex;
   justify-content: center;
@@ -29,7 +61,8 @@
   justify-content: center;
   align-items: center;
   padding: 4px;
-  font-size: 0.8rem;
+  font-size: 0.75rem;
+  font-weight: 500;
   margin: 4px 3px;
   border: 1px solid #ccc;
   border-radius: 10px;
@@ -38,11 +71,16 @@
 .selectedSource {
   background: lightgreen;
 }
+.tempMapRulesRowIOPValue {
+  width: 20%;
+  font-size: 0.8rem;
+  padding: 4px;
+}
 .tempMapRulesRowEdit {
   text-align: center;
   font-size: 0.9rem;
   color: #696969;
-  width: 80px;
+  width: 50px;
 }
 .tempMapRulesRowEditODiv {
   display: flex;
