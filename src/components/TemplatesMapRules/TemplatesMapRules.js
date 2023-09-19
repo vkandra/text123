@@ -23,7 +23,7 @@ const TemplatesMapRules = (props) => {
       )
       .then((res) => {
         console.log(res.data);
-        props.dispatch(setTemplateRuleData(res.data));
+        // props.dispatch(setTemplateRuleData(res.data));
         setLoad(false);
       })
       .catch(function (error) {

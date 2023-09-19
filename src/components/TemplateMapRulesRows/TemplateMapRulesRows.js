@@ -1,6 +1,8 @@
 import './TemplateMapRulesRows.css';
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux/es/exports';
+import editIcon from '../../Pictures/pencil-solid.svg';
+import saveIcon from '../../Pictures/floppy-disk-regular.svg';
 
 const TemplateMapRulesRows = (props) => {
   const [source, setSource] = useState('map');
@@ -40,9 +42,9 @@ const TemplateMapRulesRows = (props) => {
   };
 
   return (
-    <tr className="templateMapRulesRows">
+    <tr className={`templateMapRulesRows ${edited ? 'bg-edited' : null}`}>
       <td
-        className={`tempMapRulesRowRuleId ${edited ? 'bg-edited' : null}`}
+        className="tempMapRulesRowRuleId"
         id={`tempMapRulesRowRuleId-${props.rowData.id}`}
       >
         {props.rowData.id}
@@ -73,17 +75,17 @@ const TemplateMapRulesRows = (props) => {
       <td>{props.rowData.id}</td>
       <td>{props.rowData.id}</td>
       <td className="tempMapRulesRowEdit">
-        <div className="tempMapRulesRowEditODiv">
-          {edited ? (
-            <div className="tempMapRulesRowEditIDiv">
-              <i class="fa-regular fa-floppy-disk"></i>
-            </div>
-          ) : (
-            <div className="tempMapRulesRowEditIDiv">
-              <i class="fa-solid fa-pencil"></i>
-            </div>
-          )}
-        </div>
+        {/* <div className="tempMapRulesRowEditODiv"> */}
+        {edited ? (
+          <div className="tempMapRulesRowEditIDiv">
+            <img src={saveIcon} alt="Save" />
+          </div>
+        ) : (
+          <div className="tempMapRulesRowEditIDiv">
+            <img src={editIcon} alt="Edit" />
+          </div>
+        )}
+        {/* </div> */}
       </td>
     </tr>
   );

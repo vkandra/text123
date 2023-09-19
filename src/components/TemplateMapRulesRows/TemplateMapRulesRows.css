@@ -10,7 +10,7 @@
   width: 60px;
 }
 .bg-edited {
-  background: #f6cbcb;
+  background: #f4f4f4;
 }
 .tempMapRulesRowExcelKey {
   font-size: 0.85rem;
@@ -55,7 +55,12 @@
   align-items: center;
   cursor: pointer;
   margin: 0px 6px;
+  opacity: 0.75;
 }
 .tempMapRulesRowEditIDiv:hover {
   color: black;
+  opacity: 1;
+}
+.tempMapRulesRowEditIDiv img {
+  height: 15px;
 }

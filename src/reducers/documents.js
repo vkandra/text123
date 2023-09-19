@@ -109,7 +109,7 @@ const initialDocumentsState = {
     totalFieldsMapped: 0,
     totalFieldsRules: 0,
   },
-  templateMapRuleData: {
+  templateMapRuleData_1: {
     user_id: '',
     filename: '',
     fileid: '',
@@ -118,7 +118,7 @@ const initialDocumentsState = {
     all_excel_keys: [],
     all_cytext_keys: [],
   },
-  templateMapRuleData_1_dummy: {
+  templateMapRuleData: {
     user_id: 'qwewqw',
     filename: 'abc.pdf',
     fileid: '',
