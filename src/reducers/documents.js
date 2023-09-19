@@ -10,6 +10,7 @@ import {
   SORT_BY_DATA,
   SEARCH_BY_DATA,
   SET_TEMPLATES_MAP_RULES_DATA,
+  SET_TEMPLATE_RULE_DATA,
 } from '../actions/documents';
 
 const initialDocumentsState = {
@@ -109,6 +110,15 @@ const initialDocumentsState = {
     totalFieldsRules: 0,
   },
   templateMapRuleData: {
+    user_id: '',
+    filename: '',
+    fileid: '',
+    templatename: '',
+    template_id: '',
+    all_excel_keys: [],
+    all_cytext_keys: [],
+  },
+  templateMapRuleData_1_dummy: {
     user_id: 'qwewqw',
     filename: 'abc.pdf',
     fileid: '',
@@ -229,6 +239,12 @@ export default function documents(state = initialDocumentsState, action) {
       return {
         ...state,
         // documentDetails: action.data,
+      };
+    case SET_TEMPLATE_RULE_DATA:
+      console.log('ACTION_in_reducer ', action.data);
+      return {
+        ...state,
+        templateMapRuleData: action.data,
       };
     case SET_TEMPLATES_MAP_RULES_DATA:
       // console.log('ACTION_in_reducer ', action.data);

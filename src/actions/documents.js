@@ -15,6 +15,7 @@ export const SORT_BY_DATA = 'SORT_BY_DATA';
 export const SEARCH_BY_DATA = 'SEARCH_BY_DATA';
 
 export const SET_TEMPLATES_MAP_RULES_DATA = 'SET_TEMPLATES_MAP_RULES_DATA';
+export const SET_TEMPLATE_RULE_DATA = 'SET_TEMPLATE_RULE_DATA';
 
 // ACTION CREATORS
 export function assignAllReceivedDocumentsData(data, preferences) {
@@ -90,6 +91,13 @@ export function searchByData(data) {
 export function setTemplatesMapRulesData(data) {
   return {
     type: SET_TEMPLATES_MAP_RULES_DATA,
+    data: data,
+  };
+}
+
+export function setTemplateRuleData(data) {
+  return {
+    type: SET_TEMPLATE_RULE_DATA,
     data: data,
   };
 }

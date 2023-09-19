@@ -9,6 +9,9 @@
   font-size: 0.8rem;
   width: 60px;
 }
+.bg-edited {
+  background: #f6cbcb;
+}
 .tempMapRulesRowExcelKey {
   font-size: 0.85rem;
   padding-left: 4px;
@@ -39,12 +42,20 @@
   text-align: center;
   font-size: 0.9rem;
   color: #696969;
-  cursor: pointer;
-  width: 40px;
+  width: 80px;
 }
-.tempMapRulesRowEdit:hover {
-  text-align: center;
-  font-size: 0.9rem;
-  color: #696969;
+.tempMapRulesRowEditODiv {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.tempMapRulesRowEditIDiv {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  margin: 0px 6px;
+}
+.tempMapRulesRowEditIDiv:hover {
   color: black;
 }
