@@ -51,6 +51,39 @@
 .tempMapRulesRowIOPFieldSelectKeys:focus {
   outline: none;
 }
+
+.promptSection {
+  /* padding: 4px; */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.textareaPrompt {
+  border: 1px solid #ccc;
+  margin-right: 4px;
+}
+.textareaPrompt:focus {
+  outline: none;
+  /* cursor: pointer; */
+}
+
+.promptSearchIcon {
+  border: 1px solid #9c9c9c;
+  background: #fff;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.promptSearchIcon:active {
+  background: #ccc;
+  border: 1px solid #fff;
+}
+
 .tempMapRulesRowMapNPrompt {
   display: flex;
   justify-content: center;

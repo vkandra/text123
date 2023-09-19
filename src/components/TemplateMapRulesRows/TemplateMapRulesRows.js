@@ -163,7 +163,19 @@ const TemplateMapRulesRows = (props) => {
                 </select>
               </div>
             ) : (
-              <div>Input Field</div>
+              <div className="promptSection">
+                <div class="textAreaPromptDiv">
+                  <textarea
+                    class="textareaPrompt"
+                    rows="2"
+                    style={{ width: 300, minHeight: 30 }}
+                    placeholder="Type here..."
+                  ></textarea>
+                </div>
+                <div className="promptSearchIcon">
+                  <i class="fa-solid fa-magnifying-glass"></i>
+                </div>
+              </div>
             )}
           </div>
         ) : (
