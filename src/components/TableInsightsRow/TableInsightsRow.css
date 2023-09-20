@@ -1,0 +1,35 @@
+.tableInsightsRow {
+  border-bottom: 1px solid #ccc;
+}
+.tableInsightsRow:hover {
+  background: #f7f7f7;
+}
+.tableInsightsRow td {
+  border: 1px solid #ccc;
+  font-size: 0.85rem;
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+.tableInsightsRowFName {
+  padding-left: 4px;
+}
+.tableInsightsRowDatePr {
+  width: 120px;
+  text-align: center;
+}
+.tableInsightsRowSize {
+  width: 120px;
+  text-align: center;
+}
+.tableInsightsRowStatus {
+  width: 120px;
+  text-align: center;
+}
+.tableInsightsRowView {
+  text-align: center;
+  width: 120px;
+}
+.tableInsightsRowView:hover {
+  color: forestgreen;
+  cursor: pointer;
+}

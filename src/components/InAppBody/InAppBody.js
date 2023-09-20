@@ -6,6 +6,7 @@ import TextExtraction from '../../components/TextExtraction/TextExtraction';
 import Dashboards from '../../components/Dashboards/Dashboards';
 import Configuration from '../../components/Configuration/Configuration';
 import Templates from '../../components/Templates/Templates';
+import TemplateInsights from '../TemplateInsights/TemplateInsights';
 import SFTP from '../SFTP/SFTP';
 
 import Header from '../../components/Header/Header';
@@ -94,13 +95,25 @@ const InAppBody = (props) => {
                 &nbsp;&nbsp;Templates
               </div>
             </Link>
-            <Link to="/dashboard" style={{ textDecoration: 'none' }}>
+            <Link to="/insights" style={{ textDecoration: 'none' }}>
               <div
                 className={`singleMenus ${
                   props.extractor.page === 5 ? 'selectedMenu' : ''
                 }`}
-                id="singleMenu5"
+                id="singleMenu4"
                 onClick={() => changeMainTabs(5)}
+              >
+                <i class="fa-solid fa-info menuicon"></i>
+                &nbsp;&nbsp;INSIGHTS
+              </div>
+            </Link>
+            <Link to="/dashboard" style={{ textDecoration: 'none' }}>
+              <div
+                className={`singleMenus ${
+                  props.extractor.page === 6 ? 'selectedMenu' : ''
+                }`}
+                id="singleMenu5"
+                onClick={() => changeMainTabs(6)}
               >
                 <i className="fa-solid fa-chart-line menuicon"></i> &nbsp;&nbsp;
                 {props.themeLang.languageWords.Dashboard}
@@ -117,6 +130,8 @@ const InAppBody = (props) => {
             ) : props.extractor.page === 4 ? (
               <Templates />
             ) : props.extractor.page === 5 ? (
+              <TemplateInsights />
+            ) : props.extractor.page === 6 ? (
               <Dashboards />
             ) : null}
           </div>

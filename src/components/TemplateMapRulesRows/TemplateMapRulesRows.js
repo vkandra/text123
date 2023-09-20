@@ -1,5 +1,5 @@
 import './TemplateMapRulesRows.css';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { connect } from 'react-redux/es/exports';
 import editIcon from '../../Pictures/pencil-solid.svg';
 import saveIcon from '../../Pictures/floppy-disk-regular.svg';
@@ -19,6 +19,8 @@ const TemplateMapRulesRows = (props) => {
     repeat_no: -1,
     map_status: '',
   });
+
+  const textareaRef = useRef(null);
 
   useEffect(() => {
     if (props.rowData.selection !== 'map') {
@@ -102,9 +104,9 @@ const TemplateMapRulesRows = (props) => {
       map_cytext_value: cytext_value_for_API,
       map_cytext_key_page: cytext_page_for_API,
       map_cytext_key_repeat: cytext_repeat_for_API,
-      prompt: 'New prompt',
+      prompt: textareaRef.current.value,
       selection: source,
-      prompt_output: 'New prompt_output',
+      prompt_output: outputValue,
     };
     console.log(data);
     axios
@@ -119,6 +121,25 @@ const TemplateMapRulesRows = (props) => {
           template_id: data.templateid,
         };
         props.dispatch(singleTemplateMapRulesDataAPI(data1));
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
+
+  const testCyChatData = () => {
+    console.log(textareaRef.current.value);
+    const data = {
+      user_id: props.user.token,
+      doc_id: props.documents.templateMapRuleData.fileid,
+      question: textareaRef.current.value,
+    };
+    console.log(data);
+    axios
+      .post(`https://cytext.azure-api.net/query`, data)
+      .then((res) => {
+        console.log(res.data.output.response.result);
+        setOutputValue(res.data.output.response.result);
       })
       .catch(function (error) {
         console.log(error);
@@ -183,13 +204,14 @@ const TemplateMapRulesRows = (props) => {
               <div className="promptSection">
                 <div class="textAreaPromptDiv">
                   <textarea
+                    ref={textareaRef}
                     class="textareaPrompt"
                     rows="2"
                     style={{ width: 300, minHeight: 30 }}
                     placeholder="Type here..."
                   ></textarea>
                 </div>
-                <div className="promptSearchIcon">
+                <div className="promptSearchIcon" onClick={testCyChatData}>
                   <i class="fa-solid fa-magnifying-glass"></i>
                 </div>
               </div>

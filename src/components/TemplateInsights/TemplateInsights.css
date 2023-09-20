@@ -1,0 +1,87 @@
+.templateInsights {
+  /* border: 1px solid black; */
+  height: 100%;
+}
+
+#topInsSection {
+  /* border: 1px solid black; */
+  height: 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 4px;
+}
+#selectInsTempSect {
+  /* border: 1px solid brown; */
+  width: 26%;
+  height: 98%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.detInsTempSect {
+  /* border: 1px solid green; */
+  width: 37%;
+  height: 98%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.tempInsLabelsDiv {
+  font-size: 0.85rem;
+}
+.tempInsLabels {
+  font-weight: 500;
+}
+#selectTempInsLabel {
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+#singleInsTemplateSelect {
+  border: 1px solid #ccc;
+  cursor: pointer;
+  font-size: 0.8rem;
+  width: 270px;
+  height: 25px;
+}
+#singleInsTemplateSelect:focus {
+  outline: none;
+}
+#insTempDownload {
+  border: 1px solid forestgreen;
+  background: forestgreen;
+  color: white;
+  border-radius: 10px;
+  font-size: 0.7rem;
+  font-weight: 500;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2px 10px;
+  cursor: pointer;
+}
+#insTempDownload:hover {
+  background: rgb(49, 154, 49);
+}
+#insTempDownload:active {
+  border: 1px solid #ccc;
+}
+
+#midInsSection {
+  padding: 3px;
+}
+/* Table */
+#insTempTableid {
+  /* border: 1px solid #ccc; */
+  width: 100%;
+}
+
+.insTempTableRow1cl th {
+  /* display: flex; */
+  text-align: center;
+  font-size: 0.85rem;
+  border: 1px solid #ccc;
+  background: #f3f3f3;
+}
