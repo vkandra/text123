@@ -76,6 +76,21 @@ const TemplateMapRulesRows = (props) => {
   };
 
   const saveData = () => {
+    let cytext_key_for_API = '';
+    let cytext_value_for_API = '';
+    let cytext_page_for_API = -1;
+    let cytext_repeat_for_API = -1;
+    if (source === 'map' && selectedKeyDet.cytext_key === '') {
+      cytext_key_for_API = unusedKeys[0].cytext_key;
+      cytext_value_for_API = unusedKeys[0].cytext_value;
+      cytext_page_for_API = unusedKeys[0].page_no;
+      cytext_repeat_for_API = unusedKeys[0].repeat_no;
+    } else {
+      cytext_key_for_API = selectedKeyDet.cytext_key;
+      cytext_value_for_API = selectedKeyDet.cytext_value;
+      cytext_page_for_API = selectedKeyDet.page_no;
+      cytext_repeat_for_API = selectedKeyDet.repeat_no;
+    }
     const data = {
       uniq_id: props.rowData.uniq_id,
       userid: props.user.token,
@@ -83,14 +98,15 @@ const TemplateMapRulesRows = (props) => {
       templateid: props.documents.templateMapRuleData.template_id,
       rule_id: props.rowData.rule_id,
       excel_key: props.rowData.excel_key,
-      map_cytext_key: selectedKeyDet.cytext_key,
-      map_cytext_value: selectedKeyDet.cytext_value,
-      map_cytext_key_page: selectedKeyDet.page_no,
-      map_cytext_key_repeat: selectedKeyDet.repeat_no,
+      map_cytext_key: cytext_key_for_API,
+      map_cytext_value: cytext_value_for_API,
+      map_cytext_key_page: cytext_page_for_API,
+      map_cytext_key_repeat: cytext_repeat_for_API,
       prompt: 'New prompt',
       selection: source,
       prompt_output: 'New prompt_output',
     };
+    console.log(data);
     axios
       .post(
         `https://functionstexextraction.azurewebsites.net/api/mappromptupdatecosmosdbitem`,
@@ -154,6 +170,7 @@ const TemplateMapRulesRows = (props) => {
                     const selectedKeyDetail = unusedKeys[selectedIndex];
                     setSelectedOutputBasedOnKey(selectedKeyDetail);
                   }}
+                  // value={source === 'map' && props.rowData.map_cytext_key}
                 >
                   {unusedKeys.map((singleKeyDetail, index) => (
                     <option value={`${singleKeyDetail.cytext_key}`} key={index}>
