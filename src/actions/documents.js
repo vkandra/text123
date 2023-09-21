@@ -17,6 +17,7 @@ export const SEARCH_BY_DATA = 'SEARCH_BY_DATA';
 export const SET_TEMPLATE_MAP_RULE_LOAD = 'SET_TEMPLATE_MAP_RULE_LOAD';
 export const SET_TEMPLATES_MAP_RULES_DATA = 'SET_TEMPLATES_MAP_RULES_DATA';
 export const SET_TEMPLATE_RULE_DATA = 'SET_TEMPLATE_RULE_DATA';
+export const SET_INSIGHTS_SECOND_PAGE = 'SET_INSIGHTS_SECOND_PAGE';
 
 // ACTION CREATORS
 export function assignAllReceivedDocumentsData(data, preferences) {
@@ -106,6 +107,13 @@ export function setTemplatesMapRulesData(data) {
 export function setTemplateRuleData(data) {
   return {
     type: SET_TEMPLATE_RULE_DATA,
+    data: data,
+  };
+}
+
+export function setInsightsSecondPage(data) {
+  return {
+    type: SET_INSIGHTS_SECOND_PAGE,
     data: data,
   };
 }

@@ -1,8 +1,18 @@
 import './TableInsightsRow.css';
 import React from 'react';
 import { connect } from 'react-redux/es/exports';
+import { setInsightsSecondPage } from '../../actions/documents';
 
 const TableInsightsRow = (props) => {
+  const viewSecondPage = () => {
+    const param = {
+      display: true,
+      file_name: props.rowData.file_name,
+      template_name: props.documents.templateInsights.template_name,
+      file_url: props.rowData.file_url,
+    };
+    props.dispatch(setInsightsSecondPage(param));
+  };
   return (
     <tr className={`tableInsightsRow`}>
       <td
@@ -16,7 +26,7 @@ const TableInsightsRow = (props) => {
       <td className="tableInsightsRowStatus">
         {props.rowData.file_review_status}
       </td>
-      <td className="tableInsightsRowView">
+      <td className="tableInsightsRowView" onClick={viewSecondPage}>
         <i class="fa-solid fa-eye"></i>
       </td>
     </tr>
@@ -26,6 +36,7 @@ const TableInsightsRow = (props) => {
 const mapStateToProps = (state) => {
   return {
     user: state.user,
+    documents: state.documents,
   };
 };
 

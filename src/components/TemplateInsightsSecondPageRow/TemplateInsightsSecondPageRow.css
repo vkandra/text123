@@ -1,0 +1,22 @@
+.templateInsightsSecondPageRow {
+  border-bottom: 1px solid #ccc;
+}
+.templateInsightsSecondPageRow td {
+  border: 1px solid #ccc;
+}
+
+.secPgRowEditIDiv {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  margin: 0px 6px;
+  opacity: 0.75;
+}
+.secPgRowEditIDiv:hover {
+  color: black;
+  opacity: 1;
+}
+.secPgRowEditIDiv img {
+  height: 15px;
+}
