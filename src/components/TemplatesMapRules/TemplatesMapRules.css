@@ -1,7 +1,16 @@
+.templatesMapRules {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  height: 99%;
+  /* border: 2px solid #384988; */
+}
 #overlayHeader {
   /* border: 1px solid black; */
+  width: 100%;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
 }
 #overlayLabel {
@@ -54,11 +63,27 @@
 #midOverlayFileName {
   font-size: 0.8rem;
 }
-
+#midNTableOverlays {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  height: 95%;
+}
+#overlayTable {
+  overflow: auto;
+  /* border: 1px solid black; */
+  height: 95%;
+}
 #overlayTableid {
   /* border: 1px solid #ccc; */
   width: 100%;
 }
+/* #overlayTableBodyid {
+  border: 2px solid black;
+  height: 500px;
+  overflow: auto;
+} */
 
 .overlayTableRow1cl th {
   /* display: flex; */

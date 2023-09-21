@@ -49,7 +49,7 @@ const TemplatesMapRules = (props) => {
       {props.documents.templateMapRuleLoad ? (
         <div>Loading Data...</div>
       ) : (
-        <>
+        <div id="midNTableOverlays">
           <div id="midOverlay">
             <div id="midOverlayTempName">
               Template Name: {props.documents.templateMapRuleData.templatename}{' '}
@@ -70,7 +70,7 @@ const TemplatesMapRules = (props) => {
                   <th>Action</th>
                 </tr>
               </thead>
-              <tbody>
+              <tbody id="overlayTableBodyid">
                 {props.documents.templateMapRuleData.all_excel_keys.map(
                   (rowData, index) => (
                     <TemplateMapRulesRows
@@ -82,7 +82,7 @@ const TemplatesMapRules = (props) => {
               </tbody>
             </table>
           </div>
-        </>
+        </div>
       )}
     </div>
   );

@@ -209,6 +209,7 @@ const TemplateMapRulesRows = (props) => {
                     rows="2"
                     style={{ width: 300, minHeight: 30 }}
                     placeholder="Type here..."
+                    defaultValue={source === 'prompt' && props.rowData.prompt}
                   ></textarea>
                 </div>
                 <div className="promptSearchIcon" onClick={testCyChatData}>

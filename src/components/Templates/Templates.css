@@ -56,10 +56,10 @@
   background: white !important;
 }
 .subtemplatesSection {
-  /* border: 1px solid #ccc; */
+  /* border: 2px solid #ccc; */
   /* z-index: 0; */
   /* position: static; */
-  height: 92%;
+  height: 100%;
   width: 99%;
   margin-left: 5px;
 }

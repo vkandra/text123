@@ -1,5 +1,6 @@
 .templatesSubTable {
   height: 100%;
+  /* border: 2px solid yellow; */
 }
 .tableSubTemp2 table {
   border: 1px solid rgb(237, 237, 237);
