@@ -3,6 +3,29 @@
 }
 .templateInsightsSecondPageRow td {
   border: 1px solid #ccc;
+  font-size: 0.85rem;
+}
+
+.secPgtdExcelField {
+  padding-left: 4px;
+  width: 150px;
+}
+.secPgtdOPValue {
+  padding-left: 4px;
+}
+
+.secPgtdConfScore {
+  text-align: center;
+  width: 100px;
+}
+
+.secPgtdSource {
+  text-align: center;
+  width: 100px;
+}
+.secPgtdFlags {
+  padding-left: 4px;
+  width: 120px;
 }
 
 .secPgRowEditIDiv {

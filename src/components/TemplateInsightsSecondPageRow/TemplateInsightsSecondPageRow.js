@@ -32,11 +32,24 @@ const TemplateInsightsSecondPageRow = (props) => {
 
   return (
     <tr className="templateInsightsSecondPageRow">
-      <td>{props.rowData.excel_field}</td>
-      <td>{props.rowData.output_value}</td>
-      <td>{props.rowData.conf_score}</td>
-      <td>{props.rowData.source}</td>
-      <td>{props.rowData.flags}</td>
+      <td className="secPgtdExcelField">{props.rowData.excel_field}</td>
+      <td className="secPgtdOPValue">
+        {edited ? (
+          <textarea
+            ref={textareaRef}
+            class="secPgtextareaPrompt"
+            rows="2"
+            style={{ width: '100%', minHeight: 30 }}
+            placeholder="Type here..."
+            defaultValue={props.rowData.output_value}
+          ></textarea>
+        ) : (
+          <div>{props.rowData.output_value}</div>
+        )}
+      </td>
+      <td className="secPgtdConfScore">{props.rowData.conf_score}</td>
+      <td className="secPgtdSource">{props.rowData.source}</td>
+      <td className="secPgtdFlags">{props.rowData.flags}</td>
       <td>
         {edited ? (
           <div className="secPgRowEditIDiv" onClick={saveData}>
