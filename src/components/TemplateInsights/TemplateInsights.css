@@ -159,6 +159,7 @@
   /* border: 1px solid rebeccapurple; */
   height: 100%;
   width: 67%;
+  overflow: auto;
 }
 #secPgFileView {
   /* border: 1px solid darkblue; */
@@ -167,6 +168,10 @@
 }
 
 /* Table */
+/* #secPgTable { */
+/* overflow: auto; */
+/* border: 1px solid black; */
+/* } */
 #secPgTableid {
   /* border: 1px solid #ccc; */
   width: 100%;
