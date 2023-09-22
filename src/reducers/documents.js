@@ -167,10 +167,9 @@ const initialDocumentsState = {
 
   insightsSecondPage: {
     display: false,
-    file_name: 'abc.pdf',
-    template_name: 'ABC',
-    file_url:
-      'https://texextraction.blob.core.windows.net/documentdetails/Health%20Policy.pdf',
+    file_name: '',
+    template_name: '',
+    file_url: '',
   },
   insight2ndPageFileDetail: {
     template_name: 'cde',

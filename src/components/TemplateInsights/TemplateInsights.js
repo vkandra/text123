@@ -31,11 +31,13 @@ const TemplateInsights = (props) => {
   useEffect(() => {
     if (props.singleDocument.saveSubTempDetails.length !== 0) {
       fetchTemplateFiles(props.singleDocument.saveSubTempDetails[0]);
-      document.getElementById('singleInsTemplateSelect').value =
-        props.singleDocument.saveSubTempDetails[0].sub_template_name;
-      setTemplateNameSelected(
-        props.singleDocument.saveSubTempDetails[0].sub_template_name
-      );
+      if (!props.documents.insightsSecondPage.display) {
+        document.getElementById('singleInsTemplateSelect').value =
+          props.singleDocument.saveSubTempDetails[0].sub_template_name;
+        setTemplateNameSelected(
+          props.singleDocument.saveSubTempDetails[0].sub_template_name
+        );
+      }
     }
   }, [props.singleDocument.saveSubTempDetails]);
 
