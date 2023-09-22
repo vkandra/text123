@@ -3,7 +3,10 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux/es/exports';
 import { addDeletefetchTemplateAPI } from '../../actions/singleDocument';
 import TableInsightsRow from '../TableInsightsRow/TableInsightsRow';
-import { setInsightsSecondPage } from '../../actions/documents';
+import {
+  setInsightsSecondPage,
+  setTemplateInsightsData,
+} from '../../actions/documents';
 import { Viewer } from '@react-pdf-viewer/core';
 import { defaultLayoutPlugin } from '@react-pdf-viewer/default-layout';
 import '@react-pdf-viewer/core/lib/styles/index.css';
@@ -42,7 +45,8 @@ const TemplateInsights = (props) => {
       )
       .then((res) => {
         console.log(1);
-        console.log(res);
+        console.log(res.data);
+        props.dispatch(setTemplateInsightsData(res.data));
         // const data1 = {
         //   user_id: data.userid,
         //   template_id: data.templateid,

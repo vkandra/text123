@@ -12,6 +12,7 @@ import {
   SET_TEMPLATE_MAP_RULE_LOAD,
   SET_TEMPLATES_MAP_RULES_DATA,
   SET_TEMPLATE_RULE_DATA,
+  SET_TEMPLATE_INSIGHTS_DATA,
   SET_INSIGHTS_SECOND_PAGE,
 } from '../actions/documents';
 
@@ -124,6 +125,16 @@ const initialDocumentsState = {
 
   // Template Insights
   templateInsights: {
+    template_name: '',
+    template_id: -1,
+    cust_name: '',
+    dept_name: '',
+    proj_name: '',
+    total_processed_files: 0,
+    file_details: [],
+  },
+
+  templateInsights_1: {
     template_name: 'cde',
     template_id: 111,
     cust_name: 'ppp',
@@ -153,6 +164,7 @@ const initialDocumentsState = {
       },
     ],
   },
+
   insightsSecondPage: {
     display: false,
     file_name: 'abc.pdf',
@@ -267,6 +279,12 @@ export default function documents(state = initialDocumentsState, action) {
       return {
         ...state,
         templateMapRuleLoad: action.data,
+      };
+    case SET_TEMPLATE_INSIGHTS_DATA:
+      // console.log('ACTION_in_reducer ', action.data);
+      return {
+        ...state,
+        templateInsights: action.data,
       };
     case SET_INSIGHTS_SECOND_PAGE:
       // console.log('ACTION_in_reducer ', action.data);
