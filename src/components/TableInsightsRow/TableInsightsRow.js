@@ -13,6 +13,17 @@ const TableInsightsRow = (props) => {
     };
     props.dispatch(setInsightsSecondPage(param));
   };
+
+  function formatDate(inputDate) {
+    const options = { day: 'numeric', month: 'short', year: 'numeric' };
+    const formattedDate = new Date(inputDate).toLocaleDateString(
+      'en-US',
+      options
+    );
+    const [day, month, year] = formattedDate.split(' ');
+    return `${day} ${month} ${year}`;
+  }
+
   return (
     <tr className={`tableInsightsRow`}>
       <td
@@ -21,8 +32,12 @@ const TableInsightsRow = (props) => {
       >
         {props.rowData.file_name}
       </td>
-      <td className="tableInsightsRowDatePr">{props.rowData.file_processed}</td>
-      <td className="tableInsightsRowSize">{props.rowData.file_size}</td>
+      <td className="tableInsightsRowDatePr">
+        {formatDate(props.rowData.file_processed)}
+      </td>
+      <td className="tableInsightsRowSize">
+        {(props.rowData.file_size / (1024 * 1024)).toFixed(2)} MB
+      </td>
       <td className="tableInsightsRowStatus">
         {props.rowData.file_review_status}
       </td>

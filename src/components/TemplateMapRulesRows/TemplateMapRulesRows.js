@@ -104,7 +104,7 @@ const TemplateMapRulesRows = (props) => {
       map_cytext_value: cytext_value_for_API,
       map_cytext_key_page: cytext_page_for_API,
       map_cytext_key_repeat: cytext_repeat_for_API,
-      prompt: textareaRef.current.value,
+      prompt: source === 'map' ? '' : textareaRef.current.value,
       selection: source,
       prompt_output: outputValue,
     };
