@@ -26,6 +26,10 @@ const TemplateInsights = (props) => {
     props.dispatch(addDeletefetchTemplateAPI(reqBody));
   }, []);
 
+  useEffect(() => {
+    fetchTemplateFiles(props.singleDocument.saveSubTempDetails[0]);
+  }, [props.singleDocument.saveSubTempDetails]);
+
   //create new plugin instance
   const defaultLayoutPluginInstance = defaultLayoutPlugin({
     sidebarTabs: (defaultTabs) => [],
