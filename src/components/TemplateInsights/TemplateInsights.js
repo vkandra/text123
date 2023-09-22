@@ -1,5 +1,5 @@
 import './TemplateInsights.css';
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux/es/exports';
 import { addDeletefetchTemplateAPI } from '../../actions/singleDocument';
 import TableInsightsRow from '../TableInsightsRow/TableInsightsRow';
@@ -16,6 +16,8 @@ import axios from 'axios';
 import TemplateInsightsSecondPageRow from '../TemplateInsightsSecondPageRow/TemplateInsightsSecondPageRow';
 
 const TemplateInsights = (props) => {
+  const [templateNameSelected, setTemplateNameSelected] = useState('');
+
   useEffect(() => {
     let reqBody = {
       user_id: props.user.token,
@@ -28,7 +30,19 @@ const TemplateInsights = (props) => {
 
   useEffect(() => {
     fetchTemplateFiles(props.singleDocument.saveSubTempDetails[0]);
+    document.getElementById('singleInsTemplateSelect').value =
+      props.singleDocument.saveSubTempDetails[0].sub_template_name;
+    setTemplateNameSelected(
+      props.singleDocument.saveSubTempDetails[0].sub_template_name
+    );
   }, [props.singleDocument.saveSubTempDetails]);
+
+  useEffect(() => {
+    if (props.documents.insightsSecondPage.display === false) {
+      document.getElementById('singleInsTemplateSelect').value =
+        templateNameSelected;
+    }
+  }, [props.documents.insightsSecondPage.display]);
 
   //create new plugin instance
   const defaultLayoutPluginInstance = defaultLayoutPlugin({
@@ -36,6 +50,7 @@ const TemplateInsights = (props) => {
   });
 
   const fetchTemplateFiles = (selectedTemplate) => {
+    setTemplateNameSelected(selectedTemplate.sub_template_name);
     const data = {
       user_id: props.user.token,
       sub_template_id: selectedTemplate.sub_template_id,
