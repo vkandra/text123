@@ -29,12 +29,14 @@ const TemplateInsights = (props) => {
   }, []);
 
   useEffect(() => {
-    fetchTemplateFiles(props.singleDocument.saveSubTempDetails[0]);
-    document.getElementById('singleInsTemplateSelect').value =
-      props.singleDocument.saveSubTempDetails[0].sub_template_name;
-    setTemplateNameSelected(
-      props.singleDocument.saveSubTempDetails[0].sub_template_name
-    );
+    if (props.singleDocument.saveSubTempDetails.length !== 0) {
+      fetchTemplateFiles(props.singleDocument.saveSubTempDetails[0]);
+      document.getElementById('singleInsTemplateSelect').value =
+        props.singleDocument.saveSubTempDetails[0].sub_template_name;
+      setTemplateNameSelected(
+        props.singleDocument.saveSubTempDetails[0].sub_template_name
+      );
+    }
   }, [props.singleDocument.saveSubTempDetails]);
 
   useEffect(() => {
@@ -172,6 +174,8 @@ const TemplateInsights = (props) => {
           </div>
         </div>
       )}
+
+      {/* SECOND PAGE */}
       {props.documents.insightsSecondPage.display && (
         <div className="templateInsights2">
           <div id="templateInsights2Container1">
@@ -182,15 +186,20 @@ const TemplateInsights = (props) => {
               >
                 <i class="fa-solid fa-circle-left"></i>
               </div>
-              <div id="secondPageLabel">
+              <div className="secondPageLabel1">
                 {' '}
-                &nbsp;&nbsp;Template -{' '}
-                {props.documents.insightsSecondPage.template_name}
+                &nbsp;&nbsp;Template:&nbsp;
+                <span className="secondPageLabelAns1">
+                  {props.documents.insightsSecondPage.template_name}
+                </span>
                 &nbsp;&nbsp;
               </div>
-              <div id="secondPageLabel">
+              <div className="secondPageLabel2">
                 {' '}
-                File - {props.documents.insightsSecondPage.file_name}
+                File:&nbsp;
+                <span className="secondPageLabelAns2">
+                  {props.documents.insightsSecondPage.file_name}
+                </span>
                 &nbsp;&nbsp;
               </div>
               <div

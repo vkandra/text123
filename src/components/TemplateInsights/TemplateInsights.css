@@ -109,15 +109,36 @@
   justify-content: space-between;
   align-items: center;
 }
-#secondPageLabel {
+.secondPageLabel1 {
   /* border: 1px solid brown; */
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
-  width: 95%;
-  font-size: 0.9rem;
-  font-weight: 700;
+  width: 25%;
+  font-size: 0.8rem;
+  font-weight: 500;
   color: #384988;
+}
+.secondPageLabelAns1 {
+  color: #000;
+  font-weight: 400;
+}
+.secondPageLabel2 {
+  /* border: 1px solid brown; */
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 68%;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: #384988;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.secondPageLabelAns2 {
+  color: #000;
+  font-weight: 400;
 }
 #secondPageBackToTemplates1 {
   border: 1px solid #ccc;
