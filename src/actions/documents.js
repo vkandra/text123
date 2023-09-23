@@ -156,7 +156,8 @@ export function startExtractionProcessAPI(data) {
     axios
       .post(
         // `https://qti3aekf4g.execute-api.ap-south-1.amazonaws.com/test/execution`,
-        `https://functionstexextraction.azurewebsites.net/api/StartPostAPI`,
+        // `https://functionstexextraction.azurewebsites.net/api/StartPostAPI`,
+        `https://functionstexextraction.azurewebsites.net/api/StartPostAPInew`,
         data
       )
       .then(function (response) {
