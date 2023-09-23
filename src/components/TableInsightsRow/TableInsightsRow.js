@@ -1,7 +1,11 @@
 import './TableInsightsRow.css';
 import React from 'react';
 import { connect } from 'react-redux/es/exports';
-import { setInsightsSecondPage } from '../../actions/documents';
+import {
+  setInsightsSecondPage,
+  setInsightsSingleFileData,
+} from '../../actions/documents';
+import axios from 'axios';
 
 const TableInsightsRow = (props) => {
   const viewSecondPage = () => {
@@ -12,6 +16,26 @@ const TableInsightsRow = (props) => {
       file_url: props.rowData.file_url,
     };
     props.dispatch(setInsightsSecondPage(param));
+    const data = {
+      user_id: props.user.token,
+      template_name: props.documents.templateInsights.template_name,
+      template_id: props.documents.templateInsights.template_id,
+      file_name: props.rowData.file_name,
+      file_id: props.rowData.file_id,
+    };
+    console.log(data);
+    axios
+      .post(
+        `https://functionstexextraction.azurewebsites.net/api/cytext_promptapi`,
+        data
+      )
+      .then((res) => {
+        console.log(res.data);
+        props.dispatch(setInsightsSingleFileData(res.data));
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   };
 
   function formatDate(inputDate) {

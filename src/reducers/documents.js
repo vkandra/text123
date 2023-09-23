@@ -14,6 +14,7 @@ import {
   SET_TEMPLATE_RULE_DATA,
   SET_TEMPLATE_INSIGHTS_DATA,
   SET_INSIGHTS_SECOND_PAGE,
+  SET_INSIGHTS_SINGLE_FILE_DATA,
 } from '../actions/documents';
 
 const initialDocumentsState = {
@@ -290,6 +291,12 @@ export default function documents(state = initialDocumentsState, action) {
       return {
         ...state,
         insightsSecondPage: action.data,
+      };
+    case SET_INSIGHTS_SINGLE_FILE_DATA:
+      // console.log('ACTION_in_reducer ', action.data);
+      return {
+        ...state,
+        insight2ndPageFileDetail: action.data,
       };
 
     default:

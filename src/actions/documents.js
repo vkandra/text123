@@ -19,6 +19,7 @@ export const SET_TEMPLATES_MAP_RULES_DATA = 'SET_TEMPLATES_MAP_RULES_DATA';
 export const SET_TEMPLATE_RULE_DATA = 'SET_TEMPLATE_RULE_DATA';
 export const SET_TEMPLATE_INSIGHTS_DATA = 'SET_TEMPLATE_INSIGHTS_DATA';
 export const SET_INSIGHTS_SECOND_PAGE = 'SET_INSIGHTS_SECOND_PAGE';
+export const SET_INSIGHTS_SINGLE_FILE_DATA = 'SET_INSIGHTS_SINGLE_FILE_DATA';
 
 // ACTION CREATORS
 export function assignAllReceivedDocumentsData(data, preferences) {
@@ -122,6 +123,13 @@ export function setTemplateInsightsData(data) {
 export function setInsightsSecondPage(data) {
   return {
     type: SET_INSIGHTS_SECOND_PAGE,
+    data: data,
+  };
+}
+
+export function setInsightsSingleFileData(data) {
+  return {
+    type: SET_INSIGHTS_SINGLE_FILE_DATA,
     data: data,
   };
 }

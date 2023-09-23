@@ -5,6 +5,7 @@ import { addDeletefetchTemplateAPI } from '../../actions/singleDocument';
 import TableInsightsRow from '../TableInsightsRow/TableInsightsRow';
 import {
   setInsightsSecondPage,
+  setInsightsSingleFileData,
   setTemplateInsightsData,
 } from '../../actions/documents';
 import { Viewer } from '@react-pdf-viewer/core';
@@ -70,11 +71,6 @@ const TemplateInsights = (props) => {
         console.log(1);
         console.log(res.data);
         props.dispatch(setTemplateInsightsData(res.data));
-        // const data1 = {
-        //   user_id: data.userid,
-        //   template_id: data.templateid,
-        // };
-        // props.dispatch(singleTemplateMapRulesDataAPI(data1));
       })
       .catch(function (error) {
         console.log(error);
@@ -89,6 +85,15 @@ const TemplateInsights = (props) => {
       file_url: '',
     };
     props.dispatch(setInsightsSecondPage(param));
+    const data = {
+      template_name: '',
+      template_id: -1,
+      file_name: '',
+      file_id: '',
+      file_url: '',
+      file_data: [],
+    };
+    props.dispatch(setInsightsSingleFileData(data));
   };
 
   return (
@@ -230,7 +235,7 @@ const TemplateInsights = (props) => {
                         (rowData, index) => (
                           <TemplateInsightsSecondPageRow
                             rowData={rowData}
-                            key={rowData.rule_id}
+                            key={index}
                           />
                         )
                       )}
