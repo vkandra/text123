@@ -173,29 +173,12 @@ const initialDocumentsState = {
     file_url: '',
   },
   insight2ndPageFileDetail: {
-    template_name: 'cde',
-    template_id: 111,
-    file_name: 'aaa.pdf',
-    file_id: 'p1p2',
-    file_url: 'https://www....com',
-    file_data: [
-      {
-        rule_id: '123',
-        excel_field: 'ABC',
-        output_value: 'abc',
-        conf_score: '3',
-        source: 'map',
-        flags: 'none',
-      },
-      {
-        rule_id: '234',
-        excel_field: 'DEF',
-        output_value: 'def',
-        conf_score: '4',
-        source: 'prompt',
-        flags: 'nope',
-      },
-    ],
+    template_name: '',
+    template_id: -1,
+    file_name: '',
+    file_id: '',
+    file_url: '',
+    file_data: [],
   },
 };
 
