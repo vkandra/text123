@@ -986,7 +986,7 @@ const TemplatesSubTable = (props) => {
                 // sortable
                 // filter
                 // filterPlaceholder="Search by Name"
-                style={{ maxWidth: '100px' }}
+                // style={{ maxWidth: '100px' }}
               ></Column>
 
               <Column
