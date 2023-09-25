@@ -118,6 +118,7 @@ const initialDocumentsState = {
     filename: '',
     fileid: '',
     templatename: '',
+    fileurl: '',
     template_id: '',
     all_excel_keys: [],
     all_cytext_keys: [],
