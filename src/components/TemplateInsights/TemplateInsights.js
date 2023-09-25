@@ -13,6 +13,7 @@ import { defaultLayoutPlugin } from '@react-pdf-viewer/default-layout';
 import '@react-pdf-viewer/core/lib/styles/index.css';
 import '@react-pdf-viewer/default-layout/lib/styles/index.css';
 import { Worker } from '@react-pdf-viewer/core';
+import { Image } from 'primereact/image';
 import axios from 'axios';
 import TemplateInsightsSecondPageRow from '../TemplateInsightsSecondPageRow/TemplateInsightsSecondPageRow';
 
@@ -242,18 +243,49 @@ const TemplateInsights = (props) => {
                     </tbody>
                   </table>
                 </div>
+                <div id="submitAndCancelInsightsSingFile">
+                  <div
+                    id="cancelButtonToInsightPage"
+                    onClick={navigateBackToFirstPage}
+                  >
+                    Cancel
+                  </div>{' '}
+                  <div id="submitButtonReviewed">Submit</div>
+                </div>
               </div>
               <div id="secPgFileView">
-                <div className="pdf-container">
-                  <>
-                    <Worker workerUrl="https://unpkg.com/pdfjs-dist@2.14.305/build/pdf.worker.min.js">
-                      <Viewer
-                        fileUrl={props.documents.insightsSecondPage.file_url}
-                        plugins={[defaultLayoutPluginInstance]}
-                      />
-                    </Worker>
-                  </>
-                </div>
+                {props.documents.insightsSecondPage.file_url
+                  .split('.')
+                  .pop() === 'pdf' ? (
+                  <div className="pdf-container">
+                    <>
+                      <Worker workerUrl="https://unpkg.com/pdfjs-dist@2.14.305/build/pdf.worker.min.js">
+                        <Viewer
+                          fileUrl={props.documents.insightsSecondPage.file_url}
+                          plugins={[defaultLayoutPluginInstance]}
+                          defaultScale={1.5}
+                        />
+                      </Worker>
+                    </>
+                  </div>
+                ) : (
+                  <div className="imageDisplaydivIns2nd">
+                    {/* <img
+                      id="imageDisplay"
+                      // src="https://images.freeimages.com/images/previews/d0f/nuclear-power-plant-1314782.jpg"
+                      src={props.singleDocument.singleDocumentDownloadLink}
+                      alt="Not Found"
+                    /> */}
+                    <Image
+                      imageClassName="imageDisplayIns2nd"
+                      // downloadable
+                      // src="https://images.freeimages.com/images/previews/d0f/nuclear-power-plant-1314782.jpg"
+                      src={props.documents.insightsSecondPage.file_url}
+                      alt="Not Found"
+                      preview
+                    />
+                  </div>
+                )}
               </div>
             </div>
           </div>

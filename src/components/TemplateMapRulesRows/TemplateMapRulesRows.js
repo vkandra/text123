@@ -5,12 +5,14 @@ import editIcon from '../../Pictures/pencil-solid.svg';
 import saveIcon from '../../Pictures/floppy-disk-regular.svg';
 import axios from 'axios';
 import { singleTemplateMapRulesDataAPI } from '../../actions/documents';
+import { ClipLoader } from 'react-spinners';
 
 const TemplateMapRulesRows = (props) => {
   const [source, setSource] = useState('map');
   const [edited, setEdited] = useState(false);
   const [unusedKeys, setUnusedKeys] = useState([]);
   const [outputValue, setOutputValue] = useState('');
+  const [searchCyChatActive, setSearchCyChatActive] = useState(false);
 
   const [selectedKeyDet, setSelectedKeyDet] = useState({
     cytext_key: '',
@@ -135,25 +137,28 @@ const TemplateMapRulesRows = (props) => {
       question: textareaRef.current.value,
     };
     console.log(data);
+    setSearchCyChatActive(true);
     axios
       .post(`https://cytext.azure-api.net/query`, data)
       .then((res) => {
         console.log(res.data.output.response.result);
         setOutputValue(res.data.output.response.result);
+        setSearchCyChatActive(false);
       })
       .catch(function (error) {
-        console.log(error);
+        setSearchCyChatActive(false);
+        alert('Error -> ', error);
       });
   };
 
   return (
     <tr className={`templateMapRulesRows ${edited ? 'bg-edited' : null}`}>
-      <td
+      {/* <td
         className="tempMapRulesRowRuleId"
         id={`tempMapRulesRowRuleId-${props.rowData.rule_id}`}
       >
         {props.rowData.rule_id}
-      </td>
+      </td> */}
       <td className="tempMapRulesRowExcelKey">{props.rowData.excel_key}</td>
       <td className="tempMapRulesRowMapNPrompttd">
         <div className="tempMapRulesRowMapNPrompt">
@@ -201,7 +206,11 @@ const TemplateMapRulesRows = (props) => {
                 </select>
               </div>
             ) : (
-              <div className="promptSection">
+              <div
+                className={`promptSection ${
+                  searchCyChatActive ? 'unclickableDiv' : null
+                }`}
+              >
                 <div class="textAreaPromptDiv">
                   <textarea
                     ref={textareaRef}
@@ -226,7 +235,13 @@ const TemplateMapRulesRows = (props) => {
           </div>
         )}
       </td>
-      <td className="tempMapRulesRowIOPValue">{outputValue}</td>
+      <td className="tempMapRulesRowIOPValue">
+        {searchCyChatActive ? (
+          <ClipLoader color="#384988" height={10} />
+        ) : (
+          outputValue
+        )}
+      </td>
       <td className="tempMapRulesRowEdit">
         {/* <div className="tempMapRulesRowEditODiv"> */}
         {edited ? (

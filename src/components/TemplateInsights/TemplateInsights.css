@@ -33,6 +33,10 @@
 }
 .tempInsLabelsDiv {
   font-size: 0.85rem;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  max-width: 350px;
 }
 .tempInsLabels {
   font-weight: 500;
@@ -63,6 +67,7 @@
   align-items: center;
   padding: 2px 10px;
   cursor: pointer;
+  user-select: none;
 }
 #insTempDownload:hover {
   background: rgb(49, 154, 49);
@@ -122,6 +127,10 @@
 .secondPageLabelAns1 {
   color: #000;
   font-weight: 400;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  max-width: 400px;
 }
 .secondPageLabel2 {
   /* border: 1px solid brown; */
@@ -132,13 +141,14 @@
   font-size: 0.8rem;
   font-weight: 500;
   color: #384988;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  white-space: nowrap;
 }
 .secondPageLabelAns2 {
   color: #000;
   font-weight: 400;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  max-width: 500px;
 }
 #secondPageBackToTemplates1 {
   border: 1px solid #ccc;
@@ -177,10 +187,10 @@
   align-items: center;
 }
 #secPgFileDetail {
-  /* border: 1px solid rebeccapurple; */
+  /* border: 2px solid rebeccapurple; */
   height: 100%;
   width: 67%;
-  overflow: auto;
+  /* overflow: auto; */
 }
 #secPgFileView {
   /* border: 1px solid darkblue; */
@@ -189,10 +199,12 @@
 }
 
 /* Table */
-/* #secPgTable { */
-/* overflow: auto; */
-/* border: 1px solid black; */
-/* } */
+#secPgTable {
+  height: 94%;
+  overflow: auto;
+  border: 1px solid #ccc;
+}
+
 #secPgTableid {
   /* border: 1px solid #ccc; */
   width: 100%;
@@ -204,4 +216,60 @@
   font-size: 0.85rem;
   border: 1px solid #ccc;
   background: #f3f3f3;
+}
+
+#submitAndCancelInsightsSingFile {
+  /* border: 1px solid black; */
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 4px;
+}
+#cancelButtonToInsightPage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 3px 6px;
+  font-size: 0.8rem;
+  margin: 0px 5px;
+  cursor: pointer;
+  user-select: none;
+}
+#cancelButtonToInsightPage:active {
+  border: 1px solid #384988;
+}
+#submitButtonReviewed {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 3px 6px;
+  font-size: 0.8rem;
+  margin: 0px 5px;
+  background: lightgreen;
+  font-weight: 500;
+  color: #384988;
+  cursor: pointer;
+  user-select: none;
+}
+#submitButtonReviewed:active {
+  border: 1px solid #384988;
+}
+
+.imageDisplaydivIns2nd {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  height: 100%;
+  border: 1px solid #ccc;
+  overflow: auto;
+}
+
+.imageDisplayIns2nd {
+  max-width: 98%;
+  max-height: 100%;
+  object-fit: cover;
 }

@@ -293,12 +293,68 @@
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
-  /* max-width: 140px; */
+  max-width: 100px;
 }
 .otherDetailsdiv:hover {
   color: #384988;
   text-decoration: underline;
 }
+.tempNameUSdivMain {
+  width: 100%;
+}
+.tempNameUSdiv {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  max-width: 120px;
+}
+.tempNameUSdiv:hover {
+  color: #384988;
+  text-decoration: underline;
+}
+
+.tempCustNameUSdivMain {
+  width: 100%;
+}
+.tempCustNameUSdiv {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  max-width: 100px;
+}
+.tempCustNameUSdiv:hover {
+  color: #384988;
+  text-decoration: underline;
+}
+
+.tempDeptNameUSdivMain {
+  width: 100%;
+}
+.tempDeptNameUSdiv {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  max-width: 100px;
+}
+.tempDeptNameUSdiv:hover {
+  color: #384988;
+  text-decoration: underline;
+}
+
+.tempProjectNameUSdivMain {
+  width: 100%;
+}
+.tempProjectNameUSdiv {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  max-width: 100px;
+}
+.tempProjectNameUSdiv:hover {
+  color: #384988;
+  text-decoration: underline;
+}
+
 .modal-body2 {
   padding: 10px;
 }

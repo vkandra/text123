@@ -29,6 +29,11 @@ import { setTemplatesMapRulesData } from '../../actions/documents';
 
 const TemplatesSubTable = (props) => {
   const [favdata, setFavdata] = useState(<div></div>);
+  const [tempNameUS, setTempNameUS] = useState('');
+  const [custNameUS, setCustNameUS] = useState('');
+  const [deptNameUS, setDeptNameUS] = useState('');
+  const [projectNameUS, setProjectNameUS] = useState('');
+
   const [otherDetails, setOtherDetails] = useState('');
 
   const [success, setSuccess] = useState(false);
@@ -283,6 +288,193 @@ const TemplatesSubTable = (props) => {
 
   const viewFilesTable = (data) => {
     props.dispatch(setSubtemplatesFileTableData(data.file_details));
+  };
+
+  const viewTempNameUSButton = (rowData) => {
+    return (
+      <div className="tempNameUSdivMain">
+        <div
+          className="modal fade"
+          id="ViewTempNameUSModal"
+          tabindex="-1"
+          role="dialog"
+          aria-labelledby="ViewTempNameUSModalLabel"
+          aria-hidden="true"
+        >
+          <div className="modal-dialog" role="document">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h5 className="modal-title" id="ViewTempNameUSModalLabel">
+                  Template Name
+                </h5>
+                <button
+                  type="button"
+                  className="close"
+                  data-dismiss="modal"
+                  aria-label="Close"
+                >
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div className="modal-body">{tempNameUS}</div>
+            </div>
+          </div>
+        </div>
+        <div
+          data-toggle="modal"
+          data-target="#ViewTempNameUSModal"
+          onClick={() => setTempNameUSfunc(rowData)}
+          className="tempNameUSdiv"
+        >
+          {rowData.name}
+        </div>
+      </div>
+    );
+  };
+
+  const setTempNameUSfunc = (Data) => {
+    setTempNameUS(Data.name);
+  };
+
+  const viewCustNameUSButton = (rowData) => {
+    return (
+      <div className="tempCustNameUSdivMain">
+        <div
+          className="modal fade"
+          id="ViewTempCustNameUSModal"
+          tabindex="-1"
+          role="dialog"
+          aria-labelledby="ViewTempCustNameUSModalLabel"
+          aria-hidden="true"
+        >
+          <div className="modal-dialog" role="document">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h5 className="modal-title" id="ViewTempCustNameUSModalLabel">
+                  Customer Name
+                </h5>
+                <button
+                  type="button"
+                  className="close"
+                  data-dismiss="modal"
+                  aria-label="Close"
+                >
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div className="modal-body">{custNameUS}</div>
+            </div>
+          </div>
+        </div>
+        <div
+          data-toggle="modal"
+          data-target="#ViewTempCustNameUSModal"
+          onClick={() => setCustNameUSfunc(rowData)}
+          className="tempCustNameUSdiv"
+        >
+          {rowData.customer_name}
+        </div>
+      </div>
+    );
+  };
+
+  const setCustNameUSfunc = (Data) => {
+    setCustNameUS(Data.customer_name);
+  };
+
+  const viewDeptNameUSButton = (rowData) => {
+    return (
+      <div className="tempDeptNameUSdivMain">
+        <div
+          className="modal fade"
+          id="ViewTempDeptNameUSModal"
+          tabindex="-1"
+          role="dialog"
+          aria-labelledby="ViewTempDeptNameUSModalLabel"
+          aria-hidden="true"
+        >
+          <div className="modal-dialog" role="document">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h5 className="modal-title" id="ViewTempDeptNameUSModalLabel">
+                  Department Name
+                </h5>
+                <button
+                  type="button"
+                  className="close"
+                  data-dismiss="modal"
+                  aria-label="Close"
+                >
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div className="modal-body">{deptNameUS}</div>
+            </div>
+          </div>
+        </div>
+        <div
+          data-toggle="modal"
+          data-target="#ViewTempDeptNameUSModal"
+          onClick={() => setDeptNameUSfunc(rowData)}
+          className="tempDeptNameUSdiv"
+        >
+          {rowData.department_name}
+        </div>
+      </div>
+    );
+  };
+
+  const setDeptNameUSfunc = (Data) => {
+    setDeptNameUS(Data.department_name);
+  };
+
+  const viewProjectNameUSButton = (rowData) => {
+    return (
+      <div className="tempProjectNameUSdivMain">
+        <div
+          className="modal fade"
+          id="ViewTempProjectNameUSModal"
+          tabindex="-1"
+          role="dialog"
+          aria-labelledby="ViewTempProjectNameUSModalLabel"
+          aria-hidden="true"
+        >
+          <div className="modal-dialog" role="document">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h5
+                  className="modal-title"
+                  id="ViewTempProjectNameUSModalLabel"
+                >
+                  Project Name
+                </h5>
+                <button
+                  type="button"
+                  className="close"
+                  data-dismiss="modal"
+                  aria-label="Close"
+                >
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div className="modal-body">{projectNameUS}</div>
+            </div>
+          </div>
+        </div>
+        <div
+          data-toggle="modal"
+          data-target="#ViewTempProjectNameUSModal"
+          onClick={() => setProjectNameUSfunc(rowData)}
+          className="tempProjectNameUSdiv"
+        >
+          {rowData.project_name}
+        </div>
+      </div>
+    );
+  };
+
+  const setProjectNameUSfunc = (Data) => {
+    setProjectNameUS(Data.project_name);
   };
 
   const viewOtherDetailsButton = (rowData) => {
@@ -743,6 +935,8 @@ const TemplatesSubTable = (props) => {
                 sortable
                 filter
                 filterPlaceholder="Search by Name"
+                body={viewTempNameUSButton}
+                style={{ maxWidth: '140px' }}
                 // style={{ minWidth: '8rem' }}
               ></Column>
               <Column
@@ -751,6 +945,8 @@ const TemplatesSubTable = (props) => {
                 sortable
                 filter
                 filterPlaceholder="Search by Name"
+                body={viewCustNameUSButton}
+                style={{ maxWidth: '140px' }}
                 // style={{ minWidth: '8rem' }}
               ></Column>
               <Column
@@ -759,6 +955,8 @@ const TemplatesSubTable = (props) => {
                 sortable
                 filter
                 filterPlaceholder="Search by Name"
+                body={viewDeptNameUSButton}
+                style={{ maxWidth: '140px' }}
                 // style={{ minWidth: '8rem' }}
               ></Column>
               <Column
@@ -767,6 +965,8 @@ const TemplatesSubTable = (props) => {
                 sortable
                 filter
                 filterPlaceholder="Search by Name"
+                body={viewProjectNameUSButton}
+                style={{ maxWidth: '120px' }}
                 // style={{ minWidth: '8rem' }}
               ></Column>
               <Column
@@ -776,7 +976,7 @@ const TemplatesSubTable = (props) => {
                 // sortable
                 // filter
                 // filterPlaceholder="Search by Name"
-                style={{ maxWidth: '100px' }}
+                style={{ maxWidth: '120px' }}
               ></Column>
 
               <Column

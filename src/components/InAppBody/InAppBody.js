@@ -95,7 +95,7 @@ const InAppBody = (props) => {
                 &nbsp;&nbsp;Templates
               </div>
             </Link>
-            <Link to="/insights" style={{ textDecoration: 'none' }}>
+            <Link to="/review" style={{ textDecoration: 'none' }}>
               <div
                 className={`singleMenus ${
                   props.extractor.page === 5 ? 'selectedMenu' : ''
@@ -104,7 +104,7 @@ const InAppBody = (props) => {
                 onClick={() => changeMainTabs(5)}
               >
                 <i class="fa-solid fa-info menuicon"></i>
-                &nbsp;&nbsp;INSIGHTS
+                &nbsp;&nbsp;REVIEW
               </div>
             </Link>
             <Link to="/dashboard" style={{ textDecoration: 'none' }}>

@@ -93,7 +93,7 @@ const App = (props) => {
           element={isAuthenticated ? <InAppBody /> : <Homepage />}
         />
         <Route
-          path="/insights"
+          path="/review"
           element={isAuthenticated ? <InAppBody /> : <Homepage />}
         />
         <Route

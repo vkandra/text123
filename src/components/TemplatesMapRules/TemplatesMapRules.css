@@ -71,12 +71,41 @@
   width: 100%;
   height: 95%;
 }
+#tablesAndDisplay {
+  /* border: 1px solid brown; */
+  width: 100%;
+  height: 95%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 #overlayTable {
   overflow: auto;
   /* border: 1px solid black; */
-  width: 100%;
-  height: 95%;
+  width: 67%;
+  height: 100%;
 }
+#overlayFileView {
+  border: 1px solid #ccc;
+  width: 32.5%;
+  height: 100%;
+}
+
+.imageDisplaydivOverlay {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  height: 100%;
+  border: 1px solid #ccc;
+  overflow: auto;
+}
+
+.imageDisplayOverlay {
+  max-width: 98%;
+  max-height: 100%;
+  object-fit: cover;
+}
+
 #overlayTableid {
   /* border: 3px solid #ccc; */
   width: 100%;
