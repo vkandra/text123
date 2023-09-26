@@ -82,6 +82,11 @@
   height: 88.5%;
   overflow: auto;
 }
+#downloadAndRefresh {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
 /* Table */
 #insTempTableid {
   /* border: 1px solid #ccc; */

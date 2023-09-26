@@ -15,10 +15,16 @@ import '@react-pdf-viewer/default-layout/lib/styles/index.css';
 import { Worker } from '@react-pdf-viewer/core';
 import { Image } from 'primereact/image';
 import axios from 'axios';
+import { ClipLoader } from 'react-spinners';
 import TemplateInsightsSecondPageRow from '../TemplateInsightsSecondPageRow/TemplateInsightsSecondPageRow';
 
 const TemplateInsights = (props) => {
   const [templateNameSelected, setTemplateNameSelected] = useState('');
+  const [templateSelectedDetails, setTemplateSelectedDetails] = useState({
+    sub_template_id: -1,
+    sub_template_name: '',
+  });
+  const [statusReviewedLoader, setStatusReviewedLoader] = useState(false);
 
   useEffect(() => {
     let reqBody = {
@@ -47,6 +53,7 @@ const TemplateInsights = (props) => {
     if (props.documents.insightsSecondPage.display === false) {
       document.getElementById('singleInsTemplateSelect').value =
         templateNameSelected;
+      // fetchTemplateFiles(templateSelectedDetails);
     }
   }, [props.documents.insightsSecondPage.display]);
 
@@ -57,6 +64,8 @@ const TemplateInsights = (props) => {
 
   const fetchTemplateFiles = (selectedTemplate) => {
     setTemplateNameSelected(selectedTemplate.sub_template_name);
+    setTemplateSelectedDetails(selectedTemplate);
+    // console.log(selectedTemplate);
     const data = {
       user_id: props.user.token,
       sub_template_id: selectedTemplate.sub_template_id,
@@ -95,6 +104,29 @@ const TemplateInsights = (props) => {
       file_data: [],
     };
     props.dispatch(setInsightsSingleFileData(data));
+  };
+
+  const markDocReviewed = () => {
+    const data = {
+      user_id: props.user.token,
+      sub_template_id: props.documents.insight2ndPageFileDetail.template_id,
+      document_id: props.documents.insight2ndPageFileDetail.file_id,
+    };
+    setStatusReviewedLoader(true);
+    console.log(data);
+    axios
+      .post(
+        `https://functionstexextraction.azurewebsites.net/api/template_documents_cosmoscontainers_metadataapi`,
+        data
+      )
+      .then((res) => {
+        console.log(res.data);
+        setStatusReviewedLoader(false);
+      })
+      .catch(function (error) {
+        alert(`Error while Updating status: ${error}`);
+        setStatusReviewedLoader(false);
+      });
   };
 
   return (
@@ -154,8 +186,16 @@ const TemplateInsights = (props) => {
                   {props.documents.templateInsights.proj_name}
                 </span>
               </div>
-              <div id="insTempDownload">
-                <i class="fa-regular fa-circle-down"></i>&nbsp;Download
+              <div id="downloadAndRefresh">
+                <div id="insTempDownload">
+                  <i class="fa-regular fa-circle-down"></i>&nbsp;Download
+                </div>
+                <div
+                  className="refreshIcDiv"
+                  onClick={() => fetchTemplateFiles(templateSelectedDetails)}
+                >
+                  <i className="fi fi-rr-refresh"></i>
+                </div>
               </div>
             </div>
             {/* <div className="detInsTempSect"></div> */}
@@ -250,7 +290,12 @@ const TemplateInsights = (props) => {
                   >
                     Cancel
                   </div>{' '}
-                  <div id="submitButtonReviewed">Submit</div>
+                  <div id="submitButtonReviewed" onClick={markDocReviewed}>
+                    {statusReviewedLoader && (
+                      <ClipLoader color="#384988" size={10} />
+                    )}
+                    &nbsp; Submit &nbsp;
+                  </div>
                 </div>
               </div>
               <div id="secPgFileView">
