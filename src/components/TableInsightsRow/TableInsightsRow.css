@@ -17,8 +17,12 @@
   width: 120px;
   text-align: center;
 }
+.tableInsightsRowConfPr {
+  width: 100px;
+  text-align: center;
+}
 .tableInsightsRowSize {
-  width: 120px;
+  width: 90px;
   text-align: center;
 }
 .tableInsightsRowStatus {
@@ -27,7 +31,7 @@
 }
 .tableInsightsRowView {
   text-align: center;
-  width: 120px;
+  width: 50px;
 }
 .tableInsightsRowView:hover {
   color: forestgreen;

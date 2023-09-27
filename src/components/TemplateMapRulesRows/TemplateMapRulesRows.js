@@ -216,7 +216,7 @@ const TemplateMapRulesRows = (props) => {
                     ref={textareaRef}
                     class="textareaPrompt"
                     rows="2"
-                    style={{ width: 300, minHeight: 30 }}
+                    style={{ width: 280, minHeight: 65 }}
                     placeholder="Type here..."
                     defaultValue={source === 'prompt' && props.rowData.prompt}
                   ></textarea>
@@ -237,7 +237,7 @@ const TemplateMapRulesRows = (props) => {
       </td>
       <td className="tempMapRulesRowIOPValue">
         {searchCyChatActive ? (
-          <ClipLoader color="#384988" height={10} />
+          <ClipLoader color="#384988" size={20} />
         ) : (
           outputValue
         )}

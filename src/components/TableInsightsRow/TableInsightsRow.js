@@ -59,6 +59,9 @@ const TableInsightsRow = (props) => {
       <td className="tableInsightsRowDatePr">
         {formatDate(props.rowData.file_processed)}
       </td>
+      <td className="tableInsightsRowConfPr">
+        {props.rowData.confidence_score_count}
+      </td>
       <td className="tableInsightsRowSize">
         {(props.rowData.file_size / (1024 * 1024)).toFixed(2)} MB
       </td>

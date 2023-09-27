@@ -206,6 +206,7 @@ const TemplateInsights = (props) => {
                 <tr id="insTempTableRow1" className="insTempTableRow1cl">
                   <th>File Name</th>
                   <th>Date Processed</th>
+                  <th>Confidence</th>
                   <th>Size</th>
                   <th>Status</th>
                   <th>View</th>
