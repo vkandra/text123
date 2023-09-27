@@ -24,7 +24,16 @@
 }
 .detInsTempSect {
   /* border: 1px solid green; */
-  width: 37%;
+  width: 31%;
+  height: 98%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.detInsTempSect2 {
+  /* border: 1px solid green; */
+  width: 10%;
   height: 98%;
   display: flex;
   flex-direction: column;

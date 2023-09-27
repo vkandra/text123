@@ -198,7 +198,14 @@ const TemplateInsights = (props) => {
                 </div>
               </div>
             </div>
-            {/* <div className="detInsTempSect"></div> */}
+            <div className="detInsTempSect2">
+              <div className="tempInsLabelsDiv">
+                Count:{' '}
+                <span className="tempInsLabels">
+                  {props.documents.templateInsights.excel_key_count}
+                </span>
+              </div>
+            </div>
           </div>
           <div id="midInsSection">
             <table id="insTempTableid">
