@@ -116,7 +116,7 @@ const TemplateInsights = (props) => {
     console.log(data);
     axios
       .post(
-        `https://functionstexextraction.azurewebsites.net/api/template_documents_cosmoscontainers_metadataapi`,
+        `https://functionstexextraction.azurewebsites.net/api/submit_reviewstatus`,
         data
       )
       .then((res) => {

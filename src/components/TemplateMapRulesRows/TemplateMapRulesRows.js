@@ -151,6 +151,23 @@ const TemplateMapRulesRows = (props) => {
       });
   };
 
+  const formatKeyText = (keyData) => {
+    console.log(keyData);
+    // return keyData.cytext_key;
+    return (
+      <div className="textPageRepEveryKey">
+        <div>{keyData.cytext_key} &nbsp;&nbsp;&nbsp;&nbsp;</div>
+        <div>
+          <span className="pageAndRepOfEveryKey" style={{ fontSize: '0.5rem' }}>
+            P: {keyData.page_no}
+          </span>
+          &nbsp;
+          <span className="pageAndRepOfEveryKey">R: {keyData.repeat_no}</span>
+        </div>
+      </div>
+    );
+  };
+
   return (
     <tr className={`templateMapRulesRows ${edited ? 'bg-edited' : null}`}>
       {/* <td
@@ -200,6 +217,7 @@ const TemplateMapRulesRows = (props) => {
                 >
                   {unusedKeys.map((singleKeyDetail, index) => (
                     <option value={`${singleKeyDetail.cytext_key}`} key={index}>
+                      {/* {formatKeyText(singleKeyDetail)} */}
                       {singleKeyDetail.cytext_key}
                     </option>
                   ))}
