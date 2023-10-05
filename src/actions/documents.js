@@ -157,7 +157,8 @@ export function startExtractionProcessAPI(data) {
       .post(
         // `https://qti3aekf4g.execute-api.ap-south-1.amazonaws.com/test/execution`,
         // `https://functionstexextraction.azurewebsites.net/api/StartPostAPI`,
-        `https://functionstexextraction.azurewebsites.net/api/StartPostAPInew`,
+        // `https://functionstexextraction.azurewebsites.net/api/StartPostAPInew`,
+        `https://functionstexextraction.azurewebsites.net/api/startapi_multiplerequest`,
         data
       )
       .then(function (response) {
