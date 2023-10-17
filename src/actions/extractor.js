@@ -9,6 +9,9 @@ export const HANDLE_PROCESSED_FILE_TAB_CHANGE =
   'HANDLE_PROCESSED_FILE_TAB_CHANGE';
 export const USER_EDITED_KVRT_LIST = 'USER_EDITED_KVRT_LIST';
 export const CLEAR_EDITED_KVRT_LIST = 'CLEAR_EDITED_KVRT_LIST';
+export const SET_ALL_SFTP_DETAILS = 'SET_ALL_SFTP_DETAILS';
+export const SET_BULK_UPLOAD_PAGE = 'SET_BULK_UPLOAD_PAGE';
+export const SET_ALL_FOLDERS_AND_MAPPINGS = 'SET_ALL_FOLDERS_AND_MAPPINGS';
 
 // ACTION CREATORS
 export function changeTabOperation(data) {
@@ -52,6 +55,49 @@ export function clearEditedKVRTList(data) {
   return {
     type: CLEAR_EDITED_KVRT_LIST,
     data: data,
+  };
+}
+
+export function setAllSftpDetails(data) {
+  // console.log(data);
+  return {
+    type: SET_ALL_SFTP_DETAILS,
+    data: data,
+  };
+}
+
+export function setBulkUploadPage(data) {
+  // console.log(data);
+  return {
+    type: SET_BULK_UPLOAD_PAGE,
+    data: data,
+  };
+}
+
+export function setAllFoldersAndMappings(data) {
+  // console.log(data);
+  return {
+    type: SET_ALL_FOLDERS_AND_MAPPINGS,
+    data: data,
+  };
+}
+
+// ACTION APIs
+
+export function getAllSftpDetailsAPI(data) {
+  return (dispatch) => {
+    axios
+      .post(
+        `https://functionstexextraction.azurewebsites.net/api/sftp_fetch_con_details`,
+        data
+      )
+      .then(function (response) {
+        console.log(response.data);
+        dispatch(setAllSftpDetails(response.data.all_sftp));
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   };
 }
 

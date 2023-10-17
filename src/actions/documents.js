@@ -259,23 +259,6 @@ export function sendUploadFilesMetadataAPI(data) {
   };
 }
 
-export function sftpAdddataAPI(data) {
-  return (dispatch) => {
-    console.log(data);
-    axios
-      .post(
-        `https://functionstexextraction.azurewebsites.net/api/sftpconfigure`,
-        data
-      )
-      .then(function (response) {
-        console.log(response.data);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  };
-}
-
 export function singleTemplateMapRulesDataAPI(data) {
   return (dispatch) => {
     console.log(data);

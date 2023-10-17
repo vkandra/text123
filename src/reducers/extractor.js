@@ -5,6 +5,9 @@ import {
   HANDLE_PROCESSED_FILE_TAB_CHANGE,
   USER_EDITED_KVRT_LIST,
   CLEAR_EDITED_KVRT_LIST,
+  SET_ALL_SFTP_DETAILS,
+  SET_BULK_UPLOAD_PAGE,
+  SET_ALL_FOLDERS_AND_MAPPINGS,
 } from '../actions/extractor';
 
 const extractorDocumentState = {
@@ -16,6 +19,62 @@ const extractorDocumentState = {
   // ALL THE EDITS MADE BY USER DURING SESSION
   userEditedKeyValueRawTable: [],
   // userEditedTable: [],
+
+  // --------------  SFTP  ----------------
+  bulkUploadPage: {
+    page: 1,
+    data: {},
+  },
+  allSftpDetails: [
+    {
+      SftpName: 'SftpName',
+      SftpUrl: 'SftpUrl',
+      hostname: 'hostname',
+      username: 'username',
+      status: 'Successful', // 'Not Successful', // 'In Progress'
+    },
+    {
+      SftpName: 'SftpName',
+      SftpUrl: 'SftpUrl',
+      hostname: 'hostname',
+      username: 'username',
+      status: 'Not Successful', // 'Not Successful', // 'In Progress'
+    },
+    {
+      SftpName: 'SftpName',
+      SftpUrl: 'SftpUrl',
+      hostname: 'hostname',
+      username: 'username',
+      status: 'In Progress', // 'Not Successful', // 'In Progress'
+    },
+  ],
+
+  allFoldersAndMappings: {
+    all_folders: ['root', 'abc', 'def'],
+    all_files: [],
+    user_id: 'AV123',
+    SftpName: 'SftpName',
+    SftpUrl: 'SftpUrl',
+    hostname: 'hostname',
+    username: 'username',
+    mapped_folders: [
+      {
+        folder_name: 'root',
+        template_name: 'ABC',
+        status: 'Successful', // 'Not Successful', // 'In Progress'
+      },
+      {
+        folder_name: 'root',
+        template_name: 'ABC',
+        status: 'Not Successful', // 'Not Successful', // 'In Progress'
+      },
+      {
+        folder_name: 'root',
+        template_name: 'ABC',
+        status: 'In Progress', // 'Not Successful', // 'In Progress'
+      },
+    ],
+  },
 };
 
 export default function extractor(state = extractorDocumentState, action) {
@@ -55,6 +114,24 @@ export default function extractor(state = extractorDocumentState, action) {
       return {
         ...state,
         userEditedKeyValueRawTable: action.data,
+      };
+    case SET_ALL_SFTP_DETAILS:
+      // console.log(action.data);
+      return {
+        ...state,
+        allSftpDetails: action.data,
+      };
+    case SET_BULK_UPLOAD_PAGE:
+      // console.log(action.data);
+      return {
+        ...state,
+        bulkUploadPage: action.data,
+      };
+    case SET_ALL_FOLDERS_AND_MAPPINGS:
+      // console.log(action.data);
+      return {
+        ...state,
+        allFoldersAndMappings: action.data,
       };
     default:
       return state;

@@ -20,8 +20,8 @@ const InAppBody = (props) => {
     props.dispatch(changeTabOperation(extractor));
   };
 
-  const currentPath = window.location.pathname;
-  console.log(currentPath);
+  // const currentPath = window.location.pathname;
+  // console.log(currentPath);
   // if (currentPath === '/') {
   //   changeMainTabs(1);
   // }

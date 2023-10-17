@@ -1,0 +1,161 @@
+/* Second Page */
+.sftp2ndPage {
+  height: 100%;
+}
+.sftp2ndPageContainer {
+  /* border: 1px solid black; */
+  height: 100%;
+  padding: 4px;
+}
+#sftp2Container1 {
+  /* border: 1px solid green; */
+  width: 100%;
+  height: 100%;
+}
+#sftpSecondPageHeader {
+  /* border: 1px solid black; */
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.sftpSecondPageLabel1 {
+  /* border: 1px solid brown; */
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 25%;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: #384988;
+}
+.sftpSecondPageLabelAns1 {
+  color: #000;
+  font-weight: 400;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  max-width: 400px;
+}
+
+#sftpSecondPageBackToTemplates1 {
+  border: 1px solid #ccc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 3px 10px;
+  border-radius: 5px;
+  color: #008000;
+}
+#sftpSecondPageBackToTemplates1:hover {
+  background: #eeeeee;
+  cursor: pointer;
+}
+#sftpSecondPageBackToTemplates2 {
+  border: 1px solid #ccc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 3px 5px;
+  border-radius: 3px;
+  color: #008000;
+}
+#sftpSecondPageBackToTemplates2:hover {
+  background: #eeeeee;
+  cursor: pointer;
+}
+
+#sftp2SecPgContainer {
+  /* border: 1px solid green; */
+  width: 100%;
+  height: 95%;
+  padding-top: 4px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#currentSFTP2status {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: blueviolet;
+}
+#spinnerSFTP2addNew {
+  width: 15px;
+  height: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#addSFTP2TopSection {
+  /* border: 1px solid black; */
+  width: 100%;
+  padding: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+#SFTP2MiddleSection {
+  /* border: 1px solid blue; */
+  min-width: 135px;
+  width: 10%;
+  max-width: 150px;
+}
+.addNewSFTP2Button {
+  border: 1px solid #ccc;
+  padding: 2px;
+  /* width: 90px; */
+  height: 26px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border-radius: 20px;
+  cursor: pointer;
+}
+.addNewSFTP2Button:hover {
+  background: rgb(246, 246, 246);
+}
+.addNewSFTP2Button:active {
+  /* border: 1px solid #0000; */
+  border-radius: 5px;
+  cursor: pointer;
+}
+.addNewSFTP2icon {
+  font-size: 1.1rem;
+  color: green;
+}
+.addNewSFTP2Label {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #1e1e1e;
+}
+
+#addSFTP2MiddleSection {
+  /* border: 1px solid black; */
+  height: 88.5%;
+  overflow: auto;
+  padding: 0px 10px;
+}
+#sftp2AllDetailsTable {
+  /* border: 1px solid black; */
+  width: 100%;
+}
+.sftp2AllDetailsCellHead {
+  border: 1px solid #ccc;
+  background: #f3f3f3;
+  padding-left: 4px;
+  font-size: 0.85rem;
+  text-align: center;
+}
+.sftp2AllDetailsRow:hover {
+  background: #f1f1f1;
+}
+.sftp2AllDetailsCell {
+  border: 1px solid #ccc;
+  padding-left: 4px;
+  font-size: 0.85rem;
+}
+.sftp2AllDetailsCellStatus {
+  text-align: center;
+}
