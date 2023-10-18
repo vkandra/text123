@@ -25,29 +25,7 @@ const extractorDocumentState = {
     page: 1,
     data: {},
   },
-  allSftpDetails: [
-    {
-      SftpName: 'SftpName',
-      SftpUrl: 'SftpUrl',
-      hostname: 'hostname',
-      username: 'username',
-      status: 'Successful', // 'Not Successful', // 'In Progress'
-    },
-    {
-      SftpName: 'SftpName',
-      SftpUrl: 'SftpUrl',
-      hostname: 'hostname',
-      username: 'username',
-      status: 'Not Successful', // 'Not Successful', // 'In Progress'
-    },
-    {
-      SftpName: 'SftpName',
-      SftpUrl: 'SftpUrl',
-      hostname: 'hostname',
-      username: 'username',
-      status: 'In Progress', // 'Not Successful', // 'In Progress'
-    },
-  ],
+  allSftpDetails: [],
 
   allFoldersAndMappings: {
     all_folders: ['root', 'abc', 'def'],

@@ -22,7 +22,7 @@ const SFTP = (props) => {
 
   useEffect(() => {
     let obj1 = { user_id: props.user.token };
-    // fetchAllSftpDetails();
+    fetchAllSftpDetails();
     // props.dispatch(fetchTemplatesDataAPI(obj1));
 
     // if (props.user.templatesData.user_id !== '') {
@@ -84,7 +84,7 @@ const SFTP = (props) => {
   };
 
   const fetchAllSftpDetails = () => {
-    let data = {};
+    let data = { user_id: props.user.token };
     props.dispatch(getAllSftpDetailsAPI(data));
   };
 
