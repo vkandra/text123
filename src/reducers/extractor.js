@@ -28,29 +28,29 @@ const extractorDocumentState = {
   allSftpDetails: [],
 
   allFoldersAndMappings: {
-    all_folders: ['root', 'abc', 'def'],
+    all_folders: [],
     all_files: [],
-    user_id: 'AV123',
-    SftpName: 'SftpName',
-    SftpUrl: 'SftpUrl',
-    hostname: 'hostname',
-    username: 'username',
+    user_id: '',
+    SftpName: '',
+    SftpUrl: '',
+    hostname: '',
+    username: '',
     mapped_folders: [
-      {
-        folder_name: 'root',
-        template_name: 'ABC',
-        status: 'Successful', // 'Not Successful', // 'In Progress'
-      },
-      {
-        folder_name: 'root',
-        template_name: 'ABC',
-        status: 'Not Successful', // 'Not Successful', // 'In Progress'
-      },
-      {
-        folder_name: 'root',
-        template_name: 'ABC',
-        status: 'In Progress', // 'Not Successful', // 'In Progress'
-      },
+      // {
+      //   folder_name: 'root',
+      //   template_name: 'ABC',
+      //   status: 'Successful', // 'Not Successful', // 'In Progress'
+      // },
+      // {
+      //   folder_name: 'root',
+      //   template_name: 'ABC',
+      //   status: 'Not Successful', // 'Not Successful', // 'In Progress'
+      // },
+      // {
+      //   folder_name: 'root',
+      //   template_name: 'ABC',
+      //   status: 'In Progress', // 'Not Successful', // 'In Progress'
+      // },
     ],
   },
 };

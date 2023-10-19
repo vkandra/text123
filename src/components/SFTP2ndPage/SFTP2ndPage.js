@@ -15,6 +15,7 @@ const SFTP2ndPage = (props) => {
     template: {},
   });
   const [currentSFTP, setCurrentSFTP] = useState('');
+
   useEffect(() => {
     getSingleSftpDetailsAPI();
 
@@ -35,15 +36,16 @@ const SFTP2ndPage = (props) => {
     }, 5000);
   }, []);
 
-  //   console.log(folderNtemplate);
+  console.log(folderNtemplate);
   const getSingleSftpDetailsAPI = () => {
     let data = {
       user_id: props.user.token,
       ...props.extractor.bulkUploadPage.data,
     };
+    console.log(data);
     axios
       .post(
-        `https://functionstexextraction.azurewebsites.net/api/sftpconfigure`,
+        `https://functionstexextraction.azurewebsites.net/api/sftp_list_folders_metadata`,
         data
       )
       .then(function (response) {
@@ -52,7 +54,7 @@ const SFTP2ndPage = (props) => {
           ...folderNtemplate,
           folderName: response.data.all_folders[0],
         });
-        // props.dispatch(setAllFoldersAndMappings(response.data));
+        props.dispatch(setAllFoldersAndMappings(response.data));
       })
       .catch(function (error) {
         console.log(error);
@@ -68,22 +70,41 @@ const SFTP2ndPage = (props) => {
   };
 
   const addFolderToCopy = () => {
+    let folder_name_selected = folderNtemplate.folderName;
+    let template_details_selected = { ...folderNtemplate.template };
+    if (folderNtemplate.folderName === '') {
+      folder_name_selected =
+        props.extractor.allFoldersAndMappings.all_folders[0];
+      setFolderNtemplate({
+        ...folderNtemplate,
+        folderName: props.extractor.allFoldersAndMappings.all_folders[0],
+      });
+    }
+    if (Object.keys(template_details_selected).length === 0) {
+      template_details_selected = {
+        ...props.singleDocument.saveSubTempDetails[0],
+      };
+      setFolderNtemplate({
+        ...folderNtemplate,
+        template: { ...props.singleDocument.saveSubTempDetails[0] },
+      });
+    }
     let data = {
       user_id: props.user.token,
       ...props.extractor.bulkUploadPage.data,
-      folder_path: folderNtemplate.folderName,
-      ...folderNtemplate.template,
+      folder_path: folder_name_selected,
+      ...template_details_selected,
     };
     console.log(data);
     setCurrentSFTP('Copying... Please wait');
     axios
       .post(
-        `https://functionstexextraction.azurewebsites.net/api/sftp_connection_check`,
+        `https://functionstexextraction.azurewebsites.net/api/sftp_copy_blob_notprocessed`,
         data
       )
       .then(function (response) {
         console.log(response.data);
-        setCurrentSFTP(response.data.status);
+        setCurrentSFTP(response.data.Status);
         let obj1 = {
           user_id: props.user.token,
           ...props.extractor.bulkUploadPage.data,

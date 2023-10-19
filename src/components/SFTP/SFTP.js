@@ -62,7 +62,7 @@ const SFTP = (props) => {
       )
       .then(function (response) {
         console.log(response.data);
-        setCurrentSFTP(response.data.status);
+        setCurrentSFTP(response.data.Status);
         fetchAllSftpDetails();
       })
       .catch(function (error) {
