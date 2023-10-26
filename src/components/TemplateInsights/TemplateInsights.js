@@ -17,6 +17,7 @@ import { Image } from 'primereact/image';
 import axios from 'axios';
 import { ClipLoader } from 'react-spinners';
 import TemplateInsightsSecondPageRow from '../TemplateInsightsSecondPageRow/TemplateInsightsSecondPageRow';
+import { downloadTemplateInsightsExcelAPI } from '../../actions/extractor';
 
 const TemplateInsights = (props) => {
   const [templateNameSelected, setTemplateNameSelected] = useState('');
@@ -129,6 +130,13 @@ const TemplateInsights = (props) => {
       });
   };
 
+  const downloadTemplateInsExcel = (templateSelectedDetails) => {
+    const data = {
+      user_id: props.user.token,
+      template_id: templateSelectedDetails.sub_template_id,
+    };
+    props.dispatch(downloadTemplateInsightsExcelAPI(data));
+  };
   return (
     <div className="templateInsights">
       {!props.documents.insightsSecondPage.display && (
@@ -186,7 +194,12 @@ const TemplateInsights = (props) => {
                   {props.documents.templateInsights.proj_name}
                 </span>
               </div>
-              <div id="downloadAndRefresh">
+              <div
+                id="downloadAndRefresh"
+                onClick={() =>
+                  downloadTemplateInsExcel(templateSelectedDetails)
+                }
+              >
                 <div id="insTempDownload">
                   <i class="fa-regular fa-circle-down"></i>&nbsp;Download
                 </div>

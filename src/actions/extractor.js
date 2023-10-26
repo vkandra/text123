@@ -148,6 +148,24 @@ export function downloadEditedDataAPI(data) {
   };
 }
 
+export function downloadTemplateInsightsExcelAPI(data) {
+  return (dispatch) => {
+    console.log(data);
+    axios
+      .post(
+        `https://functionstexextraction.azurewebsites.net/api/download_api`,
+        data
+      )
+      .then(function (response) {
+        console.log(response.data);
+        dispatch(downloadZipOfExcelFilesAPI(response.data.blob_url));
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
+}
+
 export function downloadZipOfExcelFilesAPI(data) {
   return (dispatch) => {
     const fileName = data.split('/');
