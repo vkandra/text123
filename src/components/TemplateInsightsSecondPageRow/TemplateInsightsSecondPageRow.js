@@ -4,30 +4,64 @@ import { connect } from 'react-redux/es/exports';
 import editIcon from '../../Pictures/pencil-solid.svg';
 import saveIcon from '../../Pictures/floppy-disk-regular.svg';
 import axios from 'axios';
+import { setInsightsSingleFileData } from '../../actions/documents';
 
 const TemplateInsightsSecondPageRow = (props) => {
   const [edited, setEdited] = useState(false);
 
   const textareaRef = useRef(null);
 
+  useEffect(() => {
+    // console.log(props.rowData);
+  }, []);
+
   const saveData = () => {
+    console.log(props.rowData);
     const data = {
-      uniq_id: props.rowData.uniq_id,
-      userid: props.user.token,
+      new_edited_value: textareaRef.current.value,
+      file_name: props.documents.insightsSecondPage.file_name,
+      file_id: props.documents.insight2ndPageFileDetail.file_id,
+      template: props.documents.insightsSecondPage.template_name,
+      template_id: props.documents.insight2ndPageFileDetail.template_id,
+      rule_id: props.rowData.rule_id,
+      field: props.rowData.excel_field,
+      source: props.rowData.source,
+      user_id: props.user.token,
     };
     console.log(data);
     setEdited(false);
-    // axios
-    //   .post(
-    //     `https://functionstexextraction.azurewebsites.net/api/mappromptupdatecosmosdbitem`,
-    //     data
-    //   )
-    //   .then((res) => {
-    //     console.log(res.data);
-    //   })
-    //   .catch(function (error) {
-    //     console.log(error);
-    //   });
+    axios
+      .post(
+        `https://functionstexextraction.azurewebsites.net/api/FilewiseEdit`,
+        data
+      )
+      .then((res) => {
+        console.log(res.data);
+        const data2 = {
+          user_id: props.user.token,
+          template_name: props.documents.insight2ndPageFileDetail.template_name,
+          template_id: props.documents.insight2ndPageFileDetail.template_id,
+          file_name: props.documents.insight2ndPageFileDetail.file_name,
+          file_id: props.documents.insight2ndPageFileDetail.file_id,
+        };
+        console.log(data2);
+        axios
+          .post(
+            `https://functionstexextraction.azurewebsites.net/api/cytext_promptapi`,
+            data2
+          )
+          .then((res) => {
+            console.log(res.data);
+            props.dispatch(setInsightsSingleFileData(res.data));
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+      })
+      .catch(function (error) {
+        alert('Error While Trying To Update Data!');
+        console.log(error);
+      });
   };
 
   return (

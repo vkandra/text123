@@ -8,6 +8,7 @@ import Configuration from '../../components/Configuration/Configuration';
 import Templates from '../../components/Templates/Templates';
 import TemplateInsights from '../TemplateInsights/TemplateInsights';
 import SFTP from '../SFTP/SFTP';
+import CustomerConf from '../CustomerConf/CustomerConf';
 
 import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
@@ -107,13 +108,25 @@ const InAppBody = (props) => {
                 &nbsp;&nbsp;REVIEW
               </div>
             </Link>
-            <Link to="/dashboard" style={{ textDecoration: 'none' }}>
+            <Link to="/customer" style={{ textDecoration: 'none' }}>
               <div
                 className={`singleMenus ${
                   props.extractor.page === 6 ? 'selectedMenu' : ''
                 }`}
-                id="singleMenu5"
+                id="singleMenu4"
                 onClick={() => changeMainTabs(6)}
+              >
+                <i class="fa-solid fa-child-reaching"></i>
+                &nbsp;&nbsp;CUSTOMER
+              </div>
+            </Link>
+            <Link to="/dashboard" style={{ textDecoration: 'none' }}>
+              <div
+                className={`singleMenus ${
+                  props.extractor.page === 7 ? 'selectedMenu' : ''
+                }`}
+                id="singleMenu5"
+                onClick={() => changeMainTabs(7)}
               >
                 <i className="fa-solid fa-chart-line menuicon"></i> &nbsp;&nbsp;
                 {props.themeLang.languageWords.Dashboard}
@@ -132,6 +145,8 @@ const InAppBody = (props) => {
             ) : props.extractor.page === 5 ? (
               <TemplateInsights />
             ) : props.extractor.page === 6 ? (
+              <CustomerConf />
+            ) : props.extractor.page === 7 ? (
               <Dashboards />
             ) : null}
           </div>

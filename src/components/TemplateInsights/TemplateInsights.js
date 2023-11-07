@@ -194,13 +194,13 @@ const TemplateInsights = (props) => {
                   {props.documents.templateInsights.proj_name}
                 </span>
               </div>
-              <div
-                id="downloadAndRefresh"
-                onClick={() =>
-                  downloadTemplateInsExcel(templateSelectedDetails)
-                }
-              >
-                <div id="insTempDownload">
+              <div id="downloadAndRefresh">
+                <div
+                  id="insTempDownload"
+                  onClick={() =>
+                    downloadTemplateInsExcel(templateSelectedDetails)
+                  }
+                >
                   <i class="fa-regular fa-circle-down"></i>&nbsp;Download
                 </div>
                 <div

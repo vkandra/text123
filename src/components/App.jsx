@@ -100,6 +100,10 @@ const App = (props) => {
           path="/dashboard"
           element={isAuthenticated ? <InAppBody /> : <Homepage />}
         />
+        <Route
+          path="/customer"
+          element={isAuthenticated ? <InAppBody /> : <Homepage />}
+        />
       </Routes>
     </Router>
   );
