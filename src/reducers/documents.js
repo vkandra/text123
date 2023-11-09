@@ -15,6 +15,8 @@ import {
   SET_TEMPLATE_INSIGHTS_DATA,
   SET_INSIGHTS_SECOND_PAGE,
   SET_INSIGHTS_SINGLE_FILE_DATA,
+  SET_ALL_CUSTOMERS,
+  SET_SINGLE_CUSTOMER_EXCEL_FILES,
 } from '../actions/documents';
 
 const initialDocumentsState = {
@@ -136,37 +138,6 @@ const initialDocumentsState = {
     file_details: [],
   },
 
-  templateInsights_1: {
-    template_name: 'cde',
-    template_id: 111,
-    cust_name: 'ppp',
-    dept_name: 'lpl',
-    proj_name: 'hdh',
-    total_processed_files: 2,
-    file_details: [
-      {
-        file_name: 'aaa.pdf',
-        file_id: 'p1p2',
-        file_upload: '2023-08-13',
-        file_processed: '2023-09-14',
-        file_size: '1024',
-        file_review_status: 'Reviewed',
-        file_url:
-          'https://texextraction.blob.core.windows.net/documentdetails/Health%20Policy.pdf',
-      },
-      {
-        file_name: 'bbb.pdf',
-        file_id: 'p1p244',
-        file_upload: '2023-04-13',
-        file_processed: '2023-05-14',
-        file_size: '1424',
-        file_review_status: 'Not Reviewed',
-        file_url:
-          'https://texextraction.blob.core.windows.net/documentdetails/Health%20Policy.pdf',
-      },
-    ],
-  },
-
   insightsSecondPage: {
     display: false,
     file_name: '',
@@ -181,6 +152,42 @@ const initialDocumentsState = {
     file_url: '',
     file_data: [],
   },
+
+  // Customer Configuration
+  allCustomers: [
+    {
+      customer_id: 'SNP123',
+      customer_name: 'SNP',
+    },
+    {
+      customer_id: 'sep2334',
+      customer_name: 'sep23',
+    },
+    {
+      customer_id: 'hmhydro123',
+      customer_name: 'hmhydro',
+    },
+    {
+      customer_id: 'SSEN123',
+      customer_name: 'SSEN',
+    },
+  ],
+  singleCustomerExcelFiles: [
+    {
+      name: 'cus1_huf455/CEC2.ipynb',
+      url: 'https://texextraction.blob.core.windows.net/masterdata/cus1_huf455/CEC2.ipynb',
+      size: 14301,
+      content_type: 'application/octet-stream',
+      last_modified: '2023-11-08T17:27:02+00:00',
+    },
+    {
+      name: 'cus1_huf455/Masterdataupload.ipynb',
+      url: 'https://texextraction.blob.core.windows.net/masterdata/cus1_huf455/Masterdataupload.ipynb',
+      size: 5567,
+      content_type: 'application/octet-stream',
+      last_modified: '2023-11-08T17:26:30+00:00',
+    },
+  ],
 };
 
 export default function documents(state = initialDocumentsState, action) {
@@ -282,7 +289,18 @@ export default function documents(state = initialDocumentsState, action) {
         ...state,
         insight2ndPageFileDetail: action.data,
       };
-
+    case SET_ALL_CUSTOMERS:
+      // console.log('ACTION_in_reducer ', action.data);
+      return {
+        ...state,
+        allCustomers: action.data,
+      };
+    case SET_SINGLE_CUSTOMER_EXCEL_FILES:
+      // console.log('ACTION_in_reducer ', action.data);
+      return {
+        ...state,
+        singleCustomerExcelFiles: action.data,
+      };
     default:
       return state;
   }

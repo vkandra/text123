@@ -1,0 +1,32 @@
+.customerConfRow {
+  border-bottom: 1px solid #ccc;
+}
+.customerConfRow:hover {
+  background: #f7f7f7;
+}
+.customerConfRow td {
+  border: 1px solid #ccc;
+  font-size: 0.85rem;
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+.customerConfFName {
+  padding-left: 4px;
+}
+.customerConfDate {
+  width: 120px;
+  text-align: center;
+}
+.customerConfSize {
+  width: 90px;
+  text-align: center;
+}
+.customerConfDwnld {
+  text-align: center;
+  width: 80px;
+  color: green;
+}
+.customerConfDwnld:hover {
+  color: forestgreen;
+  cursor: pointer;
+}

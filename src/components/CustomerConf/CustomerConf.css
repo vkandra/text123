@@ -1,0 +1,121 @@
+.CustomerConf {
+  /* border: 1px solid black; */
+  height: 100%;
+}
+#custConfFirstPage {
+  height: 100%;
+}
+#topCustConfSection {
+  /* border: 1px solid black; */
+  height: 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 4px;
+}
+#selectCustConfTempSect {
+  /* border: 1px solid brown; */
+  width: 26%;
+  height: 98%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+#selectCustConfLabel {
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+#singleCustConfSelect {
+  border: 1px solid #ccc;
+  cursor: pointer;
+  font-size: 0.8rem;
+  width: 270px;
+  height: 25px;
+}
+#singleCustConfSelect:focus {
+  outline: none;
+}
+.detCustConfSect {
+  /* border: 1px solid green; */
+  width: 40%;
+  height: 98%;
+  display: flex;
+  margin-right: 200px;
+  /* flex-direction: column; */
+  justify-content: space-between;
+  align-items: flex-end;
+}
+.detCustConfSect2 {
+  /* border: 1px solid green; */
+  width: 10%;
+  height: 98%;
+  display: flex;
+  /* flex-direction: column; */
+  justify-content: space-between;
+  align-items: flex-end;
+}
+.custConfLabelsDiv {
+  font-size: 0.85rem;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  max-width: 350px;
+}
+.custConfLabels {
+  font-weight: 500;
+}
+
+#selectedExcelFileForUploading {
+  font-size: 0.8rem;
+}
+
+.uploadButtonExcelCustConf {
+  /* margin-top: 12px; */
+  width: 100px;
+  height: 25px;
+  border: 1px solid #384988;
+  font-size: 0.8rem;
+  /* background: floralwhite; */
+  cursor: pointer;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  border-radius: 15px;
+  margin-top: 5px;
+  color: #384988;
+  font-weight: 700;
+}
+
+.uploadButtonExcelCustConf:hover {
+  background: #97f3bd;
+}
+.detCustConfSect div input::file-selector-button {
+  font-weight: bold;
+  color: #1e1e1e;
+  padding: 0.3em;
+  border: thin solid #ccc;
+  border-radius: none;
+  cursor: pointer;
+  background: none;
+  font-size: 0.7rem;
+  border-radius: 4px;
+}
+
+#midcustConfSection {
+  padding: 3px;
+  /* border-top: 1px solid #ccc; */
+  height: 88.5%;
+  overflow: auto;
+}
+#custConfTableid {
+  /* border: 1px solid #ccc; */
+  width: 100%;
+}
+.custConfTableRow1cl th {
+  /* display: flex; */
+  text-align: center;
+  font-size: 0.85rem;
+  border: 1px solid #ccc;
+  background: #f3f3f3;
+}

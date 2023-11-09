@@ -20,6 +20,9 @@ export const SET_TEMPLATE_RULE_DATA = 'SET_TEMPLATE_RULE_DATA';
 export const SET_TEMPLATE_INSIGHTS_DATA = 'SET_TEMPLATE_INSIGHTS_DATA';
 export const SET_INSIGHTS_SECOND_PAGE = 'SET_INSIGHTS_SECOND_PAGE';
 export const SET_INSIGHTS_SINGLE_FILE_DATA = 'SET_INSIGHTS_SINGLE_FILE_DATA';
+export const SET_ALL_CUSTOMERS = 'SET_ALL_CUSTOMERS';
+export const SET_SINGLE_CUSTOMER_EXCEL_FILES =
+  'SET_SINGLE_CUSTOMER_EXCEL_FILES';
 
 // ACTION CREATORS
 export function assignAllReceivedDocumentsData(data, preferences) {
@@ -130,6 +133,20 @@ export function setInsightsSecondPage(data) {
 export function setInsightsSingleFileData(data) {
   return {
     type: SET_INSIGHTS_SINGLE_FILE_DATA,
+    data: data,
+  };
+}
+
+export function setAllCustomers(data) {
+  return {
+    type: SET_ALL_CUSTOMERS,
+    data: data,
+  };
+}
+
+export function setSingleCustomerExcelFiles(data) {
+  return {
+    type: SET_SINGLE_CUSTOMER_EXCEL_FILES,
     data: data,
   };
 }
@@ -252,6 +269,24 @@ export function sendUploadFilesMetadataAPI(data) {
       )
       .then(function (response) {
         console.log(response.data);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
+}
+
+export function fetchSingleCustomerExcelListAPI(data) {
+  return (dispatch) => {
+    console.log(data);
+    axios
+      .post(
+        `https://functionstexextraction.azurewebsites.net/api/customer_masterdata_metadatatable`,
+        data
+      )
+      .then(function (response) {
+        console.log(response.data);
+        dispatch(setSingleCustomerExcelFiles(response.data.files));
       })
       .catch(function (error) {
         console.log(error);
