@@ -5,6 +5,7 @@ import {
   HANDLE_PROCESSED_FILE_TAB_CHANGE,
   USER_EDITED_KVRT_LIST,
   CLEAR_EDITED_KVRT_LIST,
+  SET_CONF_REMOTE_STORAGE,
   SET_ALL_SFTP_DETAILS,
   SET_BULK_UPLOAD_PAGE,
   SET_ALL_FOLDERS_AND_MAPPINGS,
@@ -20,12 +21,29 @@ const extractorDocumentState = {
   userEditedKeyValueRawTable: [],
   // userEditedTable: [],
 
+  confRemoteStorage: 1,
+
   // --------------  SFTP  ----------------
   bulkUploadPage: {
     page: 1,
     data: {},
   },
-  allSftpDetails: [],
+  allSftpDetails: [
+    // {
+    //   SftpName: 'SftpName',
+    //   SftpUrl: 'SftpUrl',
+    //   hostname: 'hostname',
+    //   username: 'username',
+    //   status: 'Successful', // 'Not Successful', // 'In Progress'
+    // },
+    // {
+    //   SftpName: 'SftpName',
+    //   SftpUrl: 'SftpUrl',
+    //   hostname: 'hostname',
+    //   username: 'username',
+    //   status: 'Successful', // 'Not Successful', // 'In Progress'
+    // },
+  ],
 
   allFoldersAndMappings: {
     all_folders: [],
@@ -92,6 +110,12 @@ export default function extractor(state = extractorDocumentState, action) {
       return {
         ...state,
         userEditedKeyValueRawTable: action.data,
+      };
+    case SET_CONF_REMOTE_STORAGE:
+      // console.log(action.data);
+      return {
+        ...state,
+        confRemoteStorage: action.data,
       };
     case SET_ALL_SFTP_DETAILS:
       // console.log(action.data);

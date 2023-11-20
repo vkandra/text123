@@ -13,6 +13,7 @@ import CustomerConf from '../CustomerConf/CustomerConf';
 import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
 import { Link, Route } from 'react-router-dom';
+import ConfRemoteStorage from '../ConfRemoteStorage/ConfRemoteStorage';
 
 const InAppBody = (props) => {
   const changeMainTabs = (tabNum) => {
@@ -139,7 +140,7 @@ const InAppBody = (props) => {
             ) : props.extractor.page === 2 ? (
               <TextExtraction />
             ) : props.extractor.page === 3 ? (
-              <SFTP />
+              <ConfRemoteStorage />
             ) : props.extractor.page === 4 ? (
               <Templates />
             ) : props.extractor.page === 5 ? (

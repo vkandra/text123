@@ -9,6 +9,7 @@ export const HANDLE_PROCESSED_FILE_TAB_CHANGE =
   'HANDLE_PROCESSED_FILE_TAB_CHANGE';
 export const USER_EDITED_KVRT_LIST = 'USER_EDITED_KVRT_LIST';
 export const CLEAR_EDITED_KVRT_LIST = 'CLEAR_EDITED_KVRT_LIST';
+export const SET_CONF_REMOTE_STORAGE = 'SET_CONF_REMOTE_STORAGE';
 export const SET_ALL_SFTP_DETAILS = 'SET_ALL_SFTP_DETAILS';
 export const SET_BULK_UPLOAD_PAGE = 'SET_BULK_UPLOAD_PAGE';
 export const SET_ALL_FOLDERS_AND_MAPPINGS = 'SET_ALL_FOLDERS_AND_MAPPINGS';
@@ -54,6 +55,14 @@ export function clearEditedKVRTList(data) {
   // console.log(data);
   return {
     type: CLEAR_EDITED_KVRT_LIST,
+    data: data,
+  };
+}
+
+export function setConfRemoteStorage(data) {
+  // console.log(data);
+  return {
+    type: SET_CONF_REMOTE_STORAGE,
     data: data,
   };
 }
