@@ -67,6 +67,18 @@ const SFTP2ndPage = (props) => {
       data: {},
     };
     props.dispatch(setBulkUploadPage(param));
+    props.dispatch(
+      setAllFoldersAndMappings({
+        all_folders: [],
+        all_files: [],
+        user_id: '',
+        SftpName: '',
+        SftpUrl: '',
+        hostname: '',
+        username: '',
+        mapped_folders: [],
+      })
+    );
   };
 
   const addFolderToCopy = () => {

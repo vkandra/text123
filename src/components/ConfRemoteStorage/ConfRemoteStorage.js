@@ -1,10 +1,18 @@
 import './ConfRemoteStorage.css';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux/es/exports';
 import SFTP from '../SFTP/SFTP';
 import { setConfRemoteStorage } from '../../actions/extractor';
 
 const ConfRemoteStorage = (props) => {
+  useEffect(() => {
+    if (props.extractor.bulkUploadPage.page === 1) {
+      document.getElementById('confRemStButtonSection').style.display = 'flex';
+    } else {
+      document.getElementById('confRemStButtonSection').style.display = 'none';
+    }
+  }, [props.extractor.bulkUploadPage.page]);
+
   return (
     <div className="confRemoteStorage">
       <div id="confRemStButtonSection">
