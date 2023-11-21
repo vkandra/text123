@@ -1,25 +1,25 @@
 /* Second Page */
-.sftp2ndPage {
+.azureRemoteSt2ndPage {
   height: 100%;
 }
-.sftp2ndPageContainer {
+.azure2ndPageContainer {
   /* border: 1px solid black; */
   height: 100%;
   padding: 4px;
 }
-#sftp2Container1 {
+#azure2Container1 {
   /* border: 1px solid green; */
   width: 100%;
   height: 100%;
 }
-#sftpSecondPageHeader {
+#azureSecondPageHeader {
   /* border: 1px solid black; */
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-.sftpSecondPageLabel1 {
+.azureSecondPageLabel1 {
   /* border: 1px solid brown; */
   display: flex;
   justify-content: flex-start;
@@ -29,7 +29,7 @@
   font-weight: 500;
   color: #384988;
 }
-.sftpSecondPageLabelAns1 {
+.azureSecondPageLabelAns1 {
   color: #000;
   font-weight: 400;
   text-overflow: ellipsis;
@@ -38,7 +38,7 @@
   max-width: 400px;
 }
 
-#sftpSecondPageBackToTemplates1 {
+#azureSecondPageBackToTemplates1 {
   border: 1px solid #ccc;
   display: flex;
   justify-content: center;
@@ -47,11 +47,11 @@
   border-radius: 5px;
   color: #008000;
 }
-#sftpSecondPageBackToTemplates1:hover {
+#azureSecondPageBackToTemplates1:hover {
   background: #eeeeee;
   cursor: pointer;
 }
-#sftpSecondPageBackToTemplates2 {
+#azureSecondPageBackToTemplates2 {
   border: 1px solid #ccc;
   display: flex;
   justify-content: center;
@@ -60,12 +60,12 @@
   border-radius: 3px;
   color: #008000;
 }
-#sftpSecondPageBackToTemplates2:hover {
+#azureSecondPageBackToTemplates2:hover {
   background: #eeeeee;
   cursor: pointer;
 }
 
-#sftp2SecPgContainer {
+#azure2SecPgContainer {
   /* border: 1px solid green; */
   width: 100%;
   height: 95%;
@@ -74,7 +74,8 @@
   justify-content: space-between;
   align-items: center;
 }
-#singleInsSFTPFolderSelect {
+
+#singleInsAzureFolderSelect {
   outline: none;
   border: 1px solid #ccc;
   font-size: 0.85rem;
@@ -82,7 +83,8 @@
   cursor: pointer;
   margin-top: 3px;
 }
-#singleInsSFTPTemplateSelect {
+
+#singleInsAzureSubFolderSelect {
   outline: none;
   border: 1px solid #ccc;
   font-size: 0.85rem;
@@ -90,12 +92,22 @@
   cursor: pointer;
   margin-top: 3px;
 }
-#currentSFTP2status {
+
+#singleInsAzureTemplateSelect {
+  outline: none;
+  border: 1px solid #ccc;
+  font-size: 0.85rem;
+  min-width: 250px;
+  cursor: pointer;
+  margin-top: 3px;
+}
+
+#currentAzure2status {
   font-size: 0.7rem;
   font-weight: 700;
   color: blueviolet;
 }
-#spinnerSFTP2addNew {
+#spinnerAzure2addNew {
   width: 15px;
   height: 15px;
   display: flex;
@@ -103,7 +115,7 @@
   align-items: center;
 }
 
-#addSFTP2TopSection {
+#addAzure2TopSection {
   /* border: 1px solid black; */
   width: 100%;
   padding: 5px;
@@ -111,13 +123,13 @@
   justify-content: space-between;
   align-items: center;
 }
-#SFTP2MiddleSection {
+#Azure2MiddleSection {
   /* border: 1px solid blue; */
   min-width: 135px;
   width: 10%;
   max-width: 150px;
 }
-.addNewSFTP2Button {
+.addNewAzure2Button {
   border: 1px solid #ccc;
   padding: 2px;
   /* width: 90px; */
@@ -128,49 +140,49 @@
   border-radius: 20px;
   cursor: pointer;
 }
-.addNewSFTP2Button:hover {
+.addNewAzure2Button:hover {
   background: rgb(246, 246, 246);
 }
-.addNewSFTP2Button:active {
+.addNewAzure2Button:active {
   /* border: 1px solid #0000; */
   border-radius: 5px;
   cursor: pointer;
 }
-.addNewSFTP2icon {
+.addNewAzure2icon {
   font-size: 1.1rem;
   color: green;
 }
-.addNewSFTP2Label {
+.addNewAzure2Label {
   font-size: 0.85rem;
   font-weight: 500;
   color: #1e1e1e;
 }
 
-#addSFTP2MiddleSection {
+#addAzure2MiddleSection {
   /* border: 1px solid black; */
   height: 88.5%;
   overflow: auto;
   padding: 0px 10px;
 }
-#sftp2AllDetailsTable {
+#azure2AllDetailsTable {
   /* border: 1px solid black; */
   width: 100%;
 }
-.sftp2AllDetailsCellHead {
+.azure2AllDetailsCellHead {
   border: 1px solid #ccc;
   background: #f3f3f3;
   padding-left: 4px;
   font-size: 0.85rem;
   text-align: center;
 }
-.sftp2AllDetailsRow:hover {
+.azure2AllDetailsRow:hover {
   background: #f1f1f1;
 }
-.sftp2AllDetailsCell {
+.azure2AllDetailsCell {
   border: 1px solid #ccc;
   padding-left: 4px;
   font-size: 0.85rem;
 }
-.sftp2AllDetailsCellStatus {
+.azure2AllDetailsCellStatus {
   text-align: center;
 }

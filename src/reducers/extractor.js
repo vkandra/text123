@@ -7,8 +7,10 @@ import {
   CLEAR_EDITED_KVRT_LIST,
   SET_CONF_REMOTE_STORAGE,
   SET_ALL_SFTP_DETAILS,
+  SET_ALL_AZURE_DETAILS,
   SET_BULK_UPLOAD_PAGE,
-  SET_ALL_FOLDERS_AND_MAPPINGS,
+  SET_ALL_SFTP_FOLDERS_AND_MAPPINGS,
+  SET_ALL_AZURE_FOLDERS_AND_MAPPINGS,
 } from '../actions/extractor';
 
 const extractorDocumentState = {
@@ -44,8 +46,20 @@ const extractorDocumentState = {
     //   status: 'Successful', // 'Not Successful', // 'In Progress'
     // },
   ],
+  allAzureDetails: [
+    // {
+    //   connection_name: 'DEMO_AZURE2',
+    //   connection_type: 'AZURE',
+    //   status: 'Successful',
+    // },
+    // {
+    //   connection_name: 'DEMO_AZURE3',
+    //   connection_type: 'AZURE',
+    //   status: 'Successful',
+    // },
+  ],
 
-  allFoldersAndMappings: {
+  allSFTPFoldersAndMappings: {
     all_folders: [],
     all_files: [],
     user_id: '',
@@ -69,6 +83,30 @@ const extractorDocumentState = {
       //   template_name: 'ABC',
       //   status: 'In Progress', // 'Not Successful', // 'In Progress'
       // },
+    ],
+  },
+  allAzureFoldersAndMappings: {
+    connection_name: '',
+    connection_type: '',
+    mapped_folders: [
+      // {
+      //   folder_name: 'wartsila/',
+      //   template_name: 'test',
+      //   status: 'Successful',
+      // },
+    ],
+    container_list: [
+      // 'cychatsamplefiles',
+      // 'documentdetails',
+      // 'embeddings',
+      // 'formrecognizer',
+      // 'input',
+      // 'masterdata',
+      // 'staging-container',
+      // 'template-download',
+      // 'testing',
+      // 'vscode',
+      // 'z-output',
     ],
   },
 };
@@ -123,17 +161,29 @@ export default function extractor(state = extractorDocumentState, action) {
         ...state,
         allSftpDetails: action.data,
       };
+    case SET_ALL_AZURE_DETAILS:
+      // console.log(action.data);
+      return {
+        ...state,
+        allAzureDetails: action.data,
+      };
     case SET_BULK_UPLOAD_PAGE:
       // console.log(action.data);
       return {
         ...state,
         bulkUploadPage: action.data,
       };
-    case SET_ALL_FOLDERS_AND_MAPPINGS:
+    case SET_ALL_SFTP_FOLDERS_AND_MAPPINGS:
       // console.log(action.data);
       return {
         ...state,
-        allFoldersAndMappings: action.data,
+        allSFTPFoldersAndMappings: action.data,
+      };
+    case SET_ALL_AZURE_FOLDERS_AND_MAPPINGS:
+      // console.log(action.data);
+      return {
+        ...state,
+        allAzureFoldersAndMappings: action.data,
       };
     default:
       return state;

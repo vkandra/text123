@@ -3,13 +3,16 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux/es/exports';
 import SFTP from '../SFTP/SFTP';
 import { setConfRemoteStorage } from '../../actions/extractor';
+import AzureRemoteSt from '../AzureRemoteSt/AzureRemoteSt';
 
 const ConfRemoteStorage = (props) => {
   useEffect(() => {
     if (props.extractor.bulkUploadPage.page === 1) {
       document.getElementById('confRemStButtonSection').style.display = 'flex';
+      document.getElementById('confRemStVisualSection').style.height = '90.5%';
     } else {
       document.getElementById('confRemStButtonSection').style.display = 'none';
+      document.getElementById('confRemStVisualSection').style.height = '98%';
     }
   }, [props.extractor.bulkUploadPage.page]);
 
@@ -54,7 +57,7 @@ const ConfRemoteStorage = (props) => {
         {props.extractor.confRemoteStorage === 1 ? (
           <SFTP />
         ) : props.extractor.confRemoteStorage === 2 ? (
-          'Azure'
+          <AzureRemoteSt />
         ) : (
           'AWS'
         )}

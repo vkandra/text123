@@ -11,8 +11,12 @@ export const USER_EDITED_KVRT_LIST = 'USER_EDITED_KVRT_LIST';
 export const CLEAR_EDITED_KVRT_LIST = 'CLEAR_EDITED_KVRT_LIST';
 export const SET_CONF_REMOTE_STORAGE = 'SET_CONF_REMOTE_STORAGE';
 export const SET_ALL_SFTP_DETAILS = 'SET_ALL_SFTP_DETAILS';
+export const SET_ALL_AZURE_DETAILS = 'SET_ALL_AZURE_DETAILS';
 export const SET_BULK_UPLOAD_PAGE = 'SET_BULK_UPLOAD_PAGE';
-export const SET_ALL_FOLDERS_AND_MAPPINGS = 'SET_ALL_FOLDERS_AND_MAPPINGS';
+export const SET_ALL_SFTP_FOLDERS_AND_MAPPINGS =
+  'SET_ALL_SFTP_FOLDERS_AND_MAPPINGS';
+export const SET_ALL_AZURE_FOLDERS_AND_MAPPINGS =
+  'SET_ALL_AZURE_FOLDERS_AND_MAPPINGS';
 
 // ACTION CREATORS
 export function changeTabOperation(data) {
@@ -75,6 +79,14 @@ export function setAllSftpDetails(data) {
   };
 }
 
+export function setAllAzureDetails(data) {
+  // console.log(data);
+  return {
+    type: SET_ALL_AZURE_DETAILS,
+    data: data,
+  };
+}
+
 export function setBulkUploadPage(data) {
   // console.log(data);
   return {
@@ -83,10 +95,18 @@ export function setBulkUploadPage(data) {
   };
 }
 
-export function setAllFoldersAndMappings(data) {
+export function setAllSFTPFoldersAndMappings(data) {
   // console.log(data);
   return {
-    type: SET_ALL_FOLDERS_AND_MAPPINGS,
+    type: SET_ALL_SFTP_FOLDERS_AND_MAPPINGS,
+    data: data,
+  };
+}
+
+export function setAllAzureFoldersAndMappings(data) {
+  // console.log(data);
+  return {
+    type: SET_ALL_AZURE_FOLDERS_AND_MAPPINGS,
     data: data,
   };
 }
@@ -103,6 +123,23 @@ export function getAllSftpDetailsAPI(data) {
       .then(function (response) {
         console.log(response.data);
         dispatch(setAllSftpDetails(response.data.all_sftp));
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
+}
+
+export function getAllAzureDetailsAPI(data) {
+  return (dispatch) => {
+    axios
+      .post(
+        `https://functionstexextraction.azurewebsites.net/api/source_azure_fetch_conn_details`,
+        data
+      )
+      .then(function (response) {
+        console.log(response.data);
+        dispatch(setAllAzureDetails(response.data.all_azure));
       })
       .catch(function (error) {
         console.log(error);

@@ -1,23 +1,25 @@
-import './SFTP2ndPage.css';
+import './AzureRemoteSt2ndPage.css';
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux/es/exports';
 import {
-  setAllSFTPFoldersAndMappings,
+  setAllAzureFoldersAndMappings,
   setBulkUploadPage,
 } from '../../actions/extractor';
 import axios from 'axios';
 import { addDeletefetchTemplateAPI } from '../../actions/singleDocument';
 import { MoonLoader } from 'react-spinners';
 
-const SFTP2ndPage = (props) => {
+const AzureRemoteSt2ndPage = (props) => {
   const [folderNtemplate, setFolderNtemplate] = useState({
     folderName: '',
+    subFolderName: '',
     template: {},
   });
-  const [currentSFTP, setCurrentSFTP] = useState('');
+  const [allSubFolders, setAllSubFolders] = useState([]);
+  const [currentAzure, setCurrentAzure] = useState('');
 
   useEffect(() => {
-    getSingleSftpDetailsAPI();
+    getSingleAzureDetailsAPI();
 
     let reqBody = {
       user_id: props.user.token,
@@ -36,8 +38,7 @@ const SFTP2ndPage = (props) => {
     }, 5000);
   }, []);
 
-  // console.log(folderNtemplate);
-  const getSingleSftpDetailsAPI = () => {
+  const getSingleAzureDetailsAPI = () => {
     let data = {
       user_id: props.user.token,
       ...props.extractor.bulkUploadPage.data,
@@ -45,16 +46,44 @@ const SFTP2ndPage = (props) => {
     console.log(data);
     axios
       .post(
-        `https://functionstexextraction.azurewebsites.net/api/sftp_list_folders_metadata`,
+        `https://functionstexextraction.azurewebsites.net/api/source_azure_list_containers_metadata`,
+        data
+      )
+      .then(function (response) {
+        console.log(response.data);
+        // setFolderNtemplate({
+        //   ...folderNtemplate,
+        //   folderName: response.data.container_list[0],
+        // });
+        props.dispatch(setAllAzureFoldersAndMappings(response.data));
+        if (allSubFolders.length === 0) {
+          getAzureAllSubFoldersAPI(response.data.container_list[0]);
+        }
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
+
+  const getAzureAllSubFoldersAPI = (folderName) => {
+    const data = {
+      user_id: props.user.token,
+      container_name: folderName,
+      ...props.extractor.bulkUploadPage.data,
+    };
+    console.log(data);
+    axios
+      .post(
+        `https://functionstexextraction.azurewebsites.net/api/source_azure_container_hierarchy`,
         data
       )
       .then(function (response) {
         console.log(response.data);
         setFolderNtemplate({
           ...folderNtemplate,
-          folderName: response.data.all_folders[0],
+          subFolderName: response.data.folders_list[0],
         });
-        props.dispatch(setAllSFTPFoldersAndMappings(response.data));
+        setAllSubFolders(response.data.folders_list);
       })
       .catch(function (error) {
         console.log(error);
@@ -68,29 +97,36 @@ const SFTP2ndPage = (props) => {
     };
     props.dispatch(setBulkUploadPage(param));
     props.dispatch(
-      setAllSFTPFoldersAndMappings({
-        all_folders: [],
-        all_files: [],
-        user_id: '',
-        SftpName: '',
-        SftpUrl: '',
-        hostname: '',
-        username: '',
+      setAllAzureFoldersAndMappings({
+        connection_name: '',
+        connection_type: '',
         mapped_folders: [],
+        container_list: [],
       })
     );
   };
 
   const addFolderToCopy = () => {
     let folder_name_selected = folderNtemplate.folderName;
+    let sub_folder_name_selected = folderNtemplate.subFolderName;
     let template_details_selected = { ...folderNtemplate.template };
     if (folderNtemplate.folderName === '') {
       folder_name_selected =
-        props.extractor.allSFTPFoldersAndMappings.all_folders[0];
+        props.extractor.allAzureFoldersAndMappings.container_list[0];
       setFolderNtemplate({
         ...folderNtemplate,
-        folderName: props.extractor.allSFTPFoldersAndMappings.all_folders[0],
+        folderName:
+          props.extractor.allAzureFoldersAndMappings.container_list[0],
       });
+    }
+    if (folderNtemplate.subFolderName === '') {
+      if (allSubFolders.length !== 0) {
+        sub_folder_name_selected = allSubFolders[0];
+        setFolderNtemplate({
+          ...folderNtemplate,
+          subfolderName: allSubFolders[0],
+        });
+      }
     }
     if (Object.keys(template_details_selected).length === 0) {
       template_details_selected = {
@@ -101,54 +137,79 @@ const SFTP2ndPage = (props) => {
         template: { ...props.singleDocument.saveSubTempDetails[0] },
       });
     }
+    folder_name_selected = document.getElementById(
+      'singleInsAzureFolderSelect'
+    ).value;
+    sub_folder_name_selected = document.getElementById(
+      'singleInsAzureSubFolderSelect'
+    ).value;
+    let template_num = document.getElementById(
+      'singleInsAzureTemplateSelect'
+    ).value;
+    for (let i = 0; i < props.singleDocument.saveSubTempDetails.length; i++) {
+      if (
+        props.singleDocument.saveSubTempDetails[i].sub_template_id ===
+        template_num
+      ) {
+        template_details_selected = {
+          ...props.singleDocument.saveSubTempDetails[i],
+        };
+        break;
+      }
+    }
+    console.log(template_num);
     let data = {
       user_id: props.user.token,
       ...props.extractor.bulkUploadPage.data,
-      folder_path: folder_name_selected,
+      container_name: folder_name_selected,
+      selected_items: sub_folder_name_selected,
       ...template_details_selected,
     };
     console.log(data);
-    setCurrentSFTP('Copying... Please wait');
+
+    setCurrentAzure('Copying... Please wait');
     axios
       .post(
-        `https://functionstexextraction.azurewebsites.net/api/sftp_copy_blob_notprocessed`,
+        `https://functionstexextraction.azurewebsites.net/api/source_azure_copy_notprocessed`,
         data
       )
       .then(function (response) {
         console.log(response.data);
-        setCurrentSFTP(response.data.Status);
-        let obj1 = {
-          user_id: props.user.token,
-          ...props.extractor.bulkUploadPage.data,
-        };
-        getSingleSftpDetailsAPI();
+        setCurrentAzure(response.data.status);
+        getSingleAzureDetailsAPI();
       })
       .catch(function (error) {
         console.log(error);
-        setCurrentSFTP('Error!');
-        let obj1 = {
-          user_id: props.user.token,
-          ...props.extractor.bulkUploadPage.data,
-        };
-        getSingleSftpDetailsAPI();
+        setCurrentAzure('Error!');
+        getSingleAzureDetailsAPI();
       });
   };
 
+  const resetDropDowns = () => {
+    setCurrentAzure('');
+    // document.getElementById('singleInsAzureFolderSelect').value =
+    //   props.extractor.allAzureFoldersAndMappings.container_list[0];
+    // document.getElementById('singleInsAzureSubFolderSelect').value =
+    //   allSubFolders[0];
+  };
+
+  console.log(folderNtemplate);
+
   return (
-    <div className="sftp2ndPage">
-      {/* SFTP Folder Modal Begins */}
+    <div className="azureRemoteSt2ndPage">
+      {/* Azure Folder Modal Begins */}
       <div
-        className="modal fade custom-modal-SFTP"
-        id="AddNewSFTP2Modal"
+        className="modal fade custom-modal-Azure"
+        id="AddNewAzure2Modal"
         tabindex="-1"
         role="dialog"
-        aria-labelledby="AddNewSFTP2ModalLabel"
+        aria-labelledby="AddNewAzure2ModalLabel"
         aria-hidden="true"
       >
         <div className="modal-dialog" role="document">
           <div className="modal-content">
             <div className="modal-header">
-              <h5 className="modal-title" id="AddNewSFTP2ModalLabel">
+              <h5 className="modal-title" id="AddNewAzure2ModalLabel">
                 Add New Folder
               </h5>
               <button
@@ -161,16 +222,18 @@ const SFTP2ndPage = (props) => {
               </button>
             </div>
             <div className="modal-body">
-              <div className="leftSectionModalAddNewSFTP">Select Folder</div>
+              <div className="leftSectionModalAddNewAzure">
+                Select Container
+              </div>
               <select
                 name="folders"
-                id="singleInsSFTPFolderSelect"
+                id="singleInsAzureFolderSelect"
                 // onChange={fetchTemplateFiles}
                 onChange={(event) => {
                   // console.log(event.target.selectedIndex);
                   const selectedIndex = event.target.selectedIndex;
                   const selectedFolder =
-                    props.extractor.allSFTPFoldersAndMappings.all_folders[
+                    props.extractor.allAzureFoldersAndMappings.container_list[
                       selectedIndex
                     ];
                   //   fetchTemplateFiles(selectedTemplateDetail);
@@ -178,10 +241,11 @@ const SFTP2ndPage = (props) => {
                     ...folderNtemplate,
                     folderName: selectedFolder,
                   });
+                  getAzureAllSubFoldersAPI(selectedFolder);
                 }}
               >
                 <optgroup label="Select Folder">
-                  {props.extractor.allSFTPFoldersAndMappings.all_folders.map(
+                  {props.extractor.allAzureFoldersAndMappings.container_list.map(
                     (singleFolder, index) => (
                       <option key={index} value={singleFolder}>
                         {singleFolder}
@@ -191,11 +255,38 @@ const SFTP2ndPage = (props) => {
                 </optgroup>
               </select>
               <hr></hr>
-              <div className="leftSectionModalAddNewSFTP">Select Template</div>
+
+              <div className="leftSectionModalAddNewAzure">Select Folder</div>
+              <select
+                name="folders"
+                id="singleInsAzureSubFolderSelect"
+                // onChange={fetchTemplateFiles}
+                onChange={(event) => {
+                  // console.log(event.target.selectedIndex);
+                  const selectedIndex = event.target.selectedIndex;
+                  const selectedFolder = allSubFolders[selectedIndex];
+                  //   fetchTemplateFiles(selectedTemplateDetail);
+                  setFolderNtemplate({
+                    ...folderNtemplate,
+                    subFolderName: selectedFolder,
+                  });
+                }}
+              >
+                <optgroup label="Select Folder">
+                  {allSubFolders.map((singleFolder, index) => (
+                    <option key={index} value={singleFolder}>
+                      {singleFolder}
+                    </option>
+                  ))}
+                </optgroup>
+              </select>
+              <hr></hr>
+
+              <div className="leftSectionModalAddNewAzure">Select Template</div>
               <div>
                 <select
                   name="templates"
-                  id="singleInsSFTPTemplateSelect"
+                  id="singleInsAzureTemplateSelect"
                   // onChange={fetchTemplateFiles}
                   onChange={(event) => {
                     // console.log(event.target.selectedIndex);
@@ -215,7 +306,7 @@ const SFTP2ndPage = (props) => {
                         <option
                           key={singletemplate.sub_template_id}
                           singletemplate={singletemplate}
-                          value={singletemplate.sub_template_name}
+                          value={singletemplate.sub_template_id}
                         >
                           {singletemplate.sub_template_name}
                         </option>
@@ -233,10 +324,10 @@ const SFTP2ndPage = (props) => {
               >
                 Close
               </button>
-              {currentSFTP !== '' ? (
-                <div id="currentSFTP2status">&nbsp;{currentSFTP}&nbsp;</div>
+              {currentAzure !== '' ? (
+                <div id="currentAzure2status">&nbsp;{currentAzure}&nbsp;</div>
               ) : null}
-              {currentSFTP === '' && (
+              {currentAzure === '' && (
                 <button
                   type="button"
                   className="btn btn-primary"
@@ -246,18 +337,18 @@ const SFTP2ndPage = (props) => {
                 </button>
               )}
 
-              {currentSFTP === 'Copying... Please wait' && (
-                <div id="spinnerSFTP2addNew">
+              {currentAzure === 'Copying... Please wait' && (
+                <div id="spinnerAzure2addNew">
                   <MoonLoader color="#0D6EFD" size={15} />
                 </div>
               )}
 
-              {currentSFTP !== '' &&
-                currentSFTP !== 'Copying... Please wait' && (
+              {currentAzure !== '' &&
+                currentAzure !== 'Copying... Please wait' && (
                   <button
                     type="button"
                     className="btn btn-primary"
-                    onClick={() => setCurrentSFTP('')}
+                    onClick={resetDropDowns}
                   >
                     Ok
                   </button>
@@ -266,71 +357,71 @@ const SFTP2ndPage = (props) => {
           </div>
         </div>
       </div>
-      {/* SFTP Folder Modal Ends */}
-      <div className="sftp2ndPageContainer">
-        <div id="sftp2Container1">
-          <div id="sftpSecondPageHeader">
+      {/* Azure Folder Modal Ends */}
+      <div className="azure2ndPageContainer">
+        <div id="azure2Container1">
+          <div id="azureSecondPageHeader">
             <div
               onClick={navigateBackToFirstPage}
-              id="sftpSecondPageBackToTemplates1"
+              id="azureSecondPageBackToTemplates1"
             >
               <i class="fa-solid fa-circle-left"></i>
             </div>
-            <div className="sftpSecondPageLabel1">
-              &nbsp;&nbsp;SFTP Name:&nbsp;
-              <span className="sftpSecondPageLabelAns1">
-                {props.extractor.bulkUploadPage.data.SftpName}
+            <div className="azureSecondPageLabel1">
+              &nbsp;&nbsp;Azure Name:&nbsp;
+              <span className="azureSecondPageLabelAns1">
+                {props.extractor.bulkUploadPage.data.connection_name}
               </span>
               &nbsp;&nbsp;
             </div>
 
             <div
               onClick={navigateBackToFirstPage}
-              id="sftpSecondPageBackToTemplates2"
+              id="azureSecondPageBackToTemplates2"
             >
               <i class="fa-solid fa-xmark"></i>
             </div>
           </div>
-          <div id="sftpSecPgContainer">
-            <div id="addSFTP2TopSection">
-              <div id="SFTP2MiddleSection">
+          <div id="azureSecPgContainer">
+            <div id="addAzure2TopSection">
+              <div id="Azure2MiddleSection">
                 <div
-                  className="addNewSFTP2Button"
+                  className="addNewAzure2Button"
                   data-toggle="modal"
-                  data-target="#AddNewSFTP2Modal"
+                  data-target="#AddNewAzure2Modal"
                 >
-                  <div className="addNewSFTP2icon">
+                  <div className="addNewAzure2icon">
                     <i className="fa-solid fa-circle-plus"></i>
                   </div>
-                  <div className="addNewSFTP2Label">Add New Folder</div>
+                  <div className="addNewAzure2Label">Add New Folder</div>
                 </div>
               </div>
-              <div className="refreshIcDiv" onClick={getSingleSftpDetailsAPI}>
+              <div className="refreshIcDiv" onClick={getSingleAzureDetailsAPI}>
                 <i className="fi fi-rr-refresh"></i>
               </div>
             </div>
           </div>
-          <div id="addSFTP2MiddleSection">
-            <table id="sftp2AllDetailsTable">
+          <div id="addAzure2MiddleSection">
+            <table id="azure2AllDetailsTable">
               <thead>
                 <tr>
-                  <th className="sftp2AllDetailsCellHead">Folder Name</th>
-                  <th className="sftp2AllDetailsCellHead">Template Name</th>
-                  <th className="sftp2AllDetailsCellHead">Status</th>
+                  <th className="azure2AllDetailsCellHead">Folder Name</th>
+                  <th className="azure2AllDetailsCellHead">Template Name</th>
+                  <th className="azure2AllDetailsCellHead">Status</th>
                 </tr>
               </thead>
               <tbody>
-                {props.extractor.allSFTPFoldersAndMappings.mapped_folders.map(
+                {props.extractor.allAzureFoldersAndMappings.mapped_folders.map(
                   (rowData, index) => (
-                    <tr key={index} className="sftp2AllDetailsRow">
-                      <td className="sftp2AllDetailsCell">
+                    <tr key={index} className="azure2AllDetailsRow">
+                      <td className="azure2AllDetailsCell">
                         {rowData.folder_name}
                       </td>
-                      <td className="sftp2AllDetailsCell">
+                      <td className="azure2AllDetailsCell">
                         {rowData.template_name}
                       </td>
                       <td
-                        className="sftp2AllDetailsCell sftp2AllDetailsCellStatus"
+                        className="azure2AllDetailsCell azure2AllDetailsCellStatus"
                         style={
                           rowData.status === 'Successful'
                             ? { color: 'green', fontWeight: '500' }
@@ -362,6 +453,6 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(SFTP2ndPage);
+export default connect(mapStateToProps)(AzureRemoteSt2ndPage);
 
-// export default SFTP2ndPage;
+// export default AzureRemoteSt2ndPage;
