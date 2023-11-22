@@ -12,11 +12,14 @@ export const CLEAR_EDITED_KVRT_LIST = 'CLEAR_EDITED_KVRT_LIST';
 export const SET_CONF_REMOTE_STORAGE = 'SET_CONF_REMOTE_STORAGE';
 export const SET_ALL_SFTP_DETAILS = 'SET_ALL_SFTP_DETAILS';
 export const SET_ALL_AZURE_DETAILS = 'SET_ALL_AZURE_DETAILS';
+export const SET_ALL_AWS_DETAILS = 'SET_ALL_AWS_DETAILS';
 export const SET_BULK_UPLOAD_PAGE = 'SET_BULK_UPLOAD_PAGE';
 export const SET_ALL_SFTP_FOLDERS_AND_MAPPINGS =
   'SET_ALL_SFTP_FOLDERS_AND_MAPPINGS';
 export const SET_ALL_AZURE_FOLDERS_AND_MAPPINGS =
   'SET_ALL_AZURE_FOLDERS_AND_MAPPINGS';
+export const SET_ALL_AWS_FOLDERS_AND_MAPPINGS =
+  'SET_ALL_AWS_FOLDERS_AND_MAPPINGS';
 
 // ACTION CREATORS
 export function changeTabOperation(data) {
@@ -87,6 +90,14 @@ export function setAllAzureDetails(data) {
   };
 }
 
+export function setAllAWSDetails(data) {
+  // console.log(data);
+  return {
+    type: SET_ALL_AWS_DETAILS,
+    data: data,
+  };
+}
+
 export function setBulkUploadPage(data) {
   // console.log(data);
   return {
@@ -107,6 +118,14 @@ export function setAllAzureFoldersAndMappings(data) {
   // console.log(data);
   return {
     type: SET_ALL_AZURE_FOLDERS_AND_MAPPINGS,
+    data: data,
+  };
+}
+
+export function setAllAWSFoldersAndMappings(data) {
+  // console.log(data);
+  return {
+    type: SET_ALL_AWS_FOLDERS_AND_MAPPINGS,
     data: data,
   };
 }
@@ -140,6 +159,20 @@ export function getAllAzureDetailsAPI(data) {
       .then(function (response) {
         console.log(response.data);
         dispatch(setAllAzureDetails(response.data.all_azure));
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
+}
+
+export function getAllAWSDetailsAPI(data) {
+  return (dispatch) => {
+    axios
+      .post(`https://cytext.azure-api.net/aws/aws_fetch_conn`, data)
+      .then(function (response) {
+        console.log(response.data);
+        dispatch(setAllAWSDetails(response.data.all_aws));
       })
       .catch(function (error) {
         console.log(error);

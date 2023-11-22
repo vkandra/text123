@@ -4,6 +4,7 @@ import { connect } from 'react-redux/es/exports';
 import SFTP from '../SFTP/SFTP';
 import { setConfRemoteStorage } from '../../actions/extractor';
 import AzureRemoteSt from '../AzureRemoteSt/AzureRemoteSt';
+import AWSRemoteSt from '../AWSRemoteSt/AWSRemoteSt';
 
 const ConfRemoteStorage = (props) => {
   useEffect(() => {
@@ -59,7 +60,7 @@ const ConfRemoteStorage = (props) => {
         ) : props.extractor.confRemoteStorage === 2 ? (
           <AzureRemoteSt />
         ) : (
-          'AWS'
+          <AWSRemoteSt />
         )}
       </div>
     </div>

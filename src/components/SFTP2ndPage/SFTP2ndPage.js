@@ -101,6 +101,26 @@ const SFTP2ndPage = (props) => {
         template: { ...props.singleDocument.saveSubTempDetails[0] },
       });
     }
+
+    folder_name_selected = document.getElementById(
+      'singleInsSFTPFolderSelect'
+    ).value;
+
+    let template_num = document.getElementById(
+      'singleInsSFTPTemplateSelect'
+    ).value;
+    for (let i = 0; i < props.singleDocument.saveSubTempDetails.length; i++) {
+      if (
+        props.singleDocument.saveSubTempDetails[i].sub_template_id ===
+        template_num
+      ) {
+        template_details_selected = {
+          ...props.singleDocument.saveSubTempDetails[i],
+        };
+        break;
+      }
+    }
+
     let data = {
       user_id: props.user.token,
       ...props.extractor.bulkUploadPage.data,
@@ -215,7 +235,7 @@ const SFTP2ndPage = (props) => {
                         <option
                           key={singletemplate.sub_template_id}
                           singletemplate={singletemplate}
-                          value={singletemplate.sub_template_name}
+                          value={singletemplate.sub_template_id}
                         >
                           {singletemplate.sub_template_name}
                         </option>

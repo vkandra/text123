@@ -1,0 +1,188 @@
+/* Second Page */
+.awsRemoteSt2ndPage {
+  height: 100%;
+}
+.aws2ndPageContainer {
+  /* border: 1px solid black; */
+  height: 100%;
+  padding: 4px;
+}
+#aws2Container1 {
+  /* border: 1px solid green; */
+  width: 100%;
+  height: 100%;
+}
+#awsSecondPageHeader {
+  /* border: 1px solid black; */
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.awsSecondPageLabel1 {
+  /* border: 1px solid brown; */
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 25%;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: #384988;
+}
+.awsSecondPageLabelAns1 {
+  color: #000;
+  font-weight: 400;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  max-width: 400px;
+}
+
+#awsSecondPageBackToTemplates1 {
+  border: 1px solid #ccc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 3px 10px;
+  border-radius: 5px;
+  color: #008000;
+}
+#awsSecondPageBackToTemplates1:hover {
+  background: #eeeeee;
+  cursor: pointer;
+}
+#awsSecondPageBackToTemplates2 {
+  border: 1px solid #ccc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 3px 5px;
+  border-radius: 3px;
+  color: #008000;
+}
+#awsSecondPageBackToTemplates2:hover {
+  background: #eeeeee;
+  cursor: pointer;
+}
+
+#aws2SecPgContainer {
+  /* border: 1px solid green; */
+  width: 100%;
+  height: 95%;
+  padding-top: 4px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#singleInsAWSFolderSelect {
+  outline: none;
+  border: 1px solid #ccc;
+  font-size: 0.85rem;
+  min-width: 250px;
+  cursor: pointer;
+  margin-top: 3px;
+}
+
+#singleInsAWSSubFolderSelect {
+  outline: none;
+  border: 1px solid #ccc;
+  font-size: 0.85rem;
+  min-width: 250px;
+  cursor: pointer;
+  margin-top: 3px;
+}
+
+#singleInsAWSTemplateSelect {
+  outline: none;
+  border: 1px solid #ccc;
+  font-size: 0.85rem;
+  min-width: 250px;
+  cursor: pointer;
+  margin-top: 3px;
+}
+
+#currentAWS2status {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: blueviolet;
+}
+#spinnerAWS2addNew {
+  width: 15px;
+  height: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#addAWS2TopSection {
+  /* border: 1px solid black; */
+  width: 100%;
+  padding: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+#AWS2MiddleSection {
+  /* border: 1px solid blue; */
+  min-width: 135px;
+  width: 10%;
+  max-width: 150px;
+}
+.addNewAWS2Button {
+  border: 1px solid #ccc;
+  padding: 2px;
+  /* width: 90px; */
+  height: 26px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border-radius: 20px;
+  cursor: pointer;
+}
+.addNewAWS2Button:hover {
+  background: rgb(246, 246, 246);
+}
+.addNewAWS2Button:active {
+  /* border: 1px solid #0000; */
+  border-radius: 5px;
+  cursor: pointer;
+}
+.addNewAWS2icon {
+  font-size: 1.1rem;
+  color: green;
+}
+.addNewAWS2Label {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #1e1e1e;
+}
+
+#addAWS2MiddleSection {
+  /* border: 1px solid black; */
+  height: 88.5%;
+  overflow: auto;
+  padding: 0px 10px;
+}
+#aws2AllDetailsTable {
+  /* border: 1px solid black; */
+  width: 100%;
+}
+.aws2AllDetailsCellHead {
+  border: 1px solid #ccc;
+  background: #f3f3f3;
+  padding-left: 4px;
+  font-size: 0.85rem;
+  text-align: center;
+}
+.aws2AllDetailsRow:hover {
+  background: #f1f1f1;
+}
+.aws2AllDetailsCell {
+  border: 1px solid #ccc;
+  padding-left: 4px;
+  font-size: 0.85rem;
+}
+.aws2AllDetailsCellStatus {
+  text-align: center;
+}

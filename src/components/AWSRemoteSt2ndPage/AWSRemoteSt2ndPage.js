@@ -1,25 +1,25 @@
-import './AzureRemoteSt2ndPage.css';
+import './AWSRemoteSt2ndPage.css';
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux/es/exports';
 import {
-  setAllAzureFoldersAndMappings,
+  setAllAWSFoldersAndMappings,
   setBulkUploadPage,
 } from '../../actions/extractor';
 import axios from 'axios';
 import { addDeletefetchTemplateAPI } from '../../actions/singleDocument';
 import { MoonLoader } from 'react-spinners';
 
-const AzureRemoteSt2ndPage = (props) => {
+const AWSRemoteSt2ndPage = (props) => {
   const [folderNtemplate, setFolderNtemplate] = useState({
     folderName: '',
     subFolderName: '',
     template: {},
   });
   const [allSubFolders, setAllSubFolders] = useState([]);
-  const [currentAzure, setCurrentAzure] = useState('');
+  const [currentAWS, setCurrentAWS] = useState('');
 
   useEffect(() => {
-    getSingleAzureDetailsAPI();
+    getSingleAWSDetailsAPI();
 
     let reqBody = {
       user_id: props.user.token,
@@ -38,34 +38,31 @@ const AzureRemoteSt2ndPage = (props) => {
     }, 5000);
   }, []);
 
-  const getSingleAzureDetailsAPI = () => {
+  const getSingleAWSDetailsAPI = () => {
     let data = {
       user_id: props.user.token,
       ...props.extractor.bulkUploadPage.data,
     };
     console.log(data);
     axios
-      .post(
-        `https://functionstexextraction.azurewebsites.net/api/source_azure_list_containers_metadata`,
-        data
-      )
+      .post(`https://cytext.azure-api.net/aws/list_s3_folders`, data)
       .then(function (response) {
         console.log(response.data);
         // setFolderNtemplate({
         //   ...folderNtemplate,
-        //   folderName: response.data.container_list[0],
+        //   folderName: response.data.aws_s3_folders[0],
         // });
-        props.dispatch(setAllAzureFoldersAndMappings(response.data));
-        if (allSubFolders.length === 0) {
-          getAzureAllSubFoldersAPI(response.data.container_list[0]);
-        }
+        props.dispatch(setAllAWSFoldersAndMappings(response.data));
+        // if (allSubFolders.length === 0) {
+        //   getAWSAllSubFoldersAPI(response.data.aws_s3_folders[0]);
+        // }
       })
       .catch(function (error) {
         console.log(error);
       });
   };
 
-  const getAzureAllSubFoldersAPI = (folderName) => {
+  const getAWSAllSubFoldersAPI = (folderName) => {
     const data = {
       user_id: props.user.token,
       container_name: folderName,
@@ -74,7 +71,7 @@ const AzureRemoteSt2ndPage = (props) => {
     console.log(data);
     axios
       .post(
-        `https://functionstexextraction.azurewebsites.net/api/source_azure_container_hierarchy`,
+        `https://functionstexextraction.awswebsites.net/api/source_aws_container_hierarchy`,
         data
       )
       .then(function (response) {
@@ -97,37 +94,36 @@ const AzureRemoteSt2ndPage = (props) => {
     };
     props.dispatch(setBulkUploadPage(param));
     props.dispatch(
-      setAllAzureFoldersAndMappings({
+      setAllAWSFoldersAndMappings({
         connection_name: '',
         connection_type: '',
         mapped_folders: [],
-        container_list: [],
+        aws_s3_folders: [],
       })
     );
   };
 
   const addFolderToCopy = () => {
     let folder_name_selected = folderNtemplate.folderName;
-    let sub_folder_name_selected = folderNtemplate.subFolderName;
+    // let sub_folder_name_selected = folderNtemplate.subFolderName;
     let template_details_selected = { ...folderNtemplate.template };
     if (folderNtemplate.folderName === '') {
       folder_name_selected =
-        props.extractor.allAzureFoldersAndMappings.container_list[0];
+        props.extractor.allAWSFoldersAndMappings.aws_s3_folders[0];
       setFolderNtemplate({
         ...folderNtemplate,
-        folderName:
-          props.extractor.allAzureFoldersAndMappings.container_list[0],
+        folderName: props.extractor.allAWSFoldersAndMappings.aws_s3_folders[0],
       });
     }
-    if (folderNtemplate.subFolderName === '') {
-      if (allSubFolders.length !== 0) {
-        sub_folder_name_selected = allSubFolders[0];
-        setFolderNtemplate({
-          ...folderNtemplate,
-          subfolderName: allSubFolders[0],
-        });
-      }
-    }
+    // if (folderNtemplate.subFolderName === '') {
+    //   if (allSubFolders.length !== 0) {
+    //     sub_folder_name_selected = allSubFolders[0];
+    //     setFolderNtemplate({
+    //       ...folderNtemplate,
+    //       subfolderName: allSubFolders[0],
+    //     });
+    //   }
+    // }
     if (Object.keys(template_details_selected).length === 0) {
       template_details_selected = {
         ...props.singleDocument.saveSubTempDetails[0],
@@ -138,13 +134,13 @@ const AzureRemoteSt2ndPage = (props) => {
       });
     }
     folder_name_selected = document.getElementById(
-      'singleInsAzureFolderSelect'
+      'singleInsAWSFolderSelect'
     ).value;
-    sub_folder_name_selected = document.getElementById(
-      'singleInsAzureSubFolderSelect'
-    ).value;
+    // sub_folder_name_selected = document.getElementById(
+    //   'singleInsAWSSubFolderSelect'
+    // ).value;
     let template_num = document.getElementById(
-      'singleInsAzureTemplateSelect'
+      'singleInsAWSTemplateSelect'
     ).value;
     for (let i = 0; i < props.singleDocument.saveSubTempDetails.length; i++) {
       if (
@@ -161,55 +157,52 @@ const AzureRemoteSt2ndPage = (props) => {
     let data = {
       user_id: props.user.token,
       ...props.extractor.bulkUploadPage.data,
-      container_name: folder_name_selected,
-      selected_items: sub_folder_name_selected,
+      selected_items: folder_name_selected,
+      //   selected_items: sub_folder_name_selected,
       ...template_details_selected,
     };
     console.log(data);
 
-    setCurrentAzure('Copying... Please wait');
+    setCurrentAWS('Copying... Please wait');
     axios
-      .post(
-        `https://functionstexextraction.azurewebsites.net/api/source_azure_copy_notprocessed`,
-        data
-      )
+      .post(`https://cytext.azure-api.net/aws/copy_s3_folder`, data)
       .then(function (response) {
         console.log(response.data);
-        setCurrentAzure(response.data.status);
-        getSingleAzureDetailsAPI();
+        setCurrentAWS(response.data.status);
+        getSingleAWSDetailsAPI();
       })
       .catch(function (error) {
         console.log(error);
-        setCurrentAzure('Error!');
-        getSingleAzureDetailsAPI();
+        setCurrentAWS('Error!');
+        getSingleAWSDetailsAPI();
       });
   };
 
   const resetDropDowns = () => {
-    setCurrentAzure('');
-    // document.getElementById('singleInsAzureFolderSelect').value =
-    //   props.extractor.allAzureFoldersAndMappings.container_list[0];
-    // document.getElementById('singleInsAzureSubFolderSelect').value =
+    setCurrentAWS('');
+    // document.getElementById('singleInsAWSFolderSelect').value =
+    //   props.extractor.allAWSFoldersAndMappings.aws_s3_folders[0];
+    // document.getElementById('singleInsAWSSubFolderSelect').value =
     //   allSubFolders[0];
   };
 
   console.log(folderNtemplate);
 
   return (
-    <div className="azureRemoteSt2ndPage">
-      {/* Azure Folder Modal Begins */}
+    <div className="awsRemoteSt2ndPage">
+      {/* AWS Folder Modal Begins */}
       <div
-        className="modal fade custom-modal-Azure"
-        id="AddNewAzure2Modal"
+        className="modal fade custom-modal-AWS"
+        id="AddNewAWS2Modal"
         tabindex="-1"
         role="dialog"
-        aria-labelledby="AddNewAzure2ModalLabel"
+        aria-labelledby="AddNewAWS2ModalLabel"
         aria-hidden="true"
       >
         <div className="modal-dialog" role="document">
           <div className="modal-content">
             <div className="modal-header">
-              <h5 className="modal-title" id="AddNewAzure2ModalLabel">
+              <h5 className="modal-title" id="AddNewAWS2ModalLabel">
                 Add New Folder
               </h5>
               <button
@@ -222,18 +215,16 @@ const AzureRemoteSt2ndPage = (props) => {
               </button>
             </div>
             <div className="modal-body">
-              <div className="leftSectionModalAddNewAzure">
-                Select Container
-              </div>
+              <div className="leftSectionModalAddNewAWS">Select Folder</div>
               <select
                 name="folders"
-                id="singleInsAzureFolderSelect"
+                id="singleInsAWSFolderSelect"
                 // onChange={fetchTemplateFiles}
                 onChange={(event) => {
                   // console.log(event.target.selectedIndex);
                   const selectedIndex = event.target.selectedIndex;
                   const selectedFolder =
-                    props.extractor.allAzureFoldersAndMappings.container_list[
+                    props.extractor.allAWSFoldersAndMappings.aws_s3_folders[
                       selectedIndex
                     ];
                   //   fetchTemplateFiles(selectedTemplateDetail);
@@ -241,11 +232,11 @@ const AzureRemoteSt2ndPage = (props) => {
                     ...folderNtemplate,
                     folderName: selectedFolder,
                   });
-                  getAzureAllSubFoldersAPI(selectedFolder);
+                  //   getAWSAllSubFoldersAPI(selectedFolder);
                 }}
               >
-                <optgroup label="Select Container">
-                  {props.extractor.allAzureFoldersAndMappings.container_list.map(
+                <optgroup label="Select Folder">
+                  {props.extractor.allAWSFoldersAndMappings.aws_s3_folders.map(
                     (singleFolder, index) => (
                       <option key={index} value={singleFolder}>
                         {singleFolder}
@@ -256,10 +247,10 @@ const AzureRemoteSt2ndPage = (props) => {
               </select>
               <hr></hr>
 
-              <div className="leftSectionModalAddNewAzure">Select Folder</div>
+              {/* <div className="leftSectionModalAddNewAWS">Select Folder</div>
               <select
                 name="folders"
-                id="singleInsAzureSubFolderSelect"
+                id="singleInsAWSSubFolderSelect"
                 // onChange={fetchTemplateFiles}
                 onChange={(event) => {
                   // console.log(event.target.selectedIndex);
@@ -280,13 +271,13 @@ const AzureRemoteSt2ndPage = (props) => {
                   ))}
                 </optgroup>
               </select>
-              <hr></hr>
+              <hr></hr> */}
 
-              <div className="leftSectionModalAddNewAzure">Select Template</div>
+              <div className="leftSectionModalAddNewAWS">Select Template</div>
               <div>
                 <select
                   name="templates"
-                  id="singleInsAzureTemplateSelect"
+                  id="singleInsAWSTemplateSelect"
                   // onChange={fetchTemplateFiles}
                   onChange={(event) => {
                     // console.log(event.target.selectedIndex);
@@ -324,10 +315,10 @@ const AzureRemoteSt2ndPage = (props) => {
               >
                 Close
               </button>
-              {currentAzure !== '' ? (
-                <div id="currentAzure2status">&nbsp;{currentAzure}&nbsp;</div>
+              {currentAWS !== '' ? (
+                <div id="currentAWS2status">&nbsp;{currentAWS}&nbsp;</div>
               ) : null}
-              {currentAzure === '' && (
+              {currentAWS === '' && (
                 <button
                   type="button"
                   className="btn btn-primary"
@@ -337,39 +328,38 @@ const AzureRemoteSt2ndPage = (props) => {
                 </button>
               )}
 
-              {currentAzure === 'Copying... Please wait' && (
-                <div id="spinnerAzure2addNew">
+              {currentAWS === 'Copying... Please wait' && (
+                <div id="spinnerAWS2addNew">
                   <MoonLoader color="#0D6EFD" size={15} />
                 </div>
               )}
 
-              {currentAzure !== '' &&
-                currentAzure !== 'Copying... Please wait' && (
-                  <button
-                    type="button"
-                    className="btn btn-primary"
-                    onClick={resetDropDowns}
-                  >
-                    Ok
-                  </button>
-                )}
+              {currentAWS !== '' && currentAWS !== 'Copying... Please wait' && (
+                <button
+                  type="button"
+                  className="btn btn-primary"
+                  onClick={resetDropDowns}
+                >
+                  Ok
+                </button>
+              )}
             </div>
           </div>
         </div>
       </div>
-      {/* Azure Folder Modal Ends */}
-      <div className="azure2ndPageContainer">
-        <div id="azure2Container1">
-          <div id="azureSecondPageHeader">
+      {/* AWS Folder Modal Ends */}
+      <div className="aws2ndPageContainer">
+        <div id="aws2Container1">
+          <div id="awsSecondPageHeader">
             <div
               onClick={navigateBackToFirstPage}
-              id="azureSecondPageBackToTemplates1"
+              id="awsSecondPageBackToTemplates1"
             >
               <i class="fa-solid fa-circle-left"></i>
             </div>
-            <div className="azureSecondPageLabel1">
-              &nbsp;&nbsp;Azure Name:&nbsp;
-              <span className="azureSecondPageLabelAns1">
+            <div className="awsSecondPageLabel1">
+              &nbsp;&nbsp;AWS Name:&nbsp;
+              <span className="awsSecondPageLabelAns1">
                 {props.extractor.bulkUploadPage.data.connection_name}
               </span>
               &nbsp;&nbsp;
@@ -377,51 +367,51 @@ const AzureRemoteSt2ndPage = (props) => {
 
             <div
               onClick={navigateBackToFirstPage}
-              id="azureSecondPageBackToTemplates2"
+              id="awsSecondPageBackToTemplates2"
             >
               <i class="fa-solid fa-xmark"></i>
             </div>
           </div>
-          <div id="azureSecPgContainer">
-            <div id="addAzure2TopSection">
-              <div id="Azure2MiddleSection">
+          <div id="awsSecPgContainer">
+            <div id="addAWS2TopSection">
+              <div id="AWS2MiddleSection">
                 <div
-                  className="addNewAzure2Button"
+                  className="addNewAWS2Button"
                   data-toggle="modal"
-                  data-target="#AddNewAzure2Modal"
+                  data-target="#AddNewAWS2Modal"
                 >
-                  <div className="addNewAzure2icon">
+                  <div className="addNewAWS2icon">
                     <i className="fa-solid fa-circle-plus"></i>
                   </div>
-                  <div className="addNewAzure2Label">Add New Folder</div>
+                  <div className="addNewAWS2Label">Add New Folder</div>
                 </div>
               </div>
-              <div className="refreshIcDiv" onClick={getSingleAzureDetailsAPI}>
+              <div className="refreshIcDiv" onClick={getSingleAWSDetailsAPI}>
                 <i className="fi fi-rr-refresh"></i>
               </div>
             </div>
           </div>
-          <div id="addAzure2MiddleSection">
-            <table id="azure2AllDetailsTable">
+          <div id="addAWS2MiddleSection">
+            <table id="aws2AllDetailsTable">
               <thead>
                 <tr>
-                  <th className="azure2AllDetailsCellHead">Folder Name</th>
-                  <th className="azure2AllDetailsCellHead">Template Name</th>
-                  <th className="azure2AllDetailsCellHead">Status</th>
+                  <th className="aws2AllDetailsCellHead">Folder Name</th>
+                  <th className="aws2AllDetailsCellHead">Template Name</th>
+                  <th className="aws2AllDetailsCellHead">Status</th>
                 </tr>
               </thead>
               <tbody>
-                {props.extractor.allAzureFoldersAndMappings.mapped_folders.map(
+                {props.extractor.allAWSFoldersAndMappings.mapped_folders.map(
                   (rowData, index) => (
-                    <tr key={index} className="azure2AllDetailsRow">
-                      <td className="azure2AllDetailsCell">
+                    <tr key={index} className="aws2AllDetailsRow">
+                      <td className="aws2AllDetailsCell">
                         {rowData.folder_name}
                       </td>
-                      <td className="azure2AllDetailsCell">
+                      <td className="aws2AllDetailsCell">
                         {rowData.template_name}
                       </td>
                       <td
-                        className="azure2AllDetailsCell azure2AllDetailsCellStatus"
+                        className="aws2AllDetailsCell aws2AllDetailsCellStatus"
                         style={
                           rowData.status === 'Successful'
                             ? { color: 'green', fontWeight: '500' }
@@ -453,6 +443,6 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(AzureRemoteSt2ndPage);
+export default connect(mapStateToProps)(AWSRemoteSt2ndPage);
 
-// export default AzureRemoteSt2ndPage;
+// export default AWSRemoteSt2ndPage;

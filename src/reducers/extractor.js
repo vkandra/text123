@@ -8,9 +8,11 @@ import {
   SET_CONF_REMOTE_STORAGE,
   SET_ALL_SFTP_DETAILS,
   SET_ALL_AZURE_DETAILS,
+  SET_ALL_AWS_DETAILS,
   SET_BULK_UPLOAD_PAGE,
   SET_ALL_SFTP_FOLDERS_AND_MAPPINGS,
   SET_ALL_AZURE_FOLDERS_AND_MAPPINGS,
+  SET_ALL_AWS_FOLDERS_AND_MAPPINGS,
 } from '../actions/extractor';
 
 const extractorDocumentState = {
@@ -47,6 +49,19 @@ const extractorDocumentState = {
     // },
   ],
   allAzureDetails: [
+    // {
+    //   connection_name: 'DEMO_AZURE2',
+    //   connection_type: 'AZURE',
+    //   status: 'Successful',
+    // },
+    // {
+    //   connection_name: 'DEMO_AZURE3',
+    //   connection_type: 'AZURE',
+    //   status: 'Successful',
+    // },
+  ],
+
+  allAWSDetails: [
     // {
     //   connection_name: 'DEMO_AZURE2',
     //   connection_type: 'AZURE',
@@ -96,6 +111,30 @@ const extractorDocumentState = {
       // },
     ],
     container_list: [
+      // 'cychatsamplefiles',
+      // 'documentdetails',
+      // 'embeddings',
+      // 'formrecognizer',
+      // 'input',
+      // 'masterdata',
+      // 'staging-container',
+      // 'template-download',
+      // 'testing',
+      // 'vscode',
+      // 'z-output',
+    ],
+  },
+  allAWSFoldersAndMappings: {
+    connection_name: '',
+    connection_type: '',
+    mapped_folders: [
+      // {
+      //   folder_name: 'wartsila/',
+      //   template_name: 'test',
+      //   status: 'Successful',
+      // },
+    ],
+    aws_s3_folders: [
       // 'cychatsamplefiles',
       // 'documentdetails',
       // 'embeddings',
@@ -167,6 +206,12 @@ export default function extractor(state = extractorDocumentState, action) {
         ...state,
         allAzureDetails: action.data,
       };
+    case SET_ALL_AWS_DETAILS:
+      // console.log(action.data);
+      return {
+        ...state,
+        allAWSDetails: action.data,
+      };
     case SET_BULK_UPLOAD_PAGE:
       // console.log(action.data);
       return {
@@ -184,6 +229,12 @@ export default function extractor(state = extractorDocumentState, action) {
       return {
         ...state,
         allAzureFoldersAndMappings: action.data,
+      };
+    case SET_ALL_AWS_FOLDERS_AND_MAPPINGS:
+      // console.log(action.data);
+      return {
+        ...state,
+        allAWSFoldersAndMappings: action.data,
       };
     default:
       return state;
