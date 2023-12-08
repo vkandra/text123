@@ -26,7 +26,9 @@ const ExtractedDocumentDetails = (props) => {
   const downloadEditedData = () => {
     let userAndFileData = {
       user_id: props.user.token,
-      doc_id: props.singleDocument.singleDocumentId,
+      DocumentID: props.singleDocument.singleDocumentId,
+      SubTemplate:props.singleDocument.singleDocumentSubTemplate,
+      DocumentName:props.singleDocument.singleDocumentName
     };
     // console.log(editedData);
     props.dispatch(downloadEditedDataAPI(userAndFileData));

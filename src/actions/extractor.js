@@ -211,14 +211,19 @@ export function downloadEditedDataAPI(data) {
   return (dispatch) => {
     console.log(data);
     axios
+      // .post(
+      //   `https://kpud7rol28.execute-api.ap-south-1.amazonaws.com/download`,
+      //   data
+      // )
       .post(
-        `https://kpud7rol28.execute-api.ap-south-1.amazonaws.com/download`,
+        `https://functionstexextraction.azurewebsites.net/api/down_func_api?`,
         data
       )
       .then(function (response) {
-        console.log(response.data.output_download_link);
+        console.log(response.data);
+        console.log(response.data.blob_url);
         dispatch(
-          downloadZipOfExcelFilesAPI(response.data.output_download_link)
+          downloadZipOfExcelFilesAPI(response.data.blob_url)
         );
       })
       .catch(function (error) {
