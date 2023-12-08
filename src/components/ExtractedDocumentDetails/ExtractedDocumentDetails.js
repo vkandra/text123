@@ -23,6 +23,7 @@ const ExtractedDocumentDetails = (props) => {
     props.dispatch(postEditedDataAPI(editedData));
   };
 
+  //for download button
   const downloadEditedData = () => {
     let userAndFileData = {
       user_id: props.user.token,
